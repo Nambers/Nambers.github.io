@@ -56,7 +56,7 @@ echo "失败";
 <p>其中，如果post过来的账号和密码都正确，返回值为<code>“验证成功”</code>，如错误，则为<code>“失败”</code>。</p>
 <center><b>END</b></center>
 
-</article><section class="jump-container is-flex is-justify-content-space-between my-6"><!-- em is empty placeholder--><a class="button is-default" href="/2020/07/08/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E9%A1%B5-flask-1/" title="使用html+css+js制作网页 番外篇 使用python flask 框架 (I)"><i class="iconfont icon-prev mr-2 has-text-grey"></i><span class="has-text-weight-semibold">Previous: 使用html+css+js制作网页 番外篇 使用python flask 框架 (I)</span></a><a class="button is-default" href="/2020/01/31/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E9%A1%B5-3/" title="使用html+css+js制作网页#3 制作登录网页"><span class="has-text-weight-semibold">Next: 使用html+css+js制作网页#3 制作登录网页</span><i class="iconfont icon-next ml-2 has-text-grey"></i></a></section><div id="disqus_thread"></div><article class="mt-6 comment-container" id="disqus"><script>var disqus_config = function () {this.page.url = window.location.href;this.page.identifier = 'blog-pubgj2togw';};</script><script>(function() {var d = document, s = d.createElement('script');s.src = 'https://blog-pubgj2togw.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript content="please enable JavaScript to view the comments powered by Disqus."></noscript><script id="dsq-count-scr" src="//blog-pubgj2togw.disqus.com/count.js" async></script></article><script>String.prototype.replaceAll = function (FindText, RepText) {
+</article><section class="jump-container is-flex is-justify-content-space-between my-6"><!-- em is empty placeholder--><a class="button is-default" href="/2020/07/08/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E9%A1%B5-flask/" title="使用html+css+js制作网页 番外篇 使用python flask 框架"><i class="iconfont icon-prev mr-2 has-text-grey"></i><span class="has-text-weight-semibold">Previous: 使用html+css+js制作网页 番外篇 使用python flask 框架</span></a><a class="button is-default" href="/2020/01/26/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B/" title="使用html+css+js制作网站教程"><span class="has-text-weight-semibold">Next: 使用html+css+js制作网站教程</span><i class="iconfont icon-next ml-2 has-text-grey"></i></a></section><article class="mt-6 comment-container" id="disqus"><div id="disqus_thread"></div><script>var disqus_config = function () {this.page.url = window.location.href;this.page.identifier = document.title;};</script><script>(function() {var d = document, s = d.createElement('script');s.src = 'https://blog-pubgj2togw.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript content="please enable JavaScript to view the comments powered by Disqus."></noscript><script id="dsq-count-scr" src="//blog-pubgj2togw.disqus.com/count.js" async></script></article><script>String.prototype.replaceAll = function (FindText, RepText) {
   return this.replace(new RegExp(FindText, "g"), RepText);
 }
 function html_encode(str) 
@@ -65,7 +65,7 @@ function html_encode(str)
     if (str.length == 0) return ""; 
     s = str.replaceAll("&#125;", "}"); 
     s = s.replaceAll("&#123;", "{"); 
-    s = s.replaceAll("<", "&lt;"); 
+    s = s.replaceAll("<", "&lt;");  
     s = s.replaceAll("&lt;code", "<code");
     s = s.replaceAll("&lt;/code", "</code");
     return s; 

@@ -1,0 +1,596 @@
+<!DOCTYPE html><html class="appearance-auto" lang="zh"><head><meta charset="UTF-8"><title>用python+sklearn机器学习实现天气预报)</title><meta name="description" content="Eritque arcus's blog"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><!-- End Google Analytics -->
+<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/avatar.png"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><link rel="stylesheet" href="/style/post.css"><link rel="stylesheet" href="/style/themes/highlight-theme-light.css"><script src="/js/highlight.pack.js"></script><meta name="description" content="项目地址github项目:PYWeatherReport
+系列教程机器学习参考篇: python+sklearn+kaggle机器学习用python+sklearn(机器学习)实现天气预报 准备用python+sklearn(机器学习)实现天气预报数据 数据 用python+sklearn(机器学习)实现天气预报 模型和使用
+0.流程介绍爬虫爬取去年今日的半个月前到去年今日的下个半个月的每日天气数据做训练集和训练验证集，爬取现在半个月前到现在的每日天气数据做预测数据集 -&amp;gt; 数据预处理 -&amp;gt; 训练模型和预测机器学习过程可参考上面那篇
+1. 环境搭建a.python如题，要使用python+sklearn做，所以肯定要搭建好python的环境，教程百度有很多，建议用python3.*
+b.涉及到的.."><meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">Eritque arcus's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><div class="is-full-height" id="postTopic"><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">用python+sklearn机器学习实现天气预报)</p><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">Click back to the top</p></div></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></header><main><main class="container is-max-widescreen content section post-page pt-4 px-4"><div class="columns is-flex-desktop is-justify-content-center is-flex-direction-row-reverse"><div class="column is-3 is-hidden-mobile"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%9C%B0%E5%9D%80"><span class="toc-text">项目地址</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B"><span class="toc-text">系列教程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0-%E6%B5%81%E7%A8%8B%E4%BB%8B%E7%BB%8D"><span class="toc-text">0.流程介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-text">1. 环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#a-python"><span class="toc-text">a.python</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#b-%E6%B6%89%E5%8F%8A%E5%88%B0%E7%9A%84%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9B%B8%E5%85%B3%E5%BA%93"><span class="toc-text">b.涉及到的机器学习相关库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sklearn"><span class="toc-text">sklearn</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#panda"><span class="toc-text">panda</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#seaborn"><span class="toc-text">seaborn</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#joblib"><span class="toc-text">joblib</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E5%AF%BB%E6%89%BE%E6%95%B0%E6%8D%AE%E6%9D%A5%E6%BA%90"><span class="toc-text">2.寻找数据来源</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E5%88%86%E6%9E%90%E6%95%B0%E6%8D%AE%E6%BA%90%E7%BD%91%E5%9D%80%E8%A7%84%E5%88%99"><span class="toc-text">3.分析数据源网址规则</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E5%88%86%E6%9E%90%E9%A1%B5%E9%9D%A2%E8%A7%84%E5%88%99"><span class="toc-text">4.分析页面规则</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8B%98%E8%AF%AF%E8%A1%A8"><span class="toc-text">勘误表</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E5%89%8D%E8%A8%80"><span class="toc-text">5.前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E7%88%AC%E8%99%AB"><span class="toc-text">6.爬虫</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#a-%E7%A1%AE%E8%AE%A4%E8%A6%81%E8%A2%AB%E7%88%AC%E5%8F%96%E7%9A%84%E7%BD%91%E9%A1%B5%E7%BD%91%E5%9D%80"><span class="toc-text">a.确认要被爬取的网页网址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#b-%E7%88%AC%E8%99%AB%E9%83%A8%E5%88%86"><span class="toc-text">b.爬虫部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#c-%E7%BD%91%E9%A1%B5%E5%86%85%E5%AE%B9%E5%8C%B9%E9%85%8D%E5%8F%96%E5%87%BA%E9%83%A8%E5%88%86"><span class="toc-text">c.网页内容匹配取出部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#d-%E5%86%99%E5%85%A5csv%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-text">d.写入csv文件格式化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#e-%E5%B0%81%E8%A3%85%E6%88%90%E7%B1%BB"><span class="toc-text">e.封装成类</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-text">7.数据预处理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-%E5%89%8D%E8%A8%80"><span class="toc-text">8.前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9-%E5%BB%BA%E7%AB%8B%E6%A8%A1%E5%9E%8B"><span class="toc-text">9.建立模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#a-%E5%87%86%E5%A4%87"><span class="toc-text">a.准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E5%85%A5%E6%89%80%E9%9C%80%E8%A6%81%E7%9A%84%E5%A4%B4%E6%96%87%E4%BB%B6"><span class="toc-text">引入所需要的头文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E6%A8%A1%E5%9E%8B"><span class="toc-text">选择模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95"><span class="toc-text">选择评估方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-text">获取数据集</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#b-%E5%BB%BA%E7%AB%8B%E6%A8%A1%E5%9E%8B"><span class="toc-text">b.建立模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#c-%E8%8E%B7%E5%8F%96%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E7%BB%93%E6%9E%9C"><span class="toc-text">c.获取模型评估结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#d-%E7%94%A8joblib%E6%A8%A1%E5%9D%97%E4%BF%9D%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="toc-text">d.用joblib模块保存模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#e-%E5%B0%81%E8%A3%85"><span class="toc-text">e.封装</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#10-%E6%80%BB%E6%8E%A7"><span class="toc-text">10.总控</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">使用方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#11-%E6%9C%80%E5%90%8E%E6%95%88%E6%9E%9C"><span class="toc-text">11.最后效果</span></a></li></ol></div><div class="column is-9"><header class="my-4"><a href="/tags/python"><i class="tag post-item-tag">python</i></a></header><h1 class="mt-0 mb-1 is-family-serif" id="postTitle">用python+sklearn机器学习实现天气预报)</h1><time class="has-text-grey" datetime="2020-12-15T12:11:56.000Z">2020-12-15</time><article class="mt-2 post-content"><h1 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h1><p><a target="_blank" rel="noopener" href="https://github.com/Nambers/PYWeatherReport">github项目:PYWeatherReport</a></p>
+<h1 id="系列教程"><a href="#系列教程" class="headerlink" title="系列教程"></a>系列教程</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40832960/article/details/109260388">机器学习参考篇: python+sklearn+kaggle机器学习</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40832960/article/details/111146467">用python+sklearn(机器学习)实现天气预报 准备</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40832960/article/details/111182425">用python+sklearn(机器学习)实现天气预报数据 数据</a><br> <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40832960/article/details/111238926">用python+sklearn(机器学习)实现天气预报 模型和使用</a></p>
+<h1 id="0-流程介绍"><a href="#0-流程介绍" class="headerlink" title="0.流程介绍"></a>0.流程介绍</h1><p>爬虫爬取<code>去年今日的半个月前到去年今日的下个半个月的每日天气数据</code>做训练集和训练验证集，爬取<code>现在半个月前到现在的每日天气数据</code>做预测数据集 -&gt; 数据预处理 -&gt; 训练模型和预测<br>机器学习过程可参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40832960/article/details/109260388">上面那篇</a></p>
+<h1 id="1-环境搭建"><a href="#1-环境搭建" class="headerlink" title="1. 环境搭建"></a>1. 环境搭建</h1><h2 id="a-python"><a href="#a-python" class="headerlink" title="a.python"></a>a.python</h2><p>如题，要使用python+sklearn做，所以肯定要搭建好python的环境，教程百度有很多，建议用python3.*</p>
+<h2 id="b-涉及到的机器学习相关库"><a href="#b-涉及到的机器学习相关库" class="headerlink" title="b.涉及到的机器学习相关库"></a>b.涉及到的机器学习相关库</h2><p>安装命令:</p>
+<pre><code class="bash">pip install 库名
+</code></pre>
+<h3 id="sklearn"><a href="#sklearn" class="headerlink" title="sklearn"></a>sklearn</h3><p>本教程运用的机器学习核心库</p>
+<h3 id="panda"><a href="#panda" class="headerlink" title="panda"></a>panda</h3><p>读取csv相关</p>
+<h3 id="seaborn"><a href="#seaborn" class="headerlink" title="seaborn"></a>seaborn</h3><p>数据可视化，生成图表如折线图等</p>
+<h3 id="joblib"><a href="#joblib" class="headerlink" title="joblib"></a>joblib</h3><p>保存和读取训练好的模型，<code>*.pkl</code>文件</p>
+<h1 id="2-寻找数据来源"><a href="#2-寻找数据来源" class="headerlink" title="2.寻找数据来源"></a>2.寻找数据来源</h1><p>做机器学习我们需要尽量多和准确的数据，本次实例从<a target="_blank" rel="noopener" href="http://www.meteomanz.com/">www.meteomanz.com</a>获取免费的天气数据</p>
+<h1 id="3-分析数据源网址规则"><a href="#3-分析数据源网址规则" class="headerlink" title="3.分析数据源网址规则"></a>3.分析数据源网址规则</h1><p>我们访问上一步的网站，可以发现有选择城市和时间的接口(PS:右上角的链接可以切换成英文)<br><img src="https://img-blog.csdnimg.cn/20201213221017496.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODMyOTYw,size_16,color_FFFFFF,t_70" alt="网站"><br>接下来我们选择我们要做天气预报的城市和顺便一个时间点，如广州(PS:在选择框直接输入城市的前几个字符可以快速索引)<br><img src="https://img-blog.csdnimg.cn/20201213221155701.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODMyOTYw,size_16,color_FFFFFF,t_70" alt="网站"><br>然后点按钮，我们会跳转到一个网页<br><img src="https://img-blog.csdnimg.cn/20201213221321394.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODMyOTYw,size_16,color_FFFFFF,t_70" alt="网页"><br>这个就是我们要取到的数据了的地址，不过时间不对，接下来解析这个网址的规则，如</p>
+<pre><code class="bash">http://www.meteomanz.com/sy2?l=1&amp;cou=2250&amp;ind=59287&amp;d1=13&amp;m1=12&amp;y1=2020&amp;d2=13&amp;m2=12&amp;y2=2020
+</code></pre>
+<p>这里面</p>
+<ul>
+<li><code>?</code>前的分别是<code>http://</code>网络协议,<code>www.meteomanz.com</code>域名，<code>/sy2</code>地址，我们主要关注<code>?</code>后的参数</li>
+<li><code>l</code>是语言参数，l=1指英语</li>
+<li><code>cou</code>和<code>ind</code>是地区和城市代码</li>
+<li><code>d1</code>，<code>m1</code>，<code>y1</code>是时间段的开始年月日</li>
+<li><code>d2</code>，<code>m2</code>，<code>y2</code>是时间段的结束年月日</li>
+</ul>
+<p>所以</p>
+<pre><code class="bash">http://www.meteomanz.com/sy2?l=1&amp;cou=2250&amp;ind=59287&amp;d1=02&amp;m1=02&amp;y1=2019&amp;d2=13&amp;m2=12&amp;y2=2020
+</code></pre>
+<p>指从2019/2/2到2020/12/13的广州的每日天气数据，不要忘记里面月和日是要补0的，但是进去就发现最多给30天的数据，所以我们以后并不会用到怎么多天的数据</p>
+<h1 id="4-分析页面规则"><a href="#4-分析页面规则" class="headerlink" title="4.分析页面规则"></a>4.分析页面规则</h1><p>获取到网址规则后，分析页面规则用于爬虫匹配数据，按F12打开开发者工具<br><img src="https://img-blog.csdnimg.cn/20201213222546435.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODMyOTYw,size_16,color_FFFFFF,t_70" alt="DEV"><br>如图，我们可以发现rbody里面的第二个tr标签里面的每个td里是数据(PS:用右上角的左边第一个小按钮然后点击那些数据)。<br><img src="https://img-blog.csdnimg.cn/20201213223727833.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODMyOTYw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/2020121322374849.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODMyOTYw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>当我们知道了这些规则，接下来就可以写爬虫爬取符合条件的数据集了。</p>
+<h1 id="勘误表"><a href="#勘误表" class="headerlink" title="勘误表"></a>勘误表</h1><ol>
+<li>感谢”Gbilibili”的提醒，下面url代码生成片段<br>应从<pre><code class="python"># 爬取数据链接
+url = "http://www.meteomanz.com/sy2?l=1&amp;cou=2250&amp;ind=59287&amp;d1=" + 
+str(week_ago.day).zfill(2) + 
+"&amp;m1=" + str(week_ago.month).zfill(2) + 
+"&amp;y1=" + str(week_ago.month) + 
+"&amp;d2=" + str(week_pre.day - years[0]).zfill(2) + 
+"&amp;m2=" + str(week_pre.month).zfill(2) + 
+"&amp;y2=" + str(week_pre.year - years[1])
+</code></pre>
+改成<pre><code class="python"># 爬取数据链接
+url = "http://www.meteomanz.com/sy2?l=1&amp;cou=2250&amp;ind=59287&amp;d1=" + 
+ str(week_ago.day).zfill(2) +
+ "&amp;m1=" + str( week_ago.month).zfill(2) +
+"&amp;y1=" + str(week_ago.year - years[0]) +
+ "&amp;d2=" + str(week_pre.day).zfill(2) +
+ "&amp;m2=" + str(week_pre.month).zfill(2) +
+ "&amp;y2=" + str(week_pre.year - years[1])
+</code></pre>
+</li>
+<li>感谢@L-Zzxnn的提醒，代码已添加负温度支持，最新代码请以github上为准</li>
+</ol>
+<h1 id="5-前言"><a href="#5-前言" class="headerlink" title="5.前言"></a>5.前言</h1><p>在上一篇教程里我们已经知道了数据来源网页的规则，所以这一篇就讲数据如何用爬虫获取和机器学习的数据预处理阶段</p>
+<h1 id="6-爬虫"><a href="#6-爬虫" class="headerlink" title="6.爬虫"></a>6.爬虫</h1><p>爬虫这方面可以参考我之前的<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40832960/article/details/103854145">一篇文章</a></p>
+<h2 id="a-确认要被爬取的网页网址"><a href="#a-确认要被爬取的网页网址" class="headerlink" title="a.确认要被爬取的网页网址"></a>a.确认要被爬取的网页网址</h2><p>首先我们主要要爬取去年今日的半个月前到去年今日，而根据上一篇我们得出的网址规则，我们可以得到(PS:真正的链接里是没有换行的)</p>
+<pre><code class="bash">http://www.meteomanz.com/sy2?l=1&amp;cou=2250&amp;ind=59287
+&amp;d1=去年今日的半个月前的日
+&amp;m1=去年今日的半个月前的月份
+&amp;y1=去年年份
+&amp;d2=今天的日期的日
+&amp;m2=今天的日期的月份
+&amp;y2=今年年份
+</code></pre>
+<p>而为什么是取去年和时间要半个月呢？因为去年的天气环境相比于前年或者更久之前是和我们现在的天气条件更相似的，可以减少误差，半个月而不是一个星期是因为使用多的数据量可以减少误差，不是一个月而是因为网站的限制，而且在实验中也会增加少量的误差。所以最终取用了去年和半个月的时间。</p>
+<p>如果我们是只测今天这一次上面的网址就可以人工填写，但是如果我们要做不用人工填就要用<code>datetime</code>这个python库<br>如下:</p>
+<pre><code class="python">import datetime as DT
+
+# 取现在日期
+today = DT.datetime.now()
+# 取b[0]天前日期
+week_ago = (today - DT.timedelta(days=b[0])).date()
+ # b[1]天后
+ week_pre = (today + DT.timedelta(days=b[1])).date()
+</code></pre>
+<p>我们传入<code>b = [-15 0]</code>，就可以获取上个半月的日期在<code>week_ago</code>里，今天的日期在<code>week_pre</code>里<br>所以，可以用这一行构建需要的网址</p>
+<pre><code class="python"> # 爬取数据链接
+ url = "http://www.meteomanz.com/sy2?l=1&amp;cou=2250&amp;ind=59287&amp;d1=" + 
+     str(week_ago.day).zfill(2) +
+     "&amp;m1=" + str( week_ago.month).zfill(2) +
+    "&amp;y1=" + str(week_ago.year - years[0]) +
+     "&amp;d2=" + str(week_pre.day).zfill(2) +
+     "&amp;m2=" + str(week_pre.month).zfill(2) +
+     "&amp;y2=" + str(week_pre.year - years[1])
+</code></pre>
+<p>其中<code>.zfill(2)</code>是指填充2位，比如如果是1就返回01，如果是12就返回12<br>有了网址，接下来就是爬虫爬取网页然后分析网页元素取出里面的数据</p>
+<h2 id="b-爬虫部分"><a href="#b-爬虫部分" class="headerlink" title="b.爬虫部分"></a>b.爬虫部分</h2><p>首先先写爬虫部分，这部分很简单，写了个<code>GetData</code> class</p>
+<pre><code class="python"># -*- coding: utf-8 -*-
+# @Time: 2020/12/16
+# @Author: Eritque arcus
+# @File: GetData.py
+# 功能: 爬取数据
+import urllib3
+
+
+class GetData:
+    url = ""
+    headers = ""
+
+    def __init__(self, url, header=""):
+        """
+        :param url: 获取的网址
+        :param header: 请求头，默认已内置
+        """
+        self.url = url
+        if header == "":
+            self.headers = {
+                'Connection': 'Keep-Alive',
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,'
+                          '*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+                'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+                'Accept-Encoding': 'gzip, deflate',
+                'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, '
+                              'like Gecko) Chrome/87.0.4280.66 Mobile Safari/537.36 ',
+                'Host': 'www.meteomanz.com'
+            }
+        else:
+            self.headers = header
+
+    def Get(self):
+        """
+        :return: 网址对应的网页内容
+        """
+        http = urllib3.PoolManager()
+        return http.request('GET', self.url, headers=self.headers).data
+</code></pre>
+<p>本处用了urllib3库和GET方式，其中headers是申请头，这部分可以在按F12调出开发者工具，在Network那一栏，点击任意一个事件，往下滑就有了，可以用我的也可以。请求头主要是http协议里的东西，想要了解可以自行搜索。</p>
+<h2 id="c-网页内容匹配取出部分"><a href="#c-网页内容匹配取出部分" class="headerlink" title="c.网页内容匹配取出部分"></a>c.网页内容匹配取出部分</h2><p>本处使用了<code>BeautifulSoup</code>库</p>
+<pre><code class="python">        g = GetData(url).Get()
+        # beautifulsoup解析网页
+        soup = BeautifulSoup(g, "html5lib")
+        # 取&lt;tbody&gt;内容
+        tb = soup.find(name="tbody")
+        # 取tr内容
+        past_tr = tb.find_all(name="tr")
+        for tr in past_tr:
+            # 取tr内每个td的内容
+            text = tr.find_all(name="td")
+            flag = False
+            for i in range(0, len(text)):
+                if i == 0:
+                    text[i] = text[i].a.string
+                    # 网站bug，跨月请求的话会给每个月第0天的数据，但是里面是全空的因为日期不存在，比如 00/11/2020(日/月/年),所以要手动drop掉这个数据
+                    if "00/" in text[i]:
+                        flag = True
+                elif i == 8:
+                    # 把/8去掉，网页显示的格式问题
+                    text[i] = text[i].string.replace("/8", "")
+                elif i == 5:
+                    # 去掉Hpa单位
+                    text[i] = text[i].string.replace(" Hpa", "")
+                elif i == 6:
+                    # 用正则去掉风力里括号内的内容
+                    text[i] = re.sub(u"[º(.*?|N|W|E|S)]", "", text[i].string)
+                else:
+                    # 取每个元素的内容
+                    text[i] = text[i].string
+                # 丢失数据都取2(简陋做法)
+                # 这么做 MAE=3.6021
+                text[i] = text[i].replace("-", "2")
+                text[i] = text[i].replace("Tr", "2")
+</code></pre>
+<p>如果有什么不清楚的评论里答复。</p>
+<h2 id="d-写入csv文件格式化"><a href="#d-写入csv文件格式化" class="headerlink" title="d.写入csv文件格式化"></a>d.写入csv文件格式化</h2><pre><code class="python">    import csv
+    # 创建文件对象
+    f = open(c, 'w', encoding='utf-8', newline='')
+
+    # 基于文件对象构建 csv写入对象
+    csv_writer = csv.writer(f)
+    # 写入内容,text数组
+     csv_writer.writerow(text)
+    # 关闭文件
+    f.close()
+</code></pre>
+<h2 id="e-封装成类"><a href="#e-封装成类" class="headerlink" title="e.封装成类"></a>e.封装成类</h2><p><code>Write.py</code></p>
+<pre><code class="python"># -*- coding: utf-8 -*-
+# @Time: 2020/12/16
+# @Author: Eritque arcus
+# @File: Write.py
+import re
+from bs4 import BeautifulSoup
+from GetData import GetData
+import datetime as DT
+import csv
+
+def a(t):
+    return t.replace(" - ", "0")
+
+# 功能: 写csv
+def write(years, b, c):
+    """
+    :param years: [开始日期距离现在的年份, 结束日期距离现在的年份]
+    :param b: [开始日期距离现在日期的天数, 结束日期距离现在日期的天数]
+    :param c: csv文件名
+    :return: None
+    """
+    # 1. 创建文件对象
+    f = open(c, 'w', encoding='utf-8', newline='')
+
+    # 2. 基于文件对象构建 csv写入对象
+    csv_writer = csv.writer(f)
+
+    # 3. 构建列表头
+    # , "negAve", "negMax", "negMin"
+    csv_writer.writerow(["Time", "Ave_t", "Max_t", "Min_t", "Prec", "SLpress", "Winddir", "Windsp", "Cloud"])
+    # 取现在日期
+    today = DT.datetime.now()
+    # 取20天前日期
+    week_ago = (today - DT.timedelta(days=b[0])).date()
+    # 20天后
+    week_pre = (today + DT.timedelta(days=b[1])).date()
+    # 城市id 广州59287 青岛 54857
+    id = "59287"
+    # 爬取数据链接
+    url = "http://www.meteomanz.com/sy2?l=1&amp;cou=2250&amp;ind=" + id + "&amp;d1=" + str(week_ago.day).zfill(2) + "&amp;m1=" + str(
+        week_ago.month).zfill(2) + "&amp;y1=" + str(week_ago.year - years[0]) + "&amp;d2=" + str(week_pre.day).zfill(
+        2) + "&amp;m2=" + str(week_pre.month).zfill(2) + "&amp;y2=" + str(week_pre.year - years[1])
+    # 显示获取数据集的网址
+    print(url)
+    g = GetData(url).Get()
+    # beautifulsoup解析网页
+    soup = BeautifulSoup(g, "html5lib")
+    # 取&lt;tbody&gt;内容
+    tb = soup.find(name="tbody")
+    # 取tr内容
+    past_tr = tb.find_all(name="tr")
+    for tr in past_tr:
+        # 取tr内每个td的内容
+        text = tr.find_all(name="td")
+        flag = False
+        negA = negMax = negMin = False
+        for i in range(0, len(text)):
+            if i == 0:
+                text[i] = text[i].a.string
+                # 网站bug，会给每个月第0天，比如 00/11/2020,所以要drop掉
+                if "00/" in text[i]:
+                    flag = True
+            elif i == 8:
+                # 把/8去掉，网页显示的格式
+                text[i] = text[i].string.replace("/8", "")
+            elif i == 5:
+                # 去掉单位
+                text[i] = text[i].string.replace(" Hpa", "")
+            elif i == 6:
+                # 去掉风力里括号内的内容
+                text[i] = re.sub(u"[º(.*?|N|W|E|S)]", "", text[i].string)
+            else:
+                # 取每个元素的内容
+                text[i] = text[i].string
+            # 丢失数据都取2(简陋做法)
+            # 这么做 MAE=3.6021
+            text[i] = "2" if text[i] == "-" else text[i]
+            text[i] = "2" if text[i] == "Tr" else text[i]
+        text = text[0:9]
+        # ext += [str(int(negA)), str(int(negMax)), str(int(negMin))]
+        # 4. 写入csv文件内容
+        if not flag:
+            csv_writer.writerow(text)
+    # 5. 关闭文件
+    f.close()
+</code></pre>
+<p><code>GetData.py</code></p>
+<pre><code class="python"># -*- coding: utf-8 -*-
+# @Time: 2020/12/16
+# @Author: Eritque arcus
+# @File: GetData.py
+# 功能: 爬取数据
+import urllib3
+
+
+class GetData:
+    url = ""
+    headers = ""
+
+    def __init__(self, url, header=""):
+        """
+        :param url: 获取的网址
+        :param header: 请求头，默认已内置
+        """
+        self.url = url
+        if header == "":
+            self.headers = {
+                'Connection': 'Keep-Alive',
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,'
+                          '*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+                'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+                'Accept-Encoding': 'gzip, deflate',
+                'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, '
+                              'like Gecko) Chrome/87.0.4280.66 Mobile Safari/537.36 ',
+                'Host': 'www.meteomanz.com'
+            }
+        else:
+            self.headers = header
+
+    def Get(self):
+        """
+        :return: 网址对应的网页内容
+        """
+        http = urllib3.PoolManager()
+        return http.request('GET', self.url, headers=self.headers).data
+</code></pre>
+<p>到时候就可以直接用一行命令取得天气数据了，如下面是取去年今日的20天到去年今日的天气数据</p>
+<pre><code class="python">    # 用近几年的数据做训练集
+    # 如 [1,1], [20, 0]就是用2019年的今天的20天前到2019年的今天数据做训练集
+    # 写入csv
+    Write([1, 1], [20, 0], "weather_train_train.csv")
+</code></pre>
+<p>结果如下<br><code>weather_train_train.csv</code></p>
+<pre><code class="bash">Time,Ave_t,Max_t,Min_t,Prec,SLpress,Winddir,Windsp,Cloud
+
+07/12/2019,14.8,20.8,8.8,0.0,1026.3,331,11,0
+06/12/2019,15.2,19.8,10.7,0.0,1026.6,344,15,0
+05/12/2019,14.5,20.4,8.6,2,1026.2,346,13,8
+04/12/2019,13.8,20.4,7.1,0.0,1024.7,335,16,2
+03/12/2019,13.0,18.9,7.1,0.0,1024.8,330,10,0
+02/12/2019,18.2,24.9,11.5,0.0,1024.8,347,18,3
+01/12/2019,18.1,24.9,11.4,0.0,1020.9,332,16,1
+30/11/2019,17.5,23.6,11.4,0.0,1020.5,352,8,3
+29/11/2019,15.8,20.1,11.5,0.0,1023.6,349,11,4
+28/11/2019,20.4,27.1,13.8,0.0,1024.5,337,19,3
+27/11/2019,21.9,27.1,16.6,0.0,1021.3,336,12,0
+26/11/2019,22.2,28.4,16.1,0.0,1021.1,356,6,6
+25/11/2019,22.2,29.3,15.2,0.0,1020.8,344,13,3
+24/11/2019,21.4,29.3,13.6,0.0,1018.5,346,5,0
+23/11/2019,20.7,28.4,13.0,0.0,1017.2,352,5,1
+22/11/2019,19.6,27.6,11.6,0.0,1017.3,331,6,0
+21/11/2019,18.4,25.1,11.6,0.0,1019.1,323,9,1
+20/11/2019,18.3,24.2,12.4,0.0,1020.3,338,7,0
+19/11/2019,19.1,25.4,12.8,0.0,1020.5,342,11,0
+18/11/2019,22.2,28.8,15.7,0.0,1018.8,342,17,0
+17/11/2019,22.2,28.8,15.7,0.0,1015.2,358,7,3
+</code></pre>
+<h1 id="7-数据预处理"><a href="#7-数据预处理" class="headerlink" title="7.数据预处理"></a>7.数据预处理</h1><p>如果在把上面的数据作为数据集训练，我们还需要做些数据的预处理，因为有些情况下我们得到的数据会有残缺，这种情况我们就要选择抛弃那一列或者用方差或其他什么的方法填充缺少的数据。</p>
+<p>因为在我已经决定把数据里丢失的项全部取2了，所以下面我会列出可能的解决方法而不使用。</p>
+<p>新建个<code>ProcessData.py</code>里建立<code>ProcessData</code>方法以获得数据</p>
+<pre><code class="python"># -*- coding: utf-8 -*-
+# @Time: 2020/12/16
+# @Author: Eritque arcus
+# @File: ProcessData.py
+from Write import Write
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.impute import SimpleImputer
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+
+# 功能: 数据预处理
+def ProcessData():
+    """
+    :return:
+        [X_train X训练数据集,
+        X_valid X训练数据集的验证集,
+        y_train Y训练数据集,
+        y_valid Y训练数据集的验证集,
+        imputed_X_test 预测数据集]
+    """
+    # 用近几年的数据做训练集
+    # 如 [1,1], [20, 0]就是用2019年的今天的20天前到2019年的今天数据做训练集
+    # 写入csv
+    Write([1, 1], [20, 0], "weather_train_train.csv")
+    Write([1, 1], [0, 20], "weather_train_valid.csv")
+    Write([0, 0], [20, 0], "weather_test.csv")
+    X_test = pd.read_csv("weather_test.csv", index_col="Time", parse_dates=True)
+    # 读取测试集和验证集
+    X = pd.read_csv("weather_train_train.csv", index_col="Time", parse_dates=True)
+    y = pd.read_csv("weather_train_valid.csv", index_col="Time", parse_dates=True)
+    # 把全部丢失的数据都drop，MAE=3.7又高了，所以去掉了
+    # dxtcol = [col for col in X_test.columns
+    #           if X_test[col].isnull().all()]
+    # dxcol = [col for col in X.columns
+    #          if X[col].isnull().all()]
+    # dycol = [col for col in y.columns
+    #          if y[col].isnull().all()]
+    # for a1 in [dxtcol, dxcol, dycol]:
+    #     for a2 in a1:
+    #         if a2 in X_test.columns:
+    #             X_test = X_test.drop(a2, axis=1)
+    #         if a2 in X.columns:
+    #             X = X.drop(a2, axis=1)
+    #         if a2 in y.columns:
+    #             y = y.drop(a2, axis=1)
+    # 数据归一化和标准化，无法还原不用
+    # scaler = preprocessing.StandardScaler()
+    # pars = [cols for cols in X.columns if cols != "Time"]
+    # for data in [X, y, X_test]:
+    #     for par in pars:
+    #         data[par] = scaler.fit_transform(data[par].values.reshape(-1, 1))
+    #         # temp = scaler.fit(data[par].values.reshape(-1, 1))
+    #         # data[par] = scaler.fit_transform(data[par].values.reshape(-1, 1), temp)
+
+    # 填充缺少的数值用方差，不清楚效果如何
+    my_imputer = SimpleImputer()
+    X_train, X_valid, y_train, y_valid = train_test_split(X, y, train_size=0.8, test_size=0.2, random_state=0)
+    imputed_X_train = pd.DataFrame(my_imputer.fit_transform(X_train))
+    imputed_X_valid = pd.DataFrame(my_imputer.transform(X_valid))
+    imputed_X_train.columns = X_train.columns
+    imputed_X_valid.columns = X_valid.columns
+    imputed_y_train = pd.DataFrame(my_imputer.fit_transform(y_train))
+    imputed_y_valid = pd.DataFrame(my_imputer.transform(y_valid))
+    imputed_y_train.columns = y_train.columns
+    imputed_y_valid.columns = y_valid.columns
+    imputed_X_test = pd.DataFrame(my_imputer.fit_transform(X_test))
+
+    # 画折线图
+    # sns.lineplot(data=X)
+    # plt.show()
+    # sns.lineplot(data=y)
+    # plt.show()
+    # sns.lineplot(data=X_test)
+    # plt.show()
+    # 返回分割后的数据集
+    return [imputed_X_train, imputed_X_valid, imputed_y_train, imputed_y_valid, imputed_X_test]
+</code></pre>
+<h1 id="8-前言"><a href="#8-前言" class="headerlink" title="8.前言"></a>8.前言</h1><p>在上一篇教程里我们已经获取了所需要的全部数据，包括训练数据集和测试数据集，使用<code>ProcessData()</code>调用，所以接下来写模型的建立和预测</p>
+<h1 id="9-建立模型"><a href="#9-建立模型" class="headerlink" title="9.建立模型"></a>9.建立模型</h1><blockquote>
+<p>没段代码在文章后面都会整合成一段，分段展示只是便于阅读</p>
+</blockquote>
+<h2 id="a-准备"><a href="#a-准备" class="headerlink" title="a.准备"></a>a.准备</h2><h3 id="引入所需要的头文件"><a href="#引入所需要的头文件" class="headerlink" title="引入所需要的头文件"></a>引入所需要的头文件</h3><pre><code class="python">from sklearn.ensemble import RandomForestRegressor # 随机树森林模型
+import joblib # 保存模型为pkl
+from sklearn.metrics import mean_absolute_error # MAE评估方法
+from ProcessData import ProcessData # 取数据
+</code></pre>
+<h3 id="选择模型"><a href="#选择模型" class="headerlink" title="选择模型"></a>选择模型</h3><p>首先我们先要从模型里选择一项适合这次场景的模型，比如从决策树，随机树森林，RGB模型等等中选择，本处选用的随机树森林也就是RandomForest</p>
+<h3 id="选择评估方法"><a href="#选择评估方法" class="headerlink" title="选择评估方法"></a>选择评估方法</h3><p>目前有许多的模型准确率评估方法，本处使用的是MAE，也就是mean_absolute_error 平均错误数值，就每个预测的数值离正确数值错误数值的平均数</p>
+<h3 id="获取数据集"><a href="#获取数据集" class="headerlink" title="获取数据集"></a>获取数据集</h3><p>这次可以从<code>ProcessData()</code>获取到全部的被预处理后的数据，如</p>
+<pre><code class="python"># 取到数据
+    [X_train, X_valid, y_train, y_valid, X_test] = ProcessData()
+</code></pre>
+<h2 id="b-建立模型"><a href="#b-建立模型" class="headerlink" title="b.建立模型"></a>b.建立模型</h2><pre><code class="python">    # 用XGB模型，不过用有bug
+    # modelX = XGBRegressor(n_estimators=1000, learning_rate=0.05, random_state=0, n_jobs=4)
+    # # model.fit(X_train_3, y_train_3)
+    # # model.fit(X_train_2, y_train_2)
+    # col = ["Ave_t", "Max_t", "Min_t", "Prec","SLpress", "Winddir", "Windsp", "Cloud"]
+    # modelX.fit(X_train, y_train,
+    #           early_stopping_rounds=5,
+    #           eval_set=[(X_valid, y_valid)],
+    #           verbose=False)
+    # 随机树森林模型
+    model = RandomForestRegressor(random_state=0, n_estimators=1001)
+    # 训练模型
+    model.fit(X_train, y_train)
+</code></pre>
+<p>其中n_estimators是可自己选的，不过在多次调试后得到1001是MAE最优</p>
+<h2 id="c-获取模型评估结果"><a href="#c-获取模型评估结果" class="headerlink" title="c.获取模型评估结果"></a>c.获取模型评估结果</h2><pre><code class="python">    # 用MAE评估
+    score = mean_absolute_error(y_valid, preds)
+</code></pre>
+<h2 id="d-用joblib模块保存模型"><a href="#d-用joblib模块保存模型" class="headerlink" title="d.用joblib模块保存模型"></a>d.用joblib模块保存模型</h2><p>保存后的模型便于传播即可多次使用，但当前环境下的需求不大但我还是写了</p>
+<pre><code class="python">    # 保存模型到本地
+    joblib.dump(model, a)
+</code></pre>
+<h2 id="e-封装"><a href="#e-封装" class="headerlink" title="e.封装"></a>e.封装</h2><p><code>GetModel.py</code></p>
+<pre><code class="python"># -*- coding: utf-8 -*-
+# @Time: 2020/12/16
+# @Author: Eritque arcus
+# @File: GetModel.py
+from sklearn.ensemble import RandomForestRegressor
+import joblib
+from sklearn.metrics import mean_absolute_error
+from ProcessData import ProcessData
+
+
+# 训练并保存模型
+def GetModel(a="Model.pkl"):
+    """
+    :param a: 模型文件名
+    :return:
+        [socre: MAE评估结果,
+        X_test: 预测数据集]
+    """
+    # 取到数据
+    [X_train, X_valid, y_train, y_valid, X_test] = ProcessData()
+    # 用XGB模型，不过用有bug
+    # modelX = XGBRegressor(n_estimators=1000, learning_rate=0.05, random_state=0, n_jobs=4)
+    # # model.fit(X_train_3, y_train_3)
+    # # model.fit(X_train_2, y_train_2)
+    # col = ["Ave_t", "Max_t", "Min_t", "Prec","SLpress", "Winddir", "Windsp", "Cloud"]
+    # modelX.fit(X_train, y_train,
+    #           early_stopping_rounds=5,
+    #           eval_set=[(X_valid, y_valid)],
+    #           verbose=False)
+    # 随机树森林模型
+    model = RandomForestRegressor(random_state=0, n_estimators=1001)
+    # 训练模型
+    model.fit(X_train, y_train)
+    # 预测模型，用上个星期的数据
+    preds = model.predict(X_valid)
+    # 用MAE评估
+    score = mean_absolute_error(y_valid, preds)
+    # 保存模型到本地
+    joblib.dump(model, a)
+    # 返回MAE
+    return [score, X_test]
+</code></pre>
+<h1 id="10-总控"><a href="#10-总控" class="headerlink" title="10.总控"></a>10.总控</h1><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>这几篇文章写了零零散散好几个类，所以要写个总文件也就是启动文件串起来，然后在控制台输出<br><code>Main.py</code></p>
+<pre><code class="python"># -*- coding: utf-8 -*-
+# @Time: 2020/12/16
+# @Author: Eritque arcus
+# @File: Main.py
+import joblib
+import datetime as DT
+from GetModel import GetModel
+import matplotlib.pyplot as plt
+
+
+# 训练并保存模型并返回MAE
+r = GetModel()
+print("MAE:", r[0])
+# 读取保存的模型
+model = joblib.load('Model.pkl')
+
+# 最终预测结果
+preds = model.predict(r[1])
+# 反归一化或标准化，不过出bug了，不用
+# for cols in range(0, len(preds)):
+#     preds[cols] = scaler.inverse_transform(preds[cols])
+# sns.lineplot(data=preds)
+# plt.show()
+# 打印结果到控制台
+print("未来7天预测")
+print(preds)
+all_ave_t = []
+all_high_t = []
+all_low_t = []
+for a in range(1, 7):
+    today = DT.datetime.now()
+    time = (today + DT.timedelta(days=a)).date()
+    print(time.year, '/', time.month, '/', time.day,
+          ': 平均气温',  preds[a][0],
+          '最高气温', preds[a][1],
+          '最低气温', preds[a][2],
+          "降雨量", preds[a][3],
+          "风力", preds[a][4])
+    all_ave_t.append(preds[a][0])
+    all_high_t.append(preds[a][1])
+    all_low_t.append(preds[a][2])
+temp = {"ave_t": all_ave_t, "high_t": all_high_t, "low_t": all_low_t}
+# 绘画折线图
+plt.plot(range(1, 7), temp["ave_t"], color="green", label="ave_t")
+plt.plot(range(1, 7), temp["high_t"], color="red", label="high_t")
+plt.plot(range(1, 7), temp["low_t"], color="blue", label="low_t")
+plt.legend()  # 显示图例
+plt.ylabel("Temperature(°C)")
+plt.xlabel("day")
+# 显示
+plt.show()
+</code></pre>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>直接用python运行pre_weather/Main.py，就会在控制台输出预测的数据</p>
+<pre><code class="bash">python pre_weather/Main.py
+</code></pre>
+<p>或</p>
+<p>在你的python代码里用joblib导入生成的模型，然后输入你的数据进行预测</p>
+<p>(PS: 因为模型的训练用的数据日期和你预测数据的日期有关，所以不建议直接用使用非当天训练的模型进行预测，误差可能偏大)</p>
+<p>如以下代码(在Main.py的11行):</p>
+<pre><code class="python">import joblib
+
+# 读取保存的模型
+model = joblib.load('Model.pkl')
+
+# 最终预测结果
+preds = model.predict(r[1])
+其中，r[1]是预测数据
+</code></pre>
+<p>或</p>
+<p>参考<code>Main.py</code>，自己写一个符合你需求的启动文件</p>
+<h1 id="11-最后效果"><a href="#11-最后效果" class="headerlink" title="11.最后效果"></a>11.最后效果</h1><p><img src="https://img-blog.csdnimg.cn/20201216163833585.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODMyOTYw,size_16,color_FFFFFF,t_70" alt="效果"></p>
+<blockquote>
+<p>本系列教程到这就结束了，代码具体还要以<a target="_blank" rel="noopener" href="https://github.com/Nambers/PYWeatherReport">github项目:PYWeatherReport</a>为主，可能会在这个github项目上不定期优化更新<br>有问题可以在评论问问</p>
+</blockquote>
+<center>-END-</center>
+
+
+
+</article><section class="jump-container is-flex is-justify-content-space-between my-6"><!-- em is empty placeholder--><a class="button is-default" href="/2020/12/28/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin-java%E6%95%99%E7%A8%8B/" title="Mirai qq机器人框架kotlin/java教程"><i class="iconfont icon-prev mr-2 has-text-grey"></i><span class="has-text-weight-semibold">Previous: Mirai qq机器人框架kotlin/java教程</span></a><a class="button is-default" href="/2020/07/08/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E9%A1%B5-flask/" title="使用html+css+js制作网页 番外篇 使用python flask 框架"><span class="has-text-weight-semibold">Next: 使用html+css+js制作网页 番外篇 使用python flask 框架</span><i class="iconfont icon-next ml-2 has-text-grey"></i></a></section><article class="mt-6 comment-container" id="disqus"><div id="disqus_thread"></div><script>var disqus_config = function () {this.page.url = window.location.href;this.page.identifier = document.title;};</script><script>(function() {var d = document, s = d.createElement('script');s.src = 'https://blog-pubgj2togw.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript content="please enable JavaScript to view the comments powered by Disqus."></noscript><script id="dsq-count-scr" src="//blog-pubgj2togw.disqus.com/count.js" async></script></article><script>String.prototype.replaceAll = function (FindText, RepText) {
+  return this.replace(new RegExp(FindText, "g"), RepText);
+}
+function html_encode(str) 
+{ 
+    var s = ""; 
+    if (str.length == 0) return ""; 
+    s = str.replaceAll("&#125;", "}"); 
+    s = s.replaceAll("&#123;", "{"); 
+    s = s.replaceAll("<", "&lt;");  
+    s = s.replaceAll("&lt;code", "<code");
+    s = s.replaceAll("&lt;/code", "</code");
+    return s; 
+} 
+$('pre').each(function(i,elem){
+    $(elem).html(html_encode($(elem).html()));
+});
+</script></div></div></main></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/Nambers"><i class="iconfont icon-github"></i></a><!-- Ins--><!-- RSS--><!-- 知乎--><!-- 领英--><!-- 脸书--></section><p><span>Copyright ©</span><span> Eritque arcus 2021</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script><script src="/js/post.js"></script></body></html>

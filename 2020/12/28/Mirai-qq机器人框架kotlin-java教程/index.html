@@ -1,0 +1,328 @@
+<!DOCTYPE html><html class="appearance-auto" lang="zh"><head><meta charset="UTF-8"><title>Mirai qq机器人框架kotlin/java教程</title><meta name="description" content="Eritque arcus's blog"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><!-- End Google Analytics -->
+<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/avatar.png"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><link rel="stylesheet" href="/style/post.css"><link rel="stylesheet" href="/style/themes/highlight-theme-light.css"><script src="/js/highlight.pack.js"></script><meta name="description" content="前言本教程实为mirai的mirai-console插件教程用到的概念有mcl - 指mirai-console-loader，mirai-console官方启动器mirai - mirai 是一个在全平台下运行，提供 QQ Android 协议支持的高效率机器人库，根据AGPLv3开源
+资料列表以下为一些官方资料mirai官方github库mirai-console官方github库mirai-console-loader(mcl)官方启动器官方github库这三者的关系可以参考这里官方实例
+另，以下是一些资源:笔者整理的mirai-console插件实例包含kt和java)笔者备份的mirai启动器
+可能遇到的问题
+MiraiOK如果在本文发布后没有更新，那应该就是没有用了，用mcl
+最好用openjd.."><meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">Eritque arcus's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><div class="is-full-height" id="postTopic"><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">Mirai qq机器人框架kotlin/java教程</p><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">Click back to the top</p></div></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></header><main><main class="container is-max-widescreen content section post-page pt-4 px-4"><div class="columns is-flex-desktop is-justify-content-center is-flex-direction-row-reverse"><div class="column is-3 is-hidden-mobile"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%84%E6%96%99%E5%88%97%E8%A1%A8"><span class="toc-text">资料列表</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%AF%E8%83%BD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">可能遇到的问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%87%86%E5%A4%87"><span class="toc-text">1.准备</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#i-%E9%85%8D%E7%BD%AEjava%E7%8E%AF%E5%A2%83"><span class="toc-text">i. 配置java环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ii-%E9%85%8D%E7%BD%AEIDE"><span class="toc-text">ii. 配置IDE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iii-%E4%B8%8B%E8%BD%BDmirai-console-loader-mcl-%E4%BD%9C%E4%B8%BA%E5%90%AF%E5%8A%A8%E5%99%A8"><span class="toc-text">iii. 下载mirai-console-loader(mcl)作为启动器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E5%88%9B%E5%BB%BAmirai-console%E6%8F%92%E4%BB%B6%E9%A1%B9%E7%9B%AE"><span class="toc-text">2.创建mirai-console插件项目</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#i-%E4%B8%8B%E8%BD%BD"><span class="toc-text">i. 下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ii-%E4%B8%AA%E6%80%A7%E5%8C%96%E9%A1%B9%E7%9B%AE"><span class="toc-text">ii. 个性化项目</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E6%96%87%E4%BB%B6%E5%A4%B9%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90"><span class="toc-text">3. 文件夹结构解析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-kotlin%E6%8F%92%E4%BB%B6%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="toc-text">4.kotlin插件代码解析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#i-%E6%89%80%E6%9C%89%E5%9C%A8%E4%BB%A5%E4%B8%8B%E4%BB%A3%E7%A0%81%E4%B8%AD%E8%A6%81%E5%BC%95%E5%85%A5%E7%9A%84%E5%BA%93"><span class="toc-text">i.所有在以下代码中要引入的库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ii-%E6%9E%84%E5%BB%BA%E4%B8%BB%E7%B1%BB"><span class="toc-text">ii.构建主类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iii-%E8%A6%86%E7%9B%96%E6%8F%92%E4%BB%B6%E5%90%AF%E7%94%A8%E5%87%BD%E6%95%B0"><span class="toc-text">iii.覆盖插件启用函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iv-%E7%9B%91%E5%90%AC%E4%BA%8B%E4%BB%B6"><span class="toc-text">iv.监听事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#v-%E5%85%A8%E9%83%A8%E4%BB%A3%E7%A0%81"><span class="toc-text">v. 全部代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vi-gradle%E9%83%A8%E5%88%86%E4%BB%A3%E7%A0%81"><span class="toc-text">vi. gradle部分代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-Java%E6%8F%92%E4%BB%B6%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="toc-text">5. Java插件代码解析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#i-%E5%9C%A8%E4%B8%8B%E9%9D%A2%E4%BB%A3%E7%A0%81%E4%B8%AD%E8%A6%81%E5%BC%95%E5%85%A5%E7%9A%84%E5%BA%93"><span class="toc-text">i. 在下面代码中要引入的库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ii-%E6%9E%84%E5%BB%BA%E4%B8%BB%E7%B1%BB-1"><span class="toc-text">ii. 构建主类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iii-%E8%A6%86%E7%9B%96%E6%8F%92%E4%BB%B6%E5%90%AF%E7%94%A8%E5%87%BD%E6%95%B0-1"><span class="toc-text">iii. 覆盖插件启用函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iv-%E7%9B%91%E5%90%AC%E4%BA%8B%E4%BB%B6-1"><span class="toc-text">iv. 监听事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#v-%E5%85%A8%E9%83%A8%E4%BB%A3%E7%A0%81-1"><span class="toc-text">v. 全部代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vi-gradle-%E9%83%A8%E5%88%86%E4%BB%A3%E7%A0%81"><span class="toc-text">vi. gradle 部分代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E5%9C%A8IDE%E5%86%85%E8%BF%90%E8%A1%8C"><span class="toc-text">6. 在IDE内运行</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#i-%E6%9B%B4%E6%94%B9MiraiRunKt%E9%85%8D%E7%BD%AE"><span class="toc-text">i. 更改MiraiRunKt配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ii-%E8%BF%90%E8%A1%8CMiraiRunKt%E4%BB%BB%E5%8A%A1"><span class="toc-text">ii.运行MiraiRunKt任务</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-%E7%94%9F%E6%88%90%E6%8F%92%E4%BB%B6%E5%B9%B6%E8%BF%90%E8%A1%8C"><span class="toc-text">7. 生成插件并运行</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#i-%E7%94%9F%E6%88%90%E6%8F%92%E4%BB%B6"><span class="toc-text">i. 生成插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ii-%E5%9C%A8mcl%E4%B8%AD%E8%BF%90%E8%A1%8C"><span class="toc-text">ii.在mcl中运行</span></a></li></ol></li></ol></div><div class="column is-9"><header class="my-4"><a href="/tags/kotlin/java"><i class="tag post-item-tag">kotlin/java</i></a><a href="/tags/mirai"><i class="tag post-item-tag">mirai</i></a></header><h1 class="mt-0 mb-1 is-family-serif" id="postTitle">Mirai qq机器人框架kotlin/java教程</h1><time class="has-text-grey" datetime="2020-12-28T03:35:14.000Z">2020-12-28</time><article class="mt-2 post-content"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本教程实为mirai的mirai-console插件教程<br>用到的概念有<br><code>mcl</code> - 指mirai-console-loader，mirai-console官方启动器<br><code>mirai</code> - mirai 是一个在全平台下运行，提供 QQ Android 协议支持的高效率机器人库，根据<code>AGPLv3</code>开源</p>
+<h2 id="资料列表"><a href="#资料列表" class="headerlink" title="资料列表"></a>资料列表</h2><p>以下为一些官方资料<br><a target="_blank" rel="noopener" href="https://github.com/mamoe/mirai">mirai官方github库</a><br><a target="_blank" rel="noopener" href="https://github.com/mamoe/mirai-console">mirai-console官方github库</a><br><a target="_blank" rel="noopener" href="https://github.com/iTXTech/mirai-console-loader">mirai-console-loader(mcl)官方启动器官方github库</a><br>这三者的关系可以参考<a target="_blank" rel="noopener" href="https://github.com/mamoe/mirai/blob/dev/docs/mirai-ecology.md">这里</a><br><a target="_blank" rel="noopener" href="https://github.com/project-mirai/mirai-hello-world">官方实例</a></p>
+<p>另，以下是一些资源:<br><a target="_blank" rel="noopener" href="https://github.com/Nambers/mirai_plugin_example">笔者整理的mirai-console插件实例包含kt和java)</a><br><a target="_blank" rel="noopener" href="https://github.com/Nambers/MiraiEXE">笔者备份的mirai启动器</a></p>
+<h1 id="可能遇到的问题"><a href="#可能遇到的问题" class="headerlink" title="可能遇到的问题"></a>可能遇到的问题</h1><ul>
+<li>MiraiOK如果在本文发布后没有更新，那应该就是没有用了，用mcl</li>
+<li>最好用openjdk不过甲骨文的jdk好像也可以</li>
+<li>根据<a target="_blank" rel="noopener" href="https://github.com/mamoe/mirai/issues/959">issue#959</a>目前邀请机器人进200+人的群都不会触发事件</li>
+<li>插件id必须为类包格式</li>
+<li>有的时候收不到机器人的信息是因为被tx管控了换号或多发几次以及多挂</li>
+<li>建议看一遍官方文档虽然有点乱</li>
+<li>如果IDEA报错下载gradle超时什么的应该是gradle被墙了或下载速度慢，如果有v最好挂上，如果没可以参考<a target="_blank" rel="noopener" href="https://my.oschina.net/u/2300159/blog/3078949">这种解决方案</a>大概就手动下载到本地然后指定，其中，这篇文章的百度网盘地址已失效，可以用代理下载网站如<a target="_blank" rel="noopener" href="https://d.serctl.com/%E4%B8%8B%E8%BD%BD">https://d.serctl.com/下载</a> **(该网站截止文章发布日期使用没有异样，请留意可能的下载风险，本文并不承担可能的责任，本文只提供个思路)**，然后从网站上下，如<ol>
+<li>按照那篇文章里获取gradle版本</li>
+<li>打开<a target="_blank" rel="noopener" href="https://services.gradle.org/distributions/%E5%A4%8D%E5%88%B6%E5%AF%B9%E5%BA%94%E7%89%88%E6%9C%AC%E7%9A%84-all.zip%E7%9A%84%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80">https://services.gradle.org/distributions/复制对应版本的-all.zip的下载地址</a></li>
+<li>输入到代理下载网站并下载</li>
+<li>按照那篇文章里处理</li>
+</ol>
+</li>
+<li>如果要在mcl内改协议，在login命令后加参数，或在config/console/autologin.yml里面设置自动登录命令和登录的协议</li>
+<li>mcl登录报错<code>环境异常</code><ol>
+<li>参考<a target="_blank" rel="noopener" href="https://github.com/mamoe/mirai/issues/772">官方解决方案</a></li>
+<li>把<a target="_blank" rel="noopener" href="https://github.com/project-mirai/mirai-login-solver-selenium">另外一个解决方案</a>加到mcl</li>
+<li>从<a target="_blank" rel="noopener" href="https://ryoii.github.io/mirai-devicejs-generator/">这里</a>手动生成config.json，放到mcl根目录下，<a target="_blank" rel="noopener" href="https://github.com/mamoe/mirai/discussions/760">参考官方</a></li>
+</ol>
+</li>
+</ul>
+<h1 id="1-准备"><a href="#1-准备" class="headerlink" title="1.准备"></a>1.准备</h1><h2 id="i-配置java环境"><a href="#i-配置java环境" class="headerlink" title="i. 配置java环境"></a>i. 配置java环境</h2><p>下载mcl所需要的是&gt;=1.8版本的openjdk，<a target="_blank" rel="noopener" href="http://jdk.java.net/15/">openjdk15下载地址</a>，下载教程参考搜索引擎</p>
+<blockquote>
+<p>最好用openjdk而不是甲骨文(Oracle)的jdk，<a target="_blank" rel="noopener" href="https://github.com/mamoe/mirai/discussions/779">原因</a></p>
+</blockquote>
+<h2 id="ii-配置IDE"><a href="#ii-配置IDE" class="headerlink" title="ii. 配置IDE"></a>ii. 配置IDE</h2><p>推荐IDEA吧，其他的也可以，主要是IDEA挺好用的<br>可以选择安装的官方插件:<br><a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/plugin/15094-mirai-console">Mirai Console IntelliJ 提供错误检查等功能</a><br><a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/plugin/14816-kotlin-jvm-blocking-bridge">Kotlin Jvm Blocking Bridge 帮助 Java 用户调用 Kotlin suspend 函数</a><br>详细参考<a target="_blank" rel="noopener" href="https://github.com/mamoe/mirai-console/blob/master/docs/Preparations.md">官方文档</a></p>
+<h2 id="iii-下载mirai-console-loader-mcl-作为启动器"><a href="#iii-下载mirai-console-loader-mcl-作为启动器" class="headerlink" title="iii. 下载mirai-console-loader(mcl)作为启动器"></a>iii. 下载mirai-console-loader(mcl)作为启动器</h2><p><a target="_blank" rel="noopener" href="https://github.com/iTXTech/mirai-console-loader">官方地址</a><br>教程同见官方说明<br><a target="_blank" rel="noopener" href="https://github.com/Nambers/MiraiEXE">笔者备份的mirai启动器</a></p>
+<h1 id="2-创建mirai-console插件项目"><a href="#2-创建mirai-console插件项目" class="headerlink" title="2.创建mirai-console插件项目"></a>2.创建mirai-console插件项目</h1><h2 id="i-下载"><a href="#i-下载" class="headerlink" title="i. 下载"></a>i. 下载</h2><blockquote>
+<p>使用插件创建的是旧版的框架，mcl和mirai现已不支持旧版框架</p>
+</blockquote>
+<p>从<a target="_blank" rel="noopener" href="https://github.com/project-mirai/mirai-hello-world">官方实例</a>或者<a target="_blank" rel="noopener" href="https://github.com/Nambers/mirai_plugin_example">笔者整理的mirai-console插件实例</a>中下载最新版的框架到本地，然后用IDE打开文件夹，然后gradle依赖在下载里面都写清楚了</p>
+<h2 id="ii-个性化项目"><a href="#ii-个性化项目" class="headerlink" title="ii. 个性化项目"></a>ii. 个性化项目</h2><ul>
+<li>在<code>src/main/resources/plugin.yml</code>里改插件信息和入口点</li>
+<li>在<code>settings.gradle.kts</code>里改生成的插件.jar名称</li>
+<li>用<code>RunMiraikt</code>这个配置可以在ide里运行，不用复制到mcl或其他启动器</li>
+<li>用<code>buildPlugin</code>这个任务可以生成.jar插件</li>
+<li>在<code>src/main/kotlin/PluginMain</code>主类内也可以修改插件信息<h1 id="3-文件夹结构解析"><a href="#3-文件夹结构解析" class="headerlink" title="3. 文件夹结构解析"></a>3. 文件夹结构解析</h1>插件实例代码文件结构<pre><code>│  build.gradle.kts gradle依赖列表
+│  settings.gradle.kts gradle设置
+│
+├─.run
+│      RunMiraiKt.run.xml IDE中运行任务配置，即RunMiraiKt源文件
+│
+├─run RunMiraiKt默认运行目录
+│
+└─src
+  ├─main
+  │  ├─kotlin
+  │  │      PluginMain.kt  kotlin插件主类
+  │  ├─Java
+  │  │      JavaPluginMain.kt java插件主类
+  └─test
+      └─kotlin
+              RunMirai.kt RunMiraiKt任务配置
+</code></pre>
+<h1 id="4-kotlin插件代码解析"><a href="#4-kotlin插件代码解析" class="headerlink" title="4.kotlin插件代码解析"></a>4.kotlin插件代码解析</h1></li>
+</ul>
+<p><strong>代码以github上的代码为准，可能会有更新</strong></p>
+<h2 id="i-所有在以下代码中要引入的库"><a href="#i-所有在以下代码中要引入的库" class="headerlink" title="i.所有在以下代码中要引入的库"></a>i.所有在以下代码中要引入的库</h2><pre><code class="kotlin">//插件信息
+import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescription
+//主类继承
+import net.mamoe.mirai.console.plugin.jvm.KotlinPlugin
+//机器人被拉进群的事件
+import net.mamoe.mirai.event.events.BotInvitedJoinGroupRequestEvent
+//收到好友信息事件
+import net.mamoe.mirai.event.events.FriendMessageEvent
+//收到群消息事件
+import net.mamoe.mirai.event.events.GroupMessageEvent
+//新好友申请事件
+import net.mamoe.mirai.event.events.NewFriendRequestEvent
+//日志组件(logger)发控制台信息函数
+import net.mamoe.mirai.utils.info
+//消息(messageChain)中的图片类型
+import net.mamoe.mirai.message.data.Image
+//消息(messageChain)中的纯文本类型
+import net.mamoe.mirai.message.data.PlainText
+//监听器
+import net.mamoe.mirai.event.Listener
+//监听范围
+import net.mamoe.mirai.event.globalEventChannel
+//协程范围?
+import kotlin.coroutines.EmptyCoroutineContext
+</code></pre>
+<p>监听和事件参考<a target="_blank" rel="noopener" href="https://github.com/mamoe/mirai/blob/dev/docs/Events.md">官方文档</a></p>
+<h2 id="ii-构建主类"><a href="#ii-构建主类" class="headerlink" title="ii.构建主类"></a>ii.构建主类</h2><pre><code class="kotlin">object PluginMain : KotlinPlugin(
+    JvmPluginDescription(
+        id = "org.example.mirai-example",
+        version = "0.1.0"
+    )
+) {
+}
+</code></pre>
+<p>其中，<code>kotlinPlugin</code>指继承plugin父类，<code>JvmPluginDescription</code>指声明插件消息和版本</p>
+<h2 id="iii-覆盖插件启用函数"><a href="#iii-覆盖插件启用函数" class="headerlink" title="iii.覆盖插件启用函数"></a>iii.覆盖插件启用函数</h2><pre><code class="kotlin">override fun onEnable() {
+//或logger.info("xxx")
+    logger.info { "Plugin loaded" }
+}
+</code></pre>
+<p>用kotlin关键字<code>override</code>实现插件启用函数，然后用<code>logger.info()</code>进行日志输出，其中<code>logger</code>是<code>kotlinPlugin</code>类内成员，除了<code>.info()</code>还有<code>.warning()</code>输出警告和<code>.error()</code>输出报错</p>
+<h2 id="iv-监听事件"><a href="#iv-监听事件" class="headerlink" title="iv.监听事件"></a>iv.监听事件</h2><p>用<code> subscribeAlways&lt;&gt;{}</code>这个函数在<code>onEnable</code>函数中开启监听</p>
+<pre><code class="kotlin">        globalEventChannel().subscribeAlways&lt;GroupMessageEvent&gt;{
+            //群消息
+            if (message.contentToString().startsWith("复读")) {
+                group.sendMessage(message.contentToString().replace("复读", ""))
+            }
+            if (message.contentToString() == "hi") {
+                group.sendMessage("hi")
+            }
+            message.forEach {
+                //循环每个元素在消息里
+                if (it is Image) {
+                    //如果消息这一部分是图片
+                }
+                if (it is PlainText) {
+                    //如果消息这一部分是纯文本
+                }
+            }
+        }
+        globalEventChannel().subscribeAlways&lt;FriendMessageEvent&gt;{
+            //好友信息
+        }
+        globalEventChannel().subscribeAlways&lt;NewFriendRequestEvent&gt;{
+            //自动同意好友申请
+            accept()
+        }
+        globalEventChannel().subscribeAlways&lt;BotInvitedJoinGroupRequestEvent&gt;{
+            //自动同意加群申请
+            accept()
+        }
+</code></pre>
+<h2 id="v-全部代码"><a href="#v-全部代码" class="headerlink" title="v. 全部代码"></a>v. 全部代码</h2><p>这些代码是<a target="_blank" rel="noopener" href="https://github.com/Nambers/mirai_kotlin_example">笔者整理的mirai-console插件kotlin版实例</a>中的内容</p>
+<pre><code class="kotlin">package org.example.mirai.plugin
+
+import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescription
+import net.mamoe.mirai.console.plugin.jvm.KotlinPlugin
+import net.mamoe.mirai.event.Listener
+import net.mamoe.mirai.event.events.BotInvitedJoinGroupRequestEvent
+import net.mamoe.mirai.event.events.FriendMessageEvent
+import net.mamoe.mirai.event.events.GroupMessageEvent
+import net.mamoe.mirai.event.events.NewFriendRequestEvent
+import net.mamoe.mirai.event.globalEventChannel
+import net.mamoe.mirai.message.code.MiraiCode
+import net.mamoe.mirai.utils.info
+import net.mamoe.mirai.message.data.Image
+import net.mamoe.mirai.message.data.Image.Key.queryUrl
+import net.mamoe.mirai.message.data.PlainText
+
+/*
+使用kotlin版请把
+src/main/resources/META-INF.services/net.mamoe.mirai.console.plugin.jvm.JvmPlugin
+文件内容改成"org.example.mirai.plugin.PluginMain"也就是当前主类
+使用kt可以把java文件夹删除不会对项目有影响
+
+在settings.gradle.kts里改生成的插件.jar名称
+build.gradle.kts里改依赖库和插件版本
+在主类下的JvmPluginDescription改插件名称，id和版本
+用runmiraikt这个配置可以在ide里运行，不用复制到mcl或其他启动器
+ */
+
+object PluginMain : KotlinPlugin(
+    JvmPluginDescription(
+        id = "org.example.mirai-example",
+        name = "插件示例",
+        version = "0.1.0"
+    )
+) {
+    override fun onEnable() {
+        logger.info { "Plugin loaded" }
+        //配置文件目录 "${dataFolder.absolutePath}/"
+
+        globalEventChannel().subscribeAlways&lt;GroupMessageEvent&gt;{
+            //群消息
+            group.sendMessage("\uD83D\uDE03")
+        }
+        globalEventChannel().subscribeAlways&lt;FriendMessageEvent&gt;{
+            //好友信息
+            sender.sendMessage("hi")
+        }
+        globalEventChannel().subscribeAlways&lt;NewFriendRequestEvent&gt;{
+            //自动同意好友申请
+            accept()
+        }
+        globalEventChannel().subscribeAlways&lt;BotInvitedJoinGroupRequestEvent&gt;{
+            //自动同意加群申请
+            accept()
+        }
+    }
+}
+</code></pre>
+<h2 id="vi-gradle部分代码"><a href="#vi-gradle部分代码" class="headerlink" title="vi. gradle部分代码"></a>vi. gradle部分代码</h2><pre><code class="groovy">plugins {
+    val kotlinVersion = "1.4.30"
+    kotlin("jvm") version kotlinVersion
+    kotlin("plugin.serialization") version kotlinVersion
+    id("net.mamoe.mirai-console") version "2.3.2"
+}
+
+group = "org.example"
+version = "0.1.0"
+
+repositories {
+    jcenter()
+    //国内镜像源
+    //华为云
+    maven { url =uri("https://mirrors.huaweicloud.com/repository/maven") }
+    //阿里云
+    maven { url =uri("https://maven.aliyun.com/nexus/content/repositories/jcenter")}
+    //mirai-console的仓库
+    maven {url = uri("https://dl.bintray.com/him188moe/mirai")}
+    //滑动模块的仓库
+    // maven { url = uri("https://dl.bintray.com/karlatemp/misc") }
+    mavenLocal()
+    mavenCentral()
+}
+dependencies{
+    //在IDE内运行的mcl添加滑块模块，请参考https://github.com/project-mirai/mirai-login-solver-selenium把版本更新为最新
+    //runtimeOnly("net.mamoe:mirai-login-solver-selenium:1.0-dev-15")
+}
+</code></pre>
+<p>其中<code>2.3.2</code>是目前最新开发版本，请自行通过<a target="_blank" rel="noopener" href="https://github.com/mamoe/mirai-console/blob/master/docs/ConfiguringProjects.md#%E9%80%89%E6%8B%A9%E7%89%88%E6%9C%AC">官方文档</a>选择版本并更改<br><img src="https://img-blog.csdnimg.cn/20210120155108568.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODMyOTYw,size_16,color_FFFFFF,t_70" alt="更改地址"></p>
+<h1 id="5-Java插件代码解析"><a href="#5-Java插件代码解析" class="headerlink" title="5. Java插件代码解析"></a>5. Java插件代码解析</h1><h2 id="i-在下面代码中要引入的库"><a href="#i-在下面代码中要引入的库" class="headerlink" title="i. 在下面代码中要引入的库"></a>i. 在下面代码中要引入的库</h2><pre><code class="java">import net.mamoe.mirai.console.plugin.jvm.JavaPlugin;
+//继承对象
+import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescriptionBuilder;
+//构造插件信息
+import net.mamoe.mirai.event.GlobalEventChannel;
+//全局监听通道
+import net.mamoe.mirai.event.events.FriendMessageEvent;
+//好友信息事件
+import net.mamoe.mirai.event.events.GroupMessageEvent;
+//群消息事件
+</code></pre>
+<h2 id="ii-构建主类-1"><a href="#ii-构建主类-1" class="headerlink" title="ii. 构建主类"></a>ii. 构建主类</h2><p>构建mirai插件的主类也就是入口点，必须要继承JavaPlugin</p>
+<pre><code class="java">public final class JavaPluginMain extends JavaPlugin {
+    public static final JavaPluginMain INSTANCE = new JavaPluginMain();
+    private JavaPluginMain() {
+        super(new JvmPluginDescriptionBuilder("org.example.mirai-example", "0.1.0")
+                .info("EG")
+                .build());
+    }
+    }
+</code></pre>
+<p>其中<code>JvmPluginDescriptionBuilder</code>的声明插件信息</p>
+<h2 id="iii-覆盖插件启用函数-1"><a href="#iii-覆盖插件启用函数-1" class="headerlink" title="iii. 覆盖插件启用函数"></a>iii. 覆盖插件启用函数</h2><pre><code class="java">@Override
+    public void onEnable() {
+        getLogger().info("日志");
+     }
+</code></pre>
+<p>用<code>getLogger()</code>获取日志对象，然后用<code>.info()</code>发送普通日志</p>
+<h2 id="iv-监听事件-1"><a href="#iv-监听事件-1" class="headerlink" title="iv. 监听事件"></a>iv. 监听事件</h2><pre><code class="java">GlobalEventChannel.INSTANCE.subscribeAlways(GroupMessageEvent.class, g -&gt; {
+            //监听群消息
+            getLogger().info(g.getMessage().contentToString());
+
+        });
+        GlobalEventChannel.INSTANCE.subscribeAlways(FriendMessageEvent.class, f -&gt; {
+            //监听好友消息
+            getLogger().info(f.getMessage().contentToString());
+        });
+</code></pre>
+<h2 id="v-全部代码-1"><a href="#v-全部代码-1" class="headerlink" title="v. 全部代码"></a>v. 全部代码</h2><pre><code class="java">package org.example.mirai.plugin;
+
+import net.mamoe.mirai.console.plugin.jvm.JavaPlugin;
+import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescriptionBuilder;
+import net.mamoe.mirai.event.GlobalEventChannel;
+import net.mamoe.mirai.event.events.FriendMessageEvent;
+import net.mamoe.mirai.event.events.GroupMessageEvent;
+
+public final class JavaPluginMain extends JavaPlugin {
+    public static final JavaPluginMain INSTANCE = new JavaPluginMain();
+    private JavaPluginMain() {
+        super(new JvmPluginDescriptionBuilder("org.example.mirai-example", "0.1.0")
+                .info("EG")
+                .build());
+    }
+
+    @Override
+    public void onEnable() {
+        getLogger().info("日志");
+
+        GlobalEventChannel.INSTANCE.subscribeAlways(GroupMessageEvent.class, g -&gt; {
+            //监听群消息
+            getLogger().info(g.getMessage().contentToString());
+
+        });
+        GlobalEventChannel.INSTANCE.subscribeAlways(FriendMessageEvent.class, f -&gt; {
+            //监听好友消息
+            getLogger().info(f.getMessage().contentToString());
+        });
+    }
+}
+</code></pre>
+<h2 id="vi-gradle-部分代码"><a href="#vi-gradle-部分代码" class="headerlink" title="vi. gradle 部分代码"></a>vi. gradle 部分代码</h2><p>同<code>#4-vi.-gradle-部分代码</code></p>
+<h1 id="6-在IDE内运行"><a href="#6-在IDE内运行" class="headerlink" title="6. 在IDE内运行"></a>6. 在IDE内运行</h1><h2 id="i-更改MiraiRunKt配置"><a href="#i-更改MiraiRunKt配置" class="headerlink" title="i. 更改MiraiRunKt配置"></a>i. 更改MiraiRunKt配置</h2><p>把<code>/src/test/kotlin/RunMirai.kt</code>中的qq号和密码改成你的<br>如果在根目录下没有run文件夹，则可能报错，新建一个就好了</p>
+<h2 id="ii-运行MiraiRunKt任务"><a href="#ii-运行MiraiRunKt任务" class="headerlink" title="ii.运行MiraiRunKt任务"></a>ii.运行MiraiRunKt任务</h2><p>如果任务报错先配置任务<br><img src="https://img-blog.csdnimg.cn/202101032156304.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODMyOTYw,size_16,color_FFFFFF,t_70" alt="runmiraikt"><br>然后配置登录配置<br><img src="https://img-blog.csdnimg.cn/20201228110016586.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODMyOTYw,size_16,color_FFFFFF,t_70" alt="step"></p>
+<h1 id="7-生成插件并运行"><a href="#7-生成插件并运行" class="headerlink" title="7. 生成插件并运行"></a>7. 生成插件并运行</h1><h2 id="i-生成插件"><a href="#i-生成插件" class="headerlink" title="i. 生成插件"></a>i. 生成插件</h2><p>用IDE中gradle的<code>buldplugin</code>任务可以在<code>buid/mirai/</code>下生成一个.jar插件文件<br><img src="https://img-blog.csdnimg.cn/20201228105103228.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODMyOTYw,size_16,color_FFFFFF,t_70" alt="step"></p>
+<h2 id="ii-在mcl中运行"><a href="#ii-在mcl中运行" class="headerlink" title="ii.在mcl中运行"></a>ii.在mcl中运行</h2><p>把这个.jar文件放到mcl的plugin文件夹下，然后用cmd或者直接打开mcl.cmd运行</p>
+<blockquote>
+<p>有什么评论区问，以后再补充<br>相关qq群 1044565129</p>
+</blockquote>
+<center>-END-</center>
+
+</article><section class="jump-container is-flex is-justify-content-space-between my-6"><!-- em is empty placeholder--><a class="button is-default" href="/2021/01/12/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8/" title="用python做youtude自动下载器"><i class="iconfont icon-prev mr-2 has-text-grey"></i><span class="has-text-weight-semibold">Previous: 用python做youtude自动下载器</span></a><a class="button is-default" href="/2020/12/15/%E7%94%A8python+sklearn(%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0)%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/" title="用python+sklearn机器学习实现天气预报)"><span class="has-text-weight-semibold">Next: 用python+sklearn机器学习实现天气预报)</span><i class="iconfont icon-next ml-2 has-text-grey"></i></a></section><article class="mt-6 comment-container" id="disqus"><div id="disqus_thread"></div><script>var disqus_config = function () {this.page.url = window.location.href;this.page.identifier = document.title;};</script><script>(function() {var d = document, s = d.createElement('script');s.src = 'https://blog-pubgj2togw.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript content="please enable JavaScript to view the comments powered by Disqus."></noscript><script id="dsq-count-scr" src="//blog-pubgj2togw.disqus.com/count.js" async></script></article><script>String.prototype.replaceAll = function (FindText, RepText) {
+  return this.replace(new RegExp(FindText, "g"), RepText);
+}
+function html_encode(str) 
+{ 
+    var s = ""; 
+    if (str.length == 0) return ""; 
+    s = str.replaceAll("&#125;", "}"); 
+    s = s.replaceAll("&#123;", "{"); 
+    s = s.replaceAll("<", "&lt;");  
+    s = s.replaceAll("&lt;code", "<code");
+    s = s.replaceAll("&lt;/code", "</code");
+    return s; 
+} 
+$('pre').each(function(i,elem){
+    $(elem).html(html_encode($(elem).html()));
+});
+</script></div></div></main></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/Nambers"><i class="iconfont icon-github"></i></a><!-- Ins--><!-- RSS--><!-- 知乎--><!-- 领英--><!-- 脸书--></section><p><span>Copyright ©</span><span> Eritque arcus 2021</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script><script src="/js/post.js"></script></body></html>
