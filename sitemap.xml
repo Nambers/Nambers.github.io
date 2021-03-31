@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://eritque-arcus.tech/2020/01/26/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B/</loc>
+    
+    <lastmod>2021-03-31</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://eritque-arcus.tech/2021/01/12/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8/</loc>
     
     <lastmod>2021-03-29</lastmod>
@@ -10,13 +17,6 @@
   
   <url>
     <loc>https://eritque-arcus.tech/2020/12/15/%E7%94%A8python+sklearn(%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0)%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/</loc>
-    
-    <lastmod>2021-03-29</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://eritque-arcus.tech/2020/01/26/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B/</loc>
     
     <lastmod>2021-03-29</lastmod>
     
@@ -53,7 +53,7 @@
 
   <url>
     <loc>https://eritque-arcus.tech/</loc>
-    <lastmod>2021-03-29</lastmod>
+    <lastmod>2021-03-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -61,42 +61,42 @@
   
   <url>
     <loc>https://eritque-arcus.tech/tags/mirai/</loc>
-    <lastmod>2021-03-29</lastmod>
+    <lastmod>2021-03-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/tags/php/</loc>
-    <lastmod>2021-03-29</lastmod>
+    <lastmod>2021-03-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/tags/%E7%BD%91%E7%BB%9C/</loc>
-    <lastmod>2021-03-29</lastmod>
+    <lastmod>2021-03-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/tags/flask/</loc>
-    <lastmod>2021-03-29</lastmod>
+    <lastmod>2021-03-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/tags/python/</loc>
-    <lastmod>2021-03-29</lastmod>
+    <lastmod>2021-03-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2021-03-29</lastmod>
+    <lastmod>2021-03-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -105,21 +105,21 @@
   
   <url>
     <loc>https://eritque-arcus.tech/categories/kotlin-java/</loc>
-    <lastmod>2021-03-29</lastmod>
+    <lastmod>2021-03-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/categories/%E7%BD%91%E7%BB%9C/</loc>
-    <lastmod>2021-03-29</lastmod>
+    <lastmod>2021-03-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/categories/python/</loc>
-    <lastmod>2021-03-29</lastmod>
+    <lastmod>2021-03-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
