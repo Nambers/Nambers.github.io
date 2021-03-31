@@ -37,7 +37,7 @@
 <p>作者是使用vscode编辑，实际上使用任何可以使用任何的编辑器（例记事本）都行</p>
 </blockquote>
 <h2 id="d-flask-基本文件结构"><a href="#d-flask-基本文件结构" class="headerlink" title="d. flask 基本文件结构"></a>d. flask 基本文件结构</h2><p>首先要新建文件夹如以下构造<br><strong>flask-demo</strong>(项目总文件夹，名字自取)<br><strong>–templates</strong>(前端部分文件夹)<br><strong>-run.py</strong>(后端文件，名字自取)<br><strong>-tempcoderunnerfile.py</strong>(系统缓存文件)</p>
-<p>如图<br><img src="https://img-blog.csdnimg.cn/20200704235331978.png" alt="在这里插入图片描述"></p>
+<p>如图<br><img src="/images/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E9%A1%B5-flask.md-0.png" alt="在这里插入图片描述"></p>
 <h1 id="2-后端实现"><a href="#2-后端实现" class="headerlink" title="2. 后端实现"></a>2. 后端实现</h1><h2 id="a-flask-基本框架"><a href="#a-flask-基本框架" class="headerlink" title="a. flask 基本框架"></a>a. flask 基本框架</h2><pre><code class="python"># coding: utf-8
 from flask import Flask,render_template,url_for
 app = Flask(__name__)
@@ -188,7 +188,7 @@ if __name__ == '__main__':
 <h1>Hello {{ name }}!</h1>
 {% endblock %}
 </code></pre>
-<p>实践图:<br><img src="https://img-blog.csdnimg.cn/20200708131746965.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODMyOTYw,size_16,color_FFFFFF,t_70" alt="调试和文件夹"><br><img src="https://img-blog.csdnimg.cn/20200708131822277.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODMyOTYw,size_16,color_FFFFFF,t_70" alt="成品图"></p>
+<p>实践图:<br><img src="/images/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E9%A1%B5-flask.md-1.png" alt="调试和文件夹"><br><img src="/images/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E9%A1%B5-flask.md-2.png" alt="成品图"></p>
 <blockquote>
 <p>一定要把网页模板文件放在templates目录下，run.py和templates同一目录<br>访问这个网页要先运行run.py，然后在浏览器输入127.0.0.1:5000<br>有问题留言</p>
 </blockquote>
@@ -498,7 +498,7 @@ if __name__ == '__main__':
 <h1 id="8-运行"><a href="#8-运行" class="headerlink" title="8.运行"></a>8.运行</h1><p>在当前目录下，输入</p>
 <pre><code class="base">python run.py
 </code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20200727192508659.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODMyOTYw,size_16,color_FFFFFF,t_70" alt="结果图"></p>
+<p><img src="/images/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E9%A1%B5-flask.md-3.png" alt="结果图"></p>
 <center>--END--</center>
 
 

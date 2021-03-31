@@ -17,7 +17,7 @@ b.涉及到的.."><meta name="generator" content="Hexo 5.4.0">
 <h3 id="seaborn"><a href="#seaborn" class="headerlink" title="seaborn"></a>seaborn</h3><p>数据可视化，生成图表如折线图等</p>
 <h3 id="joblib"><a href="#joblib" class="headerlink" title="joblib"></a>joblib</h3><p>保存和读取训练好的模型，<code>*.pkl</code>文件</p>
 <h1 id="2-寻找数据来源"><a href="#2-寻找数据来源" class="headerlink" title="2.寻找数据来源"></a>2.寻找数据来源</h1><p>做机器学习我们需要尽量多和准确的数据，本次实例从<a target="_blank" rel="noopener" href="http://www.meteomanz.com/">www.meteomanz.com</a>获取免费的天气数据</p>
-<h1 id="3-分析数据源网址规则"><a href="#3-分析数据源网址规则" class="headerlink" title="3.分析数据源网址规则"></a>3.分析数据源网址规则</h1><p>我们访问上一步的网站，可以发现有选择城市和时间的接口(PS:右上角的链接可以切换成英文)<br><img src="https://img-blog.csdnimg.cn/20201213221017496.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODMyOTYw,size_16,color_FFFFFF,t_70" alt="网站"><br>接下来我们选择我们要做天气预报的城市和顺便一个时间点，如广州(PS:在选择框直接输入城市的前几个字符可以快速索引)<br><img src="https://img-blog.csdnimg.cn/20201213221155701.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODMyOTYw,size_16,color_FFFFFF,t_70" alt="网站"><br>然后点按钮，我们会跳转到一个网页<br><img src="https://img-blog.csdnimg.cn/20201213221321394.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODMyOTYw,size_16,color_FFFFFF,t_70" alt="网页"><br>这个就是我们要取到的数据了的地址，不过时间不对，接下来解析这个网址的规则，如</p>
+<h1 id="3-分析数据源网址规则"><a href="#3-分析数据源网址规则" class="headerlink" title="3.分析数据源网址规则"></a>3.分析数据源网址规则</h1><p>我们访问上一步的网站，可以发现有选择城市和时间的接口(PS:右上角的链接可以切换成英文)<br><img src="/images/%E7%94%A8python+sklearn(%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0)%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5.md-0.png" alt="网站"><br>接下来我们选择我们要做天气预报的城市和顺便一个时间点，如广州(PS:在选择框直接输入城市的前几个字符可以快速索引)<br><img src="/images/%E7%94%A8python+sklearn(%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0)%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5.md-1.png" alt="网站"><br>然后点按钮，我们会跳转到一个网页<br><img src="/images/%E7%94%A8python+sklearn(%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0)%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5.md-2.png" alt="网页"><br>这个就是我们要取到的数据了的地址，不过时间不对，接下来解析这个网址的规则，如</p>
 <pre><code class="bash">http://www.meteomanz.com/sy2?l=1&amp;cou=2250&amp;ind=59287&amp;d1=13&amp;m1=12&amp;y1=2020&amp;d2=13&amp;m2=12&amp;y2=2020
 </code></pre>
 <p>这里面</p>
@@ -32,7 +32,7 @@ b.涉及到的.."><meta name="generator" content="Hexo 5.4.0">
 <pre><code class="bash">http://www.meteomanz.com/sy2?l=1&amp;cou=2250&amp;ind=59287&amp;d1=02&amp;m1=02&amp;y1=2019&amp;d2=13&amp;m2=12&amp;y2=2020
 </code></pre>
 <p>指从2019/2/2到2020/12/13的广州的每日天气数据，不要忘记里面月和日是要补0的，但是进去就发现最多给30天的数据，所以我们以后并不会用到怎么多天的数据</p>
-<h1 id="4-分析页面规则"><a href="#4-分析页面规则" class="headerlink" title="4.分析页面规则"></a>4.分析页面规则</h1><p>获取到网址规则后，分析页面规则用于爬虫匹配数据，按F12打开开发者工具<br><img src="https://img-blog.csdnimg.cn/20201213222546435.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODMyOTYw,size_16,color_FFFFFF,t_70" alt="DEV"><br>如图，我们可以发现rbody里面的第二个tr标签里面的每个td里是数据(PS:用右上角的左边第一个小按钮然后点击那些数据)。<br><img src="https://img-blog.csdnimg.cn/20201213223727833.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODMyOTYw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/2020121322374849.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODMyOTYw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="4-分析页面规则"><a href="#4-分析页面规则" class="headerlink" title="4.分析页面规则"></a>4.分析页面规则</h1><p>获取到网址规则后，分析页面规则用于爬虫匹配数据，按F12打开开发者工具<br><img src="/images/%E7%94%A8python+sklearn(%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0)%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5.md-3.png" alt="DEV"><br>如图，我们可以发现rbody里面的第二个tr标签里面的每个td里是数据(PS:用右上角的左边第一个小按钮然后点击那些数据)。<br><img src="/images/%E7%94%A8python+sklearn(%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0)%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5.md-4.png" alt="在这里插入图片描述"><br><img src="/images/%E7%94%A8python+sklearn(%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0)%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5.md-5.png" alt="在这里插入图片描述"></p>
 <p>当我们知道了这些规则，接下来就可以写爬虫爬取符合条件的数据集了。</p>
 <h1 id="勘误表"><a href="#勘误表" class="headerlink" title="勘误表"></a>勘误表</h1><ol>
 <li>感谢”Gbilibili”的提醒，下面url代码生成片段<br>应从<pre><code class="python"># 爬取数据链接
@@ -568,7 +568,7 @@ preds = model.predict(r[1])
 </code></pre>
 <p>或</p>
 <p>参考<code>Main.py</code>，自己写一个符合你需求的启动文件</p>
-<h1 id="11-最后效果"><a href="#11-最后效果" class="headerlink" title="11.最后效果"></a>11.最后效果</h1><p><img src="https://img-blog.csdnimg.cn/20201216163833585.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODMyOTYw,size_16,color_FFFFFF,t_70" alt="效果"></p>
+<h1 id="11-最后效果"><a href="#11-最后效果" class="headerlink" title="11.最后效果"></a>11.最后效果</h1><p><img src="/images/%E7%94%A8python+sklearn(%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0)%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5.md-6.png" alt="效果"></p>
 <blockquote>
 <p>本系列教程到这就结束了，代码具体还要以<a target="_blank" rel="noopener" href="https://github.com/Nambers/PYWeatherReport">github项目:PYWeatherReport</a>为主，可能会在这个github项目上不定期优化更新<br>有问题可以在评论问问</p>
 </blockquote>

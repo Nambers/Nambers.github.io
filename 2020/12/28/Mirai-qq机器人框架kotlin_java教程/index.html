@@ -224,7 +224,7 @@ dependencies{
     //runtimeOnly("net.mamoe:mirai-login-solver-selenium:1.0-dev-15")
 }
 </code></pre>
-<p>其中<code>2.3.2</code>是目前最新开发版本，请自行通过<a target="_blank" rel="noopener" href="https://github.com/mamoe/mirai-console/blob/master/docs/ConfiguringProjects.md#%E9%80%89%E6%8B%A9%E7%89%88%E6%9C%AC">官方文档</a>选择版本并更改<br><img src="https://img-blog.csdnimg.cn/20210120155108568.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODMyOTYw,size_16,color_FFFFFF,t_70" alt="更改地址"></p>
+<p>其中<code>2.3.2</code>是目前最新开发版本，请自行通过<a target="_blank" rel="noopener" href="https://github.com/mamoe/mirai-console/blob/master/docs/ConfiguringProjects.md#%E9%80%89%E6%8B%A9%E7%89%88%E6%9C%AC">官方文档</a>选择版本并更改<br><img src="/images/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B.md-0.png" alt="更改地址"></p>
 <h1 id="5-Java插件代码解析"><a href="#5-Java插件代码解析" class="headerlink" title="5. Java插件代码解析"></a>5. Java插件代码解析</h1><h2 id="i-在下面代码中要引入的库"><a href="#i-在下面代码中要引入的库" class="headerlink" title="i. 在下面代码中要引入的库"></a>i. 在下面代码中要引入的库</h2><pre><code class="java">import net.mamoe.mirai.console.plugin.jvm.JavaPlugin;
 //继承对象
 import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescriptionBuilder;
@@ -297,8 +297,8 @@ public final class JavaPluginMain extends JavaPlugin {
 </code></pre>
 <h2 id="vi-gradle-部分代码"><a href="#vi-gradle-部分代码" class="headerlink" title="vi. gradle 部分代码"></a>vi. gradle 部分代码</h2><p>同<code>#4-vi.-gradle-部分代码</code></p>
 <h1 id="6-在IDE内运行"><a href="#6-在IDE内运行" class="headerlink" title="6. 在IDE内运行"></a>6. 在IDE内运行</h1><h2 id="i-更改MiraiRunKt配置"><a href="#i-更改MiraiRunKt配置" class="headerlink" title="i. 更改MiraiRunKt配置"></a>i. 更改MiraiRunKt配置</h2><p>把<code>/src/test/kotlin/RunMirai.kt</code>中的qq号和密码改成你的<br>如果在根目录下没有run文件夹，则可能报错，新建一个就好了</p>
-<h2 id="ii-运行MiraiRunKt任务"><a href="#ii-运行MiraiRunKt任务" class="headerlink" title="ii.运行MiraiRunKt任务"></a>ii.运行MiraiRunKt任务</h2><p>如果任务报错先配置任务<br><img src="https://img-blog.csdnimg.cn/202101032156304.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODMyOTYw,size_16,color_FFFFFF,t_70" alt="runmiraikt"><br>然后配置登录配置<br><img src="https://img-blog.csdnimg.cn/20201228110016586.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODMyOTYw,size_16,color_FFFFFF,t_70" alt="step"></p>
-<h1 id="7-生成插件并运行"><a href="#7-生成插件并运行" class="headerlink" title="7. 生成插件并运行"></a>7. 生成插件并运行</h1><h2 id="i-生成插件"><a href="#i-生成插件" class="headerlink" title="i. 生成插件"></a>i. 生成插件</h2><p>用IDE中gradle的<code>buldplugin</code>任务可以在<code>buid/mirai/</code>下生成一个.jar插件文件<br><img src="https://img-blog.csdnimg.cn/20201228105103228.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODMyOTYw,size_16,color_FFFFFF,t_70" alt="step"></p>
+<h2 id="ii-运行MiraiRunKt任务"><a href="#ii-运行MiraiRunKt任务" class="headerlink" title="ii.运行MiraiRunKt任务"></a>ii.运行MiraiRunKt任务</h2><p>如果任务报错先配置任务<br><img src="/images/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B.md-1.png" alt="runmiraikt"><br>然后配置登录配置<br><img src="/images/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B.md-2.png" alt="step"></p>
+<h1 id="7-生成插件并运行"><a href="#7-生成插件并运行" class="headerlink" title="7. 生成插件并运行"></a>7. 生成插件并运行</h1><h2 id="i-生成插件"><a href="#i-生成插件" class="headerlink" title="i. 生成插件"></a>i. 生成插件</h2><p>用IDE中gradle的<code>buldplugin</code>任务可以在<code>buid/mirai/</code>下生成一个.jar插件文件<br><img src="/images/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B.md-3.png" alt="step"></p>
 <h2 id="ii-在mcl中运行"><a href="#ii-在mcl中运行" class="headerlink" title="ii.在mcl中运行"></a>ii.在mcl中运行</h2><p>把这个.jar文件放到mcl的plugin文件夹下，然后用cmd或者直接打开mcl.cmd运行</p>
 <blockquote>
 <p>有什么评论区问，以后再补充<br>相关qq群 1044565129</p>
