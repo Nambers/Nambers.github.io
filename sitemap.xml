@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://eritque-arcus.tech/link/</loc>
+    
+    <lastmod>2021-04-25</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://eritque-arcus.tech/about/</loc>
     
     <lastmod>2021-04-25</lastmod>
@@ -45,13 +52,6 @@
   
   <url>
     <loc>https://eritque-arcus.tech/2020/12/28/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B/</loc>
-    
-    <lastmod>2021-04-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://eritque-arcus.tech/link/</loc>
     
     <lastmod>2021-04-24</lastmod>
     
