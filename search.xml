@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>C++ jstring to string (UTF16-＞UTF8)</title>
+      <link href="2021/06/11/C++-jstring-to-string-(UTF16-%EF%BC%9EUTF8)/"/>
+      <url>2021/06/11/C++-jstring-to-string-(UTF16-%EF%BC%9EUTF8)/</url>
+      
+        <content type="html"><![CDATA[<p>JNI中jstring转码到std::string其实就是utf16转码到你选择的编码的过程，因为我C++程序要用utf8，所以这里我转成utf8<br>用到的转码库是<a href="https://github.com/nemtrif/utfcpp">utfcpp</a><br>这个库的使用方法就是下载source文件夹下全部内容，然后<code>#include &quot;utf8.h&quot;</code>在你的项目</p><p>代码:</p><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">std::string <span class="title">Tools::jstring2str</span><span class="params">(jstring jStr, JNIEnv* env)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!jStr) &#123;</span><br><span class="line">        <span class="comment">//警告:kotlin部分返回空字符串</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    std::u16string s = <span class="keyword">reinterpret_cast</span>&lt;<span class="keyword">const</span> <span class="keyword">char16_t</span>*&gt;(env-&gt;<span class="built_in">GetStringChars</span>(jStr, <span class="literal">nullptr</span>));</span><br><span class="line">    <span class="keyword">if</span>(s.<span class="built_in">length</span>() == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">//警告:kotlin部分返回空字符串</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    std::string x;</span><br><span class="line">    utf8::<span class="built_in">utf16to8</span>(s.<span class="built_in">begin</span>(), s.<span class="built_in">end</span>(), std::<span class="built_in">back_inserter</span>(x));</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">jstring <span class="title">str2jstring</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* stra, JNIEnv* env)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!stra)&#123;</span><br><span class="line">        <span class="comment">//警告:C++部分传入空字符串</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">std::string <span class="title">str</span><span class="params">(stra)</span></span>;</span><br><span class="line">    std::vector&lt;<span class="keyword">unsigned</span> <span class="keyword">short</span>&gt; utf16line;</span><br><span class="line">    utf8::<span class="built_in">utf8to16</span>(str.<span class="built_in">begin</span>(), str.<span class="built_in">end</span>(), std::<span class="built_in">back_inserter</span>(utf16line));</span><br><span class="line">    <span class="keyword">auto</span>* c = <span class="keyword">new</span> jchar[utf16line.<span class="built_in">size</span>()];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;utf16line.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">        c[i] = utf16line[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> env-&gt;<span class="built_in">NewString</span>((<span class="keyword">const</span> jchar*)c, (jsize)utf16line.<span class="built_in">size</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>实现思路可参照<a href="https://stackoverflow.com/questions/32205446/getting-true-utf-8-characters-in-java-jni">https://stackoverflow.com/questions/32205446/getting-true-utf-8-characters-in-java-jni</a><br>主要就是如果用jni的转码，转换的是jni修改过的特殊的utf8，所以有几种思路，其中之一就是取utf16编码，然后自己转码</p><p>同时也可以参考谷歌的做法: <a href="https://chromium.googlesource.com/chromium/src/base/+/refs/heads/main/android/jni_string.cc#27">https://chromium.googlesource.com/chromium/src/base/+/refs/heads/main/android/jni_string.cc#27</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> JNI </tag>
+            
+            <tag> encoding </tag>
+            
+            <tag> utf8 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>kotlin 生成jni头文件</title>
       <link href="2021/05/14/kotlin-%E7%94%9F%E6%88%90jni%E5%A4%B4%E6%96%87%E4%BB%B6/"/>
       <url>2021/05/14/kotlin-%E7%94%9F%E6%88%90jni%E5%A4%B4%E6%96%87%E4%BB%B6/</url>

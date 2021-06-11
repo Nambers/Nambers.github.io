@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://eritque-arcus.tech/2021/06/11/C++-jstring-to-string-(UTF16-%EF%BC%9EUTF8)/</loc>
+    
+    <lastmod>2021-06-11</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://eritque-arcus.tech/2020/12/28/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B/</loc>
     
     <lastmod>2021-06-08</lastmod>
@@ -102,71 +109,99 @@
 
   <url>
     <loc>https://eritque-arcus.tech/</loc>
-    <lastmod>2021-06-08</lastmod>
+    <lastmod>2021-06-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
+    <loc>https://eritque-arcus.tech/tags/C/</loc>
+    <lastmod>2021-06-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://eritque-arcus.tech/tags/JNI/</loc>
+    <lastmod>2021-06-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://eritque-arcus.tech/tags/encoding/</loc>
+    <lastmod>2021-06-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://eritque-arcus.tech/tags/utf8/</loc>
+    <lastmod>2021-06-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://eritque-arcus.tech/tags/Mirai/</loc>
-    <lastmod>2021-06-08</lastmod>
+    <lastmod>2021-06-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/tags/%E7%BD%91%E7%BB%9C/</loc>
-    <lastmod>2021-06-08</lastmod>
+    <lastmod>2021-06-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/tags/jni/</loc>
-    <lastmod>2021-06-08</lastmod>
+    <lastmod>2021-06-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/tags/headers/</loc>
-    <lastmod>2021-06-08</lastmod>
+    <lastmod>2021-06-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/tags/unity3D/</loc>
-    <lastmod>2021-06-08</lastmod>
+    <lastmod>2021-06-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/tags/php/</loc>
-    <lastmod>2021-06-08</lastmod>
+    <lastmod>2021-06-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/tags/flask/</loc>
-    <lastmod>2021-06-08</lastmod>
+    <lastmod>2021-06-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/tags/python/</loc>
-    <lastmod>2021-06-08</lastmod>
+    <lastmod>2021-06-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2021-06-08</lastmod>
+    <lastmod>2021-06-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -174,29 +209,36 @@
 
   
   <url>
+    <loc>https://eritque-arcus.tech/categories/C/</loc>
+    <lastmod>2021-06-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://eritque-arcus.tech/categories/kotlin-java/</loc>
-    <lastmod>2021-06-08</lastmod>
+    <lastmod>2021-06-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/categories/python/</loc>
-    <lastmod>2021-06-08</lastmod>
+    <lastmod>2021-06-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/categories/C/</loc>
-    <lastmod>2021-06-08</lastmod>
+    <lastmod>2021-06-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/categories/%E7%BD%91%E7%BB%9C/</loc>
-    <lastmod>2021-06-08</lastmod>
+    <lastmod>2021-06-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
