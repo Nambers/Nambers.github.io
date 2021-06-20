@@ -4,6 +4,39 @@
   
     
     <entry>
+      <title>对使用状态压缩和动态规划求hamilton最短路径的理解</title>
+      <link href="2021/06/20/%E5%AF%B9%E4%BD%BF%E7%94%A8%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9%E5%92%8C%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%B1%82hamilton%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E7%9A%84%E7%90%86%E8%A7%A3/"/>
+      <url>2021/06/20/%E5%AF%B9%E4%BD%BF%E7%94%A8%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9%E5%92%8C%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%B1%82hamilton%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E7%9A%84%E7%90%86%E8%A7%A3/</url>
+      
+        <content type="html"><![CDATA[<h1 id="hamilton问题"><a href="#hamilton问题" class="headerlink" title="hamilton问题"></a>hamilton问题</h1><p>即:</p><blockquote><p>给定一张 n(n≤20) 个点的带权无向图，点从 0 ~ n-1 标号，求起点 0 到终点 n-1 的最短Hamilton路径。 Hamilton路径的定义是从 0 到 n-1 不重不漏地经过每个点恰好一次。<br>通俗来说就是，图表示大概为这个样子<br><img src="https://img-blog.csdnimg.cn/2021062001203589.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODMyOTYw,size_16,color_FFFFFF,t_70" alt="来源:http://home.ustc.edu.cn/~xxxujian/homework8.pdf"></p></blockquote><p>本文中，代码里的^ 代表xor, 文本中的^ 代表次方</p><h1 id="最短路径"><a href="#最短路径" class="headerlink" title="最短路径"></a>最短路径</h1><p>本文主要解释通过状态压缩和动态规划优化后的枚举求最短路径算法，本质上还是枚举算法</p><h2 id="预设操作二进制的一些小算法"><a href="#预设操作二进制的一些小算法" class="headerlink" title="预设操作二进制的一些小算法"></a>预设操作二进制的一些小算法</h2><ul><li><code>(n&gt;&gt;k)&amp;1</code> 取出n在二进制状态中第k位的值(即把n右移k位，用与1按位与取出右移后数字的第0位也就是原数的第k位)，在本例中即为取是否经过第k个点</li><li><code>n^(1&lt;&lt;k)</code> 给n在二进制状态中的第k位取反，在本例中即代表如果经过那个点之前的情况</li></ul><h2 id="状态压缩"><a href="#状态压缩" class="headerlink" title="状态压缩"></a>状态压缩</h2><p>本算法中，状态压缩主要体现在用一个int变量代替bool数组来优化时空<br>因为一个bool在C++中占1byte，而一个int变量在C++占4bytes (来源: <a href="https://docs.microsoft.com/zh-tw/cpp/cpp/fundamental-types-cpp?view=msvc-160#sizes-of-built-in-types">https://docs.microsoft.com/zh-tw/cpp/cpp/fundamental-types-cpp?view=msvc-160#sizes-of-built-in-types</a>)<br>所以当bool数组中数量超过4个时使用int类型代替必会节省空间，而本例中最多有20个需要表示的状态(状态指经过该点或没经过，n &lt;= 20), 所以最多int变量需要有20为，也就是2^20(1&lt;&lt;20的值)，为1,048,576，而int最大为2147483647, 所以在本例适用.<br>所以在代表每个节点的状态的int中，二进制状态的第x位的值即代表是否经过第x点</p><h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><p>动态规划在本例中就是把寻找最短路径分割成很多个小任务，比如找到起点到第一个节点的的最短距离，然后找到第一个节点到第二个节点的最短距离，再把这两个相加就得出了起点到第二个节点的最短距离，从而推到终点算出起点到终点的最短距离。<br>所以就需要一个int数字来储存最短距离数据<br>本例算法中以f为变量名，大小为(2 ^ 20)*20，为什么是2 ^ 20是因为以一个最大为2^20的数表示当前经过了哪些点即有2 ^ 20种行进方法，而有20列是代表在当前状态(前面的数表示的经过状态)下，到每个点的最短距离.<br>比如: f[12][4] 就代表从起点经过第2第3个点后(12的二进制是1100)到第4个点的最短距离<br>在下面给出的代码中空出了f[0]中任意内容是因为是没有意义的，起点即为第0位，无论什么情况都要经过起点，也就是表达状态的数字无论什么情况都要大于1</p><h2 id="预设"><a href="#预设" class="headerlink" title="预设"></a>预设</h2><p>本例中把无穷大(也就是动态规划里每个最短路径的初始值)设置成<strong>0x3F及以上</strong>(和0x7F一样达到了10^9量级)基本数据在本例中不会达到这种量级，而且无穷大和无穷大相加还是等于无穷大，无穷大和其他数相加也是等于无穷大，并且也不会造成数据溢出。</p><h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>输入为一个n*n二维数组，第[i, j]项，也就是二维数组中第i行，第j列的数值表示i到j的权重(也可以理解为距离吧)，在下面用<code>weight</code>作为变量名，大概输入长这样：<br><img src="https://img-blog.csdnimg.cn/20210620111229486.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODMyOTYw,size_16,color_FFFFFF,t_70" alt="来源: http://home.ustc.edu.cn/~xxxujian/homework8.pdf"><br>每个值代表该行到该列的点的权重(在本例中也可以理解成距离)或该列到该行的距离，如果不可以直接到达即为无穷</p><h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>为int</p><h2 id="算法代码"><a href="#算法代码" class="headerlink" title="算法代码"></a>算法代码</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> f[<span class="number">1</span>&lt;&lt;<span class="number">20</span>][<span class="number">20</span>]; <span class="comment">//创建一个2^20*20的数组储存最短距离数据</span></span><br><span class="line"><span class="comment">// n为有几个点, weight为带权无向图的权重</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">hamilton</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> weight[<span class="number">20</span>][<span class="number">20</span>])</span></span>&#123;</span><br><span class="line"><span class="built_in">meset</span>(f, <span class="number">0x3f</span>, <span class="built_in"><span class="keyword">sizeof</span></span>(f)); <span class="comment">// 初始化f每一项为无穷大</span></span><br><span class="line">f[<span class="number">1</span>][<span class="number">0</span>] = <span class="number">0</span>; <span class="comment">// 设置最开始的最短距离，即起点(因为第一个下标的1在二进制下第0位是1也就是代表经过第0点即起点的情况下)到起点(第二个下标是0即第0点)的距离为0</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; (<span class="number">1</span> &lt;&lt; n); i ++)&#123;</span><br><span class="line"><span class="comment">// 循环每种情况，即从0...1循环到1...1也就是从只经过起点的情况循环到经过全部点</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++)&#123;</span><br><span class="line"><span class="comment">// 循环每个点</span></span><br><span class="line"><span class="keyword">if</span>((i &gt;&gt; j) &amp; <span class="number">1</span>)&#123;</span><br><span class="line"><span class="comment">// 如果在i也就是表达状态的int中的第j位为1，也就是之前经过过j点,即找出可能为这一次经过的点(经过哪个点由外层循环的+1控制),是否为真正经过的点不用管,就枚举每一种路径可能性，是否真正可能由weight决定</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; n; k++)&#123;</span><br><span class="line"><span class="comment">// 循环每个点</span></span><br><span class="line"><span class="keyword">if</span>((i^ (<span class="number">1</span> &lt;&lt; j)) &gt;&gt; k &amp; <span class="number">1</span>)&#123;</span><br><span class="line"><span class="comment">// 如果之前经过过k点，即得出所有可能是上一次经过的点，和前面一样也不用管是否为那个点</span></span><br><span class="line">f[i][j] = <span class="built_in">min</span>(f[i][j], f[i^(<span class="number">1</span>&lt;&lt;j)][k] + weight[k][j]);</span><br><span class="line"><span class="comment">// f[i][j]的公式，代表在i情况下，从起点到j点的最短路径，其中[i, j]是唯一的，所以min中的f[i][j]相当于无穷(0x3F)。所以公式相当于就是在当前i情况下，如果不经过j点，起点到k点的最短路径 + j点到k点的最短路径(即权重，如果j无法直接到k即为无穷0x3F)和无穷相比取小的</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 返回在经过全部点(点是0 ~ n-1)的情况下去n - 1点(终点)的最短路径</span></span><br><span class="line"><span class="keyword">return</span> f[(<span class="number">1</span> &lt;&lt; n) - <span class="number">1</span>][n - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><blockquote><p>文中图片来自于<a href="http://home.ustc.edu.cn/~xxxujian/homework8.pdf">http://home.ustc.edu.cn/~xxxujian/homework8.pdf</a><br>代码来自于 <em>算法竞赛进阶指南 / 李煜东</em></p></blockquote><center> -END-</center>]]></content>
+      
+      
+      <categories>
+          
+          <category> C++ </category>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> hamilton最短路径 </tag>
+            
+            <tag> 动态规划 </tag>
+            
+            <tag> 状态压缩 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>C++ jstring to string (UTF16-＞UTF8)</title>
       <link href="2021/06/11/C++-jstring-to-string-(UTF16-%EF%BC%9EUTF8)/"/>
       <url>2021/06/11/C++-jstring-to-string-(UTF16-%EF%BC%9EUTF8)/</url>
