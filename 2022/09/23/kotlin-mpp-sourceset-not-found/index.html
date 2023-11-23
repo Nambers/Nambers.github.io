@@ -6,16 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="背景build.gradle.kt 1234567891011121314151617181920212223242526272829303132333435plugins &#123;    kotlin(&quot;multiplatform&quot;)&#125;group &#x3D; &quot;tech.eritquearcus&quot;version &#x3D; 0.0.0.0kotlin &amp;#1">
+    <meta name="description" content="0. 背景build.gradle.kt 1234567891011121314151617181920212223242526272829303132333435plugins &#123;    kotlin(&quot;multiplatform&quot;)&#125;group &#x3D; &quot;tech.eritquearcus&quot;version &#x3D; 0.0.0.0kotlin">
 <meta property="og:type" content="article">
 <meta property="og:title" content="KotlinSourceSet with name &#39;unixMain&#39; not found.">
 <meta property="og:url" content="https://eritque-arcus.tech/2022/09/23/kotlin-mpp-sourceset-not-found/index.html">
 <meta property="og:site_name" content="Eritque arcus&#39;s blog">
-<meta property="og:description" content="背景build.gradle.kt 1234567891011121314151617181920212223242526272829303132333435plugins &#123;    kotlin(&quot;multiplatform&quot;)&#125;group &#x3D; &quot;tech.eritquearcus&quot;version &#x3D; 0.0.0.0kotlin &amp;#1">
+<meta property="og:description" content="0. 背景build.gradle.kt 1234567891011121314151617181920212223242526272829303132333435plugins &#123;    kotlin(&quot;multiplatform&quot;)&#125;group &#x3D; &quot;tech.eritquearcus&quot;version &#x3D; 0.0.0.0kotlin">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://eritque-arcus.tech/images/kotlin-mpp.jpg">
 <meta property="article:published_time" content="2022-09-23T13:34:53.000Z">
-<meta property="article:modified_time" content="2023-07-25T03:49:31.995Z">
+<meta property="article:modified_time" content="2023-11-23T23:32:45.340Z">
 <meta property="article:author" content="Eritque arcus">
 <meta property="article:tag" content="Kotlin">
 <meta property="article:tag" content="Multiplatform">
@@ -133,7 +133,7 @@
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">解决方法</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">0. 背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">1. 解决方法</span></a></li></ol>
       </div>
     
   </span>
@@ -160,7 +160,7 @@
       
         <time datetime="2022-09-23T13:34:53.000Z" class="dt-published" itemprop="datePublished">2022-09-23</time>
         
-        (Updated: <time datetime="2023-07-25T03:49:31.995Z" class="dt-updated" itemprop="dateModified">2023-07-24</time>)
+        (Updated: <time datetime="2023-11-23T23:32:45.340Z" class="dt-updated" itemprop="dateModified">2023-11-23</time>)
         
       
     </div>
@@ -185,18 +185,17 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>build.gradle.kt</p>
+    <h2 id="0-背景"><a href="#0-背景" class="headerlink" title="0. 背景"></a>0. 背景</h2><p>build.gradle.kt</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">plugins &#123;</span><br><span class="line">    kotlin(<span class="string">&quot;multiplatform&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line">group = <span class="string">&quot;tech.eritquearcus&quot;</span></span><br><span class="line">version = <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></span><br><span class="line">kotlin &#123;</span><br><span class="line">    jvm &#123;</span><br><span class="line">        compilations.all &#123;</span><br><span class="line">            kotlinOptions.jvmTarget = <span class="string">&quot;1.8&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">        withJava()</span><br><span class="line">        testRuns[<span class="string">&quot;test&quot;</span>].executionTask.configure &#123;</span><br><span class="line">            useJUnitPlatform()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">val</span> hostOs = System.getProperty(<span class="string">&quot;os.name&quot;</span>)</span><br><span class="line">    <span class="keyword">val</span> isMingwX64 = hostOs.startsWith(<span class="string">&quot;Windows&quot;</span>)</span><br><span class="line">    <span class="keyword">val</span> nativeTarget = <span class="keyword">when</span> &#123;</span><br><span class="line">        hostOs == <span class="string">&quot;Mac OS X&quot;</span> -&gt; macosX64(<span class="string">&quot;unix&quot;</span>)</span><br><span class="line">        hostOs == <span class="string">&quot;Linux&quot;</span> -&gt; linuxX64(<span class="string">&quot;unix&quot;</span>)</span><br><span class="line">        isMingwX64 -&gt; mingwX64(<span class="string">&quot;win&quot;</span>)</span><br><span class="line">        <span class="keyword">else</span> -&gt; <span class="keyword">throw</span> GradleException(<span class="string">&quot;Host OS is not supported in Kotlin/Native.&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    sourceSets &#123;</span><br><span class="line">        <span class="keyword">val</span> commonMain <span class="keyword">by</span> getting &#123;</span><br><span class="line">            dependencies &#123;</span><br><span class="line">  </span><br><span class="line">            &#125;</span><br><span class="line">            apply(plugin = <span class="string">&quot;org.jetbrains.kotlin.plugin.serialization&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">val</span> jvmMain <span class="keyword">by</span> getting</span><br><span class="line">        <span class="keyword">val</span> unixMain <span class="keyword">by</span> getting</span><br><span class="line">        <span class="keyword">val</span> winMain <span class="keyword">by</span> getting</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>从代码里可以看出, 我是打算在 <code>unixMain</code> 和 <code>winMain</code> 下分别放 mac&#x2F;linux 平台的实现, <code>jvmMain</code> 下放 java 实现.<br>但是在我单纯在这个项目的 <code>src</code> 根目录下新建 <code>unixMain</code> 和 <code>winMain</code> 后, 我发现他不会自己链接这两个文件夹(像 <code>jvmMain</code> 和 <code>nativeMain</code> 一样), 然后报错:<br><img src="/images/kotlin-mpp.jpg" alt="file struct"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">KotlinSourceSet with name &#x27;unixMain&#x27; not found.</span><br><span class="line"></span><br><span class="line">* Try:</span><br><span class="line">&gt; Run with --info or --debug option to get more log output.</span><br><span class="line">&gt; Run with --scan to get full insights.</span><br><span class="line"></span><br><span class="line">* Exception is:</span><br><span class="line">org.gradle.api.UnknownDomainObjectException: KotlinSourceSet with name &#x27;unixMain&#x27; not found.</span><br><span class="line">	at org.gradle.api.internal.DefaultNamedDomainObjectCollection.createNotFoundException(DefaultNamedDomainObjectCollection.java:504)</span><br><span class="line">	at org.gradle.api.internal.DefaultNamedDomainObjectCollection.getByName(DefaultNamedDomainObjectCollection.java:333)</span><br><span class="line">	at org.gradle.kotlin.dsl.NamedDomainObjectCollectionDelegateProvider.provideDelegate(NamedDomainObjectCollectionExtensions.kt:384)</span><br><span class="line">	at Build_gradle$1$2.execute(build.gradle.kts:53)</span><br><span class="line">	at Build_gradle$1$2.execute(build.gradle.kts:1)</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
 
-<h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><p>用</p>
+<h2 id="1-解决方法"><a href="#1-解决方法" class="headerlink" title="1. 解决方法"></a>1. 解决方法</h2><p>用</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> unixMain = maybeCreate(<span class="string">&quot;unixMain&quot;</span>).apply &#123;</span><br><span class="line">    <span class="keyword">this</span>.dependsOn(commonMain)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">val</span> winMain = maybeCreate(<span class="string">&quot;winMain&quot;</span>).apply &#123;</span><br><span class="line">    <span class="keyword">this</span>.dependsOn(commonMain)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>替换</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> unixMain <span class="keyword">by</span> getting</span><br><span class="line"><span class="keyword">val</span> winMain <span class="keyword">by</span> getting</span><br></pre></td></tr></table></figure>
-
   </div>
 </article>
 
@@ -231,7 +230,7 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">解决方法</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">0. 背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">1. 解决方法</span></a></li></ol>
       </div>
     
 
