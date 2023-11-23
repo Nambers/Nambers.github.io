@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://eritque-arcus.tech/about/index.html</loc>
+    
+    <lastmod>2023-11-23</lastmod>
+    
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>https://eritque-arcus.tech/2020/01/06/Python%E4%BD%BF%E7%94%A8urllib,urllib3,requests%E5%BA%93+beautifulsoup%E7%88%AC%E5%8F%96%E7%BD%91%E9%A1%B5/</loc>
     
     <lastmod>2023-11-23</lastmod>
@@ -21,15 +30,6 @@
   
   <url>
     <loc>https://eritque-arcus.tech/2023/11/23/Arch-dualboot-efi/</loc>
-    
-    <lastmod>2023-11-23</lastmod>
-    
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://eritque-arcus.tech/about/index.html</loc>
     
     <lastmod>2023-11-23</lastmod>
     
