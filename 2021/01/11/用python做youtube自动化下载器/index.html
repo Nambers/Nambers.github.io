@@ -1,165 +1,212 @@
-<!DOCTYPE html><html lang="EN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>python自动化下载youtude视频 | Eritque arcus's blog</title><meta name="author" content="Eritque arcus"><meta name="copyright" content="Eritque arcus"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="根据 savefrom条例本实例及教程只用于学习交流用，权利归savefrom.net所有  0. 思路使用python从savefrom平台上获取指定youtube视频下载链接进行下载，不过savefrom的数据是用javascript加密的，这也是难度所在本教程主要介绍制作思路，下一篇会介绍制"><link rel="shortcut icon" href="/images/avatar.png"><link rel="canonical" href="https://eritque-arcus.tech/2021/01/11/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><meta name="msvalidate.01" content="E0869752BA6C708CA7062BE42E32FF02"/><meta name="google-site-verification" content="ueqWwaaGQYLN7uHenp-lhKRcfshkTsWYryPez-V0jPk"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
-  root: '/',
-  algolia: undefined,
-  localSearch: undefined,
-  translate: undefined,
-  noticeOutdate: undefined,
-  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
-  copy: {
-    success: 'Copy successfully',
-    error: 'Copy error',
-    noSupport: 'The browser does not support'
-  },
-  relativeDate: {
-    homepage: false,
-    post: false
-  },
-  runtime: 'days',
-  dateSuffix: {
-    just: 'Just',
-    min: 'minutes ago',
-    hour: 'hours ago',
-    day: 'days ago',
-    month: 'months ago'
-  },
-  copyright: undefined,
-  lightbox: 'fancybox',
-  Snackbar: undefined,
-  source: {
-    justifiedGallery: {
-      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
-    }
-  },
-  isPhotoFigcaption: false,
-  islazyload: true,
-  isAnchor: false,
-  percent: {
-    toc: true,
-    rightside: false,
-  },
-  autoDarkmode: false
-}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: 'python自动化下载youtude视频',
-  isPost: true,
-  isHome: false,
-  isHighlightShrink: false,
-  isToc: true,
-  postUpdate: '2023-07-24 23:49:31'
-}</script><noscript><style type="text/css">
-  #nav {
-    opacity: 1
-  }
-  .justified-gallery img {
-    opacity: 1
-  }
-
-  #recent-posts time,
-  #post-meta time {
-    display: inline !important
-  }
-</style></noscript><script>(win=>{
-    win.saveToLocal = {
-      set: function setWithExpiry(key, value, ttl) {
-        if (ttl === 0) return
-        const now = new Date()
-        const expiryDay = ttl * 86400000
-        const item = {
-          value: value,
-          expiry: now.getTime() + expiryDay,
-        }
-        localStorage.setItem(key, JSON.stringify(item))
-      },
-
-      get: function getWithExpiry(key) {
-        const itemStr = localStorage.getItem(key)
-
-        if (!itemStr) {
-          return undefined
-        }
-        const item = JSON.parse(itemStr)
-        const now = new Date()
-
-        if (now.getTime() > item.expiry) {
-          localStorage.removeItem(key)
-          return undefined
-        }
-        return item.value
-      }
-    }
-  
-    win.getScript = url => new Promise((resolve, reject) => {
-      const script = document.createElement('script')
-      script.src = url
-      script.async = true
-      script.onerror = reject
-      script.onload = script.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        script.onload = script.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(script)
-    })
-  
-    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
-      const link = document.createElement('link')
-      link.rel = 'stylesheet'
-      link.href = url
-      if (id) link.id = id
-      link.onerror = reject
-      link.onload = link.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        link.onload = link.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(link)
-    })
-  
-      win.activateDarkMode = function () {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = function () {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="根据 savefrom条例本实例及教程只用于学习交流用，权利归savefrom.net所有  0. 思路使用python从savefrom平台上获取指定youtube视频下载链接进行下载，不过savefrom的数据是用javascript加密的，这也是难度所在本教程主要介绍制作思路，下一篇会介绍制作python本教程根据stakoverflow 回答制作 1.准备i.savfrom.net一个网">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python自动化下载youtude视频">
+<meta property="og:url" content="https://eritque-arcus.tech/2021/01/11/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8/index.html">
+<meta property="og:site_name" content="Eritque arcus&#39;s blog">
+<meta property="og:description" content="根据 savefrom条例本实例及教程只用于学习交流用，权利归savefrom.net所有  0. 思路使用python从savefrom平台上获取指定youtube视频下载链接进行下载，不过savefrom的数据是用javascript加密的，这也是难度所在本教程主要介绍制作思路，下一篇会介绍制作python本教程根据stakoverflow 回答制作 1.准备i.savfrom.net一个网">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://eritque-arcus.tech/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-0.png">
+<meta property="og:image" content="https://eritque-arcus.tech/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-1.png">
+<meta property="og:image" content="https://eritque-arcus.tech/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-2.png">
+<meta property="og:image" content="https://eritque-arcus.tech/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-3.png">
+<meta property="og:image" content="https://eritque-arcus.tech/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-4.png">
+<meta property="og:image" content="https://eritque-arcus.tech/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-5.png">
+<meta property="og:image" content="https://eritque-arcus.tech/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-6.png">
+<meta property="og:image" content="https://eritque-arcus.tech/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-7.png">
+<meta property="og:image" content="https://eritque-arcus.tech/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-8.png">
+<meta property="og:image" content="https://eritque-arcus.tech/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-9.png">
+<meta property="og:image" content="https://eritque-arcus.tech/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-10.png">
+<meta property="og:image" content="https://eritque-arcus.tech/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-11.png">
+<meta property="article:published_time" content="2021-01-12T00:39:31.000Z">
+<meta property="article:modified_time" content="2023-07-25T03:49:31.995Z">
+<meta property="article:author" content="Eritque arcus">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Web crawler">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://eritque-arcus.tech/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-0.png">
     
-          if (t === 'dark') activateDarkMode()
-          else if (t === 'light') activateLightMode()
+    
+      
         
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
+          <link rel="shortcut icon" href="/images/avatar.png">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/avatar.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png">
+        
+      
     
-    const detectApple = () => {
-      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-        document.documentElement.classList.add('apple')
-      }
-    }
-    detectApple()
-    })(window)</script><meta name="generator" content="Hexo 7.0.0-rc2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/a.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">22</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Bl0gs</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/ctf-writeups/"><i class="fa-fw fa-solid fa-file-pen"></i><span> CTF-wr1teups</span></a></div><div class="menus_item"><a class="site-page" href="/files/s0bt1t1es/"><i class="fa-fw fa-solid fa-closed-captioning"></i><span> Subt1tles</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categ0r1es</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener external nofollow noreferrer" href="https://www.travellings.cn/go.html"><i class="fa-fw fas fa-subway"></i><span> Travelling</span></a></div><div class="menus_item"><a class="site-page" href="/ctf-cheatsheet/"><i class="fa-fw fas fa-book"></i><span> ⒸⓉⒻ-Ⓒⓗⓔⓐⓣⓢⓗⓔⓔⓣ</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> L1nks</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> Ab0ut</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/images/bg.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Eritque arcus's blog"><span class="site-name">Eritque arcus's blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Bl0gs</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/ctf-writeups/"><i class="fa-fw fa-solid fa-file-pen"></i><span> CTF-wr1teups</span></a></div><div class="menus_item"><a class="site-page" href="/files/s0bt1t1es/"><i class="fa-fw fa-solid fa-closed-captioning"></i><span> Subt1tles</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categ0r1es</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener external nofollow noreferrer" href="https://www.travellings.cn/go.html"><i class="fa-fw fas fa-subway"></i><span> Travelling</span></a></div><div class="menus_item"><a class="site-page" href="/ctf-cheatsheet/"><i class="fa-fw fas fa-book"></i><span> ⒸⓉⒻ-Ⓒⓗⓔⓐⓣⓢⓗⓔⓔⓣ</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> L1nks</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> Ab0ut</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">python自动化下载youtude视频</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-01-12T00:39:31.000Z" title="Created 2021-01-11 19:39:31">2021-01-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-07-25T03:49:31.995Z" title="Updated 2023-07-24 23:49:31">2023-07-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Tools/">Tools</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">8.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>45min</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+    <!-- title -->
+    <title>python自动化下载youtude视频</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+    <script async defer
+            data-website-id="c4f02f5c-5bf1-42fa-8829-04d111da9d2b"
+            src="https://analytics.eu.umami.is/script.js">
+    </script>
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/true" title="Eritque arcus&#39;s blog" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.0.0-rc2"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://github.com/Nambers">Projects</a></li><!--
+     --><!--
+       --><li><a href="/files/">Files</a></li><!--
+     --><!--
+       --><li><a href="/ctf-cheatsheet/">CTF-cheatsheet</a></li><!--
+     --><!--
+       --><li><a href="/link/">Links</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.travellings.cn/go.html">Travelling</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2021/03/31/python%E4%B8%80%E9%94%AE%E4%B8%8B%E8%BD%BD%E4%B8%8E%E6%9B%BF%E6%8D%A2hexo%E5%8D%9A%E5%AE%A2%E9%87%8C%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2020/12/28/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.facebook.com/sharer.php?u=https://eritque-arcus.tech/2021/01/11/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://twitter.com/share?url=https://eritque-arcus.tech/2021/01/11/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8/&text=python自动化下载youtude视频"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.linkedin.com/shareArticle?url=https://eritque-arcus.tech/2021/01/11/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8/&title=python自动化下载youtude视频"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://pinterest.com/pin/create/bookmarklet/?url=https://eritque-arcus.tech/2021/01/11/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8/&is_video=false&description=python自动化下载youtude视频"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=python自动化下载youtude视频&body=Check out this article: https://eritque-arcus.tech/2021/01/11/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8/" rel="external nofollow noreferrer"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://getpocket.com/save?url=https://eritque-arcus.tech/2021/01/11/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8/&title=python自动化下载youtude视频"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://reddit.com/submit?url=https://eritque-arcus.tech/2021/01/11/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8/&title=python自动化下载youtude视频"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.stumbleupon.com/submit?url=https://eritque-arcus.tech/2021/01/11/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8/&title=python自动化下载youtude视频"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://digg.com/submit?url=https://eritque-arcus.tech/2021/01/11/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8/&title=python自动化下载youtude视频"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.tumblr.com/share/link?url=https://eritque-arcus.tech/2021/01/11/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8/&name=python自动化下载youtude视频&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://news.ycombinator.com/submitlink?u=https://eritque-arcus.tech/2021/01/11/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8/&t=python自动化下载youtude视频"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#0-%E6%80%9D%E8%B7%AF"><span class="toc-number">1.</span> <span class="toc-text">0. 思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%87%86%E5%A4%87"><span class="toc-number">2.</span> <span class="toc-text">1.准备</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#i-savfrom-net"><span class="toc-number">2.1.</span> <span class="toc-text">i.savfrom.net</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E6%8E%A2%E7%B4%A2%E5%B9%B6%E8%A7%84%E5%88%92%E8%8E%B7%E5%8F%96%E6%96%B9%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">2. 探索并规划获取方式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#i-%E6%80%BB%E8%A7%88"><span class="toc-number">3.1.</span> <span class="toc-text">i.总览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ii-%E8%8E%B7%E5%8F%96%E8%AF%A5%E7%BD%91%E9%A1%B5%E5%8F%96%E5%88%B0%E4%B8%8B%E8%BD%BDurl%E7%9A%84%E8%AF%B7%E6%B1%82"><span class="toc-number">3.2.</span> <span class="toc-text">ii. 获取该网页取到下载url的请求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iii-%E5%9C%A8%E6%9C%AC%E5%9C%B0%E8%8E%B7%E5%8F%96%E8%AF%B7%E6%B1%82"><span class="toc-number">3.3.</span> <span class="toc-text">iii. 在本地获取请求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iv-%E8%A7%A3%E6%9E%90%E8%AF%B7%E6%B1%82%E7%BB%93%E6%9E%9C"><span class="toc-number">3.4.</span> <span class="toc-text">iv.解析请求结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#v-%E8%A7%A3%E6%9E%90%E8%A7%A3%E5%AF%86%E5%90%8E%E7%9A%84%E7%BB%93%E6%9E%9C"><span class="toc-number">3.5.</span> <span class="toc-text">v.解析解密后的结果</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%9C%B0%E5%9D%80"><span class="toc-number">4.</span> <span class="toc-text">项目地址</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B"><span class="toc-number">5.</span> <span class="toc-text">流程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-post"><span class="toc-number">5.1.</span> <span class="toc-text">1. post</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#i-%E5%85%88%E6%8A%8Apost%E4%B8%AD%E7%9A%84headers%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-number">5.1.1.</span> <span class="toc-text">i. 先把post中的headers格式化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ii-%E7%84%B6%E5%90%8E%E6%8A%8A%E5%8F%82%E6%95%B0%E4%B9%9F%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-number">5.1.2.</span> <span class="toc-text">ii.然后把参数也格式化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iii-%E6%9C%80%E5%90%8E%E5%86%8D%E6%89%A7%E8%A1%8Crequests%E5%BA%93%E7%9A%84post%E8%AF%B7%E6%B1%82"><span class="toc-number">5.1.3.</span> <span class="toc-text">iii. 最后再执行requests库的post请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iv-%E5%B0%81%E8%A3%85%E6%88%90%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0"><span class="toc-number">5.1.4.</span> <span class="toc-text">iv. 封装成一个函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%B0%83%E7%94%A8%E8%A7%A3%E5%AF%86%E5%87%BD%E6%95%B0"><span class="toc-number">5.2.</span> <span class="toc-text">2. 调用解密函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#i-%E5%88%86%E6%9E%90"><span class="toc-number">5.3.</span> <span class="toc-text">i. 分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ii-%E5%85%88%E5%8F%96%E5%87%BAjs%E9%83%A8%E5%88%86"><span class="toc-number">5.4.</span> <span class="toc-text">ii. 先取出js部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iii-%E5%8F%96%E7%AC%AC%E4%B8%80%E4%B8%AA%E8%A7%A3%E5%AF%86%E5%87%BD%E6%95%B0%E4%BD%9C%E4%B8%BA%E6%88%91%E4%BB%AC%E7%94%A8%E7%9A%84%E8%A7%A3%E5%AF%86%E5%87%BD%E6%95%B0"><span class="toc-number">5.5.</span> <span class="toc-text">iii. 取第一个解密函数作为我们用的解密函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iv-%E7%94%A8execjs%E6%89%A7%E8%A1%8C"><span class="toc-number">5.6.</span> <span class="toc-text">iv. 用execjs执行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-this%E4%B9%9F%E5%B0%B1%E6%98%AFwindow%E5%8F%98%E9%87%8F%E4%B8%8D%E5%AD%98%E5%9C%A8"><span class="toc-number">5.6.1.</span> <span class="toc-text">1. this也就是window变量不存在</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-alert%E4%B8%8D%E5%AD%98%E5%9C%A8"><span class="toc-number">5.6.2.</span> <span class="toc-text">2. alert不存在</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#v-%E6%95%B4%E5%90%88%E4%BB%A3%E7%A0%81"><span class="toc-number">5.7.</span> <span class="toc-text">v. 整合代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%88%86%E6%9E%90%E8%A7%A3%E5%AF%86%E7%BB%93%E6%9E%9C"><span class="toc-number">5.8.</span> <span class="toc-text">3. 分析解密结果</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#i-%E5%8F%96%E5%85%B3%E9%94%AEjson"><span class="toc-number">5.8.1.</span> <span class="toc-text">i. 取关键json</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ii-%E6%A0%BC%E5%BC%8F%E5%8C%96json"><span class="toc-number">5.8.2.</span> <span class="toc-text">ii. 格式化json</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iii-%E5%8F%96%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80"><span class="toc-number">5.8.3.</span> <span class="toc-text">iii. 取下载地址</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E5%85%A8%E9%83%A8%E4%BB%A3%E7%A0%81"><span class="toc-number">6.</span> <span class="toc-text">3. 全部代码</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        python自动化下载youtude视频
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Eritque arcus</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-01-12T00:39:31.000Z" class="dt-published" itemprop="datePublished">2021-01-11</time>
+        
+        (Updated: <time datetime="2023-07-25T03:49:31.995Z" class="dt-updated" itemprop="dateModified">2023-07-24</time>)
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/Tools/">Tools</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/Python/" rel="tag">Python</a>, <a class="p-category" href="/tags/Web-crawler/" rel="tag">Web crawler</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <blockquote>
 <p>根据 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.savefrom.net/terms.html">savefrom条例</a><br>本实例及教程只用于学习交流用，权利归<strong>savefrom.net</strong>所有</p>
 </blockquote>
 <h1 id="0-思路"><a href="#0-思路" class="headerlink" title="0. 思路"></a>0. 思路</h1><p>使用python从savefrom平台上获取指定youtube视频下载链接进行下载，不过savefrom的数据是用javascript加密的，这也是难度所在<br>本教程主要介绍制作思路，下一篇会介绍制作python<br>本教程根据<a target="_blank" rel="noopener external nofollow noreferrer" href="https://stackoverflow.com/questions/65443895/how-to-input-data-via-a-post-request-using-requests-in-python/65650186#65650186">stakoverflow 回答</a>制作</p>
 <h1 id="1-准备"><a href="#1-准备" class="headerlink" title="1.准备"></a>1.准备</h1><h2 id="i-savfrom-net"><a href="#i-savfrom-net" class="headerlink" title="i.savfrom.net"></a>i.savfrom.net</h2><p>一个网站可以免费下载youtube视频</p>
-<h1 id="2-探索并规划获取方式"><a href="#2-探索并规划获取方式" class="headerlink" title="2. 探索并规划获取方式"></a>2. 探索并规划获取方式</h1><h2 id="i-总览"><a href="#i-总览" class="headerlink" title="i.总览"></a>i.总览</h2><p>打开<a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.savefrom.net/1-youtube-video-downloader-4/">https://en.savefrom.net/1-youtube-video-downloader-4/</a>可以看见页面主要就一个from表单输入框和提交按钮组成<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-0.png" alt="video"></p>
-<h2 id="ii-获取该网页取到下载url的请求"><a href="#ii-获取该网页取到下载url的请求" class="headerlink" title="ii. 获取该网页取到下载url的请求"></a>ii. 获取该网页取到下载url的请求</h2><p>在chrome或其他浏览器按<code>F12</code>打开开发者控制台，点开<code>Network</code>选项卡<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-1.png" alt="Network"><br>接下来模拟正常的用户流程，在输入框输入一个youtube视频地址，比如这个<code>https://www.youtube.com/watch?v=IjJmTeBSEzU</code>，然后点击<code>Download</code>提交url获取下载url，然后我们可以发现下面已经出现了下载链接。然后我们在<code>network</code>选项卡内可以发现一个特殊的申请<code>saveform.php</code>(如果没发现可以多提交几次，就会发现每次提交都有这个请求或者看html里的form元素的src地址就是<code>savform.php</code>)<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-2.png" alt="saveform"><br>我们就可以确定关于下载链接会出现在这个请求的返回值内。</p>
-<h2 id="iii-在本地获取请求"><a href="#iii-在本地获取请求" class="headerlink" title="iii. 在本地获取请求"></a>iii. 在本地获取请求</h2><p>在本地用IDE的http工具或者python构建出post请求代码，笔者用的是pycharm的<code>httpClient</code>(按2下左<code>Shift</code>，然后输入<code>Tools</code>，然后回车进入菜单，然后点击<code>httpClient</code>下的第一个)<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-3.png" alt="httpclient"><br>把请求里第二个<code>headers</code>的内容全部复制然后格式化然后构建post请求<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-4.png" alt="headers"><br>然后把下面的<code>formdata</code>的参数也复制进来，记得和<code>headers</code>换行<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-5.png" alt="formdata"></p>
+<h1 id="2-探索并规划获取方式"><a href="#2-探索并规划获取方式" class="headerlink" title="2. 探索并规划获取方式"></a>2. 探索并规划获取方式</h1><h2 id="i-总览"><a href="#i-总览" class="headerlink" title="i.总览"></a>i.总览</h2><p>打开<a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.savefrom.net/1-youtube-video-downloader-4/">https://en.savefrom.net/1-youtube-video-downloader-4/</a>可以看见页面主要就一个from表单输入框和提交按钮组成<br><img src="/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-0.png" alt="video"></p>
+<h2 id="ii-获取该网页取到下载url的请求"><a href="#ii-获取该网页取到下载url的请求" class="headerlink" title="ii. 获取该网页取到下载url的请求"></a>ii. 获取该网页取到下载url的请求</h2><p>在chrome或其他浏览器按<code>F12</code>打开开发者控制台，点开<code>Network</code>选项卡<br><img src="/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-1.png" alt="Network"><br>接下来模拟正常的用户流程，在输入框输入一个youtube视频地址，比如这个<code>https://www.youtube.com/watch?v=IjJmTeBSEzU</code>，然后点击<code>Download</code>提交url获取下载url，然后我们可以发现下面已经出现了下载链接。然后我们在<code>network</code>选项卡内可以发现一个特殊的申请<code>saveform.php</code>(如果没发现可以多提交几次，就会发现每次提交都有这个请求或者看html里的form元素的src地址就是<code>savform.php</code>)<br><img src="/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-2.png" alt="saveform"><br>我们就可以确定关于下载链接会出现在这个请求的返回值内。</p>
+<h2 id="iii-在本地获取请求"><a href="#iii-在本地获取请求" class="headerlink" title="iii. 在本地获取请求"></a>iii. 在本地获取请求</h2><p>在本地用IDE的http工具或者python构建出post请求代码，笔者用的是pycharm的<code>httpClient</code>(按2下左<code>Shift</code>，然后输入<code>Tools</code>，然后回车进入菜单，然后点击<code>httpClient</code>下的第一个)<br><img src="/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-3.png" alt="httpclient"><br>把请求里第二个<code>headers</code>的内容全部复制然后格式化然后构建post请求<br><img src="/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-4.png" alt="headers"><br>然后把下面的<code>formdata</code>的参数也复制进来，记得和<code>headers</code>换行<br><img src="/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-5.png" alt="formdata"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">POST https://en.savefrom.net/savefrom.php</span><br><span class="line">cache-Control: no-cache</span><br><span class="line">accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9</span><br><span class="line">accept-encoding: gzip, deflate, br</span><br><span class="line">accept-language: zh-CN,zh;q=0.9,en;q=0.8</span><br><span class="line">content-type: application/x-www-form-urlencoded</span><br><span class="line">cookie: lang=en; country=CN; uid=fd94a82a406a8dd4; sfHelperDist=72; reference=14; clickads-e2=90; poropellerAdsPush-e=63; promoBlock=64; helperWidget=92; helperBanner=42; framelessHdConverter=68; inpagePush2=68; popupInOutput=9; _ga=GA1.2.799702638.1610248969; _gid=GA1.2.628904587.1610248969; PHPSESSID=4aojkm49oj7h3de65pekqii337; x-requested-with=; PHPSESSUD=122fb7e10af37e23d99e896fd188744f; _gat_helperWidget=1; _gat_inpagePush2=1</span><br><span class="line">origin: https://en.savefrom.net</span><br><span class="line">pragma: no-cache</span><br><span class="line">referer: https://en.savefrom.net/1-youtube-video-downloader-4/</span><br><span class="line">sec-ch-ua: &quot;Google Chrome&quot;;v=&quot;87&quot;, &quot; Not;A Brand&quot;;v=&quot;99&quot;, &quot;Chromium&quot;;v=&quot;87&quot;</span><br><span class="line">sec-ch-ua-mobile: ?0</span><br><span class="line">sec-fetch-dest: iframe</span><br><span class="line">sec-fetch-mode: navigate</span><br><span class="line">sec-fetch-site: same-origin</span><br><span class="line">sec-fetch-user: ?1</span><br><span class="line">upgrade-insecure-requests: 1</span><br><span class="line">user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36</span><br><span class="line"></span><br><span class="line">sf_url=https://www.youtube.com/watch?v=YPvtz1lHRiw&amp;sf_submit=&amp;new=1&amp;lang=en&amp;app=&amp;country=cn&amp;os=Windows&amp;browser=Chrome</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>如果配置没错，这个时候你运行后会显示出和在浏览器里一样的结果，然后可以发现参数里的<code>sf_url</code>就是需要下载的youtube地址</p>
-<h2 id="iv-解析请求结果"><a href="#iv-解析请求结果" class="headerlink" title="iv.解析请求结果"></a>iv.解析请求结果</h2><p>把取到的结果保存在本地然后在浏览器打开保存的本地文件，然后弹出一个弹窗后会发现这个页面什么都没有，但其实如果你在<code>console</code>输入<code>window</code>会发现有很多变量和函数，其中就有我们需要的加密后的url和解密函数<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-6.png" alt="window"><br>经过弹窗提示我们可以发现是这个html的js发现了我们不在他的网站上然后删除了显示下载url的代码所以我们才什么都看不到，打开<code>source</code>选项卡或者用IDE打开源代码查看<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-7.png" alt="sources"><br>扫一下这个源代码，我们可以看见一些加密解密函数，被加密的乱码信息，哈希对照表，和一些奇怪的赋值操作，如图<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-8.png" alt="code"><br>我们可以看见，js部分由一个大闭包组成</p>
+<h2 id="iv-解析请求结果"><a href="#iv-解析请求结果" class="headerlink" title="iv.解析请求结果"></a>iv.解析请求结果</h2><p>把取到的结果保存在本地然后在浏览器打开保存的本地文件，然后弹出一个弹窗后会发现这个页面什么都没有，但其实如果你在<code>console</code>输入<code>window</code>会发现有很多变量和函数，其中就有我们需要的加密后的url和解密函数<br><img src="/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-6.png" alt="window"><br>经过弹窗提示我们可以发现是这个html的js发现了我们不在他的网站上然后删除了显示下载url的代码所以我们才什么都看不到，打开<code>source</code>选项卡或者用IDE打开源代码查看<br><img src="/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-7.png" alt="sources"><br>扫一下这个源代码，我们可以看见一些加密解密函数，被加密的乱码信息，哈希对照表，和一些奇怪的赋值操作，如图<br><img src="/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-8.png" alt="code"><br>我们可以看见，js部分由一个大闭包组成</p>
 <ul>
 <li>第3行到第9行是声明函数</li>
 <li>第10行是给<code>$b</code>赋值<code>this</code>也就是<code>window</code></li>
@@ -170,12 +217,12 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">$d</span> = $d;</span><br><span class="line"><span class="variable language_">this</span>.<span class="property">$a</span> = $a;</span><br><span class="line"><span class="variable language_">this</span>.<span class="property">$e</span> = $e;</span><br><span class="line"><span class="variable language_">this</span>.<span class="property">$k</span> = $k;</span><br><span class="line"><span class="variable language_">this</span>.<span class="property">$c</span> = $c;</span><br><span class="line">$c = <span class="title function_">_q</span>($c);</span><br><span class="line">$c = <span class="title function_">_b</span>($c);</span><br><span class="line"><span class="title function_">_m</span>($b, $c);</span><br></pre></td></tr></table></figure>
 <p>去掉前5行没有意义的变量互换值，加密解密函数存在的范围就在最后3行</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$c = <span class="title function_">_q</span>($c);</span><br><span class="line">$c = <span class="title function_">_b</span>($c);</span><br><span class="line"><span class="title function_">_m</span>($b, $c);</span><br></pre></td></tr></table></figure>
-<p>然后开始一个个试<br>先在<code>console</code>里输入第一行<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-9.png" alt="console"><br>然后就出现了明文，所以我们就确定这个是我们需要的解密函数<br>接下来输入第二行<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-10.png" alt="console2"><br>发现出现了和上面一模一样的明文，所以这个也是解密函数<br>接下来输入第三行<br>发现这个执行了那段代码，这个应该是执行函数，所以我们现在就找到了解密函数位于js部分的最后几行</p>
+<p>然后开始一个个试<br>先在<code>console</code>里输入第一行<br><img src="/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-9.png" alt="console"><br>然后就出现了明文，所以我们就确定这个是我们需要的解密函数<br>接下来输入第二行<br><img src="/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-10.png" alt="console2"><br>发现出现了和上面一模一样的明文，所以这个也是解密函数<br>接下来输入第三行<br>发现这个执行了那段代码，这个应该是执行函数，所以我们现在就找到了解密函数位于js部分的最后几行</p>
 <h2 id="v-解析解密后的结果"><a href="#v-解析解密后的结果" class="headerlink" title="v.解析解密后的结果"></a>v.解析解密后的结果</h2><p>把<code>console</code>里用解密函数解密出的结果复制出来会得到一个JavaScript脚本</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">del</span>(<span class="params"></span>)&#123;<span class="keyword">while</span>(<span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">firstChild</span>)&#123;<span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">removeChild</span>(<span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">firstChild</span>);&#125;&#125;;</span><br><span class="line"><span class="keyword">if</span>(<span class="variable language_">window</span>.<span class="property">location</span>.<span class="property">hostname</span>.<span class="title function_">search</span>(<span class="regexp">/(?:^|\.|@)(savefrom\.net|sfrom\.net|savefrom\.com\.au|51\.159\.57\.158|(?:fe\d*|test)-front\.sf-apps\.com)$/i</span>) == -<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="title function_">alert</span>(<span class="string">&#x27;Please go to http://savefrom.net/ to get direct links&#x27;</span>);</span><br><span class="line"><span class="title function_">del</span>();</span><br><span class="line"><span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">showResult</span>(<span class="params"></span>)&#123;</span><br><span class="line"><span class="keyword">var</span> success = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">try</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">var</span> d = <span class="variable language_">window</span>.<span class="property">parent</span>.<span class="property">document</span>;</span><br><span class="line"><span class="keyword">if</span>(d &amp;&amp; d.<span class="property">getElementById</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">var</span> e = d.<span class="title function_">getElementById</span>(<span class="string">&#x27;sf_result&#x27;</span>);</span><br><span class="line"><span class="keyword">if</span>(e &amp;&amp; e.<span class="property">innerHTML</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="variable language_">window</span>.<span class="property">parent</span>.<span class="property">sf</span>.<span class="title function_">finishRequest</span>(<span class="literal">true</span>);;</span><br><span class="line">e.<span class="property">innerHTML</span> = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"><span class="variable language_">window</span>.<span class="property">parent</span>.<span class="property">sf</span>.<span class="property">videoResult</span>.<span class="title function_">show</span>(&#123;<span class="string">&quot;id&quot;</span>:<span class="string">&quot;YPvtz1lHRiw&quot;</span>,<span class="string">&quot;cipher&quot;</span>:<span class="literal">false</span>,<span class="string">&quot;meta&quot;</span>:&#123;<span class="string">&quot;title&quot;</span>:<span class="string">&quot;The Most Genius Plays in Football&quot;</span>,<span class="string">&quot;source&quot;</span>:<span class="string">&quot;https:\/\/www.youtube.com\/watch?v=YPvtz1lHRiw&quot;</span>,<span class="string">&quot;duration&quot;</span>:<span class="string">&quot;7:03&quot;</span>,<span class="string">&quot;tags&quot;</span>:<span class="string">&quot;lionel messi,football tiki taka,football highlight,football team plays,kevin de bruyne,mesut \u00f6zil,paul pogba,cristiano ronaldo,adama traore,luka modric,toni kroos,andres iniesta,kylian mbappe,neymar jr,zlatan ibrahimovic,franck ribery,paulo dybala,philippe coutinho,robert lewandowski,barcelona,real madrid,liverpool,manchester city&quot;</span>&#125;,<span class="string">&quot;thumb&quot;</span>:<span class="string">&quot;https:\/\/i.ytimg.com\/vi\/YPvtz1lHRiw\/hqdefault.jpg&quot;</span>,<span class="string">&quot;itags&quot;</span>:[<span class="string">&quot;18&quot;</span>,<span class="string">&quot;22&quot;</span>,<span class="string">&quot;133&quot;</span>,<span class="string">&quot;134&quot;</span>,<span class="string">&quot;135&quot;</span>,<span class="string">&quot;136&quot;</span>,<span class="string">&quot;137&quot;</span>,<span class="string">&quot;140&quot;</span>,<span class="string">&quot;160&quot;</span>,<span class="string">&quot;242&quot;</span>,<span class="string">&quot;243&quot;</span>,<span class="string">&quot;244&quot;</span>,<span class="string">&quot;247&quot;</span>,<span class="string">&quot;248&quot;</span>,<span class="string">&quot;249&quot;</span>,<span class="string">&quot;250&quot;</span>,<span class="string">&quot;251&quot;</span>,<span class="string">&quot;278&quot;</span>],<span class="string">&quot;video_quality&quot;</span>:[<span class="string">&quot;1080&quot;</span>,<span class="string">&quot;720&quot;</span>,<span class="string">&quot;480&quot;</span>,<span class="string">&quot;360&quot;</span>,<span class="string">&quot;240&quot;</span>,<span class="string">&quot;144&quot;</span>],<span class="string">&quot;url&quot;</span>:[&#123;<span class="string">&quot;url&quot;</span>:<span class="string">&quot;https:\/\/r4---sn-25glene7.googlevideo.com\/videoplayback?expire=1610299253&amp;ei=FeP6X7qLJvesxN8PteeBaA&amp;ip=154.72.187.26&amp;id=o-AFTOjos_M4e5ymyJ3pa8Zs6JxHQohnez1oxdyfxNGuFl&amp;itag=18&amp;source=youtube&amp;requiressl=yes&amp;mh=nS&amp;mm=31%2C29&amp;mn=sn-25glene7%2Csn-25ge7nzs&amp;ms=au%2Crdu&amp;mv=m&amp;mvi=4&amp;pl=20&amp;initcwndbps=182500&amp;vprv=1&amp;mime=video%2Fmp4&amp;ns=H2IuXFgrekwcd2kUgtraypIF&amp;gir=yes&amp;clen=35202709&amp;ratebypass=yes&amp;dur=423.137&amp;lmt=1603720879883261&amp;mt=1610277156&amp;fvip=4&amp;c=WEB&amp;txp=5531422&amp;n=9544-WEiIwBMq_&amp;sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cratebypass%2Cdur%2Clmt&amp;sig=AOq0QJ8wRQIgN_iBsjO6zSiW9dcOYYExfjeVuy1YCXtWcKT0cz2kMcECIQCMre2rssbqkWdohk9K4Ej8B8r9gARVc0-kAHVqhV1teQ%3D%3D&amp;lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&amp;lsig=AG3C_xAwRgIhALlbQJhLhsKk9tVJdpd0OfXwuiWC26m4cDjWZ8MvxO1MAiEA8EG4gFtyQVAWXRWz_d3DYsCTY4oCiTobXSHKnemPR38%3D&quot;</span>,<span class="string">&quot;name&quot;</span>:<span class="string">&quot;MP4&quot;</span>,<span class="string">&quot;subname&quot;</span>:<span class="string">&quot;360&quot;</span>,<span class="string">&quot;info_url&quot;</span>:<span class="string">&quot;https:\/\/r4---sn-25glene7.googlevideo.com\/videoplayback?expire=1610299253&amp;ei=FeP6X7qLJvesxN8PteeBaA&amp;ip=154.72.187.26&amp;id=o-AFTOjos_M4e5ymyJ3pa8Zs6JxHQohnez1oxdyfxNGuFl&amp;itag=18&amp;source=youtube&amp;requiressl=yes&amp;mh=nS&amp;mm=31%2C29&amp;mn=sn-25glene7%2Csn-25ge7nzs&amp;ms=au%2Crdu&amp;mv=m&amp;mvi=4&amp;pl=20&amp;initcwndbps=182500&amp;vprv=1&amp;mime=video%2Fmp4&amp;ns=H2IuXFgrekwcd2kUgtraypIF&amp;gir=yes&amp;clen=35202709&amp;ratebypass=yes&amp;dur=423.137&amp;lmt=1603720879883261&amp;mt=1610277156&amp;fvip=4&amp;c=WEB&amp;txp=5531422&amp;n=9544-WEiIwBMq_&amp;sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cratebypass%2Cdur%2Clmt&amp;sig=AOq0QJ8wRQIgN_iBsjO6zSiW9dcOYYExfjeVuy1YCXtWcKT0cz2kMcECIQCMre2rssbqkWdohk9K4Ej8B8r9gARVc0-kAHVqhV1teQ%3D%3D&amp;lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&amp;lsig=AG3C_xAwRgIhALlbQJhLhsKk9tVJdpd0OfXwuiWC26m4cDjWZ8MvxO1MAiEA8EG4gFtyQVAWXRWz_d3DYsCTY4oCiTobXSHKnemPR38%3D&quot;</span>,<span class="string">&quot;type&quot;</span>:<span class="string">&quot;mp4&quot;</span>,<span class="string">&quot;ext&quot;</span>:<span class="string">&quot;mp4&quot;</span>,<span class="string">&quot;downloadable&quot;</span>:<span class="literal">false</span>,<span class="string">&quot;quality&quot;</span>:<span class="string">&quot;360&quot;</span>,<span class="string">&quot;audio&quot;</span>:<span class="literal">false</span>,<span class="string">&quot;no_audio&quot;</span>:<span class="literal">false</span>,<span class="string">&quot;itag&quot;</span>:<span class="string">&quot;18&quot;</span>,<span class="string">&quot;filesize&quot;</span>:<span class="number">35202709</span>,<span class="string">&quot;attr&quot;</span>:&#123;<span class="string">&quot;title&quot;</span>:<span class="string">&quot;video format: 360&quot;</span>,<span class="string">&quot;class&quot;</span>:<span class="string">&quot;&quot;</span>&#125;,<span class="string">&quot;info_token&quot;</span>:<span class="string">&quot;0c41b67f74ccb97e50f2e64fe5f4625a&quot;</span>&#125;,&#123;<span class="string">&quot;url&quot;</span>:<span class="string">&quot;https:\/\/r4---sn-25glene7.googlevideo.com\/videoplayback?expire=1610299253&amp;ei=FeP6X7qLJvesxN8PteeBaA&amp;ip=154.72.187.26&amp;id=o-AFTOjos_M4e5ymyJ3pa8Zs6JxHQohnez1oxdyfxNGuFl&amp;itag=22&amp;source=youtube&amp;requiressl=yes&amp;mh=nS&amp;mm=31%2C29&amp;mn=sn-25glene7%2Csn-25ge7nzs&amp;ms=au%2Crdu&amp;mv=m&amp;mvi=4&amp;pl=20&amp;initcwndbps=182500&amp;vprv=1&amp;mime=video%2Fmp4&amp;ns=H2IuXFgrekwcd2kUgtraypIF&amp;ratebypass=yes&amp;dur=423.137&amp;lmt=1603723118280830&amp;mt=1610277156&amp;fvip=4&amp;c=WEB&amp;txp=5535432&amp;n=9544-WEiIwBMq_&amp;sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Cratebypass%2Cdur%2Clmt&amp;sig=AOq0QJ8wRQIgWg_KEKuXDFH-OcphoOxU2tjE9B0WnidilKpa-vtbmigCIQD-eJlhFHZMi1VzRYI_jh0RZaMiLkkXYWnwGM2TJp0bLA%3D%3D&amp;lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&amp;lsig=AG3C_xAwRgIhALlbQJhLhsKk9tVJdpd0OfXwuiWC26m4cDjWZ8MvxO1MAiEA8EG4gFtyQVAWXRWz_d3DYsCTY4oCiTobXSHKnemPR38%3D&amp;title=The%20Most%20Genius%20Plays%20in%20Football&quot;</span>,<span class="string">&quot;name&quot;</span>:<span class="string">&quot;MP4&quot;</span>,<span class="string">&quot;subname&quot;</span>:<span class="string">&quot;720&quot;</span>,<span class="string">&quot;info_url&quot;</span>:<span class="string">&quot;https:\/\/r4---sn-25glene7.googlevideo.com\/videoplayback?expire=1610299253&amp;ei=FeP6X7qLJvesxN8PteeBaA&amp;ip=154.72.187.26&amp;id=o-AFTOjos_M4e5ymyJ3pa8Zs6JxHQohnez1oxdyfxNGuFl&amp;itag=22&amp;source=youtube&amp;requiressl=yes&amp;mh=nS&amp;mm=31%2C29&amp;mn=sn-25glene7%2Csn-25ge7nzs&amp;ms=au%2Crdu&amp;mv=m&amp;mvi=4&amp;pl=20&amp;initcwndbps=182500&amp;vprv=1&amp;mime=video%2Fmp4&amp;ns=H2IuXFgrekwcd2kUgtraypIF&amp;ratebypass=yes&amp;dur=423.137&amp;lmt=1603723118280830&amp;mt=1610277156&amp;fvip=4&amp;c=WEB&amp;txp=5535432&amp;n=9544-WEiIwBMq_&amp;sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Cratebypass%2Cdur%2Clmt&amp;sig=AOq0QJ8wRQIgWg_KEKuXDFH-OcphoOxU2tjE9B0WnidilKpa-vtbmigCIQD-eJlhFHZMi1VzRYI_jh0RZaMiLkkXYWnwGM2TJp0bLA%3D%3D&amp;lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&amp;lsig=AG3C_xAwRgIhALlbQJhLhsKk9tVJdpd0OfXwuiWC26m4cDjWZ8MvxO1MAiEA8EG4gFtyQVAWXRWz_d3DYsCTY4oCiTobXSHKnemPR38%3D&quot;</span>,<span class="string">&quot;type&quot;</span>:<span class="string">&quot;mp4&quot;</span>,<span class="string">&quot;ext&quot;</span>:<span class="string">&quot;mp4&quot;</span>,<span class="string">&quot;downloadable&quot;</span>:<span class="literal">true</span>,<span class="string">&quot;quality&quot;</span>:<span class="string">&quot;720&quot;</span>,<span class="string">&quot;audio&quot;</span>:<span class="literal">false</span>,<span class="string">&quot;no_audio&quot;</span>:<span class="literal">false</span>,<span class="string">&quot;itag&quot;</span>:<span class="string">&quot;22&quot;</span>,<span class="string">&quot;attr&quot;</span>:&#123;<span class="string">&quot;title&quot;</span>:<span class="string">&quot;video format: 720&quot;</span>,<span class="string">&quot;class&quot;</span>:<span class="string">&quot;&quot;</span>&#125;,<span class="string">&quot;info_token&quot;</span>:<span class="string">&quot;674fa89ee246148990b3f36e750a5d32&quot;</span>&#125;,&#123;<span class="string">&quot;url&quot;</span>:<span class="string">&quot;https:\/\/r4---sn-25glene7.googlevideo.com\/videoplayback?expire=1610299253&amp;ei=FeP6X7qLJvesxN8PteeBaA&amp;ip=154.72.187.26&amp;id=o-AFTOjos_M4e5ymyJ3pa8Zs6JxHQohnez1oxdyfxNGuFl&amp;itag=137&amp;aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C278&amp;source=youtube&amp;requiressl=yes&amp;mh=nS&amp;mm=31%2C29&amp;mn=sn-25glene7%2Csn-25ge7nzs&amp;ms=au%2Crdu&amp;mv=m&amp;mvi=4&amp;pl=20&amp;initcwndbps=182500&amp;vprv=1&amp;mime=video%2Fmp4&amp;ns=QmTnf2BHCkCLm1nUC3OlqIwF&amp;gir=yes&amp;clen=177708494&amp;dur=422.999&amp;lmt=1603723164407782&amp;mt=1610277156&amp;fvip=4&amp;keepalive=yes&amp;c=WEB&amp;txp=5535432&amp;n=TD5jnO4_esWW9m&amp;sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&amp;sig=AOq0QJ8wRQIhANMFMA1ypwGQjiGT_DlqlYwfqcqu1IlKZGoCrdIqWmzHAiAyOJJHIzUBcMQ6WBeEnepV4UlD3TY6rGSNKBVSVhbpIQ%3D%3D&amp;lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&amp;lsig=AG3C_xAwRgIhALlbQJhLhsKk9tVJdpd0OfXwuiWC26m4cDjWZ8MvxO1MAiEA8EG4gFtyQVAWXRWz_d3DYsCTY4oCiTobXSHKnemPR38%3D&quot;</span>,<span class="string">&quot;name&quot;</span>:<span class="string">&quot;MP4&quot;</span>,<span class="string">&quot;subname&quot;</span>:<span class="string">&quot;1080&quot;</span>,<span class="string">&quot;info_url&quot;</span>:<span class="string">&quot;https:\/\/r4---sn-25glene7.googlevideo.com\/videoplayback?expire=1610299253&amp;ei=FeP6X7qLJvesxN8PteeBaA&amp;ip=154.72.187.26&amp;id=o-AFTOjos_M4e5ymyJ3pa8Zs6JxHQohnez1oxdyfxNGuFl&amp;itag=137&amp;aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C278&amp;source=youtube&amp;requiressl=yes&amp;mh=nS&amp;mm=31%2C29&amp;mn=sn-25glene7%2Csn-25ge7nzs&amp;ms=au%2Crdu&amp;mv=m&amp;mvi=4&amp;pl=20&amp;initcwndbps=182500&amp;vprv=1&amp;mime=video%2Fmp4&amp;ns=QmTnf2BHCkCLm1nUC3OlqIwF&amp;gir=yes&amp;clen=177708494&amp;dur=422.999&amp;lmt=1603723164407782&amp;mt=1610277156&amp;fvip=4&amp;keepalive=yes&amp;c=WEB&amp;txp=5535432&amp;n=TD5jnO4_esWW9m&amp;sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&amp;sig=AOq0QJ8wRQIhANMFMA1ypwGQjiGT_DlqlYwfqcqu1IlKZGoCrdIqWmzHAiAyOJJHIzUBcMQ6WBeEnepV4UlD3TY6rGSNKBVSVhbpIQ%3D%3D&amp;lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&amp;lsig=AG3C_xAwRgIhALlbQJhLhsKk9tVJdpd0OfXwuiWC26m4cDjWZ8MvxO1MAiEA8EG4gFtyQVAWXRWz_d3DYsCTY4oCiTobXSHKnemPR38%3D&quot;</span>,<span class="string">&quot;type&quot;</span>:<span class="string">&quot;mp4 dash&quot;</span>,<span class="string">&quot;ext&quot;</span>:<span class="string">&quot;mp4&quot;</span>,<span class="string">&quot;downloadable&quot;</span>:<span class="literal">false</span>,<span class="string">&quot;quality&quot;</span>:<span class="string">&quot;1080&quot;</span>,<span class="string">&quot;audio&quot;</span>:<span class="literal">false</span>,<span class="string">&quot;no_audio&quot;</span>:<span class="literal">true</span>,<span class="string">&quot;itag&quot;</span>:<span class="string">&quot;137&quot;</span>,<span class="string">&quot;filesize&quot;</span>:<span class="number">177708494</span>,<span class="string">&quot;attr&quot;</span>:&#123;<span class="string">&quot;title&quot;</span>:<span class="string">&quot;video format: 1080 (without audio)&quot;</span>,<span class="string">&quot;class&quot;</span>:<span class="string">&quot;no-audio&quot;</span>&#125;,<span class="string">&quot;info_token&quot;</span>:<span class="string">&quot;6816215e43020185bb429874c33f1f73&quot;</span>&#125;,&#123;<span class="string">&quot;url&quot;</span>:<span class="string">&quot;https:\/\/r4---sn-25glene7.googlevideo.com\/videoplayback?expire=1610299253&amp;ei=FeP6X7qLJvesxN8PteeBaA&amp;ip=154.72.187.26&amp;id=o-AFTOjos_M4e5ymyJ3pa8Zs6JxHQohnez1oxdyfxNGuFl&amp;itag=248&amp;aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C278&amp;source=youtube&amp;requiressl=yes&amp;mh=nS&amp;mm=31%2C29&amp;mn=sn-25glene7%2Csn-25ge7nzs&amp;ms=au%2Crdu&amp;mv=m&amp;mvi=4&amp;pl=20&amp;initcwndbps=182500&amp;vprv=1&amp;mime=video%2Fwebm&amp;ns=QmTnf2BHCkCLm1nUC3OlqIwF&amp;gir=yes&amp;clen=117037047&amp;dur=422.999&amp;lmt=1603725149388225&amp;mt=1610277156&amp;fvip=4&amp;keepalive=yes&amp;c=WEB&amp;txp=5535432&amp;n=TD5jnO4_esWW9m&amp;sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&amp;sig=AOq0QJ8wRgIhANFyBfTGjhDMawSTzN1NjLLYLztYc8e6w3lXVXY5ldbxAiEA-UBT6Yb33Sr0Yhan0x9xlf1xVWFH-wu_y2HsgWkiuXo%3D&amp;lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&amp;lsig=AG3C_xAwRgIhALlbQJhLhsKk9tVJdpd0OfXwuiWC26m4cDjWZ8MvxO1MAiEA8EG4gFtyQVAWXRWz_d3DYsCTY4oCiTobXSHKnemPR38%3D&quot;</span>,<span class="string">&quot;name&quot;</span>:<span class="string">&quot;WEBM&quot;</span>,<span class="string">&quot;subname&quot;</span>:<span class="string">&quot;1080&quot;</span>,<span class="string">&quot;info_url&quot;</span>:<span class="string">&quot;https:\/\/r4---sn-25glene7.googlevideo.com\/videoplayback?expire=1610299253&amp;ei=FeP6X7qLJvesxN8PteeBaA&amp;ip=154.72.187.26&amp;id=o-AFTOjos_M4e5ymyJ3pa8Zs6JxHQohnez1oxdyfxNGuFl&amp;itag=248&amp;aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C278&amp;source=youtube&amp;requiressl=yes&amp;mh=nS&amp;mm=31%2C29&amp;mn=sn-25glene7%2Csn-25ge7nzs&amp;ms=au%2Crdu&amp;mv=m&amp;mvi=4&amp;pl=20&amp;initcwndbps=182500&amp;vprv=1&amp;mime=video%2Fwebm&amp;ns=QmTnf2BHCkCLm1nUC3OlqIwF&amp;gir=yes&amp;clen=117037047&amp;dur=422.999&amp;lmt=1603725149388225&amp;mt=1610277156&amp;fvip=4&amp;keepalive=yes&amp;c=WEB&amp;txp=5535432&amp;n=TD5jnO4_esWW9m&amp;sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&amp;sig=AOq0QJ8wRgIhANFyBfTGjhDMawSTzN1NjLLYLztYc8e6w3lXVXY5ldbxAiEA-UBT6Yb33Sr0Yhan0x9xlf1xVWFH-wu_y2HsgWkiuXo%3D&amp;lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&amp;lsig=AG3C_xAwRgIhALlbQJhLhsKk9tVJdpd0OfXwuiWC26m4cDjWZ8MvxO1MAiEA8EG4gFtyQVAWXRWz_d3DYsCTY4oCiTobXSHKnemPR38%3D&quot;</span>,<span class="string">&quot;type&quot;</span>:<span class="string">&quot;webm dash&quot;</span>,<span class="string">&quot;ext&quot;</span>:<span class="string">&quot;webm&quot;</span>,<span class="string">&quot;downloadable&quot;</span>:<span class="literal">false</span>,<span class="string">&quot;quality&quot;</span>:<span class="string">&quot;1080&quot;</span>,<span class="string">&quot;audio&quot;</span>:<span class="literal">false</span>,<span class="string">&quot;no_audio&quot;</span>:<span class="literal">true</span>,<span class="string">&quot;itag&quot;</span>:<span class="string">&quot;248&quot;</span>,<span class="string">&quot;filesize&quot;</span>:<span class="number">117037047</span>,<span class="string">&quot;attr&quot;</span>:&#123;<span class="string">&quot;title&quot;</span>:<span class="string">&quot;video format: 1080 (without audio)&quot;</span>,<span class="string">&quot;class&quot;</span>:<span class="string">&quot;no-audio&quot;</span>&#125;,<span class="string">&quot;info_token&quot;</span>:<span class="string">&quot;43e803aa40437c9930975615121cc2c5&quot;</span>&#125;],<span class="string">&quot;hosting&quot;</span>:<span class="number">101</span>,<span class="string">&quot;srv&quot;</span>:<span class="string">&quot;s30&quot;</span>,<span class="string">&quot;sd&quot;</span>:<span class="literal">null</span>,<span class="string">&quot;hd&quot;</span>:<span class="literal">null</span>&#125;);;</span><br><span class="line"><span class="variable language_">window</span>.<span class="property">parent</span>.<span class="property">sf</span>.<span class="title function_">enableElement</span>(<span class="string">&#x27;sf_submit&#x27;</span>, <span class="literal">true</span>);</span><br><span class="line">success=<span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">catch</span>(err)&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">del</span>();</span><br><span class="line"><span class="keyword">if</span>(!success)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">var</span> alt = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"><span class="keyword">if</span>(alt) <span class="title function_">alert</span>(alt);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> navigator.<span class="property">permissions</span> != <span class="string">&#x27;undefined&#x27;</span>) &#123;</span><br><span class="line">navigator.<span class="property">permissions</span>.<span class="title function_">query</span>(&#123;<span class="attr">name</span>:<span class="string">&#x27;notifications&#x27;</span>&#125;).<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params">permissionStatus</span>) &#123;</span><br><span class="line"><span class="keyword">if</span>(<span class="title class_">Notification</span>.<span class="property">permission</span> === <span class="string">&#x27;denied&#x27;</span> &amp;&amp; permissionStatus.<span class="property">state</span> === <span class="string">&#x27;prompt&#x27;</span>) &#123;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="title function_">showResult</span>();</span><br><span class="line">&#125;</span><br><span class="line">&#125;);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="title function_">showResult</span>();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">catch</span> (err) &#123;</span><br><span class="line"><span class="title function_">showResult</span>();</span><br><span class="line">&#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
 <p>我们可以发现里面有个<code>del()</code>删除函数，这就是为什么我们看不到这一段代码在执行后<br>因为被<code>window.location.hostname.search(/(?:^|\.|@)(savefrom\.net|sfrom\.net|savefrom\.com\.au|51\.159\.57\.158|(?:fe\d*|test)-front\.sf-apps\.com)$/i) == -1</code>检查出不是在他的网站上跑的所以就执行弹窗和<code>del()</code>把解密后的东西删除了<br>仔细检查这段代码可以发现这一行</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">parent</span>.<span class="property">sf</span>.<span class="property">videoResult</span>.<span class="title function_">show</span>(&#123;<span class="string">&quot;id&quot;</span>:<span class="string">&quot;YPvtz1lHRiw&quot;</span>,<span class="string">&quot;cipher&quot;</span>:<span class="literal">false</span>,<span class="string">&quot;meta&quot;</span>:&#123;<span class="string">&quot;title&quot;</span>:<span class="string">&quot;The Most Genius Plays in Football&quot;</span>,<span class="string">&quot;source&quot;</span>:<span class="string">&quot;https:\/\/www.youtube.com\/watch?v=YPvtz1lHRiw&quot;</span>,<span class="string">&quot;duration&quot;</span>:<span class="string">&quot;7:03&quot;</span>,<span class="string">&quot;tags&quot;</span>:<span class="string">&quot;lionel messi,football tiki taka,football highlight,football team plays,kevin de bruyne,mesut \u00f6zil,paul pogba,cristiano ronaldo,adama traore,luka modric,toni kroos,andres iniesta,kylian mbappe,neymar jr,zlatan ibrahimovic,franck ribery,paulo dybala,philippe coutinho,robert lewandowski,barcelona,real madrid,liverpool,manchester city&quot;</span>&#125;,<span class="string">&quot;thumb&quot;</span>:<span class="string">&quot;https:\/\/i.ytimg.com\/vi\/YPvtz1lHRiw\/hqdefault.jpg&quot;</span>,<span class="string">&quot;itags&quot;</span>:[<span class="string">&quot;18&quot;</span>,<span class="string">&quot;22&quot;</span>,<span class="string">&quot;133&quot;</span>,<span class="string">&quot;134&quot;</span>,<span class="string">&quot;135&quot;</span>,<span class="string">&quot;136&quot;</span>,<span class="string">&quot;137&quot;</span>,<span class="string">&quot;140&quot;</span>,<span class="string">&quot;160&quot;</span>,<span class="string">&quot;242&quot;</span>,<span class="string">&quot;243&quot;</span>,<span class="string">&quot;244&quot;</span>,<span class="string">&quot;247&quot;</span>,<span class="string">&quot;248&quot;</span>,<span class="string">&quot;249&quot;</span>,<span class="string">&quot;250&quot;</span>,<span class="string">&quot;251&quot;</span>,<span class="string">&quot;278&quot;</span>],<span class="string">&quot;video_quality&quot;</span>:[<span class="string">&quot;1080&quot;</span>,<span class="string">&quot;720&quot;</span>,<span class="string">&quot;480&quot;</span>,<span class="string">&quot;360&quot;</span>,<span class="string">&quot;240&quot;</span>,<span class="string">&quot;144&quot;</span>],<span class="string">&quot;url&quot;</span>:[&#123;<span class="string">&quot;url&quot;</span>:<span class="string">&quot;https:\/\/r4---sn-25glene7.googlevideo.com\/videoplayback?expire=1610299253&amp;ei=FeP6X7qLJvesxN8PteeBaA&amp;ip=154.72.187.26&amp;id=o-AFTOjos_M4e5ymyJ3pa8Zs6JxHQohnez1oxdyfxNGuFl&amp;itag=18&amp;source=youtube&amp;requiressl=yes&amp;mh=nS&amp;mm=31%2C29&amp;mn=sn-25glene7%2Csn-25ge7nzs&amp;ms=au%2Crdu&amp;mv=m&amp;mvi=4&amp;pl=20&amp;initcwndbps=182500&amp;vprv=1&amp;mime=video%2Fmp4&amp;ns=H2IuXFgrekwcd2kUgtraypIF&amp;gir=yes&amp;clen=35202709&amp;ratebypass=yes&amp;dur=423.137&amp;lmt=1603720879883261&amp;mt=1610277156&amp;fvip=4&amp;c=WEB&amp;txp=5531422&amp;n=9544-WEiIwBMq_&amp;sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cratebypass%2Cdur%2Clmt&amp;sig=AOq0QJ8wRQIgN_iBsjO6zSiW9dcOYYExfjeVuy1YCXtWcKT0cz2kMcECIQCMre2rssbqkWdohk9K4Ej8B8r9gARVc0-kAHVqhV1teQ%3D%3D&amp;lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&amp;lsig=AG3C_xAwRgIhALlbQJhLhsKk9tVJdpd0OfXwuiWC26m4cDjWZ8MvxO1MAiEA8EG4gFtyQVAWXRWz_d3DYsCTY4oCiTobXSHKnemPR38%3D&quot;</span>,<span class="string">&quot;name&quot;</span>:<span class="string">&quot;MP4&quot;</span>,<span class="string">&quot;subname&quot;</span>:<span class="string">&quot;360&quot;</span>,<span class="string">&quot;info_url&quot;</span>:<span class="string">&quot;https:\/\/r4---sn-25glene7.googlevideo.com\/videoplayback?expire=1610299253&amp;ei=FeP6X7qLJvesxN8PteeBaA&amp;ip=154.72.187.26&amp;id=o-AFTOjos_M4e5ymyJ3pa8Zs6JxHQohnez1oxdyfxNGuFl&amp;itag=18&amp;source=youtube&amp;requiressl=yes&amp;mh=nS&amp;mm=31%2C29&amp;mn=sn-25glene7%2Csn-25ge7nzs&amp;ms=au%2Crdu&amp;mv=m&amp;mvi=4&amp;pl=20&amp;initcwndbps=182500&amp;vprv=1&amp;mime=video%2Fmp4&amp;ns=H2IuXFgrekwcd2kUgtraypIF&amp;gir=yes&amp;clen=35202709&amp;ratebypass=yes&amp;dur=423.137&amp;lmt=1603720879883261&amp;mt=1610277156&amp;fvip=4&amp;c=WEB&amp;txp=5531422&amp;n=9544-WEiIwBMq_&amp;sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cratebypass%2Cdur%2Clmt&amp;sig=AOq0QJ8wRQIgN_iBsjO6zSiW9dcOYYExfjeVuy1YCXtWcKT0cz2kMcECIQCMre2rssbqkWdohk9K4Ej8B8r9gARVc0-kAHVqhV1teQ%3D%3D&amp;lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&amp;lsig=AG3C_xAwRgIhALlbQJhLhsKk9tVJdpd0OfXwuiWC26m4cDjWZ8MvxO1MAiEA8EG4gFtyQVAWXRWz_d3DYsCTY4oCiTobXSHKnemPR38%3D&quot;</span>,<span class="string">&quot;type&quot;</span>:<span class="string">&quot;mp4&quot;</span>,<span class="string">&quot;ext&quot;</span>:<span class="string">&quot;mp4&quot;</span>,<span class="string">&quot;downloadable&quot;</span>:<span class="literal">false</span>,<span class="string">&quot;quality&quot;</span>:<span class="string">&quot;360&quot;</span>,<span class="string">&quot;audio&quot;</span>:<span class="literal">false</span>,<span class="string">&quot;no_audio&quot;</span>:<span class="literal">false</span>,<span class="string">&quot;itag&quot;</span>:<span class="string">&quot;18&quot;</span>,<span class="string">&quot;filesize&quot;</span>:<span class="number">35202709</span>,<span class="string">&quot;attr&quot;</span>:&#123;<span class="string">&quot;title&quot;</span>:<span class="string">&quot;video format: 360&quot;</span>,<span class="string">&quot;class&quot;</span>:<span class="string">&quot;&quot;</span>&#125;,<span class="string">&quot;info_token&quot;</span>:<span class="string">&quot;0c41b67f74ccb97e50f2e64fe5f4625a&quot;</span>&#125;,&#123;<span class="string">&quot;url&quot;</span>:<span class="string">&quot;https:\/\/r4---sn-25glene7.googlevideo.com\/videoplayback?expire=1610299253&amp;ei=FeP6X7qLJvesxN8PteeBaA&amp;ip=154.72.187.26&amp;id=o-AFTOjos_M4e5ymyJ3pa8Zs6JxHQohnez1oxdyfxNGuFl&amp;itag=22&amp;source=youtube&amp;requiressl=yes&amp;mh=nS&amp;mm=31%2C29&amp;mn=sn-25glene7%2Csn-25ge7nzs&amp;ms=au%2Crdu&amp;mv=m&amp;mvi=4&amp;pl=20&amp;initcwndbps=182500&amp;vprv=1&amp;mime=video%2Fmp4&amp;ns=H2IuXFgrekwcd2kUgtraypIF&amp;ratebypass=yes&amp;dur=423.137&amp;lmt=1603723118280830&amp;mt=1610277156&amp;fvip=4&amp;c=WEB&amp;txp=5535432&amp;n=9544-WEiIwBMq_&amp;sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Cratebypass%2Cdur%2Clmt&amp;sig=AOq0QJ8wRQIgWg_KEKuXDFH-OcphoOxU2tjE9B0WnidilKpa-vtbmigCIQD-eJlhFHZMi1VzRYI_jh0RZaMiLkkXYWnwGM2TJp0bLA%3D%3D&amp;lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&amp;lsig=AG3C_xAwRgIhALlbQJhLhsKk9tVJdpd0OfXwuiWC26m4cDjWZ8MvxO1MAiEA8EG4gFtyQVAWXRWz_d3DYsCTY4oCiTobXSHKnemPR38%3D&amp;title=The%20Most%20Genius%20Plays%20in%20Football&quot;</span>,<span class="string">&quot;name&quot;</span>:<span class="string">&quot;MP4&quot;</span>,<span class="string">&quot;subname&quot;</span>:<span class="string">&quot;720&quot;</span>,<span class="string">&quot;info_url&quot;</span>:<span class="string">&quot;https:\/\/r4---sn-25glene7.googlevideo.com\/videoplayback?expire=1610299253&amp;ei=FeP6X7qLJvesxN8PteeBaA&amp;ip=154.72.187.26&amp;id=o-AFTOjos_M4e5ymyJ3pa8Zs6JxHQohnez1oxdyfxNGuFl&amp;itag=22&amp;source=youtube&amp;requiressl=yes&amp;mh=nS&amp;mm=31%2C29&amp;mn=sn-25glene7%2Csn-25ge7nzs&amp;ms=au%2Crdu&amp;mv=m&amp;mvi=4&amp;pl=20&amp;initcwndbps=182500&amp;vprv=1&amp;mime=video%2Fmp4&amp;ns=H2IuXFgrekwcd2kUgtraypIF&amp;ratebypass=yes&amp;dur=423.137&amp;lmt=1603723118280830&amp;mt=1610277156&amp;fvip=4&amp;c=WEB&amp;txp=5535432&amp;n=9544-WEiIwBMq_&amp;sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Cratebypass%2Cdur%2Clmt&amp;sig=AOq0QJ8wRQIgWg_KEKuXDFH-OcphoOxU2tjE9B0WnidilKpa-vtbmigCIQD-eJlhFHZMi1VzRYI_jh0RZaMiLkkXYWnwGM2TJp0bLA%3D%3D&amp;lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&amp;lsig=AG3C_xAwRgIhALlbQJhLhsKk9tVJdpd0OfXwuiWC26m4cDjWZ8MvxO1MAiEA8EG4gFtyQVAWXRWz_d3DYsCTY4oCiTobXSHKnemPR38%3D&quot;</span>,<span class="string">&quot;type&quot;</span>:<span class="string">&quot;mp4&quot;</span>,<span class="string">&quot;ext&quot;</span>:<span class="string">&quot;mp4&quot;</span>,<span class="string">&quot;downloadable&quot;</span>:<span class="literal">true</span>,<span class="string">&quot;quality&quot;</span>:<span class="string">&quot;720&quot;</span>,<span class="string">&quot;audio&quot;</span>:<span class="literal">false</span>,<span class="string">&quot;no_audio&quot;</span>:<span class="literal">false</span>,<span class="string">&quot;itag&quot;</span>:<span class="string">&quot;22&quot;</span>,<span class="string">&quot;attr&quot;</span>:&#123;<span class="string">&quot;title&quot;</span>:<span class="string">&quot;video format: 720&quot;</span>,<span class="string">&quot;class&quot;</span>:<span class="string">&quot;&quot;</span>&#125;,<span class="string">&quot;info_token&quot;</span>:<span class="string">&quot;674fa89ee246148990b3f36e750a5d32&quot;</span>&#125;,&#123;<span class="string">&quot;url&quot;</span>:<span class="string">&quot;https:\/\/r4---sn-25glene7.googlevideo.com\/videoplayback?expire=1610299253&amp;ei=FeP6X7qLJvesxN8PteeBaA&amp;ip=154.72.187.26&amp;id=o-AFTOjos_M4e5ymyJ3pa8Zs6JxHQohnez1oxdyfxNGuFl&amp;itag=137&amp;aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C278&amp;source=youtube&amp;requiressl=yes&amp;mh=nS&amp;mm=31%2C29&amp;mn=sn-25glene7%2Csn-25ge7nzs&amp;ms=au%2Crdu&amp;mv=m&amp;mvi=4&amp;pl=20&amp;initcwndbps=182500&amp;vprv=1&amp;mime=video%2Fmp4&amp;ns=QmTnf2BHCkCLm1nUC3OlqIwF&amp;gir=yes&amp;clen=177708494&amp;dur=422.999&amp;lmt=1603723164407782&amp;mt=1610277156&amp;fvip=4&amp;keepalive=yes&amp;c=WEB&amp;txp=5535432&amp;n=TD5jnO4_esWW9m&amp;sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&amp;sig=AOq0QJ8wRQIhANMFMA1ypwGQjiGT_DlqlYwfqcqu1IlKZGoCrdIqWmzHAiAyOJJHIzUBcMQ6WBeEnepV4UlD3TY6rGSNKBVSVhbpIQ%3D%3D&amp;lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&amp;lsig=AG3C_xAwRgIhALlbQJhLhsKk9tVJdpd0OfXwuiWC26m4cDjWZ8MvxO1MAiEA8EG4gFtyQVAWXRWz_d3DYsCTY4oCiTobXSHKnemPR38%3D&quot;</span>,<span class="string">&quot;name&quot;</span>:<span class="string">&quot;MP4&quot;</span>,<span class="string">&quot;subname&quot;</span>:<span class="string">&quot;1080&quot;</span>,<span class="string">&quot;info_url&quot;</span>:<span class="string">&quot;https:\/\/r4---sn-25glene7.googlevideo.com\/videoplayback?expire=1610299253&amp;ei=FeP6X7qLJvesxN8PteeBaA&amp;ip=154.72.187.26&amp;id=o-AFTOjos_M4e5ymyJ3pa8Zs6JxHQohnez1oxdyfxNGuFl&amp;itag=137&amp;aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C278&amp;source=youtube&amp;requiressl=yes&amp;mh=nS&amp;mm=31%2C29&amp;mn=sn-25glene7%2Csn-25ge7nzs&amp;ms=au%2Crdu&amp;mv=m&amp;mvi=4&amp;pl=20&amp;initcwndbps=182500&amp;vprv=1&amp;mime=video%2Fmp4&amp;ns=QmTnf2BHCkCLm1nUC3OlqIwF&amp;gir=yes&amp;clen=177708494&amp;dur=422.999&amp;lmt=1603723164407782&amp;mt=1610277156&amp;fvip=4&amp;keepalive=yes&amp;c=WEB&amp;txp=5535432&amp;n=TD5jnO4_esWW9m&amp;sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&amp;sig=AOq0QJ8wRQIhANMFMA1ypwGQjiGT_DlqlYwfqcqu1IlKZGoCrdIqWmzHAiAyOJJHIzUBcMQ6WBeEnepV4UlD3TY6rGSNKBVSVhbpIQ%3D%3D&amp;lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&amp;lsig=AG3C_xAwRgIhALlbQJhLhsKk9tVJdpd0OfXwuiWC26m4cDjWZ8MvxO1MAiEA8EG4gFtyQVAWXRWz_d3DYsCTY4oCiTobXSHKnemPR38%3D&quot;</span>,<span class="string">&quot;type&quot;</span>:<span class="string">&quot;mp4 dash&quot;</span>,<span class="string">&quot;ext&quot;</span>:<span class="string">&quot;mp4&quot;</span>,<span class="string">&quot;downloadable&quot;</span>:<span class="literal">false</span>,<span class="string">&quot;quality&quot;</span>:<span class="string">&quot;1080&quot;</span>,<span class="string">&quot;audio&quot;</span>:<span class="literal">false</span>,<span class="string">&quot;no_audio&quot;</span>:<span class="literal">true</span>,<span class="string">&quot;itag&quot;</span>:<span class="string">&quot;137&quot;</span>,<span class="string">&quot;filesize&quot;</span>:<span class="number">177708494</span>,<span class="string">&quot;attr&quot;</span>:&#123;<span class="string">&quot;title&quot;</span>:<span class="string">&quot;video format: 1080 (without audio)&quot;</span>,<span class="string">&quot;class&quot;</span>:<span class="string">&quot;no-audio&quot;</span>&#125;,<span class="string">&quot;info_token&quot;</span>:<span class="string">&quot;6816215e43020185bb429874c33f1f73&quot;</span>&#125;,&#123;<span class="string">&quot;url&quot;</span>:<span class="string">&quot;https:\/\/r4---sn-25glene7.googlevideo.com\/videoplayback?expire=1610299253&amp;ei=FeP6X7qLJvesxN8PteeBaA&amp;ip=154.72.187.26&amp;id=o-AFTOjos_M4e5ymyJ3pa8Zs6JxHQohnez1oxdyfxNGuFl&amp;itag=248&amp;aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C278&amp;source=youtube&amp;requiressl=yes&amp;mh=nS&amp;mm=31%2C29&amp;mn=sn-25glene7%2Csn-25ge7nzs&amp;ms=au%2Crdu&amp;mv=m&amp;mvi=4&amp;pl=20&amp;initcwndbps=182500&amp;vprv=1&amp;mime=video%2Fwebm&amp;ns=QmTnf2BHCkCLm1nUC3OlqIwF&amp;gir=yes&amp;clen=117037047&amp;dur=422.999&amp;lmt=1603725149388225&amp;mt=1610277156&amp;fvip=4&amp;keepalive=yes&amp;c=WEB&amp;txp=5535432&amp;n=TD5jnO4_esWW9m&amp;sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&amp;sig=AOq0QJ8wRgIhANFyBfTGjhDMawSTzN1NjLLYLztYc8e6w3lXVXY5ldbxAiEA-UBT6Yb33Sr0Yhan0x9xlf1xVWFH-wu_y2HsgWkiuXo%3D&amp;lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&amp;lsig=AG3C_xAwRgIhALlbQJhLhsKk9tVJdpd0OfXwuiWC26m4cDjWZ8MvxO1MAiEA8EG4gFtyQVAWXRWz_d3DYsCTY4oCiTobXSHKnemPR38%3D&quot;</span>,<span class="string">&quot;name&quot;</span>:<span class="string">&quot;WEBM&quot;</span>,<span class="string">&quot;subname&quot;</span>:<span class="string">&quot;1080&quot;</span>,<span class="string">&quot;info_url&quot;</span>:<span class="string">&quot;https:\/\/r4---sn-25glene7.googlevideo.com\/videoplayback?expire=1610299253&amp;ei=FeP6X7qLJvesxN8PteeBaA&amp;ip=154.72.187.26&amp;id=o-AFTOjos_M4e5ymyJ3pa8Zs6JxHQohnez1oxdyfxNGuFl&amp;itag=248&amp;aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C278&amp;source=youtube&amp;requiressl=yes&amp;mh=nS&amp;mm=31%2C29&amp;mn=sn-25glene7%2Csn-25ge7nzs&amp;ms=au%2Crdu&amp;mv=m&amp;mvi=4&amp;pl=20&amp;initcwndbps=182500&amp;vprv=1&amp;mime=video%2Fwebm&amp;ns=QmTnf2BHCkCLm1nUC3OlqIwF&amp;gir=yes&amp;clen=117037047&amp;dur=422.999&amp;lmt=1603725149388225&amp;mt=1610277156&amp;fvip=4&amp;keepalive=yes&amp;c=WEB&amp;txp=5535432&amp;n=TD5jnO4_esWW9m&amp;sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&amp;sig=AOq0QJ8wRgIhANFyBfTGjhDMawSTzN1NjLLYLztYc8e6w3lXVXY5ldbxAiEA-UBT6Yb33Sr0Yhan0x9xlf1xVWFH-wu_y2HsgWkiuXo%3D&amp;lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&amp;lsig=AG3C_xAwRgIhALlbQJhLhsKk9tVJdpd0OfXwuiWC26m4cDjWZ8MvxO1MAiEA8EG4gFtyQVAWXRWz_d3DYsCTY4oCiTobXSHKnemPR38%3D&quot;</span>,<span class="string">&quot;type&quot;</span>:<span class="string">&quot;webm dash&quot;</span>,<span class="string">&quot;ext&quot;</span>:<span class="string">&quot;webm&quot;</span>,<span class="string">&quot;downloadable&quot;</span>:<span class="literal">false</span>,<span class="string">&quot;quality&quot;</span>:<span class="string">&quot;1080&quot;</span>,<span class="string">&quot;audio&quot;</span>:<span class="literal">false</span>,<span class="string">&quot;no_audio&quot;</span>:<span class="literal">true</span>,<span class="string">&quot;itag&quot;</span>:<span class="string">&quot;248&quot;</span>,<span class="string">&quot;filesize&quot;</span>:<span class="number">117037047</span>,<span class="string">&quot;attr&quot;</span>:&#123;<span class="string">&quot;title&quot;</span>:<span class="string">&quot;video format: 1080 (without audio)&quot;</span>,<span class="string">&quot;class&quot;</span>:<span class="string">&quot;no-audio&quot;</span>&#125;,<span class="string">&quot;info_token&quot;</span>:<span class="string">&quot;43e803aa40437c9930975615121cc2c5&quot;</span>&#125;],<span class="string">&quot;hosting&quot;</span>:<span class="number">101</span>,<span class="string">&quot;srv&quot;</span>:<span class="string">&quot;s30&quot;</span>,<span class="string">&quot;sd&quot;</span>:<span class="literal">null</span>,<span class="string">&quot;hd&quot;</span>:<span class="literal">null</span>&#125;);;</span><br></pre></td></tr></table></figure>
-<p>这里面有一长串json文本然后里面就包含我们要的下载链接和其他杂七杂八的东西，在json格式化平台(比如<a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.bejson.com/jsonviewernew/">bejson</a>)把这一段json文本输入<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-11.png" alt="json"><br>可以发现<code>meta</code>主要是视频消息，然后<code>url</code>下就是不同分辨率的视频下载链接了</p>
+<p>这里面有一长串json文本然后里面就包含我们要的下载链接和其他杂七杂八的东西，在json格式化平台(比如<a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.bejson.com/jsonviewernew/">bejson</a>)把这一段json文本输入<br><img src="/images/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8.md-11.png" alt="json"><br>可以发现<code>meta</code>主要是视频消息，然后<code>url</code>下就是不同分辨率的视频下载链接了</p>
 <blockquote>
 <p>最后代码+注释大概100行左右，具体代码以github代码为主，本文只做具体讲解</p>
 </blockquote>
@@ -219,58 +266,160 @@
 <li>依赖<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># @Dependence:</span></span><br><span class="line"><span class="comment">#           - jsdom in npm(windows also can use)</span></span><br><span class="line"><span class="comment">#           - requests, execjs, re, json in python</span></span><br></pre></td></tr></table></figure>
 <center>-end-</center></li>
 </ul>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://eritque-arcus.tech">Eritque arcus</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://eritque-arcus.tech/2021/01/11/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8/">https://eritque-arcus.tech/2021/01/11/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener external nofollow noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Python/">Python</a><a class="post-meta__tags" href="/tags/Web-crawler/">Web crawler</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/03/31/python%E4%B8%80%E9%94%AE%E4%B8%8B%E8%BD%BD%E4%B8%8E%E6%9B%BF%E6%8D%A2hexo%E5%8D%9A%E5%AE%A2%E9%87%8C%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80/" title="python一键下载与替换hexo博客里的图片地址"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">python一键下载与替换hexo博客里的图片地址</div></div></a></div><div class="next-post pull-right"><a href="/2020/12/28/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B/" title="用kotlin/java构建一个Mirai插件"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">用kotlin/java构建一个Mirai插件</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2020/01/06/Python%E4%BD%BF%E7%94%A8urllib,urllib3,requests%E5%BA%93+beautifulsoup%E7%88%AC%E5%8F%96%E7%BD%91%E9%A1%B5/" title="Python使用urllib&#x2F;urllib3&#x2F;requests库+beautifulsoup爬取网页"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-01-06</div><div class="title">Python使用urllib&#x2F;urllib3&#x2F;requests库+beautifulsoup爬取网页</div></div></a></div><div><a href="/2021/03/31/python%E4%B8%80%E9%94%AE%E4%B8%8B%E8%BD%BD%E4%B8%8E%E6%9B%BF%E6%8D%A2hexo%E5%8D%9A%E5%AE%A2%E9%87%8C%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80/" title="python一键下载与替换hexo博客里的图片地址"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-31</div><div class="title">python一键下载与替换hexo博客里的图片地址</div></div></a></div><div><a href="/2020/01/26/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B/" title="使用html+css+js制作登录网站教程"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-01-26</div><div class="title">使用html+css+js制作登录网站教程</div></div></a></div><div><a href="/2020/12/13/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/" title="用python+sklearn(机器学习)实现天气预测"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-13</div><div class="title">用python+sklearn(机器学习)实现天气预测</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/a.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Eritque arcus</div><div class="author-info__description">Eritque arcus's blog</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">22</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Nambers" rel="external nofollow noreferrer" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:eritque-arcus@eritque-arcus.tech" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#0-%E6%80%9D%E8%B7%AF"><span class="toc-number">1.</span> <span class="toc-text">0. 思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%87%86%E5%A4%87"><span class="toc-number">2.</span> <span class="toc-text">1.准备</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#i-savfrom-net"><span class="toc-number">2.1.</span> <span class="toc-text">i.savfrom.net</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E6%8E%A2%E7%B4%A2%E5%B9%B6%E8%A7%84%E5%88%92%E8%8E%B7%E5%8F%96%E6%96%B9%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">2. 探索并规划获取方式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#i-%E6%80%BB%E8%A7%88"><span class="toc-number">3.1.</span> <span class="toc-text">i.总览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ii-%E8%8E%B7%E5%8F%96%E8%AF%A5%E7%BD%91%E9%A1%B5%E5%8F%96%E5%88%B0%E4%B8%8B%E8%BD%BDurl%E7%9A%84%E8%AF%B7%E6%B1%82"><span class="toc-number">3.2.</span> <span class="toc-text">ii. 获取该网页取到下载url的请求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iii-%E5%9C%A8%E6%9C%AC%E5%9C%B0%E8%8E%B7%E5%8F%96%E8%AF%B7%E6%B1%82"><span class="toc-number">3.3.</span> <span class="toc-text">iii. 在本地获取请求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iv-%E8%A7%A3%E6%9E%90%E8%AF%B7%E6%B1%82%E7%BB%93%E6%9E%9C"><span class="toc-number">3.4.</span> <span class="toc-text">iv.解析请求结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#v-%E8%A7%A3%E6%9E%90%E8%A7%A3%E5%AF%86%E5%90%8E%E7%9A%84%E7%BB%93%E6%9E%9C"><span class="toc-number">3.5.</span> <span class="toc-text">v.解析解密后的结果</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%9C%B0%E5%9D%80"><span class="toc-number">4.</span> <span class="toc-text">项目地址</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B"><span class="toc-number">5.</span> <span class="toc-text">流程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-post"><span class="toc-number">5.1.</span> <span class="toc-text">1. post</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#i-%E5%85%88%E6%8A%8Apost%E4%B8%AD%E7%9A%84headers%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-number">5.1.1.</span> <span class="toc-text">i. 先把post中的headers格式化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ii-%E7%84%B6%E5%90%8E%E6%8A%8A%E5%8F%82%E6%95%B0%E4%B9%9F%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-number">5.1.2.</span> <span class="toc-text">ii.然后把参数也格式化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iii-%E6%9C%80%E5%90%8E%E5%86%8D%E6%89%A7%E8%A1%8Crequests%E5%BA%93%E7%9A%84post%E8%AF%B7%E6%B1%82"><span class="toc-number">5.1.3.</span> <span class="toc-text">iii. 最后再执行requests库的post请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iv-%E5%B0%81%E8%A3%85%E6%88%90%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0"><span class="toc-number">5.1.4.</span> <span class="toc-text">iv. 封装成一个函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%B0%83%E7%94%A8%E8%A7%A3%E5%AF%86%E5%87%BD%E6%95%B0"><span class="toc-number">5.2.</span> <span class="toc-text">2. 调用解密函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#i-%E5%88%86%E6%9E%90"><span class="toc-number">5.3.</span> <span class="toc-text">i. 分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ii-%E5%85%88%E5%8F%96%E5%87%BAjs%E9%83%A8%E5%88%86"><span class="toc-number">5.4.</span> <span class="toc-text">ii. 先取出js部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iii-%E5%8F%96%E7%AC%AC%E4%B8%80%E4%B8%AA%E8%A7%A3%E5%AF%86%E5%87%BD%E6%95%B0%E4%BD%9C%E4%B8%BA%E6%88%91%E4%BB%AC%E7%94%A8%E7%9A%84%E8%A7%A3%E5%AF%86%E5%87%BD%E6%95%B0"><span class="toc-number">5.5.</span> <span class="toc-text">iii. 取第一个解密函数作为我们用的解密函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iv-%E7%94%A8execjs%E6%89%A7%E8%A1%8C"><span class="toc-number">5.6.</span> <span class="toc-text">iv. 用execjs执行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-this%E4%B9%9F%E5%B0%B1%E6%98%AFwindow%E5%8F%98%E9%87%8F%E4%B8%8D%E5%AD%98%E5%9C%A8"><span class="toc-number">5.6.1.</span> <span class="toc-text">1. this也就是window变量不存在</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-alert%E4%B8%8D%E5%AD%98%E5%9C%A8"><span class="toc-number">5.6.2.</span> <span class="toc-text">2. alert不存在</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#v-%E6%95%B4%E5%90%88%E4%BB%A3%E7%A0%81"><span class="toc-number">5.7.</span> <span class="toc-text">v. 整合代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%88%86%E6%9E%90%E8%A7%A3%E5%AF%86%E7%BB%93%E6%9E%9C"><span class="toc-number">5.8.</span> <span class="toc-text">3. 分析解密结果</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#i-%E5%8F%96%E5%85%B3%E9%94%AEjson"><span class="toc-number">5.8.1.</span> <span class="toc-text">i. 取关键json</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ii-%E6%A0%BC%E5%BC%8F%E5%8C%96json"><span class="toc-number">5.8.2.</span> <span class="toc-text">ii. 格式化json</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iii-%E5%8F%96%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80"><span class="toc-number">5.8.3.</span> <span class="toc-text">iii. 取下载地址</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E5%85%A8%E9%83%A8%E4%BB%A3%E7%A0%81"><span class="toc-number">6.</span> <span class="toc-text">3. 全部代码</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/23/Arch-dualboot-efi/" title="Arch Win11 Dualboot 手动重建 EFI 分区">Arch Win11 Dualboot 手动重建 EFI 分区</a><time datetime="2023-11-23T19:40:00.000Z" title="Created 2023-11-23 14:40:00">2023-11-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/09/01/john-the-ripper-%E8%A7%A3%E5%AF%86-salted-SHA512/" title="john the ripper 解密加盐后密文">john the ripper 解密加盐后密文</a><time datetime="2023-09-01T22:31:29.000Z" title="Created 2023-09-01 18:31:29">2023-09-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/25/Arch-%E5%AE%89%E8%A3%85-Yafu2/" title="Arch Yafu2 安装指南">Arch Yafu2 安装指南</a><time datetime="2023-07-25T22:13:34.000Z" title="Created 2023-07-25 18:13:34">2023-07-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/02/10/emacs-configuration/" title="wsl2 / ubuntu 安装和配置 Emacs + mit-scheme">wsl2 / ubuntu 安装和配置 Emacs + mit-scheme</a><time datetime="2023-02-10T23:25:24.000Z" title="Created 2023-02-10 18:25:24">2023-02-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/01/10/eclipse-UTF16.isSurrogate-NoSuchMethodError/" title="Eclipse java.lang.NoSuchMethodError: 'boolean com.ibm.icu.text.UTF16.isSurrogate(char)'">Eclipse java.lang.NoSuchMethodError: 'boolean com.ibm.icu.text.UTF16.isSurrogate(char)'</a><time datetime="2023-01-10T20:06:42.000Z" title="Created 2023-01-10 15:06:42">2023-01-10</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Eritque arcus</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"> <a href="https://icp.gov.moe/?keyword=20222242" target="_blank">萌ICP备20222242号</a> </div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>function panguFn () {
-  if (typeof pangu === 'object') pangu.autoSpacingPage()
-  else {
-    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
-      .then(() => {
-        pangu.autoSpacingPage()
-      })
-  }
-}
 
-function panguInit () {
-  if (true){
-    GLOBAL_CONFIG_SITE.isPost && panguFn()
-  } else {
-    panguFn()
-  }
-}
+  </div>
+</article>
 
-document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>function loadGitalk () {
-  function initGitalk () {
-    var gitalk = new Gitalk(Object.assign({
-      clientID: '3b2ee3ad890fd2131443',
-      clientSecret: 'daff063416b62436085108e28e22859a7cb598b4',
-      repo: 'Nambers.github.io',
-      owner: 'Nambers',
-      admin: ['Nambers'],
-      id: 'fbddfe4c9dfcf2970538cc0a718bf9f6',
-      updateCountCallback: commentCount
-    },null))
 
-    gitalk.render('gitalk-container')
-  }
 
-  if (typeof Gitalk === 'function') initGitalk()
-  else {
-    getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
-    getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js').then(initGitalk)
-  }
-}
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
 
-function commentCount(n){
-  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
-  if (isCommentCount) {
-    isCommentCount.textContent= n
-  }
-}
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://github.com/Nambers">Projects</a></li>
+        
+          <li><a href="/files/">Files</a></li>
+        
+          <li><a href="/ctf-cheatsheet/">CTF-cheatsheet</a></li>
+        
+          <li><a href="/link/">Links</a></li>
+        
+          <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.travellings.cn/go.html">Travelling</a></li>
+        
+      </ul>
+    </div>
 
-if ('Gitalk' === 'Gitalk' || !true) {
-  if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
-  else loadGitalk()
-} else {
-  function loadOtherComment () {
-    loadGitalk()
-  }
-}</script></div></div></body></html>
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#0-%E6%80%9D%E8%B7%AF"><span class="toc-number">1.</span> <span class="toc-text">0. 思路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%87%86%E5%A4%87"><span class="toc-number">2.</span> <span class="toc-text">1.准备</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#i-savfrom-net"><span class="toc-number">2.1.</span> <span class="toc-text">i.savfrom.net</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E6%8E%A2%E7%B4%A2%E5%B9%B6%E8%A7%84%E5%88%92%E8%8E%B7%E5%8F%96%E6%96%B9%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">2. 探索并规划获取方式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#i-%E6%80%BB%E8%A7%88"><span class="toc-number">3.1.</span> <span class="toc-text">i.总览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ii-%E8%8E%B7%E5%8F%96%E8%AF%A5%E7%BD%91%E9%A1%B5%E5%8F%96%E5%88%B0%E4%B8%8B%E8%BD%BDurl%E7%9A%84%E8%AF%B7%E6%B1%82"><span class="toc-number">3.2.</span> <span class="toc-text">ii. 获取该网页取到下载url的请求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iii-%E5%9C%A8%E6%9C%AC%E5%9C%B0%E8%8E%B7%E5%8F%96%E8%AF%B7%E6%B1%82"><span class="toc-number">3.3.</span> <span class="toc-text">iii. 在本地获取请求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iv-%E8%A7%A3%E6%9E%90%E8%AF%B7%E6%B1%82%E7%BB%93%E6%9E%9C"><span class="toc-number">3.4.</span> <span class="toc-text">iv.解析请求结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#v-%E8%A7%A3%E6%9E%90%E8%A7%A3%E5%AF%86%E5%90%8E%E7%9A%84%E7%BB%93%E6%9E%9C"><span class="toc-number">3.5.</span> <span class="toc-text">v.解析解密后的结果</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%9C%B0%E5%9D%80"><span class="toc-number">4.</span> <span class="toc-text">项目地址</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B"><span class="toc-number">5.</span> <span class="toc-text">流程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-post"><span class="toc-number">5.1.</span> <span class="toc-text">1. post</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#i-%E5%85%88%E6%8A%8Apost%E4%B8%AD%E7%9A%84headers%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-number">5.1.1.</span> <span class="toc-text">i. 先把post中的headers格式化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ii-%E7%84%B6%E5%90%8E%E6%8A%8A%E5%8F%82%E6%95%B0%E4%B9%9F%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-number">5.1.2.</span> <span class="toc-text">ii.然后把参数也格式化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iii-%E6%9C%80%E5%90%8E%E5%86%8D%E6%89%A7%E8%A1%8Crequests%E5%BA%93%E7%9A%84post%E8%AF%B7%E6%B1%82"><span class="toc-number">5.1.3.</span> <span class="toc-text">iii. 最后再执行requests库的post请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iv-%E5%B0%81%E8%A3%85%E6%88%90%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0"><span class="toc-number">5.1.4.</span> <span class="toc-text">iv. 封装成一个函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%B0%83%E7%94%A8%E8%A7%A3%E5%AF%86%E5%87%BD%E6%95%B0"><span class="toc-number">5.2.</span> <span class="toc-text">2. 调用解密函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#i-%E5%88%86%E6%9E%90"><span class="toc-number">5.3.</span> <span class="toc-text">i. 分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ii-%E5%85%88%E5%8F%96%E5%87%BAjs%E9%83%A8%E5%88%86"><span class="toc-number">5.4.</span> <span class="toc-text">ii. 先取出js部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iii-%E5%8F%96%E7%AC%AC%E4%B8%80%E4%B8%AA%E8%A7%A3%E5%AF%86%E5%87%BD%E6%95%B0%E4%BD%9C%E4%B8%BA%E6%88%91%E4%BB%AC%E7%94%A8%E7%9A%84%E8%A7%A3%E5%AF%86%E5%87%BD%E6%95%B0"><span class="toc-number">5.5.</span> <span class="toc-text">iii. 取第一个解密函数作为我们用的解密函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iv-%E7%94%A8execjs%E6%89%A7%E8%A1%8C"><span class="toc-number">5.6.</span> <span class="toc-text">iv. 用execjs执行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-this%E4%B9%9F%E5%B0%B1%E6%98%AFwindow%E5%8F%98%E9%87%8F%E4%B8%8D%E5%AD%98%E5%9C%A8"><span class="toc-number">5.6.1.</span> <span class="toc-text">1. this也就是window变量不存在</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-alert%E4%B8%8D%E5%AD%98%E5%9C%A8"><span class="toc-number">5.6.2.</span> <span class="toc-text">2. alert不存在</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#v-%E6%95%B4%E5%90%88%E4%BB%A3%E7%A0%81"><span class="toc-number">5.7.</span> <span class="toc-text">v. 整合代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%88%86%E6%9E%90%E8%A7%A3%E5%AF%86%E7%BB%93%E6%9E%9C"><span class="toc-number">5.8.</span> <span class="toc-text">3. 分析解密结果</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#i-%E5%8F%96%E5%85%B3%E9%94%AEjson"><span class="toc-number">5.8.1.</span> <span class="toc-text">i. 取关键json</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ii-%E6%A0%BC%E5%BC%8F%E5%8C%96json"><span class="toc-number">5.8.2.</span> <span class="toc-text">ii. 格式化json</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iii-%E5%8F%96%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80"><span class="toc-number">5.8.3.</span> <span class="toc-text">iii. 取下载地址</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E5%85%A8%E9%83%A8%E4%BB%A3%E7%A0%81"><span class="toc-number">6.</span> <span class="toc-text">3. 全部代码</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.facebook.com/sharer.php?u=https://eritque-arcus.tech/2021/01/11/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://twitter.com/share?url=https://eritque-arcus.tech/2021/01/11/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8/&text=python自动化下载youtude视频"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.linkedin.com/shareArticle?url=https://eritque-arcus.tech/2021/01/11/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8/&title=python自动化下载youtude视频"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://pinterest.com/pin/create/bookmarklet/?url=https://eritque-arcus.tech/2021/01/11/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8/&is_video=false&description=python自动化下载youtude视频"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=python自动化下载youtude视频&body=Check out this article: https://eritque-arcus.tech/2021/01/11/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8/" rel="external nofollow noreferrer"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://getpocket.com/save?url=https://eritque-arcus.tech/2021/01/11/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8/&title=python自动化下载youtude视频"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://reddit.com/submit?url=https://eritque-arcus.tech/2021/01/11/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8/&title=python自动化下载youtude视频"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.stumbleupon.com/submit?url=https://eritque-arcus.tech/2021/01/11/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8/&title=python自动化下载youtude视频"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://digg.com/submit?url=https://eritque-arcus.tech/2021/01/11/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8/&title=python自动化下载youtude视频"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.tumblr.com/share/link?url=https://eritque-arcus.tech/2021/01/11/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8/&name=python自动化下载youtude视频&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://news.ycombinator.com/submitlink?u=https://eritque-arcus.tech/2021/01/11/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8/&t=python自动化下载youtude视频"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2023
+    Eritque arcus
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://github.com/Nambers">Projects</a></li><!--
+     --><!--
+       --><li><a href="/files/">Files</a></li><!--
+     --><!--
+       --><li><a href="/ctf-cheatsheet/">CTF-cheatsheet</a></li><!--
+     --><!--
+       --><li><a href="/link/">Links</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.travellings.cn/go.html">Travelling</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

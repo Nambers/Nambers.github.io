@@ -1,207 +1,342 @@
-<!DOCTYPE html><html lang="EN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>python一键下载与替换hexo博客里的图片地址 | Eritque arcus's blog</title><meta name="author" content="Eritque arcus"><meta name="copyright" content="Eritque arcus"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970# -*- coding: utf"><link rel="shortcut icon" href="/images/avatar.png"><link rel="canonical" href="https://eritque-arcus.tech/2021/03/31/python%E4%B8%80%E9%94%AE%E4%B8%8B%E8%BD%BD%E4%B8%8E%E6%9B%BF%E6%8D%A2hexo%E5%8D%9A%E5%AE%A2%E9%87%8C%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><meta name="msvalidate.01" content="E0869752BA6C708CA7062BE42E32FF02"/><meta name="google-site-verification" content="ueqWwaaGQYLN7uHenp-lhKRcfshkTsWYryPez-V0jPk"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
-  root: '/',
-  algolia: undefined,
-  localSearch: undefined,
-  translate: undefined,
-  noticeOutdate: undefined,
-  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
-  copy: {
-    success: 'Copy successfully',
-    error: 'Copy error',
-    noSupport: 'The browser does not support'
-  },
-  relativeDate: {
-    homepage: false,
-    post: false
-  },
-  runtime: 'days',
-  dateSuffix: {
-    just: 'Just',
-    min: 'minutes ago',
-    hour: 'hours ago',
-    day: 'days ago',
-    month: 'months ago'
-  },
-  copyright: undefined,
-  lightbox: 'fancybox',
-  Snackbar: undefined,
-  source: {
-    justifiedGallery: {
-      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
-    }
-  },
-  isPhotoFigcaption: false,
-  islazyload: true,
-  isAnchor: false,
-  percent: {
-    toc: true,
-    rightside: false,
-  },
-  autoDarkmode: false
-}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: 'python一键下载与替换hexo博客里的图片地址',
-  isPost: true,
-  isHome: false,
-  isHighlightShrink: false,
-  isToc: true,
-  postUpdate: '2023-07-24 23:49:31'
-}</script><noscript><style type="text/css">
-  #nav {
-    opacity: 1
-  }
-  .justified-gallery img {
-    opacity: 1
-  }
-
-  #recent-posts time,
-  #post-meta time {
-    display: inline !important
-  }
-</style></noscript><script>(win=>{
-    win.saveToLocal = {
-      set: function setWithExpiry(key, value, ttl) {
-        if (ttl === 0) return
-        const now = new Date()
-        const expiryDay = ttl * 86400000
-        const item = {
-          value: value,
-          expiry: now.getTime() + expiryDay,
-        }
-        localStorage.setItem(key, JSON.stringify(item))
-      },
-
-      get: function getWithExpiry(key) {
-        const itemStr = localStorage.getItem(key)
-
-        if (!itemStr) {
-          return undefined
-        }
-        const item = JSON.parse(itemStr)
-        const now = new Date()
-
-        if (now.getTime() > item.expiry) {
-          localStorage.removeItem(key)
-          return undefined
-        }
-        return item.value
-      }
-    }
-  
-    win.getScript = url => new Promise((resolve, reject) => {
-      const script = document.createElement('script')
-      script.src = url
-      script.async = true
-      script.onerror = reject
-      script.onload = script.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        script.onload = script.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(script)
-    })
-  
-    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
-      const link = document.createElement('link')
-      link.rel = 'stylesheet'
-      link.href = url
-      if (id) link.id = id
-      link.onerror = reject
-      link.onload = link.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        link.onload = link.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(link)
-    })
-  
-      win.activateDarkMode = function () {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = function () {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970# -*- coding: utf-8 -*-# @Time: 2021&#x2F;3&#x2F;31# @Author: Eritque arcus#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python一键下载与替换hexo博客里的图片地址">
+<meta property="og:url" content="https://eritque-arcus.tech/2021/03/31/python%E4%B8%80%E9%94%AE%E4%B8%8B%E8%BD%BD%E4%B8%8E%E6%9B%BF%E6%8D%A2hexo%E5%8D%9A%E5%AE%A2%E9%87%8C%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80/index.html">
+<meta property="og:site_name" content="Eritque arcus&#39;s blog">
+<meta property="og:description" content="代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970# -*- coding: utf-8 -*-# @Time: 2021&#x2F;3&#x2F;31# @Author: Eritque arcus#">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-03-31T20:07:16.000Z">
+<meta property="article:modified_time" content="2023-07-25T03:49:31.995Z">
+<meta property="article:author" content="Eritque arcus">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
     
-          if (t === 'dark') activateDarkMode()
-          else if (t === 'light') activateLightMode()
+    
+      
         
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
+          <link rel="shortcut icon" href="/images/avatar.png">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/avatar.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png">
+        
+      
     
-    const detectApple = () => {
-      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-        document.documentElement.classList.add('apple')
+    <!-- title -->
+    <title>python一键下载与替换hexo博客里的图片地址</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+    <script async defer
+            data-website-id="c4f02f5c-5bf1-42fa-8829-04d111da9d2b"
+            src="https://analytics.eu.umami.is/script.js">
+    </script>
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/true" title="Eritque arcus&#39;s blog" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.0.0-rc2"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://github.com/Nambers">Projects</a></li><!--
+     --><!--
+       --><li><a href="/files/">Files</a></li><!--
+     --><!--
+       --><li><a href="/ctf-cheatsheet/">CTF-cheatsheet</a></li><!--
+     --><!--
+       --><li><a href="/link/">Links</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.travellings.cn/go.html">Travelling</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2021/05/14/kotlin-%E7%94%9F%E6%88%90jni%E5%A4%B4%E6%96%87%E4%BB%B6/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2021/01/11/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.facebook.com/sharer.php?u=https://eritque-arcus.tech/2021/03/31/python%E4%B8%80%E9%94%AE%E4%B8%8B%E8%BD%BD%E4%B8%8E%E6%9B%BF%E6%8D%A2hexo%E5%8D%9A%E5%AE%A2%E9%87%8C%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://twitter.com/share?url=https://eritque-arcus.tech/2021/03/31/python%E4%B8%80%E9%94%AE%E4%B8%8B%E8%BD%BD%E4%B8%8E%E6%9B%BF%E6%8D%A2hexo%E5%8D%9A%E5%AE%A2%E9%87%8C%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80/&text=python一键下载与替换hexo博客里的图片地址"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.linkedin.com/shareArticle?url=https://eritque-arcus.tech/2021/03/31/python%E4%B8%80%E9%94%AE%E4%B8%8B%E8%BD%BD%E4%B8%8E%E6%9B%BF%E6%8D%A2hexo%E5%8D%9A%E5%AE%A2%E9%87%8C%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80/&title=python一键下载与替换hexo博客里的图片地址"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://pinterest.com/pin/create/bookmarklet/?url=https://eritque-arcus.tech/2021/03/31/python%E4%B8%80%E9%94%AE%E4%B8%8B%E8%BD%BD%E4%B8%8E%E6%9B%BF%E6%8D%A2hexo%E5%8D%9A%E5%AE%A2%E9%87%8C%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80/&is_video=false&description=python一键下载与替换hexo博客里的图片地址"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=python一键下载与替换hexo博客里的图片地址&body=Check out this article: https://eritque-arcus.tech/2021/03/31/python%E4%B8%80%E9%94%AE%E4%B8%8B%E8%BD%BD%E4%B8%8E%E6%9B%BF%E6%8D%A2hexo%E5%8D%9A%E5%AE%A2%E9%87%8C%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80/" rel="external nofollow noreferrer"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://getpocket.com/save?url=https://eritque-arcus.tech/2021/03/31/python%E4%B8%80%E9%94%AE%E4%B8%8B%E8%BD%BD%E4%B8%8E%E6%9B%BF%E6%8D%A2hexo%E5%8D%9A%E5%AE%A2%E9%87%8C%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80/&title=python一键下载与替换hexo博客里的图片地址"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://reddit.com/submit?url=https://eritque-arcus.tech/2021/03/31/python%E4%B8%80%E9%94%AE%E4%B8%8B%E8%BD%BD%E4%B8%8E%E6%9B%BF%E6%8D%A2hexo%E5%8D%9A%E5%AE%A2%E9%87%8C%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80/&title=python一键下载与替换hexo博客里的图片地址"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.stumbleupon.com/submit?url=https://eritque-arcus.tech/2021/03/31/python%E4%B8%80%E9%94%AE%E4%B8%8B%E8%BD%BD%E4%B8%8E%E6%9B%BF%E6%8D%A2hexo%E5%8D%9A%E5%AE%A2%E9%87%8C%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80/&title=python一键下载与替换hexo博客里的图片地址"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://digg.com/submit?url=https://eritque-arcus.tech/2021/03/31/python%E4%B8%80%E9%94%AE%E4%B8%8B%E8%BD%BD%E4%B8%8E%E6%9B%BF%E6%8D%A2hexo%E5%8D%9A%E5%AE%A2%E9%87%8C%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80/&title=python一键下载与替换hexo博客里的图片地址"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.tumblr.com/share/link?url=https://eritque-arcus.tech/2021/03/31/python%E4%B8%80%E9%94%AE%E4%B8%8B%E8%BD%BD%E4%B8%8E%E6%9B%BF%E6%8D%A2hexo%E5%8D%9A%E5%AE%A2%E9%87%8C%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80/&name=python一键下载与替换hexo博客里的图片地址&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://news.ycombinator.com/submitlink?u=https://eritque-arcus.tech/2021/03/31/python%E4%B8%80%E9%94%AE%E4%B8%8B%E8%BD%BD%E4%B8%8E%E6%9B%BF%E6%8D%A2hexo%E5%8D%9A%E5%AE%A2%E9%87%8C%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80/&t=python一键下载与替换hexo博客里的图片地址"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">1.</span> <span class="toc-text">代码</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        python一键下载与替换hexo博客里的图片地址
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Eritque arcus</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-03-31T20:07:16.000Z" class="dt-published" itemprop="datePublished">2021-03-31</time>
+        
+        (Updated: <time datetime="2023-07-25T03:49:31.995Z" class="dt-updated" itemprop="dateModified">2023-07-24</time>)
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/Tools/">Tools</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/Python/" rel="tag">Python</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># @Time: 2021/3/31</span></span><br><span class="line"><span class="comment"># @Author: Eritque arcus</span></span><br><span class="line"><span class="comment"># @File: downloadImage.py</span></span><br><span class="line"><span class="keyword">import</span> mimetypes</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> regex</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    p = <span class="built_in">input</span>(<span class="string">&quot;输入hexo的source目录&quot;</span>)  <span class="comment"># input hexo source path like D:\hexo\hexo\source</span></span><br><span class="line">    <span class="comment"># del end `\`</span></span><br><span class="line">    <span class="keyword">if</span> p.endswith(<span class="string">&quot;\\&quot;</span>):</span><br><span class="line">        p = p[:<span class="built_in">len</span>(p) - <span class="number">1</span>]</span><br><span class="line">    <span class="comment"># image relative path</span></span><br><span class="line">    image_p = p + <span class="string">&quot;\\images&quot;</span></span><br><span class="line">    <span class="comment"># posts relative path</span></span><br><span class="line">    post_p = p + <span class="string">&quot;\\_posts&quot;</span></span><br><span class="line">    <span class="comment"># 查看博文目录是否存在</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(post_p):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;路径下没_posts路径，请重新输入&quot;</span>)</span><br><span class="line">        exit(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        os.chmod(p, <span class="number">777</span>)</span><br><span class="line">    <span class="comment"># 查看图片目录是否存在</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(image_p):</span><br><span class="line">        os.makedirs(p + <span class="string">&quot;\\images&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        os.chmod(p, <span class="number">777</span>)</span><br><span class="line">    <span class="comment"># 循环目录下每一个.md文件</span></span><br><span class="line">    <span class="keyword">for</span> filename <span class="keyword">in</span> os.listdir(post_p):</span><br><span class="line">        <span class="keyword">if</span> filename.endswith(<span class="string">&quot;.md&quot;</span>):</span><br><span class="line">            <span class="built_in">print</span>(filename)</span><br><span class="line">            path = post_p + <span class="string">&quot;\\&quot;</span> + filename</span><br><span class="line">            <span class="comment"># 以utf8编码读取</span></span><br><span class="line">            f = <span class="built_in">open</span>(path, <span class="string">&quot;r&quot;</span>, encoding=<span class="string">&#x27;utf8&#x27;</span>, errors=<span class="string">&#x27;ignore&#x27;</span>)</span><br><span class="line">            i = <span class="number">0</span></span><br><span class="line">            content = f.read()</span><br><span class="line">            f.close()</span><br><span class="line">            <span class="comment"># 匹配markdown中的图片 即 ![tag](url)</span></span><br><span class="line">            <span class="keyword">for</span> text <span class="keyword">in</span> regex.findall(<span class="string">r&quot;\!\[[^\s].*\]\([a-zA-z]+:\/\/[^\s]*\)&quot;</span>, content):</span><br><span class="line">                <span class="built_in">print</span>(text)</span><br><span class="line">                <span class="comment"># 提取tag内容</span></span><br><span class="line">                tag = regex.findall(<span class="string">r&quot;\!\[[^\s].*\](?=\([a-zA-z]+:\/\/[^\s]*\))&quot;</span>, text)[<span class="number">0</span>]</span><br><span class="line">                <span class="comment"># 提取url内容</span></span><br><span class="line">                urldata = regex.findall(<span class="string">r&quot;(?&lt;=\!\[[^\s].*\])\([a-zA-z]+:\/\/[^\s]*\)&quot;</span>, text)[<span class="number">0</span>]</span><br><span class="line">                <span class="comment"># 去掉括号</span></span><br><span class="line">                u = urldata[<span class="number">1</span>:<span class="built_in">len</span>(urldata) - <span class="number">1</span>]</span><br><span class="line">                <span class="comment"># 提取当前文章的名字加上编号即为图片名字</span></span><br><span class="line">                name = filename + <span class="string">&quot;-&quot;</span> + <span class="built_in">str</span>(i)</span><br><span class="line">                <span class="comment"># 获取图片</span></span><br><span class="line">                response = requests.get(u)</span><br><span class="line">                <span class="comment"># 取请求头content-type属性获取扩展名如.png/.jpg</span></span><br><span class="line">                content_type = response.headers[<span class="string">&#x27;content-type&#x27;</span>]</span><br><span class="line">                extension = mimetypes.guess_extension(content_type)</span><br><span class="line">                <span class="comment"># 请求返回内容</span></span><br><span class="line">                img = response.content</span><br><span class="line">                <span class="comment"># 写入图片文件</span></span><br><span class="line">                <span class="keyword">with</span> <span class="built_in">open</span>(image_p + <span class="string">&quot;\\&quot;</span> + name + extension, <span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">                    f.write(img)</span><br><span class="line">                f.close()</span><br><span class="line">                <span class="comment"># 新引用地址</span></span><br><span class="line">                new_u = <span class="string">&quot;/images/&quot;</span> + name + extension</span><br><span class="line">                <span class="comment"># 替换原文</span></span><br><span class="line">                content = content.replace(text, tag + <span class="string">&quot;(&quot;</span> + new_u + <span class="string">&quot;)&quot;</span>)</span><br><span class="line">                i += <span class="number">1</span></span><br><span class="line">            <span class="comment"># 写入文章文件</span></span><br><span class="line">            f = <span class="built_in">open</span>(path, <span class="string">&quot;w&quot;</span>, encoding=<span class="string">&quot;utf8&quot;</span>)</span><br><span class="line">            f.write(content)</span><br><span class="line">            f.close()</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://github.com/Nambers">Projects</a></li>
+        
+          <li><a href="/files/">Files</a></li>
+        
+          <li><a href="/ctf-cheatsheet/">CTF-cheatsheet</a></li>
+        
+          <li><a href="/link/">Links</a></li>
+        
+          <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.travellings.cn/go.html">Travelling</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">1.</span> <span class="toc-text">代码</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.facebook.com/sharer.php?u=https://eritque-arcus.tech/2021/03/31/python%E4%B8%80%E9%94%AE%E4%B8%8B%E8%BD%BD%E4%B8%8E%E6%9B%BF%E6%8D%A2hexo%E5%8D%9A%E5%AE%A2%E9%87%8C%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://twitter.com/share?url=https://eritque-arcus.tech/2021/03/31/python%E4%B8%80%E9%94%AE%E4%B8%8B%E8%BD%BD%E4%B8%8E%E6%9B%BF%E6%8D%A2hexo%E5%8D%9A%E5%AE%A2%E9%87%8C%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80/&text=python一键下载与替换hexo博客里的图片地址"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.linkedin.com/shareArticle?url=https://eritque-arcus.tech/2021/03/31/python%E4%B8%80%E9%94%AE%E4%B8%8B%E8%BD%BD%E4%B8%8E%E6%9B%BF%E6%8D%A2hexo%E5%8D%9A%E5%AE%A2%E9%87%8C%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80/&title=python一键下载与替换hexo博客里的图片地址"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://pinterest.com/pin/create/bookmarklet/?url=https://eritque-arcus.tech/2021/03/31/python%E4%B8%80%E9%94%AE%E4%B8%8B%E8%BD%BD%E4%B8%8E%E6%9B%BF%E6%8D%A2hexo%E5%8D%9A%E5%AE%A2%E9%87%8C%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80/&is_video=false&description=python一键下载与替换hexo博客里的图片地址"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=python一键下载与替换hexo博客里的图片地址&body=Check out this article: https://eritque-arcus.tech/2021/03/31/python%E4%B8%80%E9%94%AE%E4%B8%8B%E8%BD%BD%E4%B8%8E%E6%9B%BF%E6%8D%A2hexo%E5%8D%9A%E5%AE%A2%E9%87%8C%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80/" rel="external nofollow noreferrer"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://getpocket.com/save?url=https://eritque-arcus.tech/2021/03/31/python%E4%B8%80%E9%94%AE%E4%B8%8B%E8%BD%BD%E4%B8%8E%E6%9B%BF%E6%8D%A2hexo%E5%8D%9A%E5%AE%A2%E9%87%8C%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80/&title=python一键下载与替换hexo博客里的图片地址"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://reddit.com/submit?url=https://eritque-arcus.tech/2021/03/31/python%E4%B8%80%E9%94%AE%E4%B8%8B%E8%BD%BD%E4%B8%8E%E6%9B%BF%E6%8D%A2hexo%E5%8D%9A%E5%AE%A2%E9%87%8C%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80/&title=python一键下载与替换hexo博客里的图片地址"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.stumbleupon.com/submit?url=https://eritque-arcus.tech/2021/03/31/python%E4%B8%80%E9%94%AE%E4%B8%8B%E8%BD%BD%E4%B8%8E%E6%9B%BF%E6%8D%A2hexo%E5%8D%9A%E5%AE%A2%E9%87%8C%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80/&title=python一键下载与替换hexo博客里的图片地址"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://digg.com/submit?url=https://eritque-arcus.tech/2021/03/31/python%E4%B8%80%E9%94%AE%E4%B8%8B%E8%BD%BD%E4%B8%8E%E6%9B%BF%E6%8D%A2hexo%E5%8D%9A%E5%AE%A2%E9%87%8C%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80/&title=python一键下载与替换hexo博客里的图片地址"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.tumblr.com/share/link?url=https://eritque-arcus.tech/2021/03/31/python%E4%B8%80%E9%94%AE%E4%B8%8B%E8%BD%BD%E4%B8%8E%E6%9B%BF%E6%8D%A2hexo%E5%8D%9A%E5%AE%A2%E9%87%8C%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80/&name=python一键下载与替换hexo博客里的图片地址&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://news.ycombinator.com/submitlink?u=https://eritque-arcus.tech/2021/03/31/python%E4%B8%80%E9%94%AE%E4%B8%8B%E8%BD%BD%E4%B8%8E%E6%9B%BF%E6%8D%A2hexo%E5%8D%9A%E5%AE%A2%E9%87%8C%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80/&t=python一键下载与替换hexo博客里的图片地址"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2023
+    Eritque arcus
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://github.com/Nambers">Projects</a></li><!--
+     --><!--
+       --><li><a href="/files/">Files</a></li><!--
+     --><!--
+       --><li><a href="/ctf-cheatsheet/">CTF-cheatsheet</a></li><!--
+     --><!--
+       --><li><a href="/link/">Links</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.travellings.cn/go.html">Travelling</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
       }
-    }
-    detectApple()
-    })(window)</script><meta name="generator" content="Hexo 7.0.0-rc2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/a.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">22</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Bl0gs</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/ctf-writeups/"><i class="fa-fw fa-solid fa-file-pen"></i><span> CTF-wr1teups</span></a></div><div class="menus_item"><a class="site-page" href="/files/s0bt1t1es/"><i class="fa-fw fa-solid fa-closed-captioning"></i><span> Subt1tles</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categ0r1es</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener external nofollow noreferrer" href="https://www.travellings.cn/go.html"><i class="fa-fw fas fa-subway"></i><span> Travelling</span></a></div><div class="menus_item"><a class="site-page" href="/ctf-cheatsheet/"><i class="fa-fw fas fa-book"></i><span> ⒸⓉⒻ-Ⓒⓗⓔⓐⓣⓢⓗⓔⓔⓣ</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> L1nks</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> Ab0ut</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/images/bg.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Eritque arcus's blog"><span class="site-name">Eritque arcus's blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Bl0gs</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/ctf-writeups/"><i class="fa-fw fa-solid fa-file-pen"></i><span> CTF-wr1teups</span></a></div><div class="menus_item"><a class="site-page" href="/files/s0bt1t1es/"><i class="fa-fw fa-solid fa-closed-captioning"></i><span> Subt1tles</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categ0r1es</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener external nofollow noreferrer" href="https://www.travellings.cn/go.html"><i class="fa-fw fas fa-subway"></i><span> Travelling</span></a></div><div class="menus_item"><a class="site-page" href="/ctf-cheatsheet/"><i class="fa-fw fas fa-book"></i><span> ⒸⓉⒻ-Ⓒⓗⓔⓐⓣⓢⓗⓔⓔⓣ</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> L1nks</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> Ab0ut</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">python一键下载与替换hexo博客里的图片地址</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-03-31T20:07:16.000Z" title="Created 2021-03-31 16:07:16">2021-03-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-07-25T03:49:31.995Z" title="Updated 2023-07-24 23:49:31">2023-07-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Tools/">Tools</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">406</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>2min</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># @Time: 2021/3/31</span></span><br><span class="line"><span class="comment"># @Author: Eritque arcus</span></span><br><span class="line"><span class="comment"># @File: downloadImage.py</span></span><br><span class="line"><span class="keyword">import</span> mimetypes</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> regex</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    p = <span class="built_in">input</span>(<span class="string">&quot;输入hexo的source目录&quot;</span>)  <span class="comment"># input hexo source path like D:\hexo\hexo\source</span></span><br><span class="line">    <span class="comment"># del end `\`</span></span><br><span class="line">    <span class="keyword">if</span> p.endswith(<span class="string">&quot;\\&quot;</span>):</span><br><span class="line">        p = p[:<span class="built_in">len</span>(p) - <span class="number">1</span>]</span><br><span class="line">    <span class="comment"># image relative path</span></span><br><span class="line">    image_p = p + <span class="string">&quot;\\images&quot;</span></span><br><span class="line">    <span class="comment"># posts relative path</span></span><br><span class="line">    post_p = p + <span class="string">&quot;\\_posts&quot;</span></span><br><span class="line">    <span class="comment"># 查看博文目录是否存在</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(post_p):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;路径下没_posts路径，请重新输入&quot;</span>)</span><br><span class="line">        exit(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        os.chmod(p, <span class="number">777</span>)</span><br><span class="line">    <span class="comment"># 查看图片目录是否存在</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(image_p):</span><br><span class="line">        os.makedirs(p + <span class="string">&quot;\\images&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        os.chmod(p, <span class="number">777</span>)</span><br><span class="line">    <span class="comment"># 循环目录下每一个.md文件</span></span><br><span class="line">    <span class="keyword">for</span> filename <span class="keyword">in</span> os.listdir(post_p):</span><br><span class="line">        <span class="keyword">if</span> filename.endswith(<span class="string">&quot;.md&quot;</span>):</span><br><span class="line">            <span class="built_in">print</span>(filename)</span><br><span class="line">            path = post_p + <span class="string">&quot;\\&quot;</span> + filename</span><br><span class="line">            <span class="comment"># 以utf8编码读取</span></span><br><span class="line">            f = <span class="built_in">open</span>(path, <span class="string">&quot;r&quot;</span>, encoding=<span class="string">&#x27;utf8&#x27;</span>, errors=<span class="string">&#x27;ignore&#x27;</span>)</span><br><span class="line">            i = <span class="number">0</span></span><br><span class="line">            content = f.read()</span><br><span class="line">            f.close()</span><br><span class="line">            <span class="comment"># 匹配markdown中的图片 即 ![tag](url)</span></span><br><span class="line">            <span class="keyword">for</span> text <span class="keyword">in</span> regex.findall(<span class="string">r&quot;\!\[[^\s].*\]\([a-zA-z]+:\/\/[^\s]*\)&quot;</span>, content):</span><br><span class="line">                <span class="built_in">print</span>(text)</span><br><span class="line">                <span class="comment"># 提取tag内容</span></span><br><span class="line">                tag = regex.findall(<span class="string">r&quot;\!\[[^\s].*\](?=\([a-zA-z]+:\/\/[^\s]*\))&quot;</span>, text)[<span class="number">0</span>]</span><br><span class="line">                <span class="comment"># 提取url内容</span></span><br><span class="line">                urldata = regex.findall(<span class="string">r&quot;(?&lt;=\!\[[^\s].*\])\([a-zA-z]+:\/\/[^\s]*\)&quot;</span>, text)[<span class="number">0</span>]</span><br><span class="line">                <span class="comment"># 去掉括号</span></span><br><span class="line">                u = urldata[<span class="number">1</span>:<span class="built_in">len</span>(urldata) - <span class="number">1</span>]</span><br><span class="line">                <span class="comment"># 提取当前文章的名字加上编号即为图片名字</span></span><br><span class="line">                name = filename + <span class="string">&quot;-&quot;</span> + <span class="built_in">str</span>(i)</span><br><span class="line">                <span class="comment"># 获取图片</span></span><br><span class="line">                response = requests.get(u)</span><br><span class="line">                <span class="comment"># 取请求头content-type属性获取扩展名如.png/.jpg</span></span><br><span class="line">                content_type = response.headers[<span class="string">&#x27;content-type&#x27;</span>]</span><br><span class="line">                extension = mimetypes.guess_extension(content_type)</span><br><span class="line">                <span class="comment"># 请求返回内容</span></span><br><span class="line">                img = response.content</span><br><span class="line">                <span class="comment"># 写入图片文件</span></span><br><span class="line">                <span class="keyword">with</span> <span class="built_in">open</span>(image_p + <span class="string">&quot;\\&quot;</span> + name + extension, <span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">                    f.write(img)</span><br><span class="line">                f.close()</span><br><span class="line">                <span class="comment"># 新引用地址</span></span><br><span class="line">                new_u = <span class="string">&quot;/images/&quot;</span> + name + extension</span><br><span class="line">                <span class="comment"># 替换原文</span></span><br><span class="line">                content = content.replace(text, tag + <span class="string">&quot;(&quot;</span> + new_u + <span class="string">&quot;)&quot;</span>)</span><br><span class="line">                i += <span class="number">1</span></span><br><span class="line">            <span class="comment"># 写入文章文件</span></span><br><span class="line">            f = <span class="built_in">open</span>(path, <span class="string">&quot;w&quot;</span>, encoding=<span class="string">&quot;utf8&quot;</span>)</span><br><span class="line">            f.write(content)</span><br><span class="line">            f.close()</span><br></pre></td></tr></table></figure>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://eritque-arcus.tech">Eritque arcus</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://eritque-arcus.tech/2021/03/31/python%E4%B8%80%E9%94%AE%E4%B8%8B%E8%BD%BD%E4%B8%8E%E6%9B%BF%E6%8D%A2hexo%E5%8D%9A%E5%AE%A2%E9%87%8C%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80/">https://eritque-arcus.tech/2021/03/31/python%E4%B8%80%E9%94%AE%E4%B8%8B%E8%BD%BD%E4%B8%8E%E6%9B%BF%E6%8D%A2hexo%E5%8D%9A%E5%AE%A2%E9%87%8C%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener external nofollow noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Python/">Python</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/05/14/kotlin-%E7%94%9F%E6%88%90jni%E5%A4%B4%E6%96%87%E4%BB%B6/" title="kotlin-生成jni头文件"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">kotlin-生成jni头文件</div></div></a></div><div class="next-post pull-right"><a href="/2021/01/11/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8/" title="python自动化下载youtude视频"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">python自动化下载youtude视频</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2020/01/06/Python%E4%BD%BF%E7%94%A8urllib,urllib3,requests%E5%BA%93+beautifulsoup%E7%88%AC%E5%8F%96%E7%BD%91%E9%A1%B5/" title="Python使用urllib&#x2F;urllib3&#x2F;requests库+beautifulsoup爬取网页"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-01-06</div><div class="title">Python使用urllib&#x2F;urllib3&#x2F;requests库+beautifulsoup爬取网页</div></div></a></div><div><a href="/2020/01/26/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B/" title="使用html+css+js制作登录网站教程"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-01-26</div><div class="title">使用html+css+js制作登录网站教程</div></div></a></div><div><a href="/2020/12/13/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/" title="用python+sklearn(机器学习)实现天气预测"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-13</div><div class="title">用python+sklearn(机器学习)实现天气预测</div></div></a></div><div><a href="/2021/01/11/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8/" title="python自动化下载youtude视频"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-11</div><div class="title">python自动化下载youtude视频</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/a.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Eritque arcus</div><div class="author-info__description">Eritque arcus's blog</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">22</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Nambers" rel="external nofollow noreferrer" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:eritque-arcus@eritque-arcus.tech" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">1.</span> <span class="toc-text">代码</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/23/Arch-dualboot-efi/" title="Arch Win11 Dualboot 手动重建 EFI 分区">Arch Win11 Dualboot 手动重建 EFI 分区</a><time datetime="2023-11-23T19:40:00.000Z" title="Created 2023-11-23 14:40:00">2023-11-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/09/01/john-the-ripper-%E8%A7%A3%E5%AF%86-salted-SHA512/" title="john the ripper 解密加盐后密文">john the ripper 解密加盐后密文</a><time datetime="2023-09-01T22:31:29.000Z" title="Created 2023-09-01 18:31:29">2023-09-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/25/Arch-%E5%AE%89%E8%A3%85-Yafu2/" title="Arch Yafu2 安装指南">Arch Yafu2 安装指南</a><time datetime="2023-07-25T22:13:34.000Z" title="Created 2023-07-25 18:13:34">2023-07-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/02/10/emacs-configuration/" title="wsl2 / ubuntu 安装和配置 Emacs + mit-scheme">wsl2 / ubuntu 安装和配置 Emacs + mit-scheme</a><time datetime="2023-02-10T23:25:24.000Z" title="Created 2023-02-10 18:25:24">2023-02-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/01/10/eclipse-UTF16.isSurrogate-NoSuchMethodError/" title="Eclipse java.lang.NoSuchMethodError: 'boolean com.ibm.icu.text.UTF16.isSurrogate(char)'">Eclipse java.lang.NoSuchMethodError: 'boolean com.ibm.icu.text.UTF16.isSurrogate(char)'</a><time datetime="2023-01-10T20:06:42.000Z" title="Created 2023-01-10 15:06:42">2023-01-10</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Eritque arcus</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"> <a href="https://icp.gov.moe/?keyword=20222242" target="_blank">萌ICP备20222242号</a> </div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>function panguFn () {
-  if (typeof pangu === 'object') pangu.autoSpacingPage()
-  else {
-    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
-      .then(() => {
-        pangu.autoSpacingPage()
-      })
-  }
-}
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
 
-function panguInit () {
-  if (true){
-    GLOBAL_CONFIG_SITE.isPost && panguFn()
-  } else {
-    panguFn()
-  }
-}
 
-document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>function loadGitalk () {
-  function initGitalk () {
-    var gitalk = new Gitalk(Object.assign({
-      clientID: '3b2ee3ad890fd2131443',
-      clientSecret: 'daff063416b62436085108e28e22859a7cb598b4',
-      repo: 'Nambers.github.io',
-      owner: 'Nambers',
-      admin: ['Nambers'],
-      id: '3c606134e8fb1dca4a31c704bd7515c4',
-      updateCountCallback: commentCount
-    },null))
+<script src="/js/main.js"></script>
 
-    gitalk.render('gitalk-container')
-  }
+<!-- search -->
 
-  if (typeof Gitalk === 'function') initGitalk()
-  else {
-    getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
-    getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js').then(initGitalk)
-  }
-}
+<!-- Baidu Analytics -->
 
-function commentCount(n){
-  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
-  if (isCommentCount) {
-    isCommentCount.textContent= n
-  }
-}
+<!-- Cloudflare Analytics -->
 
-if ('Gitalk' === 'Gitalk' || !true) {
-  if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
-  else loadGitalk()
-} else {
-  function loadOtherComment () {
-    loadGitalk()
-  }
-}</script></div></div></body></html>
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
