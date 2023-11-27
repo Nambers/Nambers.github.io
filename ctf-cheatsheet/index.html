@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="last modified: Oct 23, 2023my CTF writeups  overall useful website&#x2F;tools hacktricks.xyz reference book  – web –  webhook.site to get request bin dirsearch to brute force directory GitTools to pu">
+    <meta name="description" content="last modified: Nov 2023my CTF writeups  overall useful website&#x2F;tools hacktricks.xyz reference book  – web –  webhook.site to get request bin dirsearch to brute force directory GitTools to pull g">
 <meta property="og:type" content="website">
 <meta property="og:title" content="CTF-CheatSheet">
 <meta property="og:url" content="https://eritque-arcus.tech/ctf-cheatsheet/index.html">
 <meta property="og:site_name" content="Eritque arcus&#39;s blog">
-<meta property="og:description" content="last modified: Oct 23, 2023my CTF writeups  overall useful website&#x2F;tools hacktricks.xyz reference book  – web –  webhook.site to get request bin dirsearch to brute force directory GitTools to pu">
+<meta property="og:description" content="last modified: Nov 2023my CTF writeups  overall useful website&#x2F;tools hacktricks.xyz reference book  – web –  webhook.site to get request bin dirsearch to brute force directory GitTools to pull g">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-09-25T03:37:00.000Z">
-<meta property="article:modified_time" content="2023-11-23T21:50:40.727Z">
+<meta property="article:modified_time" content="2023-11-26T18:09:00.813Z">
 <meta property="article:author" content="Eritque arcus">
 <meta property="article:tag" content="Eritque arcus">
 <meta property="article:tag" content="Eritque arcus&#39;s blog">
@@ -116,9 +116,9 @@
   <div class="content" itemprop="articleBody">
       
           <blockquote>
-<p>last modified: Oct 23, 2023<br>my <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/ctf-writeups/">CTF writeups</a></p>
+<p>last modified: Nov 2023<br>my <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/ctf-writeups/">CTF writeups</a></p>
 </blockquote>
-<h1 id="overall-useful-website-tools"><a href="#overall-useful-website-tools" class="headerlink" title="overall useful website&#x2F;tools"></a>overall useful website&#x2F;tools</h1><ul>
+<h2 id="overall-useful-website-tools"><a href="#overall-useful-website-tools" class="headerlink" title="overall useful website&#x2F;tools"></a>overall useful website&#x2F;tools</h2><ul>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://book.hacktricks.xyz/">hacktricks.xyz</a> reference book</li>
 </ul>
 <p>– web –</p>
@@ -127,6 +127,9 @@
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/maurosoria/dirsearch">dirsearch</a> to brute force directory</li>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/internetwache/GitTools">GitTools</a> to pull git repo from public website, if <code>.git</code> is exposed</li>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/synacktiv/php_filter_chain_generator">php_filter_chain_generator</a> to generate php filter chain</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.postman.com/">postman</a> to send http requests</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://portswigger.net/burp/communitydownload">burpsuite</a> to intercept http request packages</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.wireshark.org/">wireshark</a> to capture&#x2F;analyse network traffic</li>
 </ul>
 <p>– rev –</p>
 <ul>
@@ -139,7 +142,7 @@
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Z3Prover/z3">z3</a> to find solution under constrains</li>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.dcode.fr/en">dcode</a> to decode anything</li>
 </ul>
-<p>–forensics –</p>
+<p>–forensics &#x2F; osint –</p>
 <ul>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://saucenao.com/">saucenao</a> to search for image source</li>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.aperisolve.com/">aperisolve.com</a> do stego for image online</li>
@@ -155,7 +158,8 @@
 <p>– crypto –</p>
 <ul>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/RsaCtfTool/RsaCtfTool">RsaCtfTool</a> to attack RSA</li>
-<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/cr-marcstevens/hashclash">hashclash</a> to attack hash</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/cr-marcstevens/hashclash">hashclash</a> for MD5 collision</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/hashcat/hashcat">hashcat</a> to attack hash</li>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/bbuhrow/yafu">yafu</a> to factorize number</li>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/openwall/john">John the Ripper jumbo</a> to crack password</li>
 </ul>
@@ -163,6 +167,7 @@
 <ul>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/slimm609/checksec.sh">checksec.sh</a> to check binary security properties</li>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/hugsy/gef">gef</a> very useful GDB plugin</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Gallopsled/pwntools">pwntools</a> utility for pwn in python</li>
 </ul>
 <p>– I don’t know where to put –</p>
 <ul>
@@ -170,39 +175,41 @@
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.revshells.com/">revshells.com</a> to generate reverse shell code</li>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/carlospolop/PEASS-ng">PEASS-ng</a> to enumerate windows&#x2F;linux privilege escalation</li>
 </ul>
-<h1 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h1><h2 id="DOM-Clobbering"><a href="#DOM-Clobbering" class="headerlink" title="DOM Clobbering"></a>DOM Clobbering</h2><ul>
+<h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><h3 id="DOM-Clobbering"><a href="#DOM-Clobbering" class="headerlink" title="DOM Clobbering"></a>DOM Clobbering</h3><ul>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.arkark.dev/2023/09/21/seccon-quals/#web-blink">blink SECCON CTF 2023</a></li>
 </ul>
-<h2 id="Cascading"><a href="#Cascading" class="headerlink" title="Cascading"></a>Cascading</h2><ul>
+<h3 id="Cascading"><a href="#Cascading" class="headerlink" title="Cascading"></a>Cascading</h3><ul>
 <li><code>CSS Font Cascading</code> People can use <a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/CSS/%40font-face/unicode-range">unicode-range</a> to do cascading.</li>
 <li><code>Font side-channel</code> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/ctf-writeups/blob/main/buckeyeCTF-2023/web-font_review-hard/solve.md">Font Review BuckeyeCTF 2023</a> - use linguistics to make page overflow in order to leak the flag char by char.</li>
 <li><code>STTF</code> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.secforce.com/blog/new-technique-of-stealing-data-using-css-and-scroll-to-text-fragment-feature/">reference</a>, basically, use <code>:target</code> in style in order to send request if the scroll to text fragment part is matched.</li>
 </ul>
-<h2 id="NoSQL-Injection"><a href="#NoSQL-Injection" class="headerlink" title="NoSQL Injection"></a>NoSQL Injection</h2><ul>
+<h3 id="NoSQL-Injection"><a href="#NoSQL-Injection" class="headerlink" title="NoSQL Injection"></a>NoSQL Injection</h3><ul>
 <li>the input is in JSON and use <code>regex</code> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/ctf-writeups/blob/main/buckeyeCTF-2023/web-area_51-easy/solve.md">Area51 BuckeyeCTF 2023</a></li>
 </ul>
-<h2 id="JWT"><a href="#JWT" class="headerlink" title="JWT"></a>JWT</h2><ul>
+<h3 id="JWT"><a href="#JWT" class="headerlink" title="JWT"></a>JWT</h3><ul>
 <li><code>RS256</code> to <code>HS256</code> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/ctf-writeups/blob/main/buckeyeCTF-2023/web-certs-medium/solve.md">certs BuckeyeCTF 2023</a></li>
 </ul>
-<h2 id="JSDom-jail"><a href="#JSDom-jail" class="headerlink" title="JSDom jail"></a>JSDom jail</h2><ul>
+<h3 id="JSDom-jail"><a href="#JSDom-jail" class="headerlink" title="JSDom jail"></a>JSDom jail</h3><ul>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/ctf-writeups/blob/main/vsCTF-2023/web-Optimized_Admin_Bot/solve.md">Optimized Admin Bot vsCTF 2023</a> <code>spawnSync</code> to do RCE, require <code>process</code> and <code>spawn_sync</code>.</li>
 </ul>
-<h2 id="python-jail-pyjail"><a href="#python-jail-pyjail" class="headerlink" title="python jail &#x2F; pyjail"></a>python jail &#x2F; pyjail</h2><ul>
+<h3 id="python-jail-pyjail"><a href="#python-jail-pyjail" class="headerlink" title="python jail &#x2F; pyjail"></a>python jail &#x2F; pyjail</h3><ul>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/ctf-writeups/blob/main/crewCTF-2023/MISC-starship-1/solution.md">starship CrewCTF 2023</a> character limit: <code>@^_&quot;:,.</code> and acsii letters; type: <code>@__build_class__.__self__.exec\r@__build_class__.__self__.input\rclass\x0cx:pass</code>.</li>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/ctf-writeups/blob/main/BxMCTF-23/Pwn-Bonus_The_Revenge_of_Checkpass_1/solve.md">Bonus_The_Revenge_of_Checkpass_1 BxMCTF 2023</a> <code>eval(inp, &#123;&#39;__builtins__&#39;: None&#125;, None)</code>; type: <code>().__class__.__bases__[0].__subclasses__()</code>.</li>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/ctf-writeups/blob/main/BxMCTF-23/Web-Username_Decorator/solve.md">Username_Decorator BxMCTF 2023</a> Flask escape; type: <code>().__class__.__bases__[0].__subclasses__()</code>.</li>
+<li><code>&#39;f&#123;32:c&#125;&#39;</code> can format an int to char (equalivant to <code>chr(32)</code>).</li>
 </ul>
-<h2 id="CORS-bypass"><a href="#CORS-bypass" class="headerlink" title="CORS bypass"></a>CORS bypass</h2><ul>
+<h3 id="CORS-bypass"><a href="#CORS-bypass" class="headerlink" title="CORS bypass"></a>CORS bypass</h3><ul>
 <li><code>makes-sense ASIS-ctf-qual 2023</code> use <code>shadow dom</code> to let inside <code>iframe</code> access <code>parent</code>‘s <code>document</code> by <code>shadowContainer.attachShadow</code>. Basically is let <code>e.source</code> in <code>window.onmessage = e=&gt;(e.source == top &amp;&amp; e.source.length == 0 ? eval(e.data) : &#39;&#39;)</code> is not undefined.</li>
 </ul>
-<h2 id="CSP-bypass"><a href="#CSP-bypass" class="headerlink" title="CSP bypass"></a>CSP bypass</h2><ul>
+<h3 id="CSP-bypass"><a href="#CSP-bypass" class="headerlink" title="CSP bypass"></a>CSP bypass</h3><ul>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://book.hacktricks.xyz/pentesting-web/content-security-policy-csp-bypass">hacktricks.xyz</a> check this website for more CSP bypass tricks.</li>
+<li>JS polygots, embed JavaScript code in multiple languages image file. Then use <code>&lt;script charset = &quot;ISO-8859-1&quot; src=url&gt;&lt;/script&gt;</code> to call those JavaScript Code. Refers: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Wuelle/js_jpeg_polyglot/">js jpeg polyglot script</a> and <a target="_blank" rel="noopener external nofollow noreferrer" href="https://portswigger.net/research/bypassing-csp-using-polyglot-jpegs">Bypassing CSP using polyglot JPEGs</a>.</li>
 </ul>
-<h2 id="JavaScript-Jail"><a href="#JavaScript-Jail" class="headerlink" title="JavaScript Jail"></a>JavaScript Jail</h2><ul>
+<h3 id="JavaScript-Jail"><a href="#JavaScript-Jail" class="headerlink" title="JavaScript Jail"></a>JavaScript Jail</h3><ul>
 <li>inside of <code>function</code>: use <code>var process=this.constructor.constructor(&quot;return process;&quot;)();</code> to get <code>process</code> object. Then use <code>var require = global.require || global.process.mainModule.constructor._load;</code>, the script <a target="_blank" rel="noopener external nofollow noreferrer" href="https://gist.github.com/CapacitorSet/c41ab55a54437dcbcb4e62713a195822">here <em>spawnSync.js</em></a>, or even <code>this.require</code> to get RCE.</li>
 </ul>
-<h1 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h1><h2 id="find-solution-under-constrains"><a href="#find-solution-under-constrains" class="headerlink" title="find solution under constrains"></a>find solution under constrains</h2><p>Use <code>z3-solver</code>, e.g. <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/ctf-writeups/blob/main/hack-a-sat-qual-2023/based_emoji%20(late)/solve.md">based emoji hackasat qual 2023</a></p>
-<h1 id="Rev"><a href="#Rev" class="headerlink" title="Rev"></a>Rev</h1><h2 id="Angr-to-find-solution-for-input"><a href="#Angr-to-find-solution-for-input" class="headerlink" title="Angr to find solution for input"></a>Angr to find solution for input</h2><ul>
+<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="find-solution-under-constrains"><a href="#find-solution-under-constrains" class="headerlink" title="find solution under constrains"></a>find solution under constrains</h3><p>Use <code>z3-solver</code>, e.g. <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/ctf-writeups/blob/main/hack-a-sat-qual-2023/based_emoji%20(late)/solve.md">based emoji hackasat qual 2023</a></p>
+<h2 id="Rev"><a href="#Rev" class="headerlink" title="Rev"></a>Rev</h2><h3 id="Angr-to-find-solution-for-input"><a href="#Angr-to-find-solution-for-input" class="headerlink" title="Angr to find solution for input"></a>Angr to find solution for input</h3><ul>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/ctf-writeups/blob/main/WolvCTF-2023/Reverse-Homework_Help-Easy-Medium/solve.md">Homework Help WolvCTF 2023</a></li>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/ctf-writeups/blob/main/buckeyeCTF-2022/rev-Angry-easy/solve.md">Angry BuckeyeCTF 2022</a></li>
 </ul>
