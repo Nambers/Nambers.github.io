@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="last modified: Nov 2023my CTF writeups  overall useful website&#x2F;tools hacktricks.xyz reference book  – web –  webhook.site to get request bin dirsearch to brute force directory GitTools to pull g">
+    <meta name="description" content="last modified: Jan 2024my CTF writeups  overall useful website&#x2F;tools hacktricks.xyz reference book  – web –  webhook.site to get request bin dirsearch to brute force directory GitTools to pull g">
 <meta property="og:type" content="website">
 <meta property="og:title" content="CTF-CheatSheet">
 <meta property="og:url" content="https://eritque-arcus.tech/ctf-cheatsheet/index.html">
 <meta property="og:site_name" content="Eritque arcus&#39;s blog">
-<meta property="og:description" content="last modified: Nov 2023my CTF writeups  overall useful website&#x2F;tools hacktricks.xyz reference book  – web –  webhook.site to get request bin dirsearch to brute force directory GitTools to pull g">
+<meta property="og:description" content="last modified: Jan 2024my CTF writeups  overall useful website&#x2F;tools hacktricks.xyz reference book  – web –  webhook.site to get request bin dirsearch to brute force directory GitTools to pull g">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-09-25T03:37:00.000Z">
-<meta property="article:modified_time" content="2023-11-26T18:09:00.813Z">
+<meta property="article:modified_time" content="2024-01-22T04:24:37.392Z">
 <meta property="article:author" content="Eritque arcus">
 <meta property="article:tag" content="Eritque arcus">
 <meta property="article:tag" content="Eritque arcus&#39;s blog">
@@ -118,7 +118,7 @@
   <div class="content" itemprop="articleBody">
       
           <blockquote>
-<p>last modified: Nov 2023<br>my <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/ctf-writeups/">CTF writeups</a></p>
+<p>last modified: Jan 2024<br>my <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/ctf-writeups/">CTF writeups</a></p>
 </blockquote>
 <h2 id="overall-useful-website-tools"><a href="#overall-useful-website-tools" class="headerlink" title="overall useful website&#x2F;tools"></a>overall useful website&#x2F;tools</h2><ul>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://book.hacktricks.xyz/">hacktricks.xyz</a> reference book</li>
@@ -199,6 +199,7 @@
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/ctf-writeups/blob/main/BxMCTF-23/Pwn-Bonus_The_Revenge_of_Checkpass_1/solve.md">Bonus_The_Revenge_of_Checkpass_1 BxMCTF 2023</a> <code>eval(inp, &#123;&#39;__builtins__&#39;: None&#125;, None)</code>; type: <code>().__class__.__bases__[0].__subclasses__()</code>.</li>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/ctf-writeups/blob/main/BxMCTF-23/Web-Username_Decorator/solve.md">Username_Decorator BxMCTF 2023</a> Flask escape; type: <code>().__class__.__bases__[0].__subclasses__()</code>.</li>
 <li><code>&#39;f&#123;32:c&#125;&#39;</code> can format an int to char (equalivant to <code>chr(32)</code>).</li>
+<li>use other fonts to bypass alphabet filter (e.g. use Italic alphabet from <a target="_blank" rel="noopener external nofollow noreferrer" href="https://lingojam.com/ItalicTextGenerator">ItalicTextGenerator</a> and use long underline like <code>＿𝘤𝘭𝘢𝘴𝘴＿</code>) <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/UofTCTF/uoftctf-2024-chals-public/blob/master/Jail/zero/solve/writeup.md">Zero uoftctf-2024</a>.</li>
 </ul>
 <h3 id="CORS-bypass"><a href="#CORS-bypass" class="headerlink" title="CORS bypass"></a>CORS bypass</h3><ul>
 <li><code>makes-sense ASIS-ctf-qual 2023</code> use <code>shadow dom</code> to let inside <code>iframe</code> access <code>parent</code>‘s <code>document</code> by <code>shadowContainer.attachShadow</code>. Basically is let <code>e.source</code> in <code>window.onmessage = e=&gt;(e.source == top &amp;&amp; e.source.length == 0 ? eval(e.data) : &#39;&#39;)</code> is not undefined.</li>
@@ -226,7 +227,7 @@
     Copyright &copy;
     
     
-    2020-2023
+    2020-2024
     Eritque arcus
   </div>
   <div class="footer-right">
