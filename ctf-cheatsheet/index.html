@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="last modified: Jan 2024my CTF writeups  overall useful website&#x2F;tools hacktricks.xyz reference book  – web –  webhook.site to get request bin dirsearch to brute force directory GitTools to pull g">
+    <meta name="description" content="last modified: Feb 2024my CTF writeups  overall useful website&#x2F;tools hacktricks.xyz reference book  – web –  webhook.site to get request bin dirsearch to brute force directory GitTools to pull g">
 <meta property="og:type" content="website">
 <meta property="og:title" content="CTF-CheatSheet">
 <meta property="og:url" content="https://eritque-arcus.tech/ctf-cheatsheet/index.html">
 <meta property="og:site_name" content="Eritque arcus&#39;s blog">
-<meta property="og:description" content="last modified: Jan 2024my CTF writeups  overall useful website&#x2F;tools hacktricks.xyz reference book  – web –  webhook.site to get request bin dirsearch to brute force directory GitTools to pull g">
+<meta property="og:description" content="last modified: Feb 2024my CTF writeups  overall useful website&#x2F;tools hacktricks.xyz reference book  – web –  webhook.site to get request bin dirsearch to brute force directory GitTools to pull g">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-09-25T03:37:00.000Z">
-<meta property="article:modified_time" content="2024-01-22T04:24:37.392Z">
+<meta property="article:modified_time" content="2024-02-07T16:53:02.422Z">
 <meta property="article:author" content="Eritque arcus">
 <meta property="article:tag" content="Eritque arcus">
 <meta property="article:tag" content="Eritque arcus&#39;s blog">
@@ -118,7 +118,7 @@
   <div class="content" itemprop="articleBody">
       
           <blockquote>
-<p>last modified: Jan 2024<br>my <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/ctf-writeups/">CTF writeups</a></p>
+<p>last modified: Feb 2024<br>my <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/ctf-writeups/">CTF writeups</a></p>
 </blockquote>
 <h2 id="overall-useful-website-tools"><a href="#overall-useful-website-tools" class="headerlink" title="overall useful website&#x2F;tools"></a>overall useful website&#x2F;tools</h2><ul>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://book.hacktricks.xyz/">hacktricks.xyz</a> reference book</li>
@@ -200,6 +200,11 @@
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/ctf-writeups/blob/main/BxMCTF-23/Web-Username_Decorator/solve.md">Username_Decorator BxMCTF 2023</a> Flask escape; type: <code>().__class__.__bases__[0].__subclasses__()</code>.</li>
 <li><code>&#39;f&#123;32:c&#125;&#39;</code> can format an int to char (equalivant to <code>chr(32)</code>).</li>
 <li>use other fonts to bypass alphabet filter (e.g. use Italic alphabet from <a target="_blank" rel="noopener external nofollow noreferrer" href="https://lingojam.com/ItalicTextGenerator">ItalicTextGenerator</a> and use long underline like <code>＿𝘤𝘭𝘢𝘴𝘴＿</code>) <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/UofTCTF/uoftctf-2024-chals-public/blob/master/Jail/zero/solve/writeup.md">Zero uoftctf-2024</a>.</li>
+<li>PWN pyjail<ul>
+<li>use <code>ctype</code> to override the definition of function (e.g. <code>os._exit</code>) <code>diligent-auditor DiceCTF-2024-qual</code></li>
+<li>use <a target="_blank" rel="noopener external nofollow noreferrer" href="https://bugs.python.org/issue43838">this behavior</a> to do PWN <code>IRS DiceCTF-2024-qual</code></li>
+</ul>
+</li>
 </ul>
 <h3 id="CORS-bypass"><a href="#CORS-bypass" class="headerlink" title="CORS bypass"></a>CORS bypass</h3><ul>
 <li><code>makes-sense ASIS-ctf-qual 2023</code> use <code>shadow dom</code> to let inside <code>iframe</code> access <code>parent</code>‘s <code>document</code> by <code>shadowContainer.attachShadow</code>. Basically is let <code>e.source</code> in <code>window.onmessage = e=&gt;(e.source == top &amp;&amp; e.source.length == 0 ? eval(e.data) : &#39;&#39;)</code> is not undefined.</li>
@@ -207,6 +212,7 @@
 <h3 id="CSP-bypass"><a href="#CSP-bypass" class="headerlink" title="CSP bypass"></a>CSP bypass</h3><ul>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://book.hacktricks.xyz/pentesting-web/content-security-policy-csp-bypass">hacktricks.xyz</a> check this website for more CSP bypass tricks.</li>
 <li>JS polygots, embed JavaScript code in multiple languages image file. Then use <code>&lt;script charset = &quot;ISO-8859-1&quot; src=url&gt;&lt;/script&gt;</code> to call those JavaScript Code. Refers: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Wuelle/js_jpeg_polyglot/">js jpeg polyglot script</a> and <a target="_blank" rel="noopener external nofollow noreferrer" href="https://portswigger.net/research/bypassing-csp-using-polyglot-jpegs">Bypassing CSP using polyglot JPEGs</a>.</li>
+<li>CSS side-channel, using color made with color-mix to make tab crushed with signal: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://issues.chromium.org/issues/41490764">issue</a> and <a target="_blank" rel="noopener external nofollow noreferrer" href="https://gist.github.com/arkark/25129c14de194406d0e6fad15c907ad9#webanother-csp">Another-csp DiceCTF-2024-qual</a></li>
 </ul>
 <h3 id="JavaScript-Jail"><a href="#JavaScript-Jail" class="headerlink" title="JavaScript Jail"></a>JavaScript Jail</h3><ul>
 <li>inside of <code>function</code>: use <code>var process=this.constructor.constructor(&quot;return process;&quot;)();</code> to get <code>process</code> object. Then use <code>var require = global.require || global.process.mainModule.constructor._load;</code>, the script <a target="_blank" rel="noopener external nofollow noreferrer" href="https://gist.github.com/CapacitorSet/c41ab55a54437dcbcb4e62713a195822">here <em>spawnSync.js</em></a>, or even <code>this.require</code> to get RCE.</li>
