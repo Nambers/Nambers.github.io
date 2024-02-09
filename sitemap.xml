@@ -2,81 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://eritque-arcus.tech/ctf-cheatsheet/index.html</loc>
+    <loc>https://eritque-arcus.tech/2024/02/09/raspberry-pi5-arch/</loc>
     
-    <lastmod>2024-02-07</lastmod>
-    
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://eritque-arcus.tech/2023/12/04/python-pyhidra-static-analysis/</loc>
-    
-    <lastmod>2023-12-04</lastmod>
-    
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://eritque-arcus.tech/2023/12/04/python-libClang-static-analysis/</loc>
-    
-    <lastmod>2023-12-04</lastmod>
-    
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://eritque-arcus.tech/2021/01/11/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8/</loc>
-    
-    <lastmod>2023-11-23</lastmod>
-    
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://eritque-arcus.tech/2020/12/13/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/</loc>
-    
-    <lastmod>2023-11-23</lastmod>
-    
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://eritque-arcus.tech/2021/06/20/%E5%AF%B9%E4%BD%BF%E7%94%A8%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9%E5%92%8C%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%B1%82hamilton%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E7%9A%84%E7%90%86%E8%A7%A3/</loc>
-    
-    <lastmod>2023-11-23</lastmod>
-    
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://eritque-arcus.tech/2020/01/26/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B/</loc>
-    
-    <lastmod>2023-11-23</lastmod>
-    
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://eritque-arcus.tech/2022/05/19/qq-0825-0836%E8%A7%A3%E6%9E%90/</loc>
-    
-    <lastmod>2023-11-23</lastmod>
-    
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://eritque-arcus.tech/2020/01/06/Python%E4%BD%BF%E7%94%A8urllib,urllib3,requests%E5%BA%93+beautifulsoup%E7%88%AC%E5%8F%96%E7%BD%91%E9%A1%B5/</loc>
-    
-    <lastmod>2023-11-23</lastmod>
+    <lastmod>2024-02-09</lastmod>
     
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -85,97 +13,7 @@
   <url>
     <loc>https://eritque-arcus.tech/2021/03/31/python%E4%B8%80%E9%94%AE%E4%B8%8B%E8%BD%BD%E4%B8%8E%E6%9B%BF%E6%8D%A2hexo%E5%8D%9A%E5%AE%A2%E9%87%8C%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80/</loc>
     
-    <lastmod>2023-11-23</lastmod>
-    
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://eritque-arcus.tech/2022/10/14/PWN-wr1teups0/</loc>
-    
-    <lastmod>2023-11-23</lastmod>
-    
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://eritque-arcus.tech/2020/12/28/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B/</loc>
-    
-    <lastmod>2023-11-23</lastmod>
-    
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://eritque-arcus.tech/2022/12/21/MessageIOException_Could_not_write_127.0.0.1/</loc>
-    
-    <lastmod>2023-11-23</lastmod>
-    
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://eritque-arcus.tech/2021/11/19/kotlin%E9%87%8D%E5%AE%9A%E5%90%91log4j2%E7%9A%84%E8%BE%93%E5%87%BA%E5%88%B0jline3/</loc>
-    
-    <lastmod>2023-11-23</lastmod>
-    
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://eritque-arcus.tech/2021/05/14/kotlin-%E7%94%9F%E6%88%90jni%E5%A4%B4%E6%96%87%E4%BB%B6/</loc>
-    
-    <lastmod>2023-11-23</lastmod>
-    
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://eritque-arcus.tech/2022/10/20/kotlin-native-std-__throw_bad_array_new_length/</loc>
-    
-    <lastmod>2023-11-23</lastmod>
-    
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://eritque-arcus.tech/2022/09/23/kotlin-mpp-sourceset-not-found/</loc>
-    
-    <lastmod>2023-11-23</lastmod>
-    
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://eritque-arcus.tech/2023/02/10/emacs-configuration/</loc>
-    
-    <lastmod>2023-11-23</lastmod>
-    
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://eritque-arcus.tech/2023/01/10/eclipse-UTF16.isSurrogate-NoSuchMethodError/</loc>
-    
-    <lastmod>2023-11-23</lastmod>
-    
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://eritque-arcus.tech/2022/03/09/C++%E4%B8%80%E7%A7%8D%E7%A6%81%E6%AD%A2%E6%88%90%E5%91%98%E6%96%B9%E6%B3%95%E8%A2%AB%E4%BD%BF%E7%94%A8%E7%9A%84%E5%AE%8F/</loc>
-    
-    <lastmod>2023-11-23</lastmod>
+    <lastmod>2024-02-09</lastmod>
     
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -184,16 +22,43 @@
   <url>
     <loc>https://eritque-arcus.tech/2023/07/25/Arch-%E5%AE%89%E8%A3%85-Yafu2/</loc>
     
-    <lastmod>2023-11-23</lastmod>
+    <lastmod>2024-02-09</lastmod>
     
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://eritque-arcus.tech/2022/01/11/aho-corasick-automaton-(AC%E8%87%AA%E5%8A%A8%E6%9C%BA)%E7%9A%84%E7%90%86%E8%A7%A3/</loc>
+    <loc>https://eritque-arcus.tech/2022/03/09/C++%E4%B8%80%E7%A7%8D%E7%A6%81%E6%AD%A2%E6%88%90%E5%91%98%E6%96%B9%E6%B3%95%E8%A2%AB%E4%BD%BF%E7%94%A8%E7%9A%84%E5%AE%8F/</loc>
     
-    <lastmod>2023-11-23</lastmod>
+    <lastmod>2024-02-09</lastmod>
+    
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://eritque-arcus.tech/2020/12/28/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B/</loc>
+    
+    <lastmod>2024-02-09</lastmod>
+    
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://eritque-arcus.tech/2022/12/21/MessageIOException_Could_not_write_127.0.0.1/</loc>
+    
+    <lastmod>2024-02-09</lastmod>
+    
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://eritque-arcus.tech/2023/01/10/eclipse-UTF16.isSurrogate-NoSuchMethodError/</loc>
+    
+    <lastmod>2024-02-09</lastmod>
     
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -202,7 +67,61 @@
   <url>
     <loc>https://eritque-arcus.tech/2023/09/01/john-the-ripper-%E8%A7%A3%E5%AF%86-salted-SHA512/</loc>
     
-    <lastmod>2023-11-23</lastmod>
+    <lastmod>2024-02-09</lastmod>
+    
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://eritque-arcus.tech/2022/09/23/kotlin-mpp-sourceset-not-found/</loc>
+    
+    <lastmod>2024-02-09</lastmod>
+    
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://eritque-arcus.tech/2022/10/20/kotlin-native-std-__throw_bad_array_new_length/</loc>
+    
+    <lastmod>2024-02-09</lastmod>
+    
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://eritque-arcus.tech/2021/11/19/kotlin%E9%87%8D%E5%AE%9A%E5%90%91log4j2%E7%9A%84%E8%BE%93%E5%87%BA%E5%88%B0jline3/</loc>
+    
+    <lastmod>2024-02-09</lastmod>
+    
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://eritque-arcus.tech/2022/05/19/qq-0825-0836%E8%A7%A3%E6%9E%90/</loc>
+    
+    <lastmod>2024-02-09</lastmod>
+    
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://eritque-arcus.tech/2020/01/26/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B/</loc>
+    
+    <lastmod>2024-02-09</lastmod>
+    
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://eritque-arcus.tech/2021/06/20/%E5%AF%B9%E4%BD%BF%E7%94%A8%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9%E5%92%8C%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%B1%82hamilton%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E7%9A%84%E7%90%86%E8%A7%A3/</loc>
+    
+    <lastmod>2024-02-09</lastmod>
     
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -211,7 +130,7 @@
   <url>
     <loc>https://eritque-arcus.tech/2023/11/23/Arch-dualboot-efi/</loc>
     
-    <lastmod>2023-11-23</lastmod>
+    <lastmod>2024-02-09</lastmod>
     
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -220,7 +139,97 @@
   <url>
     <loc>https://eritque-arcus.tech/2021/06/11/C++-jstring-to-string-(UTF16-%EF%BC%9EUTF8)/</loc>
     
-    <lastmod>2023-11-23</lastmod>
+    <lastmod>2024-02-09</lastmod>
+    
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://eritque-arcus.tech/2022/10/14/PWN-wr1teups0/</loc>
+    
+    <lastmod>2024-02-09</lastmod>
+    
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://eritque-arcus.tech/2020/01/06/Python%E4%BD%BF%E7%94%A8urllib,urllib3,requests%E5%BA%93+beautifulsoup%E7%88%AC%E5%8F%96%E7%BD%91%E9%A1%B5/</loc>
+    
+    <lastmod>2024-02-09</lastmod>
+    
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://eritque-arcus.tech/2022/01/11/aho-corasick-automaton-(AC%E8%87%AA%E5%8A%A8%E6%9C%BA)%E7%9A%84%E7%90%86%E8%A7%A3/</loc>
+    
+    <lastmod>2024-02-09</lastmod>
+    
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://eritque-arcus.tech/2023/02/10/emacs-configuration/</loc>
+    
+    <lastmod>2024-02-09</lastmod>
+    
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://eritque-arcus.tech/2021/05/14/kotlin-%E7%94%9F%E6%88%90jni%E5%A4%B4%E6%96%87%E4%BB%B6/</loc>
+    
+    <lastmod>2024-02-09</lastmod>
+    
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://eritque-arcus.tech/2023/12/04/python-libClang-static-analysis/</loc>
+    
+    <lastmod>2024-02-09</lastmod>
+    
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://eritque-arcus.tech/2023/12/04/python-pyhidra-static-analysis/</loc>
+    
+    <lastmod>2024-02-09</lastmod>
+    
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://eritque-arcus.tech/2020/12/13/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/</loc>
+    
+    <lastmod>2024-02-09</lastmod>
+    
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://eritque-arcus.tech/2021/01/11/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8/</loc>
+    
+    <lastmod>2024-02-09</lastmod>
+    
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://eritque-arcus.tech/ctf-cheatsheet/index.html</loc>
+    
+    <lastmod>2024-02-09</lastmod>
     
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -265,7 +274,7 @@
 
   <url>
     <loc>https://eritque-arcus.tech/</loc>
-    <lastmod>2024-02-07</lastmod>
+    <lastmod>2024-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -273,175 +282,182 @@
   
   <url>
     <loc>https://eritque-arcus.tech/tags/grub/</loc>
-    <lastmod>2024-02-07</lastmod>
+    <lastmod>2024-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/tags/Arch/</loc>
-    <lastmod>2024-02-07</lastmod>
+    <lastmod>2024-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/tags/EFI/</loc>
-    <lastmod>2024-02-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  
-  <url>
-    <loc>https://eritque-arcus.tech/tags/yafu2/</loc>
-    <lastmod>2024-02-07</lastmod>
+    <lastmod>2024-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/tags/Cpp/</loc>
-    <lastmod>2024-02-07</lastmod>
+    <lastmod>2024-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/tags/JNI/</loc>
-    <lastmod>2024-02-07</lastmod>
+    <lastmod>2024-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/tags/Encoding/</loc>
-    <lastmod>2024-02-07</lastmod>
+    <lastmod>2024-02-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+  <url>
+    <loc>https://eritque-arcus.tech/tags/yafu2/</loc>
+    <lastmod>2024-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/tags/Kotlin/</loc>
-    <lastmod>2024-02-07</lastmod>
+    <lastmod>2024-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/tags/Java/</loc>
-    <lastmod>2024-02-07</lastmod>
+    <lastmod>2024-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/tags/CTF/</loc>
-    <lastmod>2024-02-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  
-  <url>
-    <loc>https://eritque-arcus.tech/tags/Python/</loc>
-    <lastmod>2024-02-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  
-  <url>
-    <loc>https://eritque-arcus.tech/tags/Web-crawler/</loc>
-    <lastmod>2024-02-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  
-  <url>
-    <loc>https://eritque-arcus.tech/tags/Aho-corasick/</loc>
-    <lastmod>2024-02-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  
-  <url>
-    <loc>https://eritque-arcus.tech/tags/Trie-tree/</loc>
-    <lastmod>2024-02-07</lastmod>
+    <lastmod>2024-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/tags/Eclipse/</loc>
-    <lastmod>2024-02-07</lastmod>
+    <lastmod>2024-02-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+  <url>
+    <loc>https://eritque-arcus.tech/tags/Python/</loc>
+    <lastmod>2024-02-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+  <url>
+    <loc>https://eritque-arcus.tech/tags/Web-crawler/</loc>
+    <lastmod>2024-02-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+  <url>
+    <loc>https://eritque-arcus.tech/tags/Aho-corasick/</loc>
+    <lastmod>2024-02-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+  <url>
+    <loc>https://eritque-arcus.tech/tags/Trie-tree/</loc>
+    <lastmod>2024-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/tags/Emacs/</loc>
-    <lastmod>2024-02-07</lastmod>
+    <lastmod>2024-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/tags/john/</loc>
-    <lastmod>2024-02-07</lastmod>
+    <lastmod>2024-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/tags/salted/</loc>
-    <lastmod>2024-02-07</lastmod>
+    <lastmod>2024-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/tags/Multiplatform/</loc>
-    <lastmod>2024-02-07</lastmod>
+    <lastmod>2024-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/tags/Note/</loc>
-    <lastmod>2024-02-07</lastmod>
+    <lastmod>2024-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/tags/reverse/</loc>
-    <lastmod>2024-02-07</lastmod>
+    <lastmod>2024-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/tags/Protocol/</loc>
-    <lastmod>2024-02-07</lastmod>
+    <lastmod>2024-02-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+  <url>
+    <loc>https://eritque-arcus.tech/tags/Raspberry-Pi5/</loc>
+    <lastmod>2024-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/tags/Html-Js-Css/</loc>
-    <lastmod>2024-02-07</lastmod>
+    <lastmod>2024-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/tags/Flask/</loc>
-    <lastmod>2024-02-07</lastmod>
+    <lastmod>2024-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/tags/Sklearn/</loc>
-    <lastmod>2024-02-07</lastmod>
+    <lastmod>2024-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -450,42 +466,42 @@
   
   <url>
     <loc>https://eritque-arcus.tech/categories/Note/</loc>
-    <lastmod>2024-02-07</lastmod>
+    <lastmod>2024-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/categories/Mirai/</loc>
-    <lastmod>2024-02-07</lastmod>
+    <lastmod>2024-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/categories/Web/</loc>
-    <lastmod>2024-02-07</lastmod>
+    <lastmod>2024-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/categories/Note/Algorithm/</loc>
-    <lastmod>2024-02-07</lastmod>
+    <lastmod>2024-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/categories/Tools/</loc>
-    <lastmod>2024-02-07</lastmod>
+    <lastmod>2024-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
     <loc>https://eritque-arcus.tech/categories/Machine-leaning/</loc>
-    <lastmod>2024-02-07</lastmod>
+    <lastmod>2024-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
