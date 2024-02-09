@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://eritque-arcus.tech/images/rpi5-arch3.png">
 <meta property="og:image" content="https://eritque-arcus.tech/images/rpi5-arch4.png">
 <meta property="article:published_time" content="2024-02-09T17:22:31.000Z">
-<meta property="article:modified_time" content="2024-02-09T23:21:24.009Z">
+<meta property="article:modified_time" content="2024-02-09T23:41:32.208Z">
 <meta property="article:author" content="Eritque arcus">
 <meta property="article:tag" content="Arch">
 <meta property="article:tag" content="Raspberry Pi5">
@@ -161,7 +161,7 @@
       
         <time datetime="2024-02-09T17:22:31.000Z" class="dt-published" itemprop="datePublished">2024-02-09</time>
         
-        (Updated: <time datetime="2024-02-09T23:21:24.009Z" class="dt-updated" itemprop="dateModified">2024-02-09</time>)
+        (Updated: <time datetime="2024-02-09T23:41:32.208Z" class="dt-updated" itemprop="dateModified">2024-02-09</time>)
         
       
     </div>
@@ -215,7 +215,7 @@
  这里是 <code>/boot/firmware</code> 而不是 <code>/boot</code> 参考 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.raspberrypi.com/documentation/computers/configuration.html#the-boot-folder">raspberrypi.com&#x2F;documentation&#x2F;computers&#x2F;configuration.html#the-boot-folder</a>.</li>
 <li>挂载 SSD (可以写成脚本文件)<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">mount /dev/nvme0n1p2 /mnt/sd</span><br><span class="line">mount /dev/nvme0n1p1 /mnt/sd/boot/firmware</span><br></pre></td></tr></table></figure></li>
 <li>编辑 <code>sudo vim /mnt/sd/etc/fstab</code>, 改成你的盘<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Static information about the filesystems.</span></span><br><span class="line"><span class="comment"># See fstab(5) for details.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># &lt;file system&gt; &lt;dir&gt; &lt;type&gt; &lt;options&gt; &lt;dump&gt; &lt;pass&gt;</span></span><br><span class="line"><span class="comment"># &lt;pass&gt; is the order of loading parition</span></span><br><span class="line"><span class="comment"># main partition</span></span><br><span class="line">/dev/nvme0n1p2  /               ext4    defaults        0       1</span><br><span class="line"><span class="comment"># boot partition</span></span><br><span class="line">/dev/nvme0n1p1  /boot/firmware  vfat    defaults        0       2</span><br></pre></td></tr></table></figure></li>
-<li>编辑 <code>sudo vim /mnt/sd/boot/firmware/cmdline.txt</code><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">root</span>=PARTUUID=<span class="number">00000000</span>-<span class="number">0000</span>-<span class="number">0000</span>-<span class="number">0000</span>-<span class="number">000000000000</span> rootfstype=ext4 rw rootwait console=serial0,<span class="number">115200</span> console=tty1 fsck.repair=<span class="literal">yes</span></span><br></pre></td></tr></table></figure>
+<li>编辑 <code>sudo vim /mnt/sd/boot/firmware/cmdline.txt</code><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># root=/dev/nvme0n1p2 rootfstype=ext4 rw rootwait console=serial0,115200 console=tty1 fsck.repair=yes</span></span><br><span class="line"><span class="comment"># root=UUID=0000-0000 rootfstype=ext4 rw rootwait console=serial0,115200 console=tty1 fsck.repair=yes</span></span><br><span class="line"><span class="attr">root</span>=PARTUUID=<span class="number">00000000</span>-<span class="number">0000</span>-<span class="number">0000</span>-<span class="number">0000</span>-<span class="number">000000000000</span> rootfstype=ext4 rw rootwait console=serial0,<span class="number">115200</span> console=tty1 fsck.repair=<span class="literal">yes</span></span><br></pre></td></tr></table></figure>
 我这里用的是盘的 <code>PARTUUID</code>, 理论上用路径或UUID应该也可以, 通过 <code>ls /dev/disk/by-partuuid -al</code>, <code>ls /dev/disk/by-uuid -al</code> 和 <code>lsblk</code> 可以拿到</li>
 <li>关机， 拔掉 USB, 重启</li>
 </ol>
