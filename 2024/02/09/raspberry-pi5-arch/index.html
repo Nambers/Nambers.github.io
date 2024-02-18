@@ -9,21 +9,21 @@
     <meta name="description" content="最近买的 Pimoroni 的 Nvme SSD 板到了, 就开始往上装 Arch因为我没有 Micro HDMI 的线和读写 SSD 的工具, 就打算和正常装系统一样用个 usb boot 进去里面装,同时也得一直 Headless  0. 准备 Raspberry Pi 5 USB 网线 PC SSD  1. 刷 USB Boot用 sudo pacman -S rpi-imager 下载">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Raspberry Pi 5 安装 Arch Linux">
-<meta property="og:url" content="https://eritque-arcus.tech/2024/02/09/raspberry-pi5-arch/index.html">
+<meta property="og:url" content="https://ikuyo.dev/2024/02/09/raspberry-pi5-arch/index.html">
 <meta property="og:site_name" content="Eritque arcus&#39;s blog">
 <meta property="og:description" content="最近买的 Pimoroni 的 Nvme SSD 板到了, 就开始往上装 Arch因为我没有 Micro HDMI 的线和读写 SSD 的工具, 就打算和正常装系统一样用个 usb boot 进去里面装,同时也得一直 Headless  0. 准备 Raspberry Pi 5 USB 网线 PC SSD  1. 刷 USB Boot用 sudo pacman -S rpi-imager 下载">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://eritque-arcus.tech/images/rpi5-arch1.png">
-<meta property="og:image" content="https://eritque-arcus.tech/images/rpi5-arch2.png">
-<meta property="og:image" content="https://eritque-arcus.tech/images/rpi5-arch3.png">
-<meta property="og:image" content="https://eritque-arcus.tech/images/rpi5-arch4.png">
+<meta property="og:image" content="https://ikuyo.dev/images/rpi5-arch1.png">
+<meta property="og:image" content="https://ikuyo.dev/images/rpi5-arch2.png">
+<meta property="og:image" content="https://ikuyo.dev/images/rpi5-arch3.png">
+<meta property="og:image" content="https://ikuyo.dev/images/rpi5-arch4.png">
 <meta property="article:published_time" content="2024-02-09T17:22:31.000Z">
 <meta property="article:modified_time" content="2024-02-09T23:41:32.208Z">
 <meta property="article:author" content="Eritque arcus">
 <meta property="article:tag" content="Arch">
 <meta property="article:tag" content="Raspberry Pi5">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://eritque-arcus.tech/images/rpi5-arch1.png">
+<meta name="twitter:image" content="https://ikuyo.dev/images/rpi5-arch1.png">
     
     
       
@@ -117,17 +117,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.facebook.com/sharer.php?u=https://eritque-arcus.tech/2024/02/09/raspberry-pi5-arch/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://twitter.com/share?url=https://eritque-arcus.tech/2024/02/09/raspberry-pi5-arch/&text=Raspberry Pi 5 安装 Arch Linux"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.linkedin.com/shareArticle?url=https://eritque-arcus.tech/2024/02/09/raspberry-pi5-arch/&title=Raspberry Pi 5 安装 Arch Linux"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://pinterest.com/pin/create/bookmarklet/?url=https://eritque-arcus.tech/2024/02/09/raspberry-pi5-arch/&is_video=false&description=Raspberry Pi 5 安装 Arch Linux"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Raspberry Pi 5 安装 Arch Linux&body=Check out this article: https://eritque-arcus.tech/2024/02/09/raspberry-pi5-arch/" rel="external nofollow noreferrer"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://getpocket.com/save?url=https://eritque-arcus.tech/2024/02/09/raspberry-pi5-arch/&title=Raspberry Pi 5 安装 Arch Linux"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://reddit.com/submit?url=https://eritque-arcus.tech/2024/02/09/raspberry-pi5-arch/&title=Raspberry Pi 5 安装 Arch Linux"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.stumbleupon.com/submit?url=https://eritque-arcus.tech/2024/02/09/raspberry-pi5-arch/&title=Raspberry Pi 5 安装 Arch Linux"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://digg.com/submit?url=https://eritque-arcus.tech/2024/02/09/raspberry-pi5-arch/&title=Raspberry Pi 5 安装 Arch Linux"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.tumblr.com/share/link?url=https://eritque-arcus.tech/2024/02/09/raspberry-pi5-arch/&name=Raspberry Pi 5 安装 Arch Linux&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://news.ycombinator.com/submitlink?u=https://eritque-arcus.tech/2024/02/09/raspberry-pi5-arch/&t=Raspberry Pi 5 安装 Arch Linux"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.facebook.com/sharer.php?u=https://ikuyo.dev/2024/02/09/raspberry-pi5-arch/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://twitter.com/share?url=https://ikuyo.dev/2024/02/09/raspberry-pi5-arch/&text=Raspberry Pi 5 安装 Arch Linux"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.linkedin.com/shareArticle?url=https://ikuyo.dev/2024/02/09/raspberry-pi5-arch/&title=Raspberry Pi 5 安装 Arch Linux"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://pinterest.com/pin/create/bookmarklet/?url=https://ikuyo.dev/2024/02/09/raspberry-pi5-arch/&is_video=false&description=Raspberry Pi 5 安装 Arch Linux"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Raspberry Pi 5 安装 Arch Linux&body=Check out this article: https://ikuyo.dev/2024/02/09/raspberry-pi5-arch/" rel="external nofollow noreferrer"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://getpocket.com/save?url=https://ikuyo.dev/2024/02/09/raspberry-pi5-arch/&title=Raspberry Pi 5 安装 Arch Linux"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://reddit.com/submit?url=https://ikuyo.dev/2024/02/09/raspberry-pi5-arch/&title=Raspberry Pi 5 安装 Arch Linux"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.stumbleupon.com/submit?url=https://ikuyo.dev/2024/02/09/raspberry-pi5-arch/&title=Raspberry Pi 5 安装 Arch Linux"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://digg.com/submit?url=https://ikuyo.dev/2024/02/09/raspberry-pi5-arch/&title=Raspberry Pi 5 安装 Arch Linux"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.tumblr.com/share/link?url=https://ikuyo.dev/2024/02/09/raspberry-pi5-arch/&name=Raspberry Pi 5 安装 Arch Linux&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://news.ycombinator.com/submitlink?u=https://ikuyo.dev/2024/02/09/raspberry-pi5-arch/&t=Raspberry Pi 5 安装 Arch Linux"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -300,17 +300,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.facebook.com/sharer.php?u=https://eritque-arcus.tech/2024/02/09/raspberry-pi5-arch/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://twitter.com/share?url=https://eritque-arcus.tech/2024/02/09/raspberry-pi5-arch/&text=Raspberry Pi 5 安装 Arch Linux"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.linkedin.com/shareArticle?url=https://eritque-arcus.tech/2024/02/09/raspberry-pi5-arch/&title=Raspberry Pi 5 安装 Arch Linux"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://pinterest.com/pin/create/bookmarklet/?url=https://eritque-arcus.tech/2024/02/09/raspberry-pi5-arch/&is_video=false&description=Raspberry Pi 5 安装 Arch Linux"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Raspberry Pi 5 安装 Arch Linux&body=Check out this article: https://eritque-arcus.tech/2024/02/09/raspberry-pi5-arch/" rel="external nofollow noreferrer"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://getpocket.com/save?url=https://eritque-arcus.tech/2024/02/09/raspberry-pi5-arch/&title=Raspberry Pi 5 安装 Arch Linux"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://reddit.com/submit?url=https://eritque-arcus.tech/2024/02/09/raspberry-pi5-arch/&title=Raspberry Pi 5 安装 Arch Linux"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.stumbleupon.com/submit?url=https://eritque-arcus.tech/2024/02/09/raspberry-pi5-arch/&title=Raspberry Pi 5 安装 Arch Linux"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://digg.com/submit?url=https://eritque-arcus.tech/2024/02/09/raspberry-pi5-arch/&title=Raspberry Pi 5 安装 Arch Linux"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.tumblr.com/share/link?url=https://eritque-arcus.tech/2024/02/09/raspberry-pi5-arch/&name=Raspberry Pi 5 安装 Arch Linux&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://news.ycombinator.com/submitlink?u=https://eritque-arcus.tech/2024/02/09/raspberry-pi5-arch/&t=Raspberry Pi 5 安装 Arch Linux"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.facebook.com/sharer.php?u=https://ikuyo.dev/2024/02/09/raspberry-pi5-arch/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://twitter.com/share?url=https://ikuyo.dev/2024/02/09/raspberry-pi5-arch/&text=Raspberry Pi 5 安装 Arch Linux"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.linkedin.com/shareArticle?url=https://ikuyo.dev/2024/02/09/raspberry-pi5-arch/&title=Raspberry Pi 5 安装 Arch Linux"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://pinterest.com/pin/create/bookmarklet/?url=https://ikuyo.dev/2024/02/09/raspberry-pi5-arch/&is_video=false&description=Raspberry Pi 5 安装 Arch Linux"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Raspberry Pi 5 安装 Arch Linux&body=Check out this article: https://ikuyo.dev/2024/02/09/raspberry-pi5-arch/" rel="external nofollow noreferrer"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://getpocket.com/save?url=https://ikuyo.dev/2024/02/09/raspberry-pi5-arch/&title=Raspberry Pi 5 安装 Arch Linux"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://reddit.com/submit?url=https://ikuyo.dev/2024/02/09/raspberry-pi5-arch/&title=Raspberry Pi 5 安装 Arch Linux"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.stumbleupon.com/submit?url=https://ikuyo.dev/2024/02/09/raspberry-pi5-arch/&title=Raspberry Pi 5 安装 Arch Linux"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://digg.com/submit?url=https://ikuyo.dev/2024/02/09/raspberry-pi5-arch/&title=Raspberry Pi 5 安装 Arch Linux"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.tumblr.com/share/link?url=https://ikuyo.dev/2024/02/09/raspberry-pi5-arch/&name=Raspberry Pi 5 安装 Arch Linux&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://news.ycombinator.com/submitlink?u=https://ikuyo.dev/2024/02/09/raspberry-pi5-arch/&t=Raspberry Pi 5 安装 Arch Linux"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
