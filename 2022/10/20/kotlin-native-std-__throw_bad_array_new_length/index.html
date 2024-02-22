@@ -1,348 +1,342 @@
 <!DOCTYPE html>
-<html lang=en>
-<head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="0. 问题在 GitHub Workflow 或者 本地运行 Kotlin&#x2F;Native 的 link 任务报错:本地 &amp; GitHub 环境: 12os &#x3D; Windowscompiler &#x3D; GCC 11.2.0 以下为在 GitHub Workflow 上的日志片段 12345678910111213e: C:\Users\runneradmin\.konan\depend">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Kotlin&#x2F;Native lld-link: error: undefined symbol: std::__throw_bad_array_new_length()">
-<meta property="og:url" content="https://ikuyo.dev/2022/10/20/kotlin-native-std-__throw_bad_array_new_length/index.html">
-<meta property="og:site_name" content="Eritque arcus&#39;s blog">
-<meta property="og:description" content="0. 问题在 GitHub Workflow 或者 本地运行 Kotlin&#x2F;Native 的 link 任务报错:本地 &amp; GitHub 环境: 12os &#x3D; Windowscompiler &#x3D; GCC 11.2.0 以下为在 GitHub Workflow 上的日志片段 12345678910111213e: C:\Users\runneradmin\.konan\depend">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-10-21T03:05:12.000Z">
-<meta property="article:modified_time" content="2024-02-09T23:10:53.497Z">
-<meta property="article:author" content="Eritque arcus">
-<meta property="article:tag" content="Kotlin">
-<meta name="twitter:card" content="summary">
+<html lang="en" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Eritque arcus" />
+  <!-- Open Graph Description 简短摘要-->
+  
+  <!-- 用于搜索引擎的文章摘要 -->
+  
+  <meta name="description" content="Eritque arcus&#39;s blog" />
+  
+  
+  
+  <title>
     
-    
-      
-        
-          <link rel="shortcut icon" href="/images/avatar.png">
-        
+      Kotlin/Native lld-link: error: undefined symbol: std::__throw_bad_array_new_length() 
       
       
-        
-          <link rel="icon" type="image/png" href="/images/avatar.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png">
-        
-      
+      |
     
-    <!-- title -->
-    <title>Kotlin/Native lld-link: error: undefined symbol: std::__throw_bad_array_new_length()</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
+     Eritque arcus&#39;s blog
+  </title>
 
-
-    <!-- Umami Analytics -->
-
-    <script async defer
-            data-website-id="03f1081f-d820-47e8-84c9-245f9093244c"
-            src="https://4-um4m1.ikuyo.dev/script.js">
-    </script>
-
-
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <!-- persian styles -->
-    
-    <!-- rss -->
-    
-    
-      <link rel="alternate" href="/true" title="Eritque arcus&#39;s blog" type="application/atom+xml" />
-    
-	<!-- mathjax -->
-	
-<meta name="generator" content="Hexo 7.0.0-rc2"></head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://github.com/Nambers">Projects</a></li><!--
-     --><!--
-       --><li><a href="/files/">Files</a></li><!--
-     --><!--
-       --><li><a href="/ctf-cheatsheet/">CTF-cheatsheet</a></li><!--
-     --><!--
-       --><li><a href="/link/">Links</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.travellings.cn/go.html">Travelling</a></li><!--
-     -->
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" aria-label="Previous post" href="/2022/12/21/MessageIOException_Could_not_write_127.0.0.1/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="Next post" href="/2022/10/14/PWN-wr1teups0/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.facebook.com/sharer.php?u=https://ikuyo.dev/2022/10/20/kotlin-native-std-__throw_bad_array_new_length/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://twitter.com/share?url=https://ikuyo.dev/2022/10/20/kotlin-native-std-__throw_bad_array_new_length/&text=Kotlin/Native lld-link: error: undefined symbol: std::__throw_bad_array_new_length()"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.linkedin.com/shareArticle?url=https://ikuyo.dev/2022/10/20/kotlin-native-std-__throw_bad_array_new_length/&title=Kotlin/Native lld-link: error: undefined symbol: std::__throw_bad_array_new_length()"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://pinterest.com/pin/create/bookmarklet/?url=https://ikuyo.dev/2022/10/20/kotlin-native-std-__throw_bad_array_new_length/&is_video=false&description=Kotlin/Native lld-link: error: undefined symbol: std::__throw_bad_array_new_length()"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Kotlin/Native lld-link: error: undefined symbol: std::__throw_bad_array_new_length()&body=Check out this article: https://ikuyo.dev/2022/10/20/kotlin-native-std-__throw_bad_array_new_length/" rel="external nofollow noreferrer"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://getpocket.com/save?url=https://ikuyo.dev/2022/10/20/kotlin-native-std-__throw_bad_array_new_length/&title=Kotlin/Native lld-link: error: undefined symbol: std::__throw_bad_array_new_length()"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://reddit.com/submit?url=https://ikuyo.dev/2022/10/20/kotlin-native-std-__throw_bad_array_new_length/&title=Kotlin/Native lld-link: error: undefined symbol: std::__throw_bad_array_new_length()"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.stumbleupon.com/submit?url=https://ikuyo.dev/2022/10/20/kotlin-native-std-__throw_bad_array_new_length/&title=Kotlin/Native lld-link: error: undefined symbol: std::__throw_bad_array_new_length()"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://digg.com/submit?url=https://ikuyo.dev/2022/10/20/kotlin-native-std-__throw_bad_array_new_length/&title=Kotlin/Native lld-link: error: undefined symbol: std::__throw_bad_array_new_length()"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.tumblr.com/share/link?url=https://ikuyo.dev/2022/10/20/kotlin-native-std-__throw_bad_array_new_length/&name=Kotlin/Native lld-link: error: undefined symbol: std::__throw_bad_array_new_length()&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://news.ycombinator.com/submitlink?u=https://ikuyo.dev/2022/10/20/kotlin-native-std-__throw_bad_array_new_length/&t=Kotlin/Native lld-link: error: undefined symbol: std::__throw_bad_array_new_length()"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-%E9%97%AE%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">0. 问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%8E%9F%E5%9B%A0"><span class="toc-number">2.</span> <span class="toc-text">1. 原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">2. 解决方法</span></a></li></ol>
-      </div>
-    
-  </span>
-</div>
-
-    
-    <div class="content index py4 ">
-        
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        Kotlin/Native lld-link: error: undefined symbol: std::__throw_bad_array_new_length()
-    </h1>
-
-
-
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">Eritque arcus</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2022-10-21T03:05:12.000Z" class="dt-published" itemprop="datePublished">2022-10-20</time>
-        
-        (Updated: <time datetime="2024-02-09T23:10:53.497Z" class="dt-updated" itemprop="dateModified">2024-02-09</time>)
-        
-      
-    </div>
-
-
-      
-    <div class="article-category">
-        <i class="fa-solid fa-archive"></i>
-        <a class="category-link" href="/categories/Note/">Note</a>
-    </div>
-
-
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/Kotlin/" rel="tag">Kotlin</a>
-    </div>
-
-
-    </div>
-  </header>
+  
+    <link rel="apple-touch-icon" href="/images/avatar.png">
+    <link rel="icon" href="/images/avatar.png">
   
 
-  <div class="content e-content" itemprop="articleBody">
-    <h2 id="0-问题"><a href="#0-问题" class="headerlink" title="0. 问题"></a>0. 问题</h2><p>在 GitHub Workflow 或者 本地运行 Kotlin&#x2F;Native 的 link 任务报错:<br>本地 &amp; GitHub 环境:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">os = Windows</span><br><span class="line">compiler = GCC 11.2.0</span><br></pre></td></tr></table></figure>
+  <!-- Raleway-Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Eritque arcus</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/link/">
+          <a href="/link/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+        <li class="nav-item" data-path="/ctf-cheatsheet/">
+          <a href="/ctf-cheatsheet/">CTF-cheatsheet</a>
+        </li>
+      
+        <li class="nav-item" data-path="/files/">
+          <a href="/files/">Files</a>
+        </li>
+      
+        <li class="nav-item" data-path="https://www.travellings.cn/go.html">
+          <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.travellings.cn/go.html">Travelling</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">Kotlin/Native lld-link: error: undefined symbol: std::__throw_bad_array_new_length()</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+          2024-02-21 22:02:57
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/Kotlin/" title="Kotlin">
+                    #Kotlin
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <h2 id="0-问题"><a href="#0-问题" class="headerlink" title="0. 问题"></a>0. 问题</h2><p>在 GitHub Workflow 或者 本地运行 Kotlin&#x2F;Native 的 link 任务报错:<br>本地 &amp; GitHub 环境:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">os = Windows</span><br><span class="line">compiler = GCC 11.2.0</span><br></pre></td></tr></table></figure>
 <p>以下为在 GitHub Workflow 上的日志片段</p>
-<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">e: C:\Users\runneradmin\.konan\dependencies\llvm-11.1.0-windows-x64-essentials/bin/clang++ invocation reported errors</span><br><span class="line"></span><br><span class="line">The C:\Users\runneradmin\.konan\dependencies\llvm-11.1.0-windows-x64-essentials/bin/clang++ command returned non-zero exit code: 1.</span><br><span class="line">output:</span><br><span class="line">lld-link: error: undefined symbol: std::__throw_bad_array_new_length()</span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; referenced by &lt;Linked Lib name&gt;.a(ThreadController.cpp.obj):(LibLoader::sendPluginException(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;))</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; referenced by &lt;Linked Lib name&gt;.a(ThreadController.cpp.obj):(LibLoader::ThreadController::submitJob(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::<span class="keyword">function</span>&lt;void ()&gt;))</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; referenced by &lt;Linked Lib name&gt;.a(ThreadController.cpp.obj):(LibLoader::ThreadController::callThreadEnd(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::<span class="keyword">function</span>&lt;void ()&gt;))</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; referenced 16 more <span class="built_in">times</span></span></span><br><span class="line">clang++: error: linker command failed with exit code 1 (use -v to see invocation)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">Task :&lt;Proj name&gt;:linkDebugExecutableNative FAILED</span></span><br><span class="line">:&lt;Proj name&gt;:linkDebugExecutableNative (Thread[Execution worker for &#x27;:&#x27;,5,main]) completed. Took 3 mins 10.585 secs.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">e: C:\Users\runneradmin\.konan\dependencies\llvm-11.1.0-windows-x64-essentials/bin/clang++ invocation reported errors</span><br><span class="line"></span><br><span class="line">The C:\Users\runneradmin\.konan\dependencies\llvm-11.1.0-windows-x64-essentials/bin/clang++ command returned non-zero exit code: 1.</span><br><span class="line">output:</span><br><span class="line">lld-link: error: undefined symbol: std::__throw_bad_array_new_length()</span><br><span class="line">&gt;&gt;&gt; referenced by &lt;Linked Lib name&gt;.a(ThreadController.cpp.obj):(LibLoader::sendPluginException(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;))</span><br><span class="line">&gt;&gt;&gt; referenced by &lt;Linked Lib name&gt;.a(ThreadController.cpp.obj):(LibLoader::ThreadController::submitJob(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::function&lt;void ()&gt;))</span><br><span class="line">&gt;&gt;&gt; referenced by &lt;Linked Lib name&gt;.a(ThreadController.cpp.obj):(LibLoader::ThreadController::callThreadEnd(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::function&lt;void ()&gt;))</span><br><span class="line">&gt;&gt;&gt; referenced 16 more times</span><br><span class="line">clang++: error: linker command failed with exit code 1 (use -v to see invocation)</span><br><span class="line"></span><br><span class="line">&gt; Task :&lt;Proj name&gt;:linkDebugExecutableNative FAILED</span><br><span class="line">:&lt;Proj name&gt;:linkDebugExecutableNative (Thread[Execution worker for &#x27;:&#x27;,5,main]) completed. Took 3 mins 10.585 secs.</span><br></pre></td></tr></table></figure>
 <h2 id="1-原因"><a href="#1-原因" class="headerlink" title="1. 原因"></a>1. 原因</h2><p>造成的原因是 Kotlin&#x2F;Native 是用 GCC 9.2.0 的(见 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://youtrack.jetbrains.com/issue/KT-51975/Native-lld-link-error-undefined-symbol-stdthrowbadarraynewlength">KT-51975</a>), 但是我在 Kotlin&#x2F;Native 里的 cintrop 里 link 了一个用 GCC 11.2.0 编译的静态库.</p>
 <h2 id="2-解决方法"><a href="#2-解决方法" class="headerlink" title="2. 解决方法"></a>2. 解决方法</h2><p>用 GCC 10 &#x2F; 9 重新编译要 link 的静态库或者改用动态库</p>
 
-  </div>
-</article>
-
-
-
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">Home</a></li>
-        
-          <li><a href="/archives/">Writing</a></li>
-        
-          <li><a href="/about/">About</a></li>
-        
-          <li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://github.com/Nambers">Projects</a></li>
-        
-          <li><a href="/files/">Files</a></li>
-        
-          <li><a href="/ctf-cheatsheet/">CTF-cheatsheet</a></li>
-        
-          <li><a href="/link/">Links</a></li>
-        
-          <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.travellings.cn/go.html">Travelling</a></li>
-        
-      </ul>
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2022/10/14/PWN-wr1teups0/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+              2024-02-21 22:02:57
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/Kotlin/" title="Kotlin">
+                        #Kotlin
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2022/12/21/MessageIOException_Could_not_write_127.0.0.1/" target="_self">
+                <span>Next</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
     </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-%E9%97%AE%E9%A2%98"><span class="toc-text">0. 问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%8E%9F%E5%9B%A0"><span class="toc-text">1. 原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-text">2. 解决方法</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
 
     
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          
+              <a title="github" target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers">
+                <i class="fa-brands fa-github fa-lg"></i>
+              </a>
+              
+        </li>
+        
+        <li>
+          
+            <a title="email" href="mailto:eritque-arcus@ikuyo.dev">
+              <i class="fa-solid fa-envelope fa-lg"></i>
+            </a>
+            
+        </li>
+        
+    </ul>
+  </div>
+  
     
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-%E9%97%AE%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">0. 问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%8E%9F%E5%9B%A0"><span class="toc-number">2.</span> <span class="toc-text">1. 原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">2. 解决方法</span></a></li></ol>
+    
+      <div class="footer-more">
+          
+            <a href="https://github.com/Nambers" rel="external nofollow noreferrer" target="_blank">Copyright ©2020-2024 Eritque Arcus</a>
+           
       </div>
     
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.facebook.com/sharer.php?u=https://ikuyo.dev/2022/10/20/kotlin-native-std-__throw_bad_array_new_length/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://twitter.com/share?url=https://ikuyo.dev/2022/10/20/kotlin-native-std-__throw_bad_array_new_length/&text=Kotlin/Native lld-link: error: undefined symbol: std::__throw_bad_array_new_length()"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.linkedin.com/shareArticle?url=https://ikuyo.dev/2022/10/20/kotlin-native-std-__throw_bad_array_new_length/&title=Kotlin/Native lld-link: error: undefined symbol: std::__throw_bad_array_new_length()"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://pinterest.com/pin/create/bookmarklet/?url=https://ikuyo.dev/2022/10/20/kotlin-native-std-__throw_bad_array_new_length/&is_video=false&description=Kotlin/Native lld-link: error: undefined symbol: std::__throw_bad_array_new_length()"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Kotlin/Native lld-link: error: undefined symbol: std::__throw_bad_array_new_length()&body=Check out this article: https://ikuyo.dev/2022/10/20/kotlin-native-std-__throw_bad_array_new_length/" rel="external nofollow noreferrer"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://getpocket.com/save?url=https://ikuyo.dev/2022/10/20/kotlin-native-std-__throw_bad_array_new_length/&title=Kotlin/Native lld-link: error: undefined symbol: std::__throw_bad_array_new_length()"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://reddit.com/submit?url=https://ikuyo.dev/2022/10/20/kotlin-native-std-__throw_bad_array_new_length/&title=Kotlin/Native lld-link: error: undefined symbol: std::__throw_bad_array_new_length()"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.stumbleupon.com/submit?url=https://ikuyo.dev/2022/10/20/kotlin-native-std-__throw_bad_array_new_length/&title=Kotlin/Native lld-link: error: undefined symbol: std::__throw_bad_array_new_length()"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://digg.com/submit?url=https://ikuyo.dev/2022/10/20/kotlin-native-std-__throw_bad_array_new_length/&title=Kotlin/Native lld-link: error: undefined symbol: std::__throw_bad_array_new_length()"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.tumblr.com/share/link?url=https://ikuyo.dev/2022/10/20/kotlin-native-std-__throw_bad_array_new_length/&name=Kotlin/Native lld-link: error: undefined symbol: std::__throw_bad_array_new_length()&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://news.ycombinator.com/submitlink?u=https://ikuyo.dev/2022/10/20/kotlin-native-std-__throw_bad_array_new_length/&t=Kotlin/Native lld-link: error: undefined symbol: std::__throw_bad_array_new_length()"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
+  
+    
+    
+      <div class="footer-more">
+          
+            <a href="https://github.com/zchengsite/hexo-theme-oranges" rel="external nofollow noreferrer" target="_blank">Theme by Oranges | Powered by Hexo</a>
+           
+      </div>
+    
+  
+    
+    
+      <div class="footer-more">
+          
+            <a href="https://icp.gov.moe/?keyword=20222242" target="_blank">萌ICP备20222242号</a>
+           
+      </div>
+    
+  
+    
+    
+      <script async src="https://4-um4m1.ikuyo.dev/script.js" data-website-id="03f1081f-d820-47e8-84c9-245f9093244c"></script>
+    
+  
+  
 </div>
 
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)" rel="external nofollow noreferrer">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
         
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2020-2024
-    Eritque arcus
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://github.com/Nambers">Projects</a></li><!--
-     --><!--
-       --><li><a href="/files/">Files</a></li><!--
-     --><!--
-       --><li><a href="/ctf-cheatsheet/">CTF-cheatsheet</a></li><!--
-     --><!--
-       --><li><a href="/link/">Links</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.travellings.cn/go.html">Travelling</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-  <a href="https://icp.gov.moe/?keyword=20222242" target="_blank">萌ICP备20222242号</a>
-</footer>
 
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)" rel="external nofollow noreferrer">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+
+      </div>
     </div>
-    <!-- styles -->
-
-
-
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
-
-
-
-
-<!-- clipboard -->
-
-  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
-<script src="/js/main.js"></script>
-
-<!-- search -->
-
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-</body>
+  </body>
 </html>

@@ -1,195 +1,186 @@
 <!DOCTYPE html>
-<html lang=en>
-<head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="前言构建mirai的mirai-console插件教程用到的概念有mcl - 指mirai-console-loader，mirai-console官方启动器mirai - mirai 是一个在全平台下运行，提供 QQ Android 协议支持的高效率机器人库，根据AGPLv3开源 资料列表以下为一些官方资料mirai官方github库mirai-console官方github库mirai-con">
-<meta property="og:type" content="article">
-<meta property="og:title" content="用kotlin&#x2F;java构建一个Mirai插件">
-<meta property="og:url" content="https://ikuyo.dev/2020/12/28/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B/index.html">
-<meta property="og:site_name" content="Eritque arcus&#39;s blog">
-<meta property="og:description" content="前言构建mirai的mirai-console插件教程用到的概念有mcl - 指mirai-console-loader，mirai-console官方启动器mirai - mirai 是一个在全平台下运行，提供 QQ Android 协议支持的高效率机器人库，根据AGPLv3开源 资料列表以下为一些官方资料mirai官方github库mirai-console官方github库mirai-con">
-<meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://ikuyo.dev/images/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B.md-0.png">
-<meta property="og:image" content="https://ikuyo.dev/images/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B.md-1.png">
-<meta property="og:image" content="https://ikuyo.dev/images/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B.md-2.png">
-<meta property="og:image" content="https://ikuyo.dev/images/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B.md-3.png">
-<meta property="og:image" content="https://ikuyo.dev/images/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B.md-4.png">
-<meta property="article:published_time" content="2020-12-28T16:35:14.000Z">
-<meta property="article:modified_time" content="2024-02-09T23:10:53.497Z">
-<meta property="article:author" content="Eritque arcus">
-<meta property="article:tag" content="Kotlin">
-<meta property="article:tag" content="Java">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://ikuyo.dev/images/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B.md-0.png">
+<html lang="en" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Eritque arcus" />
+  <!-- Open Graph Description 简短摘要-->
+  
+  <!-- 用于搜索引擎的文章摘要 -->
+  
+  <meta name="description" content="Eritque arcus&#39;s blog" />
+  
+  
+  
+  <title>
     
-    
-      
-        
-          <link rel="shortcut icon" href="/images/avatar.png">
-        
+      用kotlin/java构建一个Mirai插件 
       
       
-        
-          <link rel="icon" type="image/png" href="/images/avatar.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png">
-        
-      
+      |
     
-    <!-- title -->
-    <title>用kotlin/java构建一个Mirai插件</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
+     Eritque arcus&#39;s blog
+  </title>
 
-
-    <!-- Umami Analytics -->
-
-    <script async defer
-            data-website-id="03f1081f-d820-47e8-84c9-245f9093244c"
-            src="https://4-um4m1.ikuyo.dev/script.js">
-    </script>
-
-
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <!-- persian styles -->
-    
-    <!-- rss -->
-    
-    
-      <link rel="alternate" href="/true" title="Eritque arcus&#39;s blog" type="application/atom+xml" />
-    
-	<!-- mathjax -->
-	
-<meta name="generator" content="Hexo 7.0.0-rc2"></head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://github.com/Nambers">Projects</a></li><!--
-     --><!--
-       --><li><a href="/files/">Files</a></li><!--
-     --><!--
-       --><li><a href="/ctf-cheatsheet/">CTF-cheatsheet</a></li><!--
-     --><!--
-       --><li><a href="/link/">Links</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.travellings.cn/go.html">Travelling</a></li><!--
-     -->
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" aria-label="Previous post" href="/2021/01/11/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="Next post" href="/2020/12/13/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.facebook.com/sharer.php?u=https://ikuyo.dev/2020/12/28/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://twitter.com/share?url=https://ikuyo.dev/2020/12/28/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B/&text=用kotlin/java构建一个Mirai插件"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.linkedin.com/shareArticle?url=https://ikuyo.dev/2020/12/28/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B/&title=用kotlin/java构建一个Mirai插件"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://pinterest.com/pin/create/bookmarklet/?url=https://ikuyo.dev/2020/12/28/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B/&is_video=false&description=用kotlin/java构建一个Mirai插件"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=用kotlin/java构建一个Mirai插件&body=Check out this article: https://ikuyo.dev/2020/12/28/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B/" rel="external nofollow noreferrer"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://getpocket.com/save?url=https://ikuyo.dev/2020/12/28/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B/&title=用kotlin/java构建一个Mirai插件"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://reddit.com/submit?url=https://ikuyo.dev/2020/12/28/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B/&title=用kotlin/java构建一个Mirai插件"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.stumbleupon.com/submit?url=https://ikuyo.dev/2020/12/28/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B/&title=用kotlin/java构建一个Mirai插件"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://digg.com/submit?url=https://ikuyo.dev/2020/12/28/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B/&title=用kotlin/java构建一个Mirai插件"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.tumblr.com/share/link?url=https://ikuyo.dev/2020/12/28/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B/&name=用kotlin/java构建一个Mirai插件&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://news.ycombinator.com/submitlink?u=https://ikuyo.dev/2020/12/28/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B/&t=用kotlin/java构建一个Mirai插件"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%84%E6%96%99%E5%88%97%E8%A1%A8"><span class="toc-number">1.1.</span> <span class="toc-text">资料列表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E8%83%BD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">可能遇到的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%87%86%E5%A4%87"><span class="toc-number">3.</span> <span class="toc-text">1.准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#i-%E9%85%8D%E7%BD%AEjava%E7%8E%AF%E5%A2%83"><span class="toc-number">3.1.</span> <span class="toc-text">i. 配置java环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ii-%E9%85%8D%E7%BD%AEIDE"><span class="toc-number">3.2.</span> <span class="toc-text">ii. 配置IDE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iii-%E4%B8%8B%E8%BD%BDmirai-console-loader-mcl-%E4%BD%9C%E4%B8%BA%E5%90%AF%E5%8A%A8%E5%99%A8"><span class="toc-number">3.3.</span> <span class="toc-text">iii. 下载mirai-console-loader(mcl)作为启动器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%90%AF%E5%8A%A8%E5%99%A8"><span class="toc-number">3.3.1.</span> <span class="toc-text">其他启动器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%88%9B%E5%BB%BAmirai-console%E6%8F%92%E4%BB%B6%E9%A1%B9%E7%9B%AE"><span class="toc-number">4.</span> <span class="toc-text">2.创建mirai-console插件项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#i-%E4%B8%8B%E8%BD%BD"><span class="toc-number">4.1.</span> <span class="toc-text">i. 下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ii-%E4%B8%AA%E6%80%A7%E5%8C%96%E9%A1%B9%E7%9B%AE"><span class="toc-number">4.2.</span> <span class="toc-text">ii. 个性化项目</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%96%87%E4%BB%B6%E5%A4%B9%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90"><span class="toc-number">5.</span> <span class="toc-text">3. 文件夹结构解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-kotlin%E6%8F%92%E4%BB%B6%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="toc-number">6.</span> <span class="toc-text">4.kotlin插件代码解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#i-%E6%89%80%E6%9C%89%E5%9C%A8%E4%BB%A5%E4%B8%8B%E4%BB%A3%E7%A0%81%E4%B8%AD%E8%A6%81%E5%BC%95%E5%85%A5%E7%9A%84%E5%BA%93"><span class="toc-number">6.1.</span> <span class="toc-text">i.所有在以下代码中要引入的库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ii-%E6%9E%84%E5%BB%BA%E4%B8%BB%E7%B1%BB"><span class="toc-number">6.2.</span> <span class="toc-text">ii.构建主类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iii-%E8%A6%86%E7%9B%96%E6%8F%92%E4%BB%B6%E5%90%AF%E7%94%A8%E5%87%BD%E6%95%B0"><span class="toc-number">6.3.</span> <span class="toc-text">iii.覆盖插件启用函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iv-%E7%9B%91%E5%90%AC%E4%BA%8B%E4%BB%B6"><span class="toc-number">6.4.</span> <span class="toc-text">iv.监听事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-%E5%85%A8%E9%83%A8%E4%BB%A3%E7%A0%81"><span class="toc-number">6.5.</span> <span class="toc-text">v. 全部代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vi-gradle%E9%83%A8%E5%88%86%E4%BB%A3%E7%A0%81"><span class="toc-number">6.6.</span> <span class="toc-text">vi. gradle部分代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Java%E6%8F%92%E4%BB%B6%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="toc-number">7.</span> <span class="toc-text">5. Java插件代码解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#i-%E5%9C%A8%E4%B8%8B%E9%9D%A2%E4%BB%A3%E7%A0%81%E4%B8%AD%E8%A6%81%E5%BC%95%E5%85%A5%E7%9A%84%E5%BA%93"><span class="toc-number">7.1.</span> <span class="toc-text">i. 在下面代码中要引入的库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ii-%E6%9E%84%E5%BB%BA%E4%B8%BB%E7%B1%BB-1"><span class="toc-number">7.2.</span> <span class="toc-text">ii. 构建主类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iii-%E8%A6%86%E7%9B%96%E6%8F%92%E4%BB%B6%E5%90%AF%E7%94%A8%E5%87%BD%E6%95%B0-1"><span class="toc-number">7.3.</span> <span class="toc-text">iii. 覆盖插件启用函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iv-%E7%9B%91%E5%90%AC%E4%BA%8B%E4%BB%B6-1"><span class="toc-number">7.4.</span> <span class="toc-text">iv. 监听事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-%E5%85%A8%E9%83%A8%E4%BB%A3%E7%A0%81-1"><span class="toc-number">7.5.</span> <span class="toc-text">v. 全部代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vi-gradle-%E9%83%A8%E5%88%86%E4%BB%A3%E7%A0%81"><span class="toc-number">7.6.</span> <span class="toc-text">vi. gradle 部分代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E5%9C%A8IDE%E5%86%85%E8%BF%90%E8%A1%8C"><span class="toc-number">8.</span> <span class="toc-text">6. 在IDE内运行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#i-%E6%9B%B4%E6%94%B9MiraiRunKt%E9%85%8D%E7%BD%AE"><span class="toc-number">8.1.</span> <span class="toc-text">i. 更改MiraiRunKt配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ii-%E8%BF%90%E8%A1%8CMiraiRunKt%E4%BB%BB%E5%8A%A1"><span class="toc-number">8.2.</span> <span class="toc-text">ii.运行MiraiRunKt任务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E7%94%9F%E6%88%90%E6%8F%92%E4%BB%B6%E5%B9%B6%E8%BF%90%E8%A1%8C"><span class="toc-number">9.</span> <span class="toc-text">7. 生成插件并运行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#i-%E7%94%9F%E6%88%90%E6%8F%92%E4%BB%B6"><span class="toc-number">9.1.</span> <span class="toc-text">i. 生成插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ii-%E5%9C%A8mcl%E4%B8%AD%E8%BF%90%E8%A1%8C"><span class="toc-number">9.2.</span> <span class="toc-text">ii.在mcl中运行</span></a></li></ol></li></ol>
-      </div>
-    
-  </span>
-</div>
-
-    
-    <div class="content index py4 ">
-        
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        用kotlin/java构建一个Mirai插件
-    </h1>
-
-
-
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">Eritque arcus</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2020-12-28T16:35:14.000Z" class="dt-published" itemprop="datePublished">2020-12-28</time>
-        
-        (Updated: <time datetime="2024-02-09T23:10:53.497Z" class="dt-updated" itemprop="dateModified">2024-02-09</time>)
-        
-      
-    </div>
-
-
-      
-    <div class="article-category">
-        <i class="fa-solid fa-archive"></i>
-        <a class="category-link" href="/categories/Mirai/">Mirai</a>
-    </div>
-
-
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/Java/" rel="tag">Java</a>, <a class="p-category" href="/tags/Kotlin/" rel="tag">Kotlin</a>
-    </div>
-
-
-    </div>
-  </header>
+  
+    <link rel="apple-touch-icon" href="/images/avatar.png">
+    <link rel="icon" href="/images/avatar.png">
   
 
-  <div class="content e-content" itemprop="articleBody">
-    <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>构建mirai的mirai-console插件教程<br>用到的概念有<br><code>mcl</code> - 指mirai-console-loader，mirai-console官方启动器<br><code>mirai</code> - mirai 是一个在全平台下运行，提供 QQ Android 协议支持的高效率机器人库，根据<code>AGPLv3</code>开源</p>
+  <!-- Raleway-Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Eritque arcus</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/link/">
+          <a href="/link/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+        <li class="nav-item" data-path="/ctf-cheatsheet/">
+          <a href="/ctf-cheatsheet/">CTF-cheatsheet</a>
+        </li>
+      
+        <li class="nav-item" data-path="/files/">
+          <a href="/files/">Files</a>
+        </li>
+      
+        <li class="nav-item" data-path="https://www.travellings.cn/go.html">
+          <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.travellings.cn/go.html">Travelling</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">用kotlin/java构建一个Mirai插件</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+          2024-02-21 22:03:13
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/Kotlin/" title="Kotlin">
+                    #Kotlin
+                  </a>
+                </span>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/Java/" title="Java">
+                    #Java
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>构建mirai的mirai-console插件教程<br>用到的概念有<br><code>mcl</code> - 指mirai-console-loader，mirai-console官方启动器<br><code>mirai</code> - mirai 是一个在全平台下运行，提供 QQ Android 协议支持的高效率机器人库，根据<code>AGPLv3</code>开源</p>
 <h3 id="资料列表"><a href="#资料列表" class="headerlink" title="资料列表"></a>资料列表</h3><p>以下为一些官方资料<br><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mamoe/mirai">mirai官方github库</a><br><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mamoe/mirai-console">mirai-console官方github库</a><br><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/iTXTech/mirai-console-loader">mirai-console-loader(mcl)官方启动器官方github库</a><br>这三者的关系可以参考<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mamoe/mirai/blob/dev/docs/mirai-ecology.md">这里</a><br><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/project-mirai/mirai-hello-world">官方实例</a><br><a target="_blank" rel="noopener external nofollow noreferrer" href="https://mirai.mamoe.net/">mirai官方论坛</a><br><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/project-mirai/mirai-console-plugin-template">官方demo</a><br><a target="_blank" rel="noopener external nofollow noreferrer" href="https://docs.mamoe.net/">mirai在线api文档</a></p>
 <p>另，以下是一些资源:<br><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/mirai_plugin_example">笔者整理的mirai-console插件实例包含kt和java)</a></p>
 <h2 id="可能遇到的问题"><a href="#可能遇到的问题" class="headerlink" title="可能遇到的问题"></a>可能遇到的问题</h2><ul>
@@ -223,13 +214,13 @@
 <li>最好修改<code>PluginMain.kt</code>或<code>JavaPluginMain.java</code>的包名避免插件载入冲突,然后在<code>resources\META-INF\services\net.mamoe.mirai.console.plugin.jvm.JvmPlugin</code>中更改类包名到你改后的名，路径见下面</li>
 </ul>
 <h2 id="3-文件夹结构解析"><a href="#3-文件夹结构解析" class="headerlink" title="3. 文件夹结构解析"></a>3. 文件夹结构解析</h2><p>插件实例代码文件结构</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">│  build.gradle.kts gradle依赖列表</span><br><span class="line">│  settings.gradle.kts gradle设置</span><br><span class="line">│</span><br><span class="line">├─.run</span><br><span class="line">│      RunMiraiKt.run.xml IDE中运行任务配置，即RunMiraiKt源文件</span><br><span class="line">│</span><br><span class="line">├─run RunMiraiKt默认运行目录</span><br><span class="line">│</span><br><span class="line">└─src</span><br><span class="line">    ├─main</span><br><span class="line">    │  ├─kotlin</span><br><span class="line">    │  │      PluginMain.kt  kotlin插件主类</span><br><span class="line">    │  ├─Java</span><br><span class="line">    │  │      JavaPluginMain.java java插件主类</span><br><span class="line">	│  │ </span><br><span class="line">	│  ├─resources\META-INF\services</span><br><span class="line">	│  │ 	  net.mamoe.mirai.console.plugin.jvm.JvmPlugin Mirai加载的主类</span><br><span class="line">    └─test</span><br><span class="line">        └─kotlin</span><br><span class="line">                RunMirai.kt RunMiraiKt任务配置</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">│  build.gradle.kts gradle依赖列表</span><br><span class="line">│  settings.gradle.kts gradle设置</span><br><span class="line">│</span><br><span class="line">├─.run</span><br><span class="line">│      RunMiraiKt.run.xml IDE中运行任务配置，即RunMiraiKt源文件</span><br><span class="line">│</span><br><span class="line">├─run RunMiraiKt默认运行目录</span><br><span class="line">│</span><br><span class="line">└─src</span><br><span class="line">    ├─main</span><br><span class="line">    │  ├─kotlin</span><br><span class="line">    │  │      PluginMain.kt  kotlin插件主类</span><br><span class="line">    │  ├─Java</span><br><span class="line">    │  │      JavaPluginMain.java java插件主类</span><br><span class="line">   │  │ </span><br><span class="line">   │  ├─resources\META-INF\services</span><br><span class="line">   │  │ 	  net.mamoe.mirai.console.plugin.jvm.JvmPlugin Mirai加载的主类</span><br><span class="line">    └─test</span><br><span class="line">        └─kotlin</span><br><span class="line">                RunMirai.kt RunMiraiKt任务配置</span><br></pre></td></tr></table></figure>
 <h2 id="4-kotlin插件代码解析"><a href="#4-kotlin插件代码解析" class="headerlink" title="4.kotlin插件代码解析"></a>4.kotlin插件代码解析</h2><p><strong>代码以github上的代码为准，可能会有更新</strong></p>
 <h3 id="i-所有在以下代码中要引入的库"><a href="#i-所有在以下代码中要引入的库" class="headerlink" title="i.所有在以下代码中要引入的库"></a>i.所有在以下代码中要引入的库</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//插件信息</span></span><br><span class="line"><span class="keyword">import</span> net.mamoe.mirai.console.plugin.jvm.JvmPluginDescription</span><br><span class="line"><span class="comment">//主类继承</span></span><br><span class="line"><span class="keyword">import</span> net.mamoe.mirai.console.plugin.jvm.KotlinPlugin</span><br><span class="line"><span class="comment">//机器人被拉进群的事件</span></span><br><span class="line"><span class="keyword">import</span> net.mamoe.mirai.event.events.BotInvitedJoinGroupRequestEvent</span><br><span class="line"><span class="comment">//收到好友信息事件</span></span><br><span class="line"><span class="keyword">import</span> net.mamoe.mirai.event.events.FriendMessageEvent</span><br><span class="line"><span class="comment">//收到群消息事件</span></span><br><span class="line"><span class="keyword">import</span> net.mamoe.mirai.event.events.GroupMessageEvent</span><br><span class="line"><span class="comment">//新好友申请事件</span></span><br><span class="line"><span class="keyword">import</span> net.mamoe.mirai.event.events.NewFriendRequestEvent</span><br><span class="line"><span class="comment">//日志组件(logger)发控制台信息函数</span></span><br><span class="line"><span class="keyword">import</span> net.mamoe.mirai.utils.info</span><br><span class="line"><span class="comment">//消息(messageChain)中的图片类型</span></span><br><span class="line"><span class="keyword">import</span> net.mamoe.mirai.message.<span class="keyword">data</span>.Image</span><br><span class="line"><span class="comment">//消息(messageChain)中的纯文本类型</span></span><br><span class="line"><span class="keyword">import</span> net.mamoe.mirai.message.<span class="keyword">data</span>.PlainText</span><br><span class="line"><span class="comment">//监听器</span></span><br><span class="line"><span class="keyword">import</span> net.mamoe.mirai.event.Listener</span><br><span class="line"><span class="comment">//监听范围</span></span><br><span class="line"><span class="keyword">import</span> net.mamoe.mirai.event.globalEventChannel</span><br><span class="line"><span class="comment">//协程范围?</span></span><br><span class="line"><span class="keyword">import</span> kotlin.coroutines.EmptyCoroutineContext</span><br></pre></td></tr></table></figure>
 <p>监听和事件参考<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/mamoe/mirai/blob/dev/docs/Events.md">官方文档</a></p>
 <h3 id="ii-构建主类"><a href="#ii-构建主类" class="headerlink" title="ii.构建主类"></a>ii.构建主类</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">object</span> PluginMain : KotlinPlugin(</span><br><span class="line">    JvmPluginDescription(</span><br><span class="line">        id = <span class="string">&quot;org.example.mirai-example&quot;</span>,</span><br><span class="line">        version = <span class="string">&quot;0.1.0&quot;</span></span><br><span class="line">    )</span><br><span class="line">) &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>其中，<code>kotlinPlugin</code>指继承plugin父类，<code>JvmPluginDescription</code>指声明插件消息和版本</p>
-<h3 id="iii-覆盖插件启用函数"><a href="#iii-覆盖插件启用函数" class="headerlink" title="iii.覆盖插件启用函数"></a>iii.覆盖插件启用函数</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onEnable</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">//或logger.info(&quot;xxx&quot;)作用一样</span></span><br><span class="line">	logger.info &#123; <span class="string">&quot;Plugin loaded&quot;</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="iii-覆盖插件启用函数"><a href="#iii-覆盖插件启用函数" class="headerlink" title="iii.覆盖插件启用函数"></a>iii.覆盖插件启用函数</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onEnable</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">//或logger.info(&quot;xxx&quot;)作用一样</span></span><br><span class="line">   logger.info &#123; <span class="string">&quot;Plugin loaded&quot;</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>用kotlin关键字<code>override</code>实现插件启用函数，然后用<code>logger.info()</code>进行日志输出，其中<code>logger</code>是<code>kotlinPlugin</code>类内成员，除了<code>.info()</code>还有<code>.warning()</code>输出警告和<code>.error()</code>输出报错</p>
 <h3 id="iv-监听事件"><a href="#iv-监听事件" class="headerlink" title="iv.监听事件"></a>iv.监听事件</h3><p>用<code> subscribeAlways&lt;&gt;&#123;&#125;</code>这个函数在<code>onEnable</code>函数中开启监听(还可以<code>subscribe</code>或<code>subscribeOnce</code>见mirai文档)</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">globalEventChannel().subscribeAlways&lt;GroupMessageEvent&gt;&#123;</span><br><span class="line">          <span class="comment">//群消息</span></span><br><span class="line">          <span class="keyword">if</span> (message.contentToString().startsWith(<span class="string">&quot;复读&quot;</span>)) &#123;</span><br><span class="line">              group.sendMessage(message.contentToString().replace(<span class="string">&quot;复读&quot;</span>, <span class="string">&quot;&quot;</span>))</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">if</span> (message.contentToString() == <span class="string">&quot;hi&quot;</span>) &#123;</span><br><span class="line">              group.sendMessage(<span class="string">&quot;hi&quot;</span>)</span><br><span class="line">          &#125;</span><br><span class="line">          message.forEach &#123;</span><br><span class="line">              <span class="comment">//循环每个元素在消息里</span></span><br><span class="line">              <span class="keyword">if</span> (it <span class="keyword">is</span> Image) &#123;</span><br><span class="line">                  <span class="comment">//如果消息这一部分是图片</span></span><br><span class="line">              &#125;</span><br><span class="line">              <span class="keyword">if</span> (it <span class="keyword">is</span> PlainText) &#123;</span><br><span class="line">                  <span class="comment">//如果消息这一部分是纯文本</span></span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      globalEventChannel().subscribeAlways&lt;FriendMessageEvent&gt;&#123;</span><br><span class="line">          <span class="comment">//好友信息</span></span><br><span class="line">      &#125;</span><br><span class="line">      globalEventChannel().subscribeAlways&lt;NewFriendRequestEvent&gt;&#123;</span><br><span class="line">          <span class="comment">//自动同意好友申请</span></span><br><span class="line">          accept()</span><br><span class="line">      &#125;</span><br><span class="line">      globalEventChannel().subscribeAlways&lt;BotInvitedJoinGroupRequestEvent&gt;&#123;</span><br><span class="line">          <span class="comment">//自动同意加群申请</span></span><br><span class="line">          accept()</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
@@ -255,160 +246,168 @@
 </blockquote>
 <center>-END-</center>
 
-  </div>
-</article>
-
-
-
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">Home</a></li>
-        
-          <li><a href="/archives/">Writing</a></li>
-        
-          <li><a href="/about/">About</a></li>
-        
-          <li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://github.com/Nambers">Projects</a></li>
-        
-          <li><a href="/files/">Files</a></li>
-        
-          <li><a href="/ctf-cheatsheet/">CTF-cheatsheet</a></li>
-        
-          <li><a href="/link/">Links</a></li>
-        
-          <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.travellings.cn/go.html">Travelling</a></li>
-        
-      </ul>
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2020/12/13/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+              2024-02-21 22:03:13
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/Kotlin/" title="Kotlin">
+                        #Kotlin
+                      </a>
+                    </span>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/Java/" title="Java">
+                        #Java
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2021/01/11/%E7%94%A8python%E5%81%9Ayoutube%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8B%E8%BD%BD%E5%99%A8/" target="_self">
+                <span>Next</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
     </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%84%E6%96%99%E5%88%97%E8%A1%A8"><span class="toc-text">资料列表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E8%83%BD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">可能遇到的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%87%86%E5%A4%87"><span class="toc-text">1.准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#i-%E9%85%8D%E7%BD%AEjava%E7%8E%AF%E5%A2%83"><span class="toc-text">i. 配置java环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ii-%E9%85%8D%E7%BD%AEIDE"><span class="toc-text">ii. 配置IDE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iii-%E4%B8%8B%E8%BD%BDmirai-console-loader-mcl-%E4%BD%9C%E4%B8%BA%E5%90%AF%E5%8A%A8%E5%99%A8"><span class="toc-text">iii. 下载mirai-console-loader(mcl)作为启动器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%90%AF%E5%8A%A8%E5%99%A8"><span class="toc-text">其他启动器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%88%9B%E5%BB%BAmirai-console%E6%8F%92%E4%BB%B6%E9%A1%B9%E7%9B%AE"><span class="toc-text">2.创建mirai-console插件项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#i-%E4%B8%8B%E8%BD%BD"><span class="toc-text">i. 下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ii-%E4%B8%AA%E6%80%A7%E5%8C%96%E9%A1%B9%E7%9B%AE"><span class="toc-text">ii. 个性化项目</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%96%87%E4%BB%B6%E5%A4%B9%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90"><span class="toc-text">3. 文件夹结构解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-kotlin%E6%8F%92%E4%BB%B6%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="toc-text">4.kotlin插件代码解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#i-%E6%89%80%E6%9C%89%E5%9C%A8%E4%BB%A5%E4%B8%8B%E4%BB%A3%E7%A0%81%E4%B8%AD%E8%A6%81%E5%BC%95%E5%85%A5%E7%9A%84%E5%BA%93"><span class="toc-text">i.所有在以下代码中要引入的库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ii-%E6%9E%84%E5%BB%BA%E4%B8%BB%E7%B1%BB"><span class="toc-text">ii.构建主类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iii-%E8%A6%86%E7%9B%96%E6%8F%92%E4%BB%B6%E5%90%AF%E7%94%A8%E5%87%BD%E6%95%B0"><span class="toc-text">iii.覆盖插件启用函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iv-%E7%9B%91%E5%90%AC%E4%BA%8B%E4%BB%B6"><span class="toc-text">iv.监听事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-%E5%85%A8%E9%83%A8%E4%BB%A3%E7%A0%81"><span class="toc-text">v. 全部代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vi-gradle%E9%83%A8%E5%88%86%E4%BB%A3%E7%A0%81"><span class="toc-text">vi. gradle部分代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Java%E6%8F%92%E4%BB%B6%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="toc-text">5. Java插件代码解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#i-%E5%9C%A8%E4%B8%8B%E9%9D%A2%E4%BB%A3%E7%A0%81%E4%B8%AD%E8%A6%81%E5%BC%95%E5%85%A5%E7%9A%84%E5%BA%93"><span class="toc-text">i. 在下面代码中要引入的库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ii-%E6%9E%84%E5%BB%BA%E4%B8%BB%E7%B1%BB-1"><span class="toc-text">ii. 构建主类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iii-%E8%A6%86%E7%9B%96%E6%8F%92%E4%BB%B6%E5%90%AF%E7%94%A8%E5%87%BD%E6%95%B0-1"><span class="toc-text">iii. 覆盖插件启用函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iv-%E7%9B%91%E5%90%AC%E4%BA%8B%E4%BB%B6-1"><span class="toc-text">iv. 监听事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-%E5%85%A8%E9%83%A8%E4%BB%A3%E7%A0%81-1"><span class="toc-text">v. 全部代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vi-gradle-%E9%83%A8%E5%88%86%E4%BB%A3%E7%A0%81"><span class="toc-text">vi. gradle 部分代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E5%9C%A8IDE%E5%86%85%E8%BF%90%E8%A1%8C"><span class="toc-text">6. 在IDE内运行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#i-%E6%9B%B4%E6%94%B9MiraiRunKt%E9%85%8D%E7%BD%AE"><span class="toc-text">i. 更改MiraiRunKt配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ii-%E8%BF%90%E8%A1%8CMiraiRunKt%E4%BB%BB%E5%8A%A1"><span class="toc-text">ii.运行MiraiRunKt任务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E7%94%9F%E6%88%90%E6%8F%92%E4%BB%B6%E5%B9%B6%E8%BF%90%E8%A1%8C"><span class="toc-text">7. 生成插件并运行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#i-%E7%94%9F%E6%88%90%E6%8F%92%E4%BB%B6"><span class="toc-text">i. 生成插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ii-%E5%9C%A8mcl%E4%B8%AD%E8%BF%90%E8%A1%8C"><span class="toc-text">ii.在mcl中运行</span></a></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
 
     
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          
+              <a title="github" target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers">
+                <i class="fa-brands fa-github fa-lg"></i>
+              </a>
+              
+        </li>
+        
+        <li>
+          
+            <a title="email" href="mailto:eritque-arcus@ikuyo.dev">
+              <i class="fa-solid fa-envelope fa-lg"></i>
+            </a>
+            
+        </li>
+        
+    </ul>
+  </div>
+  
     
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%84%E6%96%99%E5%88%97%E8%A1%A8"><span class="toc-number">1.1.</span> <span class="toc-text">资料列表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E8%83%BD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">可能遇到的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%87%86%E5%A4%87"><span class="toc-number">3.</span> <span class="toc-text">1.准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#i-%E9%85%8D%E7%BD%AEjava%E7%8E%AF%E5%A2%83"><span class="toc-number">3.1.</span> <span class="toc-text">i. 配置java环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ii-%E9%85%8D%E7%BD%AEIDE"><span class="toc-number">3.2.</span> <span class="toc-text">ii. 配置IDE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iii-%E4%B8%8B%E8%BD%BDmirai-console-loader-mcl-%E4%BD%9C%E4%B8%BA%E5%90%AF%E5%8A%A8%E5%99%A8"><span class="toc-number">3.3.</span> <span class="toc-text">iii. 下载mirai-console-loader(mcl)作为启动器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%90%AF%E5%8A%A8%E5%99%A8"><span class="toc-number">3.3.1.</span> <span class="toc-text">其他启动器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%88%9B%E5%BB%BAmirai-console%E6%8F%92%E4%BB%B6%E9%A1%B9%E7%9B%AE"><span class="toc-number">4.</span> <span class="toc-text">2.创建mirai-console插件项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#i-%E4%B8%8B%E8%BD%BD"><span class="toc-number">4.1.</span> <span class="toc-text">i. 下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ii-%E4%B8%AA%E6%80%A7%E5%8C%96%E9%A1%B9%E7%9B%AE"><span class="toc-number">4.2.</span> <span class="toc-text">ii. 个性化项目</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%96%87%E4%BB%B6%E5%A4%B9%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90"><span class="toc-number">5.</span> <span class="toc-text">3. 文件夹结构解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-kotlin%E6%8F%92%E4%BB%B6%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="toc-number">6.</span> <span class="toc-text">4.kotlin插件代码解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#i-%E6%89%80%E6%9C%89%E5%9C%A8%E4%BB%A5%E4%B8%8B%E4%BB%A3%E7%A0%81%E4%B8%AD%E8%A6%81%E5%BC%95%E5%85%A5%E7%9A%84%E5%BA%93"><span class="toc-number">6.1.</span> <span class="toc-text">i.所有在以下代码中要引入的库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ii-%E6%9E%84%E5%BB%BA%E4%B8%BB%E7%B1%BB"><span class="toc-number">6.2.</span> <span class="toc-text">ii.构建主类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iii-%E8%A6%86%E7%9B%96%E6%8F%92%E4%BB%B6%E5%90%AF%E7%94%A8%E5%87%BD%E6%95%B0"><span class="toc-number">6.3.</span> <span class="toc-text">iii.覆盖插件启用函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iv-%E7%9B%91%E5%90%AC%E4%BA%8B%E4%BB%B6"><span class="toc-number">6.4.</span> <span class="toc-text">iv.监听事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-%E5%85%A8%E9%83%A8%E4%BB%A3%E7%A0%81"><span class="toc-number">6.5.</span> <span class="toc-text">v. 全部代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vi-gradle%E9%83%A8%E5%88%86%E4%BB%A3%E7%A0%81"><span class="toc-number">6.6.</span> <span class="toc-text">vi. gradle部分代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Java%E6%8F%92%E4%BB%B6%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="toc-number">7.</span> <span class="toc-text">5. Java插件代码解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#i-%E5%9C%A8%E4%B8%8B%E9%9D%A2%E4%BB%A3%E7%A0%81%E4%B8%AD%E8%A6%81%E5%BC%95%E5%85%A5%E7%9A%84%E5%BA%93"><span class="toc-number">7.1.</span> <span class="toc-text">i. 在下面代码中要引入的库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ii-%E6%9E%84%E5%BB%BA%E4%B8%BB%E7%B1%BB-1"><span class="toc-number">7.2.</span> <span class="toc-text">ii. 构建主类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iii-%E8%A6%86%E7%9B%96%E6%8F%92%E4%BB%B6%E5%90%AF%E7%94%A8%E5%87%BD%E6%95%B0-1"><span class="toc-number">7.3.</span> <span class="toc-text">iii. 覆盖插件启用函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iv-%E7%9B%91%E5%90%AC%E4%BA%8B%E4%BB%B6-1"><span class="toc-number">7.4.</span> <span class="toc-text">iv. 监听事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-%E5%85%A8%E9%83%A8%E4%BB%A3%E7%A0%81-1"><span class="toc-number">7.5.</span> <span class="toc-text">v. 全部代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vi-gradle-%E9%83%A8%E5%88%86%E4%BB%A3%E7%A0%81"><span class="toc-number">7.6.</span> <span class="toc-text">vi. gradle 部分代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E5%9C%A8IDE%E5%86%85%E8%BF%90%E8%A1%8C"><span class="toc-number">8.</span> <span class="toc-text">6. 在IDE内运行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#i-%E6%9B%B4%E6%94%B9MiraiRunKt%E9%85%8D%E7%BD%AE"><span class="toc-number">8.1.</span> <span class="toc-text">i. 更改MiraiRunKt配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ii-%E8%BF%90%E8%A1%8CMiraiRunKt%E4%BB%BB%E5%8A%A1"><span class="toc-number">8.2.</span> <span class="toc-text">ii.运行MiraiRunKt任务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E7%94%9F%E6%88%90%E6%8F%92%E4%BB%B6%E5%B9%B6%E8%BF%90%E8%A1%8C"><span class="toc-number">9.</span> <span class="toc-text">7. 生成插件并运行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#i-%E7%94%9F%E6%88%90%E6%8F%92%E4%BB%B6"><span class="toc-number">9.1.</span> <span class="toc-text">i. 生成插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ii-%E5%9C%A8mcl%E4%B8%AD%E8%BF%90%E8%A1%8C"><span class="toc-number">9.2.</span> <span class="toc-text">ii.在mcl中运行</span></a></li></ol></li></ol>
+    
+      <div class="footer-more">
+          
+            <a href="https://github.com/Nambers" rel="external nofollow noreferrer" target="_blank">Copyright ©2020-2024 Eritque Arcus</a>
+           
       </div>
     
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.facebook.com/sharer.php?u=https://ikuyo.dev/2020/12/28/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://twitter.com/share?url=https://ikuyo.dev/2020/12/28/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B/&text=用kotlin/java构建一个Mirai插件"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.linkedin.com/shareArticle?url=https://ikuyo.dev/2020/12/28/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B/&title=用kotlin/java构建一个Mirai插件"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://pinterest.com/pin/create/bookmarklet/?url=https://ikuyo.dev/2020/12/28/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B/&is_video=false&description=用kotlin/java构建一个Mirai插件"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=用kotlin/java构建一个Mirai插件&body=Check out this article: https://ikuyo.dev/2020/12/28/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B/" rel="external nofollow noreferrer"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://getpocket.com/save?url=https://ikuyo.dev/2020/12/28/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B/&title=用kotlin/java构建一个Mirai插件"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://reddit.com/submit?url=https://ikuyo.dev/2020/12/28/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B/&title=用kotlin/java构建一个Mirai插件"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.stumbleupon.com/submit?url=https://ikuyo.dev/2020/12/28/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B/&title=用kotlin/java构建一个Mirai插件"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://digg.com/submit?url=https://ikuyo.dev/2020/12/28/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B/&title=用kotlin/java构建一个Mirai插件"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.tumblr.com/share/link?url=https://ikuyo.dev/2020/12/28/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B/&name=用kotlin/java构建一个Mirai插件&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://news.ycombinator.com/submitlink?u=https://ikuyo.dev/2020/12/28/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B/&t=用kotlin/java构建一个Mirai插件"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
+  
+    
+    
+      <div class="footer-more">
+          
+            <a href="https://github.com/zchengsite/hexo-theme-oranges" rel="external nofollow noreferrer" target="_blank">Theme by Oranges | Powered by Hexo</a>
+           
+      </div>
+    
+  
+    
+    
+      <div class="footer-more">
+          
+            <a href="https://icp.gov.moe/?keyword=20222242" target="_blank">萌ICP备20222242号</a>
+           
+      </div>
+    
+  
+    
+    
+      <script async src="https://4-um4m1.ikuyo.dev/script.js" data-website-id="03f1081f-d820-47e8-84c9-245f9093244c"></script>
+    
+  
+  
 </div>
 
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)" rel="external nofollow noreferrer">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
         
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2020-2024
-    Eritque arcus
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://github.com/Nambers">Projects</a></li><!--
-     --><!--
-       --><li><a href="/files/">Files</a></li><!--
-     --><!--
-       --><li><a href="/ctf-cheatsheet/">CTF-cheatsheet</a></li><!--
-     --><!--
-       --><li><a href="/link/">Links</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.travellings.cn/go.html">Travelling</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-  <a href="https://icp.gov.moe/?keyword=20222242" target="_blank">萌ICP备20222242号</a>
-</footer>
 
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)" rel="external nofollow noreferrer">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+
+      </div>
     </div>
-    <!-- styles -->
-
-
-
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
-
-
-
-
-<!-- clipboard -->
-
-  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
-<script src="/js/main.js"></script>
-
-<!-- search -->
-
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-</body>
+  </body>
 </html>

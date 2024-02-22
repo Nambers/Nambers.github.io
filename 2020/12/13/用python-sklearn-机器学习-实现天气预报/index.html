@@ -1,197 +1,186 @@
 <!DOCTYPE html>
-<html lang=en>
-<head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="项目地址github项目:PYWeatherReport 系列教程 本文章为以下几篇的合集机器学习参考篇: python+sklearn+kaggle机器学习用python+sklearn(机器学习)实现天气预报 准备用python+sklearn(机器学习)实现天气预报数据 数据 用python+sklearn(机器学习)实现天气预报 模型和使用  0.流程介绍爬虫爬取去年今日的半个月前到去年今">
-<meta property="og:type" content="article">
-<meta property="og:title" content="用python+sklearn(机器学习)实现天气预测">
-<meta property="og:url" content="https://ikuyo.dev/2020/12/13/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/index.html">
-<meta property="og:site_name" content="Eritque arcus&#39;s blog">
-<meta property="og:description" content="项目地址github项目:PYWeatherReport 系列教程 本文章为以下几篇的合集机器学习参考篇: python+sklearn+kaggle机器学习用python+sklearn(机器学习)实现天气预报 准备用python+sklearn(机器学习)实现天气预报数据 数据 用python+sklearn(机器学习)实现天气预报 模型和使用  0.流程介绍爬虫爬取去年今日的半个月前到去年今">
-<meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://ikuyo.dev/images/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5.md-0.png">
-<meta property="og:image" content="https://ikuyo.dev/images/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5.md-1.png">
-<meta property="og:image" content="https://ikuyo.dev/images/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5.md-2.png">
-<meta property="og:image" content="https://ikuyo.dev/images/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5.md-3.png">
-<meta property="og:image" content="https://ikuyo.dev/images/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5.md-4.png">
-<meta property="og:image" content="https://ikuyo.dev/images/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5.md-5.png">
-<meta property="og:image" content="https://ikuyo.dev/images/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5.md-6.png">
-<meta property="article:published_time" content="2020-12-14T03:30:02.000Z">
-<meta property="article:modified_time" content="2024-02-09T23:10:53.494Z">
-<meta property="article:author" content="Eritque arcus">
-<meta property="article:tag" content="Python">
-<meta property="article:tag" content="Sklearn">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://ikuyo.dev/images/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5.md-0.png">
+<html lang="en" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Eritque arcus" />
+  <!-- Open Graph Description 简短摘要-->
+  
+  <!-- 用于搜索引擎的文章摘要 -->
+  
+  <meta name="description" content="Eritque arcus&#39;s blog" />
+  
+  
+  
+  <title>
     
-    
-      
-        
-          <link rel="shortcut icon" href="/images/avatar.png">
-        
+      用python+sklearn(机器学习)实现天气预测 
       
       
-        
-          <link rel="icon" type="image/png" href="/images/avatar.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png">
-        
-      
+      |
     
-    <!-- title -->
-    <title>用python+sklearn(机器学习)实现天气预测</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
+     Eritque arcus&#39;s blog
+  </title>
 
-
-    <!-- Umami Analytics -->
-
-    <script async defer
-            data-website-id="03f1081f-d820-47e8-84c9-245f9093244c"
-            src="https://4-um4m1.ikuyo.dev/script.js">
-    </script>
-
-
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <!-- persian styles -->
-    
-    <!-- rss -->
-    
-    
-      <link rel="alternate" href="/true" title="Eritque arcus&#39;s blog" type="application/atom+xml" />
-    
-	<!-- mathjax -->
-	
-<meta name="generator" content="Hexo 7.0.0-rc2"></head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://github.com/Nambers">Projects</a></li><!--
-     --><!--
-       --><li><a href="/files/">Files</a></li><!--
-     --><!--
-       --><li><a href="/ctf-cheatsheet/">CTF-cheatsheet</a></li><!--
-     --><!--
-       --><li><a href="/link/">Links</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.travellings.cn/go.html">Travelling</a></li><!--
-     -->
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" aria-label="Previous post" href="/2020/12/28/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="Next post" href="/2020/01/26/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.facebook.com/sharer.php?u=https://ikuyo.dev/2020/12/13/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://twitter.com/share?url=https://ikuyo.dev/2020/12/13/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/&text=用python+sklearn(机器学习)实现天气预测"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.linkedin.com/shareArticle?url=https://ikuyo.dev/2020/12/13/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/&title=用python+sklearn(机器学习)实现天气预测"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://pinterest.com/pin/create/bookmarklet/?url=https://ikuyo.dev/2020/12/13/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/&is_video=false&description=用python+sklearn(机器学习)实现天气预测"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=用python+sklearn(机器学习)实现天气预测&body=Check out this article: https://ikuyo.dev/2020/12/13/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/" rel="external nofollow noreferrer"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://getpocket.com/save?url=https://ikuyo.dev/2020/12/13/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/&title=用python+sklearn(机器学习)实现天气预测"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://reddit.com/submit?url=https://ikuyo.dev/2020/12/13/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/&title=用python+sklearn(机器学习)实现天气预测"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.stumbleupon.com/submit?url=https://ikuyo.dev/2020/12/13/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/&title=用python+sklearn(机器学习)实现天气预测"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://digg.com/submit?url=https://ikuyo.dev/2020/12/13/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/&title=用python+sklearn(机器学习)实现天气预测"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.tumblr.com/share/link?url=https://ikuyo.dev/2020/12/13/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/&name=用python+sklearn(机器学习)实现天气预测&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://news.ycombinator.com/submitlink?u=https://ikuyo.dev/2020/12/13/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/&t=用python+sklearn(机器学习)实现天气预测"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%9C%B0%E5%9D%80"><span class="toc-number">1.</span> <span class="toc-text">项目地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">系列教程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0-%E6%B5%81%E7%A8%8B%E4%BB%8B%E7%BB%8D"><span class="toc-number">3.</span> <span class="toc-text">0.流程介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-number">4.</span> <span class="toc-text">1. 环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#a-python"><span class="toc-number">5.</span> <span class="toc-text">a.python</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E6%B6%89%E5%8F%8A%E5%88%B0%E7%9A%84%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9B%B8%E5%85%B3%E5%BA%93"><span class="toc-number">5.1.</span> <span class="toc-text">1.1 涉及到的机器学习相关库</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-1-sklearn"><span class="toc-number">5.1.1.</span> <span class="toc-text">1.1.1 sklearn</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-2-panda"><span class="toc-number">5.1.2.</span> <span class="toc-text">1.1.2 panda</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-3-seaborn"><span class="toc-number">5.1.3.</span> <span class="toc-text">1.1.3 seaborn</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-4-joblib"><span class="toc-number">5.1.4.</span> <span class="toc-text">1.1.4 joblib</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%AF%BB%E6%89%BE%E6%95%B0%E6%8D%AE%E6%9D%A5%E6%BA%90"><span class="toc-number">6.</span> <span class="toc-text">2.寻找数据来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%88%86%E6%9E%90%E6%95%B0%E6%8D%AE%E6%BA%90%E7%BD%91%E5%9D%80%E8%A7%84%E5%88%99"><span class="toc-number">7.</span> <span class="toc-text">3.分析数据源网址规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%88%86%E6%9E%90%E9%A1%B5%E9%9D%A2%E8%A7%84%E5%88%99"><span class="toc-number">8.</span> <span class="toc-text">4.分析页面规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8B%98%E8%AF%AF%E8%A1%A8"><span class="toc-number">9.</span> <span class="toc-text">勘误表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E7%88%AC%E8%99%AB"><span class="toc-number">10.</span> <span class="toc-text">5.爬虫</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1%E7%A1%AE%E8%AE%A4%E8%A6%81%E8%A2%AB%E7%88%AC%E5%8F%96%E7%9A%84%E7%BD%91%E9%A1%B5%E7%BD%91%E5%9D%80"><span class="toc-number">10.1.</span> <span class="toc-text">5.1确认要被爬取的网页网址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E7%88%AC%E8%99%AB%E9%83%A8%E5%88%86"><span class="toc-number">10.2.</span> <span class="toc-text">5.2 爬虫部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-%E7%BD%91%E9%A1%B5%E5%86%85%E5%AE%B9%E5%8C%B9%E9%85%8D%E5%8F%96%E5%87%BA%E9%83%A8%E5%88%86"><span class="toc-number">10.3.</span> <span class="toc-text">5.3 网页内容匹配取出部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4%E5%86%99%E5%85%A5csv%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-number">10.4.</span> <span class="toc-text">5.4写入csv文件格式化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-6%E5%B0%81%E8%A3%85%E6%88%90%E7%B1%BB"><span class="toc-number">10.5.</span> <span class="toc-text">5.6封装成类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-number">11.</span> <span class="toc-text">6.数据预处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E5%BB%BA%E7%AB%8B%E6%A8%A1%E5%9E%8B"><span class="toc-number">12.</span> <span class="toc-text">7.建立模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1%E5%87%86%E5%A4%87"><span class="toc-number">12.1.</span> <span class="toc-text">7.1准备</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-1-%E5%BC%95%E5%85%A5%E6%89%80%E9%9C%80%E8%A6%81%E7%9A%84%E5%A4%B4%E6%96%87%E4%BB%B6"><span class="toc-number">12.1.1.</span> <span class="toc-text">7.1.1 引入所需要的头文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-2-%E9%80%89%E6%8B%A9%E6%A8%A1%E5%9E%8B"><span class="toc-number">12.1.2.</span> <span class="toc-text">7.1.2 选择模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-3-%E9%80%89%E6%8B%A9%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95"><span class="toc-number">12.1.3.</span> <span class="toc-text">7.1.3 选择评估方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-4-%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-number">12.1.4.</span> <span class="toc-text">7.1.4 获取数据集</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2%E5%BB%BA%E7%AB%8B%E6%A8%A1%E5%9E%8B"><span class="toc-number">12.2.</span> <span class="toc-text">7.2建立模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-%E8%8E%B7%E5%8F%96%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E7%BB%93%E6%9E%9C"><span class="toc-number">12.3.</span> <span class="toc-text">7.3 获取模型评估结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-4-%E7%94%A8joblib%E6%A8%A1%E5%9D%97%E4%BF%9D%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="toc-number">12.4.</span> <span class="toc-text">7.4 用joblib模块保存模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-5-%E5%B0%81%E8%A3%85"><span class="toc-number">12.5.</span> <span class="toc-text">7.5 封装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E6%80%BB%E6%8E%A7"><span class="toc-number">13.</span> <span class="toc-text">8 总控</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-%E4%BB%A3%E7%A0%81"><span class="toc-number">13.1.</span> <span class="toc-text">8.1 代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">13.2.</span> <span class="toc-text">8.2 使用方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E6%9C%80%E5%90%8E%E6%95%88%E6%9E%9C"><span class="toc-number">14.</span> <span class="toc-text">9 最后效果</span></a></li></ol>
-      </div>
-    
-  </span>
-</div>
-
-    
-    <div class="content index py4 ">
-        
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        用python+sklearn(机器学习)实现天气预测
-    </h1>
-
-
-
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">Eritque arcus</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2020-12-14T03:30:02.000Z" class="dt-published" itemprop="datePublished">2020-12-13</time>
-        
-        (Updated: <time datetime="2024-02-09T23:10:53.494Z" class="dt-updated" itemprop="dateModified">2024-02-09</time>)
-        
-      
-    </div>
-
-
-      
-    <div class="article-category">
-        <i class="fa-solid fa-archive"></i>
-        <a class="category-link" href="/categories/Machine-leaning/">Machine leaning</a>
-    </div>
-
-
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/Python/" rel="tag">Python</a>, <a class="p-category" href="/tags/Sklearn/" rel="tag">Sklearn</a>
-    </div>
-
-
-    </div>
-  </header>
+  
+    <link rel="apple-touch-icon" href="/images/avatar.png">
+    <link rel="icon" href="/images/avatar.png">
   
 
-  <div class="content e-content" itemprop="articleBody">
-    <h2 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h2><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/PYWeatherReport">github项目:PYWeatherReport</a></p>
+  <!-- Raleway-Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Eritque arcus</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/link/">
+          <a href="/link/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+        <li class="nav-item" data-path="/ctf-cheatsheet/">
+          <a href="/ctf-cheatsheet/">CTF-cheatsheet</a>
+        </li>
+      
+        <li class="nav-item" data-path="/files/">
+          <a href="/files/">Files</a>
+        </li>
+      
+        <li class="nav-item" data-path="https://www.travellings.cn/go.html">
+          <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.travellings.cn/go.html">Travelling</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">用python+sklearn(机器学习)实现天气预测</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+          2024-02-09 18:10:53
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/Python/" title="Python">
+                    #Python
+                  </a>
+                </span>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/Sklearn/" title="Sklearn">
+                    #Sklearn
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <h2 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h2><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/PYWeatherReport">github项目:PYWeatherReport</a></p>
 <h2 id="系列教程"><a href="#系列教程" class="headerlink" title="系列教程"></a>系列教程</h2><blockquote>
 <p>本文章为以下几篇的合集<br><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_40832960/article/details/109260388">机器学习参考篇: python+sklearn+kaggle机器学习</a><br><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_40832960/article/details/111146467">用python+sklearn(机器学习)实现天气预报 准备</a><br><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_40832960/article/details/111182425">用python+sklearn(机器学习)实现天气预报数据 数据</a><br> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_40832960/article/details/111238926">用python+sklearn(机器学习)实现天气预报 模型和使用</a></p>
 </blockquote>
@@ -221,7 +210,7 @@
 <p>当我们知道了这些规则，接下来就可以写爬虫爬取符合条件的数据集了。</p>
 <h2 id="勘误表"><a href="#勘误表" class="headerlink" title="勘误表"></a>勘误表</h2><ol>
 <li>感谢”Gbilibili”的提醒，下面url代码生成片段<br> 应从 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 爬取数据链接</span></span><br><span class="line">   url = <span class="string">&quot;http://www.meteomanz.com/sy2?l=1&amp;cou=2250&amp;ind=59287&amp;d1=&quot;</span> + </span><br><span class="line">   <span class="built_in">str</span>(week_ago.day).zfill(<span class="number">2</span>) + </span><br><span class="line">   <span class="string">&quot;&amp;m1=&quot;</span> + <span class="built_in">str</span>(week_ago.month).zfill(<span class="number">2</span>) + </span><br><span class="line">   <span class="string">&quot;&amp;y1=&quot;</span> + <span class="built_in">str</span>(week_ago.month) + </span><br><span class="line">   <span class="string">&quot;&amp;d2=&quot;</span> + <span class="built_in">str</span>(week_pre.day - years[<span class="number">0</span>]).zfill(<span class="number">2</span>) + </span><br><span class="line">   <span class="string">&quot;&amp;m2=&quot;</span> + <span class="built_in">str</span>(week_pre.month).zfill(<span class="number">2</span>) + </span><br><span class="line">   <span class="string">&quot;&amp;y2=&quot;</span> + <span class="built_in">str</span>(week_pre.year - years[<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
- 改成 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment"># 爬取数据链接</span></span><br><span class="line">url = <span class="string">&quot;http://www.meteomanz.com/sy2?l=1&amp;cou=2250&amp;ind=59287&amp;d1=&quot;</span> + </span><br><span class="line"> <span class="built_in">str</span>(week_ago.day).zfill(<span class="number">2</span>) +</span><br><span class="line"> <span class="string">&quot;&amp;m1=&quot;</span> + <span class="built_in">str</span>( week_ago.month).zfill(<span class="number">2</span>) +</span><br><span class="line"><span class="string">&quot;&amp;y1=&quot;</span> + <span class="built_in">str</span>(week_ago.year - years[<span class="number">0</span>]) +</span><br><span class="line">	<span class="string">&quot;&amp;d2=&quot;</span> + <span class="built_in">str</span>(week_pre.day).zfill(<span class="number">2</span>) +</span><br><span class="line">	<span class="string">&quot;&amp;m2=&quot;</span> + <span class="built_in">str</span>(week_pre.month).zfill(<span class="number">2</span>) +</span><br><span class="line"> <span class="string">&quot;&amp;y2=&quot;</span> + <span class="built_in">str</span>(week_pre.year - years[<span class="number">1</span>])</span><br></pre></td></tr></table></figure></li>
+ 改成 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment"># 爬取数据链接</span></span><br><span class="line">url = <span class="string">&quot;http://www.meteomanz.com/sy2?l=1&amp;cou=2250&amp;ind=59287&amp;d1=&quot;</span> + </span><br><span class="line"> <span class="built_in">str</span>(week_ago.day).zfill(<span class="number">2</span>) +</span><br><span class="line"> <span class="string">&quot;&amp;m1=&quot;</span> + <span class="built_in">str</span>( week_ago.month).zfill(<span class="number">2</span>) +</span><br><span class="line"><span class="string">&quot;&amp;y1=&quot;</span> + <span class="built_in">str</span>(week_ago.year - years[<span class="number">0</span>]) +</span><br><span class="line">   <span class="string">&quot;&amp;d2=&quot;</span> + <span class="built_in">str</span>(week_pre.day).zfill(<span class="number">2</span>) +</span><br><span class="line">   <span class="string">&quot;&amp;m2=&quot;</span> + <span class="built_in">str</span>(week_pre.month).zfill(<span class="number">2</span>) +</span><br><span class="line"> <span class="string">&quot;&amp;y2=&quot;</span> + <span class="built_in">str</span>(week_pre.year - years[<span class="number">1</span>])</span><br></pre></td></tr></table></figure></li>
 <li>感谢@L-Zzxnn的提醒，代码已添加负温度支持，最新代码请以github上为准</li>
 </ol>
 <h2 id="5-爬虫"><a href="#5-爬虫" class="headerlink" title="5.爬虫"></a>5.爬虫</h2><p>爬虫这方面可以参考我之前的<a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_40832960/article/details/103854145">一篇文章</a></p>
@@ -231,7 +220,7 @@
 <p>如果我们是只测今天这一次上面的网址就可以人工填写，但是如果我们要做不用人工填就要用<code>datetime</code>这个python库<br>如下:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime <span class="keyword">as</span> DT</span><br><span class="line"></span><br><span class="line"><span class="comment"># 取现在日期</span></span><br><span class="line">today = DT.datetime.now()</span><br><span class="line"><span class="comment"># 取b[0]天前日期</span></span><br><span class="line">week_ago = (today - DT.timedelta(days=b[<span class="number">0</span>])).date()</span><br><span class="line"> <span class="comment"># b[1]天后</span></span><br><span class="line"> week_pre = (today + DT.timedelta(days=b[<span class="number">1</span>])).date()</span><br></pre></td></tr></table></figure>
 <p>我们传入<code>b = [-15 0]</code>，就可以获取上个半月的日期在<code>week_ago</code>里，今天的日期在<code>week_pre</code>里<br>所以，可以用这一行构建需要的网址</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 爬取数据链接</span></span><br><span class="line">url = <span class="string">&quot;http://www.meteomanz.com/sy2?l=1&amp;cou=2250&amp;ind=59287&amp;d1=&quot;</span> + </span><br><span class="line"> <span class="built_in">str</span>(week_ago.day).zfill(<span class="number">2</span>) +</span><br><span class="line"> <span class="string">&quot;&amp;m1=&quot;</span> + <span class="built_in">str</span>( week_ago.month).zfill(<span class="number">2</span>) +</span><br><span class="line"><span class="string">&quot;&amp;y1=&quot;</span> + <span class="built_in">str</span>(week_ago.year - years[<span class="number">0</span>]) +</span><br><span class="line">	<span class="string">&quot;&amp;d2=&quot;</span> + <span class="built_in">str</span>(week_pre.day).zfill(<span class="number">2</span>) +</span><br><span class="line">	<span class="string">&quot;&amp;m2=&quot;</span> + <span class="built_in">str</span>(week_pre.month).zfill(<span class="number">2</span>) +</span><br><span class="line"> <span class="string">&quot;&amp;y2=&quot;</span> + <span class="built_in">str</span>(week_pre.year - years[<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 爬取数据链接</span></span><br><span class="line">url = <span class="string">&quot;http://www.meteomanz.com/sy2?l=1&amp;cou=2250&amp;ind=59287&amp;d1=&quot;</span> + </span><br><span class="line"> <span class="built_in">str</span>(week_ago.day).zfill(<span class="number">2</span>) +</span><br><span class="line"> <span class="string">&quot;&amp;m1=&quot;</span> + <span class="built_in">str</span>( week_ago.month).zfill(<span class="number">2</span>) +</span><br><span class="line"><span class="string">&quot;&amp;y1=&quot;</span> + <span class="built_in">str</span>(week_ago.year - years[<span class="number">0</span>]) +</span><br><span class="line">   <span class="string">&quot;&amp;d2=&quot;</span> + <span class="built_in">str</span>(week_pre.day).zfill(<span class="number">2</span>) +</span><br><span class="line">   <span class="string">&quot;&amp;m2=&quot;</span> + <span class="built_in">str</span>(week_pre.month).zfill(<span class="number">2</span>) +</span><br><span class="line"> <span class="string">&quot;&amp;y2=&quot;</span> + <span class="built_in">str</span>(week_pre.year - years[<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
 <p>其中<code>.zfill(2)</code>是指填充2位，比如如果是1就返回01，如果是12就返回12<br>有了网址，接下来就是爬虫爬取网页然后分析网页元素取出里面的数据</p>
 <h3 id="5-2-爬虫部分"><a href="#5-2-爬虫部分" class="headerlink" title="5.2 爬虫部分"></a>5.2 爬虫部分</h3><p>首先先写爬虫部分，这部分很简单，写了个<code>GetData</code> class</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># @Time: 2020/12/16</span></span><br><span class="line"><span class="comment"># @Author: Eritque arcus</span></span><br><span class="line"><span class="comment"># @File: GetData.py</span></span><br><span class="line"><span class="comment"># 功能: 爬取数据</span></span><br><span class="line"><span class="keyword">import</span> urllib3</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">GetData</span>:</span><br><span class="line">    url = <span class="string">&quot;&quot;</span></span><br><span class="line">    headers = <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, url, header=<span class="string">&quot;&quot;</span></span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :param url: 获取的网址</span></span><br><span class="line"><span class="string">        :param header: 请求头，默认已内置</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        self.url = url</span><br><span class="line">        <span class="keyword">if</span> header == <span class="string">&quot;&quot;</span>:</span><br><span class="line">            self.headers = &#123;</span><br><span class="line">                <span class="string">&#x27;Connection&#x27;</span>: <span class="string">&#x27;Keep-Alive&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;Accept&#x27;</span>: <span class="string">&#x27;text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,&#x27;</span></span><br><span class="line">                          <span class="string">&#x27;*/*;q=0.8,application/signed-exchange;v=b3;q=0.9&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;Accept-Language&#x27;</span>: <span class="string">&#x27;zh-CN,zh;q=0.9,en;q=0.8&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;Accept-Encoding&#x27;</span>: <span class="string">&#x27;gzip, deflate&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, &#x27;</span></span><br><span class="line">                              <span class="string">&#x27;like Gecko) Chrome/87.0.4280.66 Mobile Safari/537.36 &#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;Host&#x27;</span>: <span class="string">&#x27;www.meteomanz.com&#x27;</span></span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.headers = header</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">Get</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :return: 网址对应的网页内容</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        http = urllib3.PoolManager()</span><br><span class="line">        <span class="keyword">return</span> http.request(<span class="string">&#x27;GET&#x27;</span>, self.url, headers=self.headers).data</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -239,7 +228,7 @@
 <h3 id="5-3-网页内容匹配取出部分"><a href="#5-3-网页内容匹配取出部分" class="headerlink" title="5.3 网页内容匹配取出部分"></a>5.3 网页内容匹配取出部分</h3><p>本处使用了<code>BeautifulSoup</code>库</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">g = GetData(url).Get()</span><br><span class="line">      <span class="comment"># beautifulsoup解析网页</span></span><br><span class="line">      soup = BeautifulSoup(g, <span class="string">&quot;html5lib&quot;</span>)</span><br><span class="line">      <span class="comment"># 取&lt;tbody&gt;内容</span></span><br><span class="line">      tb = soup.find(name=<span class="string">&quot;tbody&quot;</span>)</span><br><span class="line">      <span class="comment"># 取tr内容</span></span><br><span class="line">      past_tr = tb.find_all(name=<span class="string">&quot;tr&quot;</span>)</span><br><span class="line">      <span class="keyword">for</span> tr <span class="keyword">in</span> past_tr:</span><br><span class="line">          <span class="comment"># 取tr内每个td的内容</span></span><br><span class="line">          text = tr.find_all(name=<span class="string">&quot;td&quot;</span>)</span><br><span class="line">          flag = <span class="literal">False</span></span><br><span class="line">          <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(text)):</span><br><span class="line">              <span class="keyword">if</span> i == <span class="number">0</span>:</span><br><span class="line">                  text[i] = text[i].a.string</span><br><span class="line">                  <span class="comment"># 网站bug，跨月请求的话会给每个月第0天的数据，但是里面是全空的因为日期不存在，比如 00/11/2020(日/月/年),所以要手动drop掉这个数据</span></span><br><span class="line">                  <span class="keyword">if</span> <span class="string">&quot;00/&quot;</span> <span class="keyword">in</span> text[i]:</span><br><span class="line">                      flag = <span class="literal">True</span></span><br><span class="line">              <span class="keyword">elif</span> i == <span class="number">8</span>:</span><br><span class="line">                  <span class="comment"># 把/8去掉，网页显示的格式问题</span></span><br><span class="line">                  text[i] = text[i].string.replace(<span class="string">&quot;/8&quot;</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line">              <span class="keyword">elif</span> i == <span class="number">5</span>:</span><br><span class="line">                  <span class="comment"># 去掉Hpa单位</span></span><br><span class="line">                  text[i] = text[i].string.replace(<span class="string">&quot; Hpa&quot;</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line">              <span class="keyword">elif</span> i == <span class="number">6</span>:</span><br><span class="line">                  <span class="comment"># 用正则去掉风力里括号内的内容</span></span><br><span class="line">                  text[i] = re.sub(<span class="string">u&quot;[º(.*?|N|W|E|S)]&quot;</span>, <span class="string">&quot;&quot;</span>, text[i].string)</span><br><span class="line">              <span class="keyword">else</span>:</span><br><span class="line">                  <span class="comment"># 取每个元素的内容</span></span><br><span class="line">                  text[i] = text[i].string</span><br><span class="line">              <span class="comment"># 丢失数据都取2(简陋做法)</span></span><br><span class="line">              <span class="comment"># 这么做 MAE=3.6021</span></span><br><span class="line">              text[i] = text[i].replace(<span class="string">&quot;-&quot;</span>, <span class="string">&quot;2&quot;</span>)</span><br><span class="line">              text[i] = text[i].replace(<span class="string">&quot;Tr&quot;</span>, <span class="string">&quot;2&quot;</span>)</span><br></pre></td></tr></table></figure>
 <p>如果有什么不清楚的评论里答复。</p>
-<h3 id="5-4写入csv文件格式化"><a href="#5-4写入csv文件格式化" class="headerlink" title="5.4写入csv文件格式化"></a>5.4写入csv文件格式化</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line">   <span class="comment"># 创建文件对象</span></span><br><span class="line">   f = <span class="built_in">open</span>(c, <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>, newline=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"></span><br><span class="line">   <span class="comment"># 基于文件对象构建 csv写入对象</span></span><br><span class="line">   csv_writer = csv.writer(f)</span><br><span class="line">   <span class="comment"># 写入内容,text数组</span></span><br><span class="line">	csv_writer.writerow(text)</span><br><span class="line">   <span class="comment"># 关闭文件</span></span><br><span class="line">   f.close()</span><br></pre></td></tr></table></figure>
+<h3 id="5-4写入csv文件格式化"><a href="#5-4写入csv文件格式化" class="headerlink" title="5.4写入csv文件格式化"></a>5.4写入csv文件格式化</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line">   <span class="comment"># 创建文件对象</span></span><br><span class="line">   f = <span class="built_in">open</span>(c, <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>, newline=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"></span><br><span class="line">   <span class="comment"># 基于文件对象构建 csv写入对象</span></span><br><span class="line">   csv_writer = csv.writer(f)</span><br><span class="line">   <span class="comment"># 写入内容,text数组</span></span><br><span class="line">   csv_writer.writerow(text)</span><br><span class="line">   <span class="comment"># 关闭文件</span></span><br><span class="line">   f.close()</span><br></pre></td></tr></table></figure>
 <h3 id="5-6封装成类"><a href="#5-6封装成类" class="headerlink" title="5.6封装成类"></a>5.6封装成类</h3><p><code>Write.py</code></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># @Time: 2020/12/16</span></span><br><span class="line"><span class="comment"># @Author: Eritque arcus</span></span><br><span class="line"><span class="comment"># @File: Write.py</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">from</span> GetData <span class="keyword">import</span> GetData</span><br><span class="line"><span class="keyword">import</span> datetime <span class="keyword">as</span> DT</span><br><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">a</span>(<span class="params">t</span>):</span><br><span class="line">    <span class="keyword">return</span> t.replace(<span class="string">&quot; - &quot;</span>, <span class="string">&quot;0&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 功能: 写csv</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">write</span>(<span class="params">years, b, c</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    :param years: [开始日期距离现在的年份, 结束日期距离现在的年份]</span></span><br><span class="line"><span class="string">    :param b: [开始日期距离现在日期的天数, 结束日期距离现在日期的天数]</span></span><br><span class="line"><span class="string">    :param c: csv文件名</span></span><br><span class="line"><span class="string">    :return: None</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 1. 创建文件对象</span></span><br><span class="line">    f = <span class="built_in">open</span>(c, <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>, newline=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 2. 基于文件对象构建 csv写入对象</span></span><br><span class="line">    csv_writer = csv.writer(f)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 3. 构建列表头</span></span><br><span class="line">    <span class="comment"># , &quot;negAve&quot;, &quot;negMax&quot;, &quot;negMin&quot;</span></span><br><span class="line">    csv_writer.writerow([<span class="string">&quot;Time&quot;</span>, <span class="string">&quot;Ave_t&quot;</span>, <span class="string">&quot;Max_t&quot;</span>, <span class="string">&quot;Min_t&quot;</span>, <span class="string">&quot;Prec&quot;</span>, <span class="string">&quot;SLpress&quot;</span>, <span class="string">&quot;Winddir&quot;</span>, <span class="string">&quot;Windsp&quot;</span>, <span class="string">&quot;Cloud&quot;</span>])</span><br><span class="line">    <span class="comment"># 取现在日期</span></span><br><span class="line">    today = DT.datetime.now()</span><br><span class="line">    <span class="comment"># 取20天前日期</span></span><br><span class="line">    week_ago = (today - DT.timedelta(days=b[<span class="number">0</span>])).date()</span><br><span class="line">    <span class="comment"># 20天后</span></span><br><span class="line">    week_pre = (today + DT.timedelta(days=b[<span class="number">1</span>])).date()</span><br><span class="line">    <span class="comment"># 城市id 广州59287 青岛 54857</span></span><br><span class="line">    <span class="built_in">id</span> = <span class="string">&quot;59287&quot;</span></span><br><span class="line">    <span class="comment"># 爬取数据链接</span></span><br><span class="line">    url = <span class="string">&quot;http://www.meteomanz.com/sy2?l=1&amp;cou=2250&amp;ind=&quot;</span> + <span class="built_in">id</span> + <span class="string">&quot;&amp;d1=&quot;</span> + <span class="built_in">str</span>(week_ago.day).zfill(<span class="number">2</span>) + <span class="string">&quot;&amp;m1=&quot;</span> + <span class="built_in">str</span>(</span><br><span class="line">        week_ago.month).zfill(<span class="number">2</span>) + <span class="string">&quot;&amp;y1=&quot;</span> + <span class="built_in">str</span>(week_ago.year - years[<span class="number">0</span>]) + <span class="string">&quot;&amp;d2=&quot;</span> + <span class="built_in">str</span>(week_pre.day).zfill(</span><br><span class="line">        <span class="number">2</span>) + <span class="string">&quot;&amp;m2=&quot;</span> + <span class="built_in">str</span>(week_pre.month).zfill(<span class="number">2</span>) + <span class="string">&quot;&amp;y2=&quot;</span> + <span class="built_in">str</span>(week_pre.year - years[<span class="number">1</span>])</span><br><span class="line">    <span class="comment"># 显示获取数据集的网址</span></span><br><span class="line">    <span class="built_in">print</span>(url)</span><br><span class="line">    g = GetData(url).Get()</span><br><span class="line">    <span class="comment"># beautifulsoup解析网页</span></span><br><span class="line">    soup = BeautifulSoup(g, <span class="string">&quot;html5lib&quot;</span>)</span><br><span class="line">    <span class="comment"># 取&lt;tbody&gt;内容</span></span><br><span class="line">    tb = soup.find(name=<span class="string">&quot;tbody&quot;</span>)</span><br><span class="line">    <span class="comment"># 取tr内容</span></span><br><span class="line">    past_tr = tb.find_all(name=<span class="string">&quot;tr&quot;</span>)</span><br><span class="line">    <span class="keyword">for</span> tr <span class="keyword">in</span> past_tr:</span><br><span class="line">        <span class="comment"># 取tr内每个td的内容</span></span><br><span class="line">        text = tr.find_all(name=<span class="string">&quot;td&quot;</span>)</span><br><span class="line">        flag = <span class="literal">False</span></span><br><span class="line">        negA = negMax = negMin = <span class="literal">False</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(text)):</span><br><span class="line">            <span class="keyword">if</span> i == <span class="number">0</span>:</span><br><span class="line">                text[i] = text[i].a.string</span><br><span class="line">                <span class="comment"># 网站bug，会给每个月第0天，比如 00/11/2020,所以要drop掉</span></span><br><span class="line">                <span class="keyword">if</span> <span class="string">&quot;00/&quot;</span> <span class="keyword">in</span> text[i]:</span><br><span class="line">                    flag = <span class="literal">True</span></span><br><span class="line">            <span class="keyword">elif</span> i == <span class="number">8</span>:</span><br><span class="line">                <span class="comment"># 把/8去掉，网页显示的格式</span></span><br><span class="line">                text[i] = text[i].string.replace(<span class="string">&quot;/8&quot;</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line">            <span class="keyword">elif</span> i == <span class="number">5</span>:</span><br><span class="line">                <span class="comment"># 去掉单位</span></span><br><span class="line">                text[i] = text[i].string.replace(<span class="string">&quot; Hpa&quot;</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line">            <span class="keyword">elif</span> i == <span class="number">6</span>:</span><br><span class="line">                <span class="comment"># 去掉风力里括号内的内容</span></span><br><span class="line">                text[i] = re.sub(<span class="string">u&quot;[º(.*?|N|W|E|S)]&quot;</span>, <span class="string">&quot;&quot;</span>, text[i].string)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="comment"># 取每个元素的内容</span></span><br><span class="line">                text[i] = text[i].string</span><br><span class="line">            <span class="comment"># 丢失数据都取2(简陋做法)</span></span><br><span class="line">            <span class="comment"># 这么做 MAE=3.6021</span></span><br><span class="line">            text[i] = <span class="string">&quot;2&quot;</span> <span class="keyword">if</span> text[i] == <span class="string">&quot;-&quot;</span> <span class="keyword">else</span> text[i]</span><br><span class="line">            text[i] = <span class="string">&quot;2&quot;</span> <span class="keyword">if</span> text[i] == <span class="string">&quot;Tr&quot;</span> <span class="keyword">else</span> text[i]</span><br><span class="line">        text = text[<span class="number">0</span>:<span class="number">9</span>]</span><br><span class="line">        <span class="comment"># ext += [str(int(negA)), str(int(negMax)), str(int(negMin))]</span></span><br><span class="line">        <span class="comment"># 4. 写入csv文件内容</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> flag:</span><br><span class="line">            csv_writer.writerow(text)</span><br><span class="line">    <span class="comment"># 5. 关闭文件</span></span><br><span class="line">    f.close()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p><code>GetData.py</code></p>
@@ -281,160 +270,168 @@
 <p>本系列教程到这就结束了，代码具体还要以<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/PYWeatherReport">github项目:PYWeatherReport</a>为主，可能会在这个github项目上不定期优化更新</p>
 </blockquote>
 <center>-END-</center>
-  </div>
-</article>
-
-
-
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">Home</a></li>
-        
-          <li><a href="/archives/">Writing</a></li>
-        
-          <li><a href="/about/">About</a></li>
-        
-          <li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://github.com/Nambers">Projects</a></li>
-        
-          <li><a href="/files/">Files</a></li>
-        
-          <li><a href="/ctf-cheatsheet/">CTF-cheatsheet</a></li>
-        
-          <li><a href="/link/">Links</a></li>
-        
-          <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.travellings.cn/go.html">Travelling</a></li>
-        
-      </ul>
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2020/01/26/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+              2024-02-09 18:10:53
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/Python/" title="Python">
+                        #Python
+                      </a>
+                    </span>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/Sklearn/" title="Sklearn">
+                        #Sklearn
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2020/12/28/Mirai-qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6kotlin_java%E6%95%99%E7%A8%8B/" target="_self">
+                <span>Next</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
     </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%9C%B0%E5%9D%80"><span class="toc-text">项目地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B"><span class="toc-text">系列教程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0-%E6%B5%81%E7%A8%8B%E4%BB%8B%E7%BB%8D"><span class="toc-text">0.流程介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-text">1. 环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#a-python"><span class="toc-text">a.python</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E6%B6%89%E5%8F%8A%E5%88%B0%E7%9A%84%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9B%B8%E5%85%B3%E5%BA%93"><span class="toc-text">1.1 涉及到的机器学习相关库</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-1-sklearn"><span class="toc-text">1.1.1 sklearn</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-2-panda"><span class="toc-text">1.1.2 panda</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-3-seaborn"><span class="toc-text">1.1.3 seaborn</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-4-joblib"><span class="toc-text">1.1.4 joblib</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%AF%BB%E6%89%BE%E6%95%B0%E6%8D%AE%E6%9D%A5%E6%BA%90"><span class="toc-text">2.寻找数据来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%88%86%E6%9E%90%E6%95%B0%E6%8D%AE%E6%BA%90%E7%BD%91%E5%9D%80%E8%A7%84%E5%88%99"><span class="toc-text">3.分析数据源网址规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%88%86%E6%9E%90%E9%A1%B5%E9%9D%A2%E8%A7%84%E5%88%99"><span class="toc-text">4.分析页面规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8B%98%E8%AF%AF%E8%A1%A8"><span class="toc-text">勘误表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E7%88%AC%E8%99%AB"><span class="toc-text">5.爬虫</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1%E7%A1%AE%E8%AE%A4%E8%A6%81%E8%A2%AB%E7%88%AC%E5%8F%96%E7%9A%84%E7%BD%91%E9%A1%B5%E7%BD%91%E5%9D%80"><span class="toc-text">5.1确认要被爬取的网页网址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E7%88%AC%E8%99%AB%E9%83%A8%E5%88%86"><span class="toc-text">5.2 爬虫部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-%E7%BD%91%E9%A1%B5%E5%86%85%E5%AE%B9%E5%8C%B9%E9%85%8D%E5%8F%96%E5%87%BA%E9%83%A8%E5%88%86"><span class="toc-text">5.3 网页内容匹配取出部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4%E5%86%99%E5%85%A5csv%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-text">5.4写入csv文件格式化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-6%E5%B0%81%E8%A3%85%E6%88%90%E7%B1%BB"><span class="toc-text">5.6封装成类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-text">6.数据预处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E5%BB%BA%E7%AB%8B%E6%A8%A1%E5%9E%8B"><span class="toc-text">7.建立模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1%E5%87%86%E5%A4%87"><span class="toc-text">7.1准备</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-1-%E5%BC%95%E5%85%A5%E6%89%80%E9%9C%80%E8%A6%81%E7%9A%84%E5%A4%B4%E6%96%87%E4%BB%B6"><span class="toc-text">7.1.1 引入所需要的头文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-2-%E9%80%89%E6%8B%A9%E6%A8%A1%E5%9E%8B"><span class="toc-text">7.1.2 选择模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-3-%E9%80%89%E6%8B%A9%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95"><span class="toc-text">7.1.3 选择评估方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-4-%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-text">7.1.4 获取数据集</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2%E5%BB%BA%E7%AB%8B%E6%A8%A1%E5%9E%8B"><span class="toc-text">7.2建立模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-%E8%8E%B7%E5%8F%96%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E7%BB%93%E6%9E%9C"><span class="toc-text">7.3 获取模型评估结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-4-%E7%94%A8joblib%E6%A8%A1%E5%9D%97%E4%BF%9D%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="toc-text">7.4 用joblib模块保存模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-5-%E5%B0%81%E8%A3%85"><span class="toc-text">7.5 封装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E6%80%BB%E6%8E%A7"><span class="toc-text">8 总控</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-%E4%BB%A3%E7%A0%81"><span class="toc-text">8.1 代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">8.2 使用方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E6%9C%80%E5%90%8E%E6%95%88%E6%9E%9C"><span class="toc-text">9 最后效果</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
 
     
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          
+              <a title="github" target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers">
+                <i class="fa-brands fa-github fa-lg"></i>
+              </a>
+              
+        </li>
+        
+        <li>
+          
+            <a title="email" href="mailto:eritque-arcus@ikuyo.dev">
+              <i class="fa-solid fa-envelope fa-lg"></i>
+            </a>
+            
+        </li>
+        
+    </ul>
+  </div>
+  
     
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%9C%B0%E5%9D%80"><span class="toc-number">1.</span> <span class="toc-text">项目地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">系列教程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0-%E6%B5%81%E7%A8%8B%E4%BB%8B%E7%BB%8D"><span class="toc-number">3.</span> <span class="toc-text">0.流程介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-number">4.</span> <span class="toc-text">1. 环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#a-python"><span class="toc-number">5.</span> <span class="toc-text">a.python</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E6%B6%89%E5%8F%8A%E5%88%B0%E7%9A%84%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9B%B8%E5%85%B3%E5%BA%93"><span class="toc-number">5.1.</span> <span class="toc-text">1.1 涉及到的机器学习相关库</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-1-sklearn"><span class="toc-number">5.1.1.</span> <span class="toc-text">1.1.1 sklearn</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-2-panda"><span class="toc-number">5.1.2.</span> <span class="toc-text">1.1.2 panda</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-3-seaborn"><span class="toc-number">5.1.3.</span> <span class="toc-text">1.1.3 seaborn</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-4-joblib"><span class="toc-number">5.1.4.</span> <span class="toc-text">1.1.4 joblib</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%AF%BB%E6%89%BE%E6%95%B0%E6%8D%AE%E6%9D%A5%E6%BA%90"><span class="toc-number">6.</span> <span class="toc-text">2.寻找数据来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%88%86%E6%9E%90%E6%95%B0%E6%8D%AE%E6%BA%90%E7%BD%91%E5%9D%80%E8%A7%84%E5%88%99"><span class="toc-number">7.</span> <span class="toc-text">3.分析数据源网址规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%88%86%E6%9E%90%E9%A1%B5%E9%9D%A2%E8%A7%84%E5%88%99"><span class="toc-number">8.</span> <span class="toc-text">4.分析页面规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8B%98%E8%AF%AF%E8%A1%A8"><span class="toc-number">9.</span> <span class="toc-text">勘误表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E7%88%AC%E8%99%AB"><span class="toc-number">10.</span> <span class="toc-text">5.爬虫</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1%E7%A1%AE%E8%AE%A4%E8%A6%81%E8%A2%AB%E7%88%AC%E5%8F%96%E7%9A%84%E7%BD%91%E9%A1%B5%E7%BD%91%E5%9D%80"><span class="toc-number">10.1.</span> <span class="toc-text">5.1确认要被爬取的网页网址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E7%88%AC%E8%99%AB%E9%83%A8%E5%88%86"><span class="toc-number">10.2.</span> <span class="toc-text">5.2 爬虫部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-%E7%BD%91%E9%A1%B5%E5%86%85%E5%AE%B9%E5%8C%B9%E9%85%8D%E5%8F%96%E5%87%BA%E9%83%A8%E5%88%86"><span class="toc-number">10.3.</span> <span class="toc-text">5.3 网页内容匹配取出部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4%E5%86%99%E5%85%A5csv%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-number">10.4.</span> <span class="toc-text">5.4写入csv文件格式化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-6%E5%B0%81%E8%A3%85%E6%88%90%E7%B1%BB"><span class="toc-number">10.5.</span> <span class="toc-text">5.6封装成类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-number">11.</span> <span class="toc-text">6.数据预处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E5%BB%BA%E7%AB%8B%E6%A8%A1%E5%9E%8B"><span class="toc-number">12.</span> <span class="toc-text">7.建立模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1%E5%87%86%E5%A4%87"><span class="toc-number">12.1.</span> <span class="toc-text">7.1准备</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-1-%E5%BC%95%E5%85%A5%E6%89%80%E9%9C%80%E8%A6%81%E7%9A%84%E5%A4%B4%E6%96%87%E4%BB%B6"><span class="toc-number">12.1.1.</span> <span class="toc-text">7.1.1 引入所需要的头文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-2-%E9%80%89%E6%8B%A9%E6%A8%A1%E5%9E%8B"><span class="toc-number">12.1.2.</span> <span class="toc-text">7.1.2 选择模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-3-%E9%80%89%E6%8B%A9%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95"><span class="toc-number">12.1.3.</span> <span class="toc-text">7.1.3 选择评估方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-4-%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-number">12.1.4.</span> <span class="toc-text">7.1.4 获取数据集</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2%E5%BB%BA%E7%AB%8B%E6%A8%A1%E5%9E%8B"><span class="toc-number">12.2.</span> <span class="toc-text">7.2建立模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-%E8%8E%B7%E5%8F%96%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E7%BB%93%E6%9E%9C"><span class="toc-number">12.3.</span> <span class="toc-text">7.3 获取模型评估结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-4-%E7%94%A8joblib%E6%A8%A1%E5%9D%97%E4%BF%9D%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="toc-number">12.4.</span> <span class="toc-text">7.4 用joblib模块保存模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-5-%E5%B0%81%E8%A3%85"><span class="toc-number">12.5.</span> <span class="toc-text">7.5 封装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E6%80%BB%E6%8E%A7"><span class="toc-number">13.</span> <span class="toc-text">8 总控</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-%E4%BB%A3%E7%A0%81"><span class="toc-number">13.1.</span> <span class="toc-text">8.1 代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">13.2.</span> <span class="toc-text">8.2 使用方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E6%9C%80%E5%90%8E%E6%95%88%E6%9E%9C"><span class="toc-number">14.</span> <span class="toc-text">9 最后效果</span></a></li></ol>
+    
+      <div class="footer-more">
+          
+            <a href="https://github.com/Nambers" rel="external nofollow noreferrer" target="_blank">Copyright ©2020-2024 Eritque Arcus</a>
+           
       </div>
     
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.facebook.com/sharer.php?u=https://ikuyo.dev/2020/12/13/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://twitter.com/share?url=https://ikuyo.dev/2020/12/13/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/&text=用python+sklearn(机器学习)实现天气预测"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.linkedin.com/shareArticle?url=https://ikuyo.dev/2020/12/13/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/&title=用python+sklearn(机器学习)实现天气预测"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://pinterest.com/pin/create/bookmarklet/?url=https://ikuyo.dev/2020/12/13/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/&is_video=false&description=用python+sklearn(机器学习)实现天气预测"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=用python+sklearn(机器学习)实现天气预测&body=Check out this article: https://ikuyo.dev/2020/12/13/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/" rel="external nofollow noreferrer"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://getpocket.com/save?url=https://ikuyo.dev/2020/12/13/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/&title=用python+sklearn(机器学习)实现天气预测"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://reddit.com/submit?url=https://ikuyo.dev/2020/12/13/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/&title=用python+sklearn(机器学习)实现天气预测"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.stumbleupon.com/submit?url=https://ikuyo.dev/2020/12/13/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/&title=用python+sklearn(机器学习)实现天气预测"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://digg.com/submit?url=https://ikuyo.dev/2020/12/13/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/&title=用python+sklearn(机器学习)实现天气预测"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.tumblr.com/share/link?url=https://ikuyo.dev/2020/12/13/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/&name=用python+sklearn(机器学习)实现天气预测&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://news.ycombinator.com/submitlink?u=https://ikuyo.dev/2020/12/13/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/&t=用python+sklearn(机器学习)实现天气预测"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
+  
+    
+    
+      <div class="footer-more">
+          
+            <a href="https://github.com/zchengsite/hexo-theme-oranges" rel="external nofollow noreferrer" target="_blank">Theme by Oranges | Powered by Hexo</a>
+           
+      </div>
+    
+  
+    
+    
+      <div class="footer-more">
+          
+            <a href="https://icp.gov.moe/?keyword=20222242" target="_blank">萌ICP备20222242号</a>
+           
+      </div>
+    
+  
+    
+    
+      <script async src="https://4-um4m1.ikuyo.dev/script.js" data-website-id="03f1081f-d820-47e8-84c9-245f9093244c"></script>
+    
+  
+  
 </div>
 
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)" rel="external nofollow noreferrer">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
         
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2020-2024
-    Eritque arcus
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://github.com/Nambers">Projects</a></li><!--
-     --><!--
-       --><li><a href="/files/">Files</a></li><!--
-     --><!--
-       --><li><a href="/ctf-cheatsheet/">CTF-cheatsheet</a></li><!--
-     --><!--
-       --><li><a href="/link/">Links</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.travellings.cn/go.html">Travelling</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-  <a href="https://icp.gov.moe/?keyword=20222242" target="_blank">萌ICP备20222242号</a>
-</footer>
 
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)" rel="external nofollow noreferrer">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+
+      </div>
     </div>
-    <!-- styles -->
-
-
-
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
-
-
-
-
-<!-- clipboard -->
-
-  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
-<script src="/js/main.js"></script>
-
-<!-- search -->
-
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-</body>
+  </body>
 </html>

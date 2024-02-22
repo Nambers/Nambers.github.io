@@ -1,206 +1,192 @@
 <!DOCTYPE html>
-<html lang=en>
-<head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="本系列链接 本文章为以下文章合集因为是在很久前写的了, 可能有一些不准确和过时的内容#1使用html+css+js制作网站教程 准备#2使用html+css+js制作网站教程 测试#3使用html+css+js制作网页 制作登录网页#3使用html+css+js制作网页 番外篇 制作接收php#3使用html+css+js制作网页 番外篇 使用python flask 框架(I)#3使用html+">
-<meta property="og:type" content="article">
-<meta property="og:title" content="使用html+css+js制作登录网站教程">
-<meta property="og:url" content="https://ikuyo.dev/2020/01/26/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B/index.html">
-<meta property="og:site_name" content="Eritque arcus&#39;s blog">
-<meta property="og:description" content="本系列链接 本文章为以下文章合集因为是在很久前写的了, 可能有一些不准确和过时的内容#1使用html+css+js制作网站教程 准备#2使用html+css+js制作网站教程 测试#3使用html+css+js制作网页 制作登录网页#3使用html+css+js制作网页 番外篇 制作接收php#3使用html+css+js制作网页 番外篇 使用python flask 框架(I)#3使用html+">
-<meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://ikuyo.dev/images/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B.md-0.png">
-<meta property="og:image" content="https://ikuyo.dev/images/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B.md-1.png">
-<meta property="og:image" content="https://ikuyo.dev/images/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B.md-2.png">
-<meta property="og:image" content="https://ikuyo.dev/images/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B.md-3.jpg">
-<meta property="og:image" content="https://ikuyo.dev/images/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B.md-4.jpg">
-<meta property="og:image" content="https://ikuyo.dev/images/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B.md-5.jpg">
-<meta property="og:image" content="https://ikuyo.dev/images/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B.md-6.jpg">
-<meta property="og:image" content="https://ikuyo.dev/images/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B.md-7.jpg">
-<meta property="og:image" content="https://ikuyo.dev/images/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B.md-8.jpg">
-<meta property="og:image" content="https://ikuyo.dev/images/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B.md-9.jpg">
-<meta property="og:image" content="https://ikuyo.dev/images/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B.md-10.jpg">
-<meta property="og:image" content="https://ikuyo.dev/images/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B.md-11.png">
-<meta property="og:image" content="https://ikuyo.dev/images/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B.md-12.png">
-<meta property="og:image" content="https://ikuyo.dev/images/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B.md-13.png">
-<meta property="og:image" content="https://ikuyo.dev/images/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B.md-14.png">
-<meta property="article:published_time" content="2020-01-27T00:43:21.000Z">
-<meta property="article:modified_time" content="2024-02-09T23:10:53.497Z">
-<meta property="article:author" content="Eritque arcus">
-<meta property="article:tag" content="Python">
-<meta property="article:tag" content="Html,Js,Css">
-<meta property="article:tag" content="Flask">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://ikuyo.dev/images/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B.md-0.png">
+<html lang="en" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Eritque arcus" />
+  <!-- Open Graph Description 简短摘要-->
+  
+  <!-- 用于搜索引擎的文章摘要 -->
+  
+  <meta name="description" content="Eritque arcus&#39;s blog" />
+  
+  
+  
+  <title>
     
-    
-      
-        
-          <link rel="shortcut icon" href="/images/avatar.png">
-        
+      使用html+css+js制作登录网站教程 
       
       
-        
-          <link rel="icon" type="image/png" href="/images/avatar.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png">
-        
-      
+      |
     
-    <!-- title -->
-    <title>使用html+css+js制作登录网站教程</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
+     Eritque arcus&#39;s blog
+  </title>
 
-
-    <!-- Umami Analytics -->
-
-    <script async defer
-            data-website-id="03f1081f-d820-47e8-84c9-245f9093244c"
-            src="https://4-um4m1.ikuyo.dev/script.js">
-    </script>
-
-
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <!-- persian styles -->
-    
-    <!-- rss -->
-    
-    
-      <link rel="alternate" href="/true" title="Eritque arcus&#39;s blog" type="application/atom+xml" />
-    
-	<!-- mathjax -->
-	
-<meta name="generator" content="Hexo 7.0.0-rc2"></head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://github.com/Nambers">Projects</a></li><!--
-     --><!--
-       --><li><a href="/files/">Files</a></li><!--
-     --><!--
-       --><li><a href="/ctf-cheatsheet/">CTF-cheatsheet</a></li><!--
-     --><!--
-       --><li><a href="/link/">Links</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.travellings.cn/go.html">Travelling</a></li><!--
-     -->
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" aria-label="Previous post" href="/2020/12/13/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="Next post" href="/2020/01/06/Python%E4%BD%BF%E7%94%A8urllib,urllib3,requests%E5%BA%93+beautifulsoup%E7%88%AC%E5%8F%96%E7%BD%91%E9%A1%B5/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.facebook.com/sharer.php?u=https://ikuyo.dev/2020/01/26/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://twitter.com/share?url=https://ikuyo.dev/2020/01/26/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B/&text=使用html+css+js制作登录网站教程"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.linkedin.com/shareArticle?url=https://ikuyo.dev/2020/01/26/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B/&title=使用html+css+js制作登录网站教程"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://pinterest.com/pin/create/bookmarklet/?url=https://ikuyo.dev/2020/01/26/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B/&is_video=false&description=使用html+css+js制作登录网站教程"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=使用html+css+js制作登录网站教程&body=Check out this article: https://ikuyo.dev/2020/01/26/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B/" rel="external nofollow noreferrer"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://getpocket.com/save?url=https://ikuyo.dev/2020/01/26/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B/&title=使用html+css+js制作登录网站教程"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://reddit.com/submit?url=https://ikuyo.dev/2020/01/26/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B/&title=使用html+css+js制作登录网站教程"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.stumbleupon.com/submit?url=https://ikuyo.dev/2020/01/26/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B/&title=使用html+css+js制作登录网站教程"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://digg.com/submit?url=https://ikuyo.dev/2020/01/26/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B/&title=使用html+css+js制作登录网站教程"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.tumblr.com/share/link?url=https://ikuyo.dev/2020/01/26/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B/&name=使用html+css+js制作登录网站教程&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://news.ycombinator.com/submitlink?u=https://ikuyo.dev/2020/01/26/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B/&t=使用html+css+js制作登录网站教程"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%AC%E7%B3%BB%E5%88%97%E9%93%BE%E6%8E%A5"><span class="toc-number">1.</span> <span class="toc-text">本系列链接</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-%E5%87%86%E5%A4%87"><span class="toc-number">1.1.</span> <span class="toc-text">0 准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0-1-IDE%E7%BC%96%E8%BE%91%E8%BD%AF%E4%BB%B6"><span class="toc-number">1.1.1.</span> <span class="toc-text">0.1 IDE编辑软件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0-2-%E6%B5%8F%E8%A7%88%E5%99%A8"><span class="toc-number">1.1.2.</span> <span class="toc-text">0.2 浏览器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0-3-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.3.</span> <span class="toc-text">0.3 基础概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0-3-1-html"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">0.3.1 html</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0-3-2-css"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">0.3.2 css</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0-3-3-js"><span class="toc-number">1.1.3.3.</span> <span class="toc-text">0.3.3 js</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0-4-%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.4.</span> <span class="toc-text">0.4 文件结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0-5-%E9%99%84%E5%8A%A0"><span class="toc-number">1.1.5.</span> <span class="toc-text">0.5 附加</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%B5%8B%E8%AF%95"><span class="toc-number">1.2.</span> <span class="toc-text">1 测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E8%BF%90%E8%A1%8C"><span class="toc-number">1.3.</span> <span class="toc-text">1.1 运行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E5%AE%A1%E6%9F%A5"><span class="toc-number">1.3.1.</span> <span class="toc-text">1.2 审查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E5%AE%A1%E6%9F%A5%E6%8A%80%E5%B7%A7"><span class="toc-number">1.3.2.</span> <span class="toc-text">1.3 审查技巧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E5%85%B6%E4%BB%96"><span class="toc-number">1.3.3.</span> <span class="toc-text">1.4 其他</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E5%88%B6%E4%BD%9C%E7%99%BB%E5%BD%95%E7%BD%91%E9%A1%B5"><span class="toc-number">1.4.</span> <span class="toc-text">2制作登录网页</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%87%86%E5%A4%87"><span class="toc-number">1.4.1.</span> <span class="toc-text">2.1 准备</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">2.1.1 创建文件夹</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-2-%E5%88%9B%E5%BB%BA%E4%B8%BB%E6%96%87%E4%BB%B6"><span class="toc-number">1.4.1.2.</span> <span class="toc-text">2.1.2 创建主文件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-html%E9%83%A8%E5%88%86"><span class="toc-number">1.4.2.</span> <span class="toc-text">2.2 html部分</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-1-%E7%BD%91%E7%AB%99%E4%BF%A1%E6%81%AF"><span class="toc-number">1.4.2.1.</span> <span class="toc-text">2.2.1 网站信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-%E4%B8%BB%E8%A6%81%E6%A1%86%E6%9E%B6"><span class="toc-number">1.4.2.2.</span> <span class="toc-text">2.2.2 主要框架</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-3-%E7%BB%99%E6%AF%8F%E4%B8%AA%E5%85%83%E7%B4%A0%E6%B7%BB%E5%8A%A0ID"><span class="toc-number">1.4.2.3.</span> <span class="toc-text">2.2.3 给每个元素添加ID</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-css%E9%83%A8%E5%88%86"><span class="toc-number">1.4.3.</span> <span class="toc-text">2.3 css部分</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-1-%E5%88%9B%E5%BB%BA%E4%B8%BBcss%E6%96%87%E4%BB%B6"><span class="toc-number">1.4.3.1.</span> <span class="toc-text">2.3.1 创建主css文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-2-%E5%BC%95%E5%85%A5css%E6%96%87%E4%BB%B6"><span class="toc-number">1.4.3.2.</span> <span class="toc-text">2.3.2 引入css文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-3-%E7%BE%8E%E5%8C%96%E9%A1%B5%E9%9D%A2"><span class="toc-number">1.4.3.3.</span> <span class="toc-text">2.3.3 美化页面</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-3-1-Step1-%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD"><span class="toc-number">1.4.3.3.1.</span> <span class="toc-text">2.3.3.1 Step1 垂直居中</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-3-2-Step2-%E4%B8%8E%E9%A1%B5%E9%9D%A2%E4%B8%8A%E6%96%B9%E8%B7%9D%E7%A6%BB"><span class="toc-number">1.4.3.3.2.</span> <span class="toc-text">2.3.3.2 Step2 与页面上方距离</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-3-3-Step3-%E6%B7%BB%E5%8A%A0%E5%9C%86%E8%A7%92%E8%BE%B9%E6%A1%86"><span class="toc-number">1.4.3.3.3.</span> <span class="toc-text">2.3.3.3 Step3 添加圆角边框</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-3-4-Step4-%E6%B7%BB%E5%8A%A0%E6%A0%87%E9%A2%98"><span class="toc-number">1.4.3.3.4.</span> <span class="toc-text">2.3.3.4 Step4 添加标题</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-4-%E7%BE%8E%E5%8C%96%E7%BB%84%E4%BB%B6"><span class="toc-number">1.4.3.4.</span> <span class="toc-text">2.3.4 美化组件</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#BUTTON"><span class="toc-number">1.4.3.4.1.</span> <span class="toc-text">BUTTON</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-4-1-INPUT"><span class="toc-number">1.4.3.4.2.</span> <span class="toc-text">2.3.4.1 INPUT</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.4.4.</span> <span class="toc-text">2.4回顾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-JavaScript%E9%83%A8%E5%88%86"><span class="toc-number">1.4.5.</span> <span class="toc-text">2.5 JavaScript部分</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-1-%E5%88%9B%E5%BB%BA%E4%B8%BBjs%E6%96%87%E4%BB%B6"><span class="toc-number">1.4.5.1.</span> <span class="toc-text">2.5.1 创建主js文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-2-%E6%8F%90%E4%BA%A4%E8%A1%A8%E5%8D%95%EF%BC%88%E9%80%9A%E8%BF%87POST%E6%96%B9%E6%B3%95%EF%BC%89"><span class="toc-number">1.4.5.2.</span> <span class="toc-text">2.5.2 提交表单（通过POST方法）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-5-2-1-%E7%BA%AFjs%E6%96%B9%E5%BC%8F"><span class="toc-number">1.4.5.2.1.</span> <span class="toc-text">2.5.2.1 纯js方式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-5-2-2-JQ%E6%96%B9%E6%B3%95"><span class="toc-number">1.4.5.2.2.</span> <span class="toc-text">2.5.2.2 JQ方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-5-2-3-%E8%A1%A8%E5%8D%95"><span class="toc-number">1.4.5.2.3.</span> <span class="toc-text">2.5.2.3 表单</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-%E5%8F%82%E8%80%83%E7%BD%91%E7%AB%99"><span class="toc-number">1.4.6.</span> <span class="toc-text">2.6 参考网站</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%88%B6%E4%BD%9Cphp%E5%90%8E%E7%AB%AF"><span class="toc-number">1.5.</span> <span class="toc-text">3 制作php后端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%9F%BA%E7%A1%80"><span class="toc-number">1.5.1.</span> <span class="toc-text">3.1  基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-php%E8%AF%AD%E6%B3%95"><span class="toc-number">1.5.2.</span> <span class="toc-text">3.2  php语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E4%BE%8B%E5%AD%90"><span class="toc-number">1.5.3.</span> <span class="toc-text">3.3 例子</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E4%BD%BF%E7%94%A8python-flask%E6%A1%86%E6%9E%B6%E4%BD%9C%E4%B8%BA%E5%90%8E%E7%AB%AF"><span class="toc-number">1.6.</span> <span class="toc-text">4 使用python flask框架作为后端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E5%87%86%E5%A4%87"><span class="toc-number">1.6.1.</span> <span class="toc-text">4.1. 准备</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-1-python"><span class="toc-number">1.6.1.1.</span> <span class="toc-text">4.1.1 python</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-2-flask"><span class="toc-number">1.6.1.2.</span> <span class="toc-text">4.1.2 flask</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-3-flask-%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85"><span class="toc-number">1.6.1.3.</span> <span class="toc-text">4.1.3 flask 环境安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-4-flask-%E5%9F%BA%E6%9C%AC%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="toc-number">1.6.1.4.</span> <span class="toc-text">4.1.4 flask 基本文件结构</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E5%90%8E%E7%AB%AF%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.6.2.</span> <span class="toc-text">4.2 后端实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-1-flask-%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6"><span class="toc-number">1.6.2.1.</span> <span class="toc-text">4.2.1 flask 基本框架</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-2-flask-%E6%98%BE%E7%A4%BA%E5%89%8D%E7%AB%AF%E9%A1%B5%E9%9D%A2"><span class="toc-number">1.6.2.2.</span> <span class="toc-text">4.2.2 flask 显示前端页面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-3-flask-%E7%BB%99%E5%89%8D%E7%AB%AF%E4%BC%A0%E5%80%BC"><span class="toc-number">1.6.2.3.</span> <span class="toc-text">4.2.3 flask 给前端传值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-4-flask-%E6%8E%A5%E6%94%B6%E5%89%8D%E7%AB%AF%E4%BC%A0%E5%80%BC"><span class="toc-number">1.6.2.4.</span> <span class="toc-text">4.2.4 flask 接收前端传值</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E5%89%8D%E7%AB%AF%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.6.3.</span> <span class="toc-text">4.3 前端实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-1-%E5%88%86%E5%B1%82"><span class="toc-number">1.6.3.1.</span> <span class="toc-text">4.3.1 分层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-2-%E6%8E%A5%E6%94%B6%E5%8F%82%E6%95%B0"><span class="toc-number">1.6.3.2.</span> <span class="toc-text">4.3.2 接收参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-3-%E5%89%8D%E7%AB%AF%E7%BB%99%E5%90%8E%E7%AB%AF%E4%BC%A0%E5%8F%82"><span class="toc-number">1.6.3.3.</span> <span class="toc-text">4.3.3 前端给后端传参</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-4-%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2%E5%89%8D%E7%AB%AF"><span class="toc-number">1.6.3.4.</span> <span class="toc-text">4.3.4 登录页面前端</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E5%89%8D%E7%AB%AF-%E5%90%8E%E7%AB%AF%E7%9A%84%E7%AE%80%E5%8D%95%E7%BB%84%E5%90%88"><span class="toc-number">1.6.4.</span> <span class="toc-text">4.4 前端+后端的简单组合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD%E5%87%86%E5%A4%87"><span class="toc-number">1.6.5.</span> <span class="toc-text">4.5 登录功能准备</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-1-python%E4%B8%AD%E6%93%8D%E6%8E%A7mysql"><span class="toc-number">1.6.5.1.</span> <span class="toc-text">4.5.1 python中操控mysql</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-2-%E5%AE%89%E8%A3%85%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.6.5.2.</span> <span class="toc-text">4.5.2 安装数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-3-%E5%AE%89%E8%A3%85mysqlclient-python%E5%BA%93"><span class="toc-number">1.6.5.3.</span> <span class="toc-text">4.5.3 安装mysqlclient python库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-4-mysql%E8%AF%AD%E5%8F%A5%E6%95%99%E7%A8%8B"><span class="toc-number">1.6.5.4.</span> <span class="toc-text">4.5.4 mysql语句教程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-mysql-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="toc-number">1.6.6.</span> <span class="toc-text">4.6 mysql 创建数据表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-1-%E7%99%BB%E5%BD%95mysql"><span class="toc-number">1.6.6.1.</span> <span class="toc-text">4.6.1 登录mysql</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-2-%E8%BF%9B%E5%85%A5web%E5%BA%93"><span class="toc-number">1.6.6.2.</span> <span class="toc-text">4.6.2.进入web库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-3-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="toc-number">1.6.6.3.</span> <span class="toc-text">4.6.3.创建数据表</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-7-%E5%89%8D%E7%AB%AF%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2"><span class="toc-number">1.6.7.</span> <span class="toc-text">4.7 前端登录页面</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-7-1-%E7%9B%AE%E5%BD%95"><span class="toc-number">1.6.7.1.</span> <span class="toc-text">4.7.1 目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-7-2-%E5%89%8D%E7%AB%AF%E4%BB%A3%E7%A0%81"><span class="toc-number">1.6.7.2.</span> <span class="toc-text">4.7.2 前端代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-7-3-%E5%90%8E%E7%AB%AF%E4%BB%A3%E7%A0%81"><span class="toc-number">1.6.7.3.</span> <span class="toc-text">4.7.3 后端代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-8-%E8%BF%90%E8%A1%8C"><span class="toc-number">1.6.8.</span> <span class="toc-text">4.8 运行</span></a></li></ol></li></ol></li></ol>
-      </div>
-    
-  </span>
-</div>
-
-    
-    <div class="content index py4 ">
-        
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        使用html+css+js制作登录网站教程
-    </h1>
-
-
-
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">Eritque arcus</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2020-01-27T00:43:21.000Z" class="dt-published" itemprop="datePublished">2020-01-26</time>
-        
-        (Updated: <time datetime="2024-02-09T23:10:53.497Z" class="dt-updated" itemprop="dateModified">2024-02-09</time>)
-        
-      
-    </div>
-
-
-      
-    <div class="article-category">
-        <i class="fa-solid fa-archive"></i>
-        <a class="category-link" href="/categories/Web/">Web</a>
-    </div>
-
-
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/Flask/" rel="tag">Flask</a>, <a class="p-category" href="/tags/Html-Js-Css/" rel="tag">Html,Js,Css</a>, <a class="p-category" href="/tags/Python/" rel="tag">Python</a>
-    </div>
-
-
-    </div>
-  </header>
+  
+    <link rel="apple-touch-icon" href="/images/avatar.png">
+    <link rel="icon" href="/images/avatar.png">
   
 
-  <div class="content e-content" itemprop="articleBody">
-    <h1 id="本系列链接"><a href="#本系列链接" class="headerlink" title="本系列链接"></a>本系列链接</h1><blockquote>
+  <!-- Raleway-Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Eritque arcus</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/link/">
+          <a href="/link/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+        <li class="nav-item" data-path="/ctf-cheatsheet/">
+          <a href="/ctf-cheatsheet/">CTF-cheatsheet</a>
+        </li>
+      
+        <li class="nav-item" data-path="/files/">
+          <a href="/files/">Files</a>
+        </li>
+      
+        <li class="nav-item" data-path="https://www.travellings.cn/go.html">
+          <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.travellings.cn/go.html">Travelling</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">使用html+css+js制作登录网站教程</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+          2024-02-21 22:05:34
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/Python/" title="Python">
+                    #Python
+                  </a>
+                </span>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/Html-Js-Css/" title="Html,Js,Css">
+                    #Html,Js,Css
+                  </a>
+                </span>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/Flask/" title="Flask">
+                    #Flask
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <h1 id="本系列链接"><a href="#本系列链接" class="headerlink" title="本系列链接"></a>本系列链接</h1><blockquote>
 <p>本文章为以下文章合集<br>因为是在很久前写的了, 可能有一些不准确和过时的内容<br><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_40832960/article/details/104088696">#1使用html+css+js制作网站教程 准备</a><br><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_40832960/article/details/104089883">#2使用html+css+js制作网站教程 测试</a><br><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_40832960/article/details/104100918">#3使用html+css+js制作网页 制作登录网页</a><br><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_40832960/article/details/104132721">#3使用html+css+js制作网页 番外篇 制作接收php</a><br><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_40832960/article/details/107132488">#3使用html+css+js制作网页 番外篇 使用python flask 框架(I)</a><br><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_40832960/article/details/107618638">#3使用html+css+js制作网页 番外篇 使用python flask 框架 (II)</a></p>
 </blockquote>
 <h2 id="0-准备"><a href="#0-准备" class="headerlink" title="0 准备"></a>0 准备</h2><h3 id="0-1-IDE编辑软件"><a href="#0-1-IDE编辑软件" class="headerlink" title="0.1 IDE编辑软件"></a>0.1 IDE编辑软件</h3><p>目前笔者知道的编辑软件有</p>
@@ -224,7 +210,7 @@
 <li>所有选择器 <code>*</code></li>
 </ul>
 <p> eg:</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*用标签选择器把所有div标签变成红色背景*/</span></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">	<span class="attribute">background-color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*用标签选择器把所有div标签变成红色背景*/</span></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">   <span class="attribute">background-color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="0-3-3-js"><a href="#0-3-3-js" class="headerlink" title="0.3.3 js"></a>0.3.3 js</h4><p>JavaScript（简称“JS”） 是一种具有函数优先的轻量级，解释型或即时编译型的编程语言。(来源百度百科)<br>js就是html的脚本，可以在html中执行各种动态指令(虽然叫javascript 但是和java没有什么关系)<br>该语言没有什么主要结构，可以在这里查看细节<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.runoob.com/js/js-tutorial.html">点我跳转菜鸟教程</a></p>
 <h3 id="0-4-文件结构"><a href="#0-4-文件结构" class="headerlink" title="0.4 文件结构"></a>0.4 文件结构</h3><p>一般的文件结构为<br>www<br> &nbsp;-css<br> &nbsp;-js<br> &nbsp;-index.html<br> &nbsp;-robots.txt<br> &nbsp;-fonts<br> &nbsp;-pic<br> 其中</p>
 <ul>
@@ -263,7 +249,7 @@
 <h3 id="2-2-html部分"><a href="#2-2-html部分" class="headerlink" title="2.2 html部分"></a>2.2 html部分</h3><h4 id="2-2-1-网站信息"><a href="#2-2-1-网站信息" class="headerlink" title="2.2.1 网站信息"></a>2.2.1 网站信息</h4><p>向index.html中的<code>&lt;head&gt;&lt;/head&gt;</code>里面加入以下代码</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--声明信息--&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;author&quot;</span> <span class="attr">content</span>=<span class="string">&quot;这里输入作者名&quot;</span> /&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;generator&quot;</span> <span class="attr">content</span>=<span class="string">&quot;这里输入IDE名字&quot;</span> /&gt;</span></span><br><span class="line">   <span class="comment">&lt;!--声明结束--&gt;</span></span><br><span class="line">   <span class="comment">&lt;!--网站声明--&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;keywords&quot;</span> <span class="attr">content</span>=<span class="string">&quot;这里输入搜索关键字&quot;</span> /&gt;</span></span><br><span class="line">   <span class="comment">&lt;!--声明结束--&gt;</span></span><br></pre></td></tr></table></figure>
 <h4 id="2-2-2-主要框架"><a href="#2-2-2-主要框架" class="headerlink" title="2.2.2 主要框架"></a>2.2.2 主要框架</h4><p>我们是要做一个登录页面，所以必须要有两个输入框和一个提交按钮。<br>向index.html中的<code>&lt;body&gt;&lt;/body&gt;</code>里面添加以下代码:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;username&quot;</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;passwords&quot;</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">button</span>&gt;</span>提交<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;username&quot;</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;passwords&quot;</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">button</span>&gt;</span>提交<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>我们就同过上面的代码创建了2个输入框，一个提交按钮。其中:</p>
 <ul>
 <li><code>&lt;div&gt;</code> 标签定义 HTML 文档中的一个分隔区块或者一个区域部分。</li>
@@ -314,7 +300,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">submit</span>(<span class="params"></span>)&#123;</span><br><span class="line"><span class="keyword">var</span> um=<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;um&quot;</span>).<span class="property">value</span>;</span><br><span class="line"><span class="keyword">var</span> pd=<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;pd&quot;</span>).<span class="property">value</span>;</span><br><span class="line">$.<span class="title function_">post</span>(<span class="string">&quot;接收文件&quot;</span>,&#123;</span><br><span class="line"><span class="attr">username</span>:um,</span><br><span class="line"><span class="attr">password</span>:pd</span><br><span class="line"></span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span>(<span class="params">data,status</span>)&#123;</span><br><span class="line"></span><br><span class="line"><span class="title function_">alert</span>(<span class="string">&quot;数据: \n&quot;</span> + data + <span class="string">&quot;\n状态: &quot;</span> + status);</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>有关ajax post参考<a target="_blank" rel="noopener external nofollow noreferrer" href="https://baijiahao.baidu.com/s?id=1621600925778526737&wfr=spider&for=pc">这里</a>，其中，本次教程暂无接收php(教程已补<a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_40832960/article/details/104132721">点我跳转</a>)</p>
 <h5 id="2-5-2-3-表单"><a href="#2-5-2-3-表单" class="headerlink" title="2.5.2.3 表单"></a>2.5.2.3 表单</h5><p>或者，我们可以把整个作为一个表单提交，在<code>index.html</code>中修改<code>input_f</code>：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;input_f&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;接收php的地址&quot;</span> <span class="attr">type</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;um&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;username&quot;</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;pd&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;passwords&quot;</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;bu&quot;</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span>&gt;</span>提交<span class="tag">&lt;/<span class="name">input</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;input_f&quot;</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;接收php的地址&quot;</span> <span class="attr">type</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;um&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;username&quot;</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;pd&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;passwords&quot;</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;bu&quot;</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span>&gt;</span>提交<span class="tag">&lt;/<span class="name">input</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>这样也可以达到一样的效果。</p>
 <h3 id="2-6-参考网站"><a href="#2-6-参考网站" class="headerlink" title="2.6 参考网站"></a>2.6 参考网站</h3><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.runoob.com/">菜鸟教程</a><br><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.w3school.com.cn/">w3school</a><br><strong>本文代码包<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/LoginHTML">github下载</a></strong></p>
 <h2 id="3-制作php后端"><a href="#3-制作php后端" class="headerlink" title="3 制作php后端"></a>3 制作php后端</h2><blockquote>
@@ -359,7 +345,7 @@
 </blockquote>
 <h4 id="4-1-4-flask-基本文件结构"><a href="#4-1-4-flask-基本文件结构" class="headerlink" title="4.1.4 flask 基本文件结构"></a>4.1.4 flask 基本文件结构</h4><p>首先要新建文件夹如以下构造<br><strong>flask-demo</strong>(项目总文件夹，名字自取)<br><strong>–templates</strong>(前端部分文件夹)<br><strong>-run.py</strong>(后端文件，名字自取)<br><strong>-tempcoderunnerfile.py</strong>(系统缓存文件)</p>
 <p>如图<br><img src="/images/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B.md-11.png" alt="在这里插入图片描述"></p>
-<h3 id="4-2-后端实现"><a href="#4-2-后端实现" class="headerlink" title="4.2 后端实现"></a>4.2 后端实现</h3><h4 id="4-2-1-flask-基本框架"><a href="#4-2-1-flask-基本框架" class="headerlink" title="4.2.1 flask 基本框架"></a>4.2.1 flask 基本框架</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding: utf-8</span></span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask,render_template,url_for</span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 路径对应的执行函数，有路径就对应路径名，没路径就对应index</span></span><br><span class="line"><span class="comment">#如@app.route(&#x27;/login&#x27;) 对应def login()</span></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>():</span><br><span class="line">	<span class="keyword">return</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    app.run(host=<span class="string">&#x27;127.0.0.1&#x27;</span>, port=<span class="string">&#x27;5000&#x27;</span>, debug=<span class="literal">True</span>)<span class="comment">#映射</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-2-后端实现"><a href="#4-2-后端实现" class="headerlink" title="4.2 后端实现"></a>4.2 后端实现</h3><h4 id="4-2-1-flask-基本框架"><a href="#4-2-1-flask-基本框架" class="headerlink" title="4.2.1 flask 基本框架"></a>4.2.1 flask 基本框架</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding: utf-8</span></span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask,render_template,url_for</span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 路径对应的执行函数，有路径就对应路径名，没路径就对应index</span></span><br><span class="line"><span class="comment">#如@app.route(&#x27;/login&#x27;) 对应def login()</span></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>():</span><br><span class="line">   <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    app.run(host=<span class="string">&#x27;127.0.0.1&#x27;</span>, port=<span class="string">&#x27;5000&#x27;</span>, debug=<span class="literal">True</span>)<span class="comment">#映射</span></span><br></pre></td></tr></table></figure>
 <p>这段代码的作用就是把这个项目映射到127.0.0.1:5000的ip上，不过由于还没有挂网页文件上去，所以看不到什么效果</p>
 <h4 id="4-2-2-flask-显示前端页面"><a href="#4-2-2-flask-显示前端页面" class="headerlink" title="4.2.2 flask 显示前端页面"></a>4.2.2 flask 显示前端页面</h4><p>在flask框架中，使用</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">render_template(<span class="string">&#x27;index.html&#x27;</span>) </span><br></pre></td></tr></table></figure>
@@ -401,13 +387,13 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">db = MySQLdb.connect(<span class="string">&quot;地址（一般是localhost）&quot;</span>, <span class="string">&quot;用户名（一般是root）&quot;</span>, <span class="string">&quot;密码&quot;</span>,<span class="string">&quot;数据库名&quot;</span>)<span class="comment">#连接数据库</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;数据库连接&quot;</span>)</span><br><span class="line">   <span class="comment"># 使用cursor()方法获取操作游标</span></span><br><span class="line">   cursor = db.cursor()</span><br><span class="line">   <span class="comment"># SQL 插入语句</span></span><br><span class="line">   sql = <span class="string">&quot;mysql语句&quot;</span></span><br><span class="line">   <span class="built_in">print</span>(<span class="string">&quot;取注册位数&quot;</span>)</span><br><span class="line">   <span class="comment"># 执行sql语句</span></span><br><span class="line">   cursor.execute(sql)</span><br><span class="line">   <span class="comment"># 提交到数据库执行</span></span><br><span class="line">   db.commit()</span><br><span class="line">   results = cursor.fetchall()<span class="comment">#结果</span></span><br></pre></td></tr></table></figure>
 <h4 id="4-5-2-安装数据库"><a href="#4-5-2-安装数据库" class="headerlink" title="4.5.2 安装数据库"></a>4.5.2 安装数据库</h4><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.runoob.com/mysql/mysql-install.html">菜鸟教程</a></p>
 <h4 id="4-5-3-安装mysqlclient-python库"><a href="#4-5-3-安装mysqlclient-python库" class="headerlink" title="4.5.3 安装mysqlclient python库"></a>4.5.3 安装mysqlclient python库</h4><p>从<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#mysql-python">下载地址</a>下载对应python版本的mysqlclient库，然后打开<code>cmd</code>命令提示符，cd到下载目录下，执行</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install xxx.whl</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install xxx.whl</span><br></pre></td></tr></table></figure>
 <p>安装库</p>
 <h4 id="4-5-4-mysql语句教程"><a href="#4-5-4-mysql语句教程" class="headerlink" title="4.5.4 mysql语句教程"></a>4.5.4 mysql语句教程</h4><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.runoob.com/mysql/mysql-tutorial.html">菜鸟教程</a></p>
-<h3 id="4-6-mysql-创建数据表"><a href="#4-6-mysql-创建数据表" class="headerlink" title="4.6 mysql 创建数据表"></a>4.6 mysql 创建数据表</h3><h4 id="4-6-1-登录mysql"><a href="#4-6-1-登录mysql" class="headerlink" title="4.6.1 登录mysql"></a>4.6.1 登录mysql</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+<h3 id="4-6-mysql-创建数据表"><a href="#4-6-mysql-创建数据表" class="headerlink" title="4.6 mysql 创建数据表"></a>4.6 mysql 创建数据表</h3><h4 id="4-6-1-登录mysql"><a href="#4-6-1-登录mysql" class="headerlink" title="4.6.1 登录mysql"></a>4.6.1 登录mysql</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
 <p>然后输入密码，其中<code>root</code>为用户名</p>
-<h4 id="4-6-2-进入web库"><a href="#4-6-2-进入web库" class="headerlink" title="4.6.2.进入web库"></a>4.6.2.进入<code>web</code>库</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use web;</span><br></pre></td></tr></table></figure>
-<h4 id="4-6-3-创建数据表"><a href="#4-6-3-创建数据表" class="headerlink" title="4.6.3.创建数据表"></a>4.6.3.创建数据表</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE IF NOT EXISTS `users`(</span><br><span class="line">       `uid` INT UNSIGNED AUTO_INCREMENT,</span><br><span class="line">        `name` VARCHAR(100) NOT NULL,</span><br><span class="line">        `udate` DATE NOT NULL,</span><br><span class="line">        PRIMARY KEY ( `uid` )</span><br><span class="line">     )ENGINE=InnoDB DEFAULT CHARSET=utf8;</span><br><span class="line">      ALTER TABLE users ADD unique(`name`)</span><br></pre></td></tr></table></figure>
+<h4 id="4-6-2-进入web库"><a href="#4-6-2-进入web库" class="headerlink" title="4.6.2.进入web库"></a>4.6.2.进入<code>web</code>库</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use web;</span><br></pre></td></tr></table></figure>
+<h4 id="4-6-3-创建数据表"><a href="#4-6-3-创建数据表" class="headerlink" title="4.6.3.创建数据表"></a>4.6.3.创建数据表</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE IF NOT EXISTS `<span class="built_in">users</span>`(</span><br><span class="line">       `uid` INT UNSIGNED AUTO_INCREMENT,</span><br><span class="line">        `name` VARCHAR(100) NOT NULL,</span><br><span class="line">        `udate` DATE NOT NULL,</span><br><span class="line">        PRIMARY KEY ( `uid` )</span><br><span class="line">     )ENGINE=InnoDB DEFAULT CHARSET=utf8;</span><br><span class="line">      ALTER TABLE <span class="built_in">users</span> ADD unique(`name`)</span><br></pre></td></tr></table></figure>
 <p>其中</p>
 <ul>
 <li>第2行<code>uid</code>是用户排行，为int类型，即整数，<code>AUTO_INCREMENT</code>为自增</li>
@@ -432,160 +418,174 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python run.py</span><br></pre></td></tr></table></figure>
 <p><img src="/images/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B.md-14.png" alt="结果图"></p>
 <center>--END--</center>
-  </div>
-</article>
-
-
-
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">Home</a></li>
-        
-          <li><a href="/archives/">Writing</a></li>
-        
-          <li><a href="/about/">About</a></li>
-        
-          <li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://github.com/Nambers">Projects</a></li>
-        
-          <li><a href="/files/">Files</a></li>
-        
-          <li><a href="/ctf-cheatsheet/">CTF-cheatsheet</a></li>
-        
-          <li><a href="/link/">Links</a></li>
-        
-          <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.travellings.cn/go.html">Travelling</a></li>
-        
-      </ul>
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2020/01/06/Python%E4%BD%BF%E7%94%A8urllib,urllib3,requests%E5%BA%93+beautifulsoup%E7%88%AC%E5%8F%96%E7%BD%91%E9%A1%B5/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+              2024-02-21 22:05:34
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/Python/" title="Python">
+                        #Python
+                      </a>
+                    </span>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/Html-Js-Css/" title="Html,Js,Css">
+                        #Html,Js,Css
+                      </a>
+                    </span>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/Flask/" title="Flask">
+                        #Flask
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2020/12/13/%E7%94%A8python-sklearn-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/" target="_self">
+                <span>Next</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
     </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%AC%E7%B3%BB%E5%88%97%E9%93%BE%E6%8E%A5"><span class="toc-text">本系列链接</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-%E5%87%86%E5%A4%87"><span class="toc-text">0 准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0-1-IDE%E7%BC%96%E8%BE%91%E8%BD%AF%E4%BB%B6"><span class="toc-text">0.1 IDE编辑软件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0-2-%E6%B5%8F%E8%A7%88%E5%99%A8"><span class="toc-text">0.2 浏览器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0-3-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="toc-text">0.3 基础概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0-3-1-html"><span class="toc-text">0.3.1 html</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0-3-2-css"><span class="toc-text">0.3.2 css</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0-3-3-js"><span class="toc-text">0.3.3 js</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0-4-%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="toc-text">0.4 文件结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0-5-%E9%99%84%E5%8A%A0"><span class="toc-text">0.5 附加</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%B5%8B%E8%AF%95"><span class="toc-text">1 测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E8%BF%90%E8%A1%8C"><span class="toc-text">1.1 运行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E5%AE%A1%E6%9F%A5"><span class="toc-text">1.2 审查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E5%AE%A1%E6%9F%A5%E6%8A%80%E5%B7%A7"><span class="toc-text">1.3 审查技巧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E5%85%B6%E4%BB%96"><span class="toc-text">1.4 其他</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E5%88%B6%E4%BD%9C%E7%99%BB%E5%BD%95%E7%BD%91%E9%A1%B5"><span class="toc-text">2制作登录网页</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%87%86%E5%A4%87"><span class="toc-text">2.1 准备</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-text">2.1.1 创建文件夹</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-2-%E5%88%9B%E5%BB%BA%E4%B8%BB%E6%96%87%E4%BB%B6"><span class="toc-text">2.1.2 创建主文件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-html%E9%83%A8%E5%88%86"><span class="toc-text">2.2 html部分</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-1-%E7%BD%91%E7%AB%99%E4%BF%A1%E6%81%AF"><span class="toc-text">2.2.1 网站信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-%E4%B8%BB%E8%A6%81%E6%A1%86%E6%9E%B6"><span class="toc-text">2.2.2 主要框架</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-3-%E7%BB%99%E6%AF%8F%E4%B8%AA%E5%85%83%E7%B4%A0%E6%B7%BB%E5%8A%A0ID"><span class="toc-text">2.2.3 给每个元素添加ID</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-css%E9%83%A8%E5%88%86"><span class="toc-text">2.3 css部分</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-1-%E5%88%9B%E5%BB%BA%E4%B8%BBcss%E6%96%87%E4%BB%B6"><span class="toc-text">2.3.1 创建主css文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-2-%E5%BC%95%E5%85%A5css%E6%96%87%E4%BB%B6"><span class="toc-text">2.3.2 引入css文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-3-%E7%BE%8E%E5%8C%96%E9%A1%B5%E9%9D%A2"><span class="toc-text">2.3.3 美化页面</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-3-1-Step1-%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD"><span class="toc-text">2.3.3.1 Step1 垂直居中</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-3-2-Step2-%E4%B8%8E%E9%A1%B5%E9%9D%A2%E4%B8%8A%E6%96%B9%E8%B7%9D%E7%A6%BB"><span class="toc-text">2.3.3.2 Step2 与页面上方距离</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-3-3-Step3-%E6%B7%BB%E5%8A%A0%E5%9C%86%E8%A7%92%E8%BE%B9%E6%A1%86"><span class="toc-text">2.3.3.3 Step3 添加圆角边框</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-3-4-Step4-%E6%B7%BB%E5%8A%A0%E6%A0%87%E9%A2%98"><span class="toc-text">2.3.3.4 Step4 添加标题</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-4-%E7%BE%8E%E5%8C%96%E7%BB%84%E4%BB%B6"><span class="toc-text">2.3.4 美化组件</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#BUTTON"><span class="toc-text">BUTTON</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-4-1-INPUT"><span class="toc-text">2.3.4.1 INPUT</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4%E5%9B%9E%E9%A1%BE"><span class="toc-text">2.4回顾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-JavaScript%E9%83%A8%E5%88%86"><span class="toc-text">2.5 JavaScript部分</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-1-%E5%88%9B%E5%BB%BA%E4%B8%BBjs%E6%96%87%E4%BB%B6"><span class="toc-text">2.5.1 创建主js文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-2-%E6%8F%90%E4%BA%A4%E8%A1%A8%E5%8D%95%EF%BC%88%E9%80%9A%E8%BF%87POST%E6%96%B9%E6%B3%95%EF%BC%89"><span class="toc-text">2.5.2 提交表单（通过POST方法）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-5-2-1-%E7%BA%AFjs%E6%96%B9%E5%BC%8F"><span class="toc-text">2.5.2.1 纯js方式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-5-2-2-JQ%E6%96%B9%E6%B3%95"><span class="toc-text">2.5.2.2 JQ方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-5-2-3-%E8%A1%A8%E5%8D%95"><span class="toc-text">2.5.2.3 表单</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-%E5%8F%82%E8%80%83%E7%BD%91%E7%AB%99"><span class="toc-text">2.6 参考网站</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%88%B6%E4%BD%9Cphp%E5%90%8E%E7%AB%AF"><span class="toc-text">3 制作php后端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%9F%BA%E7%A1%80"><span class="toc-text">3.1  基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-php%E8%AF%AD%E6%B3%95"><span class="toc-text">3.2  php语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E4%BE%8B%E5%AD%90"><span class="toc-text">3.3 例子</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E4%BD%BF%E7%94%A8python-flask%E6%A1%86%E6%9E%B6%E4%BD%9C%E4%B8%BA%E5%90%8E%E7%AB%AF"><span class="toc-text">4 使用python flask框架作为后端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E5%87%86%E5%A4%87"><span class="toc-text">4.1. 准备</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-1-python"><span class="toc-text">4.1.1 python</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-2-flask"><span class="toc-text">4.1.2 flask</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-3-flask-%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85"><span class="toc-text">4.1.3 flask 环境安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-4-flask-%E5%9F%BA%E6%9C%AC%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="toc-text">4.1.4 flask 基本文件结构</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E5%90%8E%E7%AB%AF%E5%AE%9E%E7%8E%B0"><span class="toc-text">4.2 后端实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-1-flask-%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6"><span class="toc-text">4.2.1 flask 基本框架</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-2-flask-%E6%98%BE%E7%A4%BA%E5%89%8D%E7%AB%AF%E9%A1%B5%E9%9D%A2"><span class="toc-text">4.2.2 flask 显示前端页面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-3-flask-%E7%BB%99%E5%89%8D%E7%AB%AF%E4%BC%A0%E5%80%BC"><span class="toc-text">4.2.3 flask 给前端传值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-4-flask-%E6%8E%A5%E6%94%B6%E5%89%8D%E7%AB%AF%E4%BC%A0%E5%80%BC"><span class="toc-text">4.2.4 flask 接收前端传值</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E5%89%8D%E7%AB%AF%E5%AE%9E%E7%8E%B0"><span class="toc-text">4.3 前端实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-1-%E5%88%86%E5%B1%82"><span class="toc-text">4.3.1 分层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-2-%E6%8E%A5%E6%94%B6%E5%8F%82%E6%95%B0"><span class="toc-text">4.3.2 接收参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-3-%E5%89%8D%E7%AB%AF%E7%BB%99%E5%90%8E%E7%AB%AF%E4%BC%A0%E5%8F%82"><span class="toc-text">4.3.3 前端给后端传参</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-4-%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2%E5%89%8D%E7%AB%AF"><span class="toc-text">4.3.4 登录页面前端</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E5%89%8D%E7%AB%AF-%E5%90%8E%E7%AB%AF%E7%9A%84%E7%AE%80%E5%8D%95%E7%BB%84%E5%90%88"><span class="toc-text">4.4 前端+后端的简单组合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD%E5%87%86%E5%A4%87"><span class="toc-text">4.5 登录功能准备</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-1-python%E4%B8%AD%E6%93%8D%E6%8E%A7mysql"><span class="toc-text">4.5.1 python中操控mysql</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-2-%E5%AE%89%E8%A3%85%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">4.5.2 安装数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-3-%E5%AE%89%E8%A3%85mysqlclient-python%E5%BA%93"><span class="toc-text">4.5.3 安装mysqlclient python库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-4-mysql%E8%AF%AD%E5%8F%A5%E6%95%99%E7%A8%8B"><span class="toc-text">4.5.4 mysql语句教程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-mysql-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="toc-text">4.6 mysql 创建数据表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-1-%E7%99%BB%E5%BD%95mysql"><span class="toc-text">4.6.1 登录mysql</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-2-%E8%BF%9B%E5%85%A5web%E5%BA%93"><span class="toc-text">4.6.2.进入web库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-3-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="toc-text">4.6.3.创建数据表</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-7-%E5%89%8D%E7%AB%AF%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2"><span class="toc-text">4.7 前端登录页面</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-7-1-%E7%9B%AE%E5%BD%95"><span class="toc-text">4.7.1 目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-7-2-%E5%89%8D%E7%AB%AF%E4%BB%A3%E7%A0%81"><span class="toc-text">4.7.2 前端代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-7-3-%E5%90%8E%E7%AB%AF%E4%BB%A3%E7%A0%81"><span class="toc-text">4.7.3 后端代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-8-%E8%BF%90%E8%A1%8C"><span class="toc-text">4.8 运行</span></a></li></ol></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
 
     
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          
+              <a title="github" target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers">
+                <i class="fa-brands fa-github fa-lg"></i>
+              </a>
+              
+        </li>
+        
+        <li>
+          
+            <a title="email" href="mailto:eritque-arcus@ikuyo.dev">
+              <i class="fa-solid fa-envelope fa-lg"></i>
+            </a>
+            
+        </li>
+        
+    </ul>
+  </div>
+  
     
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%AC%E7%B3%BB%E5%88%97%E9%93%BE%E6%8E%A5"><span class="toc-number">1.</span> <span class="toc-text">本系列链接</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-%E5%87%86%E5%A4%87"><span class="toc-number">1.1.</span> <span class="toc-text">0 准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0-1-IDE%E7%BC%96%E8%BE%91%E8%BD%AF%E4%BB%B6"><span class="toc-number">1.1.1.</span> <span class="toc-text">0.1 IDE编辑软件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0-2-%E6%B5%8F%E8%A7%88%E5%99%A8"><span class="toc-number">1.1.2.</span> <span class="toc-text">0.2 浏览器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0-3-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.3.</span> <span class="toc-text">0.3 基础概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0-3-1-html"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">0.3.1 html</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0-3-2-css"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">0.3.2 css</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0-3-3-js"><span class="toc-number">1.1.3.3.</span> <span class="toc-text">0.3.3 js</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0-4-%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.4.</span> <span class="toc-text">0.4 文件结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0-5-%E9%99%84%E5%8A%A0"><span class="toc-number">1.1.5.</span> <span class="toc-text">0.5 附加</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%B5%8B%E8%AF%95"><span class="toc-number">1.2.</span> <span class="toc-text">1 测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E8%BF%90%E8%A1%8C"><span class="toc-number">1.3.</span> <span class="toc-text">1.1 运行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E5%AE%A1%E6%9F%A5"><span class="toc-number">1.3.1.</span> <span class="toc-text">1.2 审查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E5%AE%A1%E6%9F%A5%E6%8A%80%E5%B7%A7"><span class="toc-number">1.3.2.</span> <span class="toc-text">1.3 审查技巧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E5%85%B6%E4%BB%96"><span class="toc-number">1.3.3.</span> <span class="toc-text">1.4 其他</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E5%88%B6%E4%BD%9C%E7%99%BB%E5%BD%95%E7%BD%91%E9%A1%B5"><span class="toc-number">1.4.</span> <span class="toc-text">2制作登录网页</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%87%86%E5%A4%87"><span class="toc-number">1.4.1.</span> <span class="toc-text">2.1 准备</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">2.1.1 创建文件夹</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-2-%E5%88%9B%E5%BB%BA%E4%B8%BB%E6%96%87%E4%BB%B6"><span class="toc-number">1.4.1.2.</span> <span class="toc-text">2.1.2 创建主文件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-html%E9%83%A8%E5%88%86"><span class="toc-number">1.4.2.</span> <span class="toc-text">2.2 html部分</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-1-%E7%BD%91%E7%AB%99%E4%BF%A1%E6%81%AF"><span class="toc-number">1.4.2.1.</span> <span class="toc-text">2.2.1 网站信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-%E4%B8%BB%E8%A6%81%E6%A1%86%E6%9E%B6"><span class="toc-number">1.4.2.2.</span> <span class="toc-text">2.2.2 主要框架</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-3-%E7%BB%99%E6%AF%8F%E4%B8%AA%E5%85%83%E7%B4%A0%E6%B7%BB%E5%8A%A0ID"><span class="toc-number">1.4.2.3.</span> <span class="toc-text">2.2.3 给每个元素添加ID</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-css%E9%83%A8%E5%88%86"><span class="toc-number">1.4.3.</span> <span class="toc-text">2.3 css部分</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-1-%E5%88%9B%E5%BB%BA%E4%B8%BBcss%E6%96%87%E4%BB%B6"><span class="toc-number">1.4.3.1.</span> <span class="toc-text">2.3.1 创建主css文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-2-%E5%BC%95%E5%85%A5css%E6%96%87%E4%BB%B6"><span class="toc-number">1.4.3.2.</span> <span class="toc-text">2.3.2 引入css文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-3-%E7%BE%8E%E5%8C%96%E9%A1%B5%E9%9D%A2"><span class="toc-number">1.4.3.3.</span> <span class="toc-text">2.3.3 美化页面</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-3-1-Step1-%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD"><span class="toc-number">1.4.3.3.1.</span> <span class="toc-text">2.3.3.1 Step1 垂直居中</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-3-2-Step2-%E4%B8%8E%E9%A1%B5%E9%9D%A2%E4%B8%8A%E6%96%B9%E8%B7%9D%E7%A6%BB"><span class="toc-number">1.4.3.3.2.</span> <span class="toc-text">2.3.3.2 Step2 与页面上方距离</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-3-3-Step3-%E6%B7%BB%E5%8A%A0%E5%9C%86%E8%A7%92%E8%BE%B9%E6%A1%86"><span class="toc-number">1.4.3.3.3.</span> <span class="toc-text">2.3.3.3 Step3 添加圆角边框</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-3-4-Step4-%E6%B7%BB%E5%8A%A0%E6%A0%87%E9%A2%98"><span class="toc-number">1.4.3.3.4.</span> <span class="toc-text">2.3.3.4 Step4 添加标题</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-4-%E7%BE%8E%E5%8C%96%E7%BB%84%E4%BB%B6"><span class="toc-number">1.4.3.4.</span> <span class="toc-text">2.3.4 美化组件</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#BUTTON"><span class="toc-number">1.4.3.4.1.</span> <span class="toc-text">BUTTON</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-4-1-INPUT"><span class="toc-number">1.4.3.4.2.</span> <span class="toc-text">2.3.4.1 INPUT</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.4.4.</span> <span class="toc-text">2.4回顾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-JavaScript%E9%83%A8%E5%88%86"><span class="toc-number">1.4.5.</span> <span class="toc-text">2.5 JavaScript部分</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-1-%E5%88%9B%E5%BB%BA%E4%B8%BBjs%E6%96%87%E4%BB%B6"><span class="toc-number">1.4.5.1.</span> <span class="toc-text">2.5.1 创建主js文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-2-%E6%8F%90%E4%BA%A4%E8%A1%A8%E5%8D%95%EF%BC%88%E9%80%9A%E8%BF%87POST%E6%96%B9%E6%B3%95%EF%BC%89"><span class="toc-number">1.4.5.2.</span> <span class="toc-text">2.5.2 提交表单（通过POST方法）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-5-2-1-%E7%BA%AFjs%E6%96%B9%E5%BC%8F"><span class="toc-number">1.4.5.2.1.</span> <span class="toc-text">2.5.2.1 纯js方式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-5-2-2-JQ%E6%96%B9%E6%B3%95"><span class="toc-number">1.4.5.2.2.</span> <span class="toc-text">2.5.2.2 JQ方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-5-2-3-%E8%A1%A8%E5%8D%95"><span class="toc-number">1.4.5.2.3.</span> <span class="toc-text">2.5.2.3 表单</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-%E5%8F%82%E8%80%83%E7%BD%91%E7%AB%99"><span class="toc-number">1.4.6.</span> <span class="toc-text">2.6 参考网站</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%88%B6%E4%BD%9Cphp%E5%90%8E%E7%AB%AF"><span class="toc-number">1.5.</span> <span class="toc-text">3 制作php后端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%9F%BA%E7%A1%80"><span class="toc-number">1.5.1.</span> <span class="toc-text">3.1  基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-php%E8%AF%AD%E6%B3%95"><span class="toc-number">1.5.2.</span> <span class="toc-text">3.2  php语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E4%BE%8B%E5%AD%90"><span class="toc-number">1.5.3.</span> <span class="toc-text">3.3 例子</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E4%BD%BF%E7%94%A8python-flask%E6%A1%86%E6%9E%B6%E4%BD%9C%E4%B8%BA%E5%90%8E%E7%AB%AF"><span class="toc-number">1.6.</span> <span class="toc-text">4 使用python flask框架作为后端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E5%87%86%E5%A4%87"><span class="toc-number">1.6.1.</span> <span class="toc-text">4.1. 准备</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-1-python"><span class="toc-number">1.6.1.1.</span> <span class="toc-text">4.1.1 python</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-2-flask"><span class="toc-number">1.6.1.2.</span> <span class="toc-text">4.1.2 flask</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-3-flask-%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85"><span class="toc-number">1.6.1.3.</span> <span class="toc-text">4.1.3 flask 环境安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-4-flask-%E5%9F%BA%E6%9C%AC%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="toc-number">1.6.1.4.</span> <span class="toc-text">4.1.4 flask 基本文件结构</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E5%90%8E%E7%AB%AF%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.6.2.</span> <span class="toc-text">4.2 后端实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-1-flask-%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6"><span class="toc-number">1.6.2.1.</span> <span class="toc-text">4.2.1 flask 基本框架</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-2-flask-%E6%98%BE%E7%A4%BA%E5%89%8D%E7%AB%AF%E9%A1%B5%E9%9D%A2"><span class="toc-number">1.6.2.2.</span> <span class="toc-text">4.2.2 flask 显示前端页面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-3-flask-%E7%BB%99%E5%89%8D%E7%AB%AF%E4%BC%A0%E5%80%BC"><span class="toc-number">1.6.2.3.</span> <span class="toc-text">4.2.3 flask 给前端传值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-4-flask-%E6%8E%A5%E6%94%B6%E5%89%8D%E7%AB%AF%E4%BC%A0%E5%80%BC"><span class="toc-number">1.6.2.4.</span> <span class="toc-text">4.2.4 flask 接收前端传值</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E5%89%8D%E7%AB%AF%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.6.3.</span> <span class="toc-text">4.3 前端实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-1-%E5%88%86%E5%B1%82"><span class="toc-number">1.6.3.1.</span> <span class="toc-text">4.3.1 分层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-2-%E6%8E%A5%E6%94%B6%E5%8F%82%E6%95%B0"><span class="toc-number">1.6.3.2.</span> <span class="toc-text">4.3.2 接收参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-3-%E5%89%8D%E7%AB%AF%E7%BB%99%E5%90%8E%E7%AB%AF%E4%BC%A0%E5%8F%82"><span class="toc-number">1.6.3.3.</span> <span class="toc-text">4.3.3 前端给后端传参</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-4-%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2%E5%89%8D%E7%AB%AF"><span class="toc-number">1.6.3.4.</span> <span class="toc-text">4.3.4 登录页面前端</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E5%89%8D%E7%AB%AF-%E5%90%8E%E7%AB%AF%E7%9A%84%E7%AE%80%E5%8D%95%E7%BB%84%E5%90%88"><span class="toc-number">1.6.4.</span> <span class="toc-text">4.4 前端+后端的简单组合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD%E5%87%86%E5%A4%87"><span class="toc-number">1.6.5.</span> <span class="toc-text">4.5 登录功能准备</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-1-python%E4%B8%AD%E6%93%8D%E6%8E%A7mysql"><span class="toc-number">1.6.5.1.</span> <span class="toc-text">4.5.1 python中操控mysql</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-2-%E5%AE%89%E8%A3%85%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.6.5.2.</span> <span class="toc-text">4.5.2 安装数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-3-%E5%AE%89%E8%A3%85mysqlclient-python%E5%BA%93"><span class="toc-number">1.6.5.3.</span> <span class="toc-text">4.5.3 安装mysqlclient python库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-4-mysql%E8%AF%AD%E5%8F%A5%E6%95%99%E7%A8%8B"><span class="toc-number">1.6.5.4.</span> <span class="toc-text">4.5.4 mysql语句教程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-mysql-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="toc-number">1.6.6.</span> <span class="toc-text">4.6 mysql 创建数据表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-1-%E7%99%BB%E5%BD%95mysql"><span class="toc-number">1.6.6.1.</span> <span class="toc-text">4.6.1 登录mysql</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-2-%E8%BF%9B%E5%85%A5web%E5%BA%93"><span class="toc-number">1.6.6.2.</span> <span class="toc-text">4.6.2.进入web库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-3-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="toc-number">1.6.6.3.</span> <span class="toc-text">4.6.3.创建数据表</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-7-%E5%89%8D%E7%AB%AF%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2"><span class="toc-number">1.6.7.</span> <span class="toc-text">4.7 前端登录页面</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-7-1-%E7%9B%AE%E5%BD%95"><span class="toc-number">1.6.7.1.</span> <span class="toc-text">4.7.1 目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-7-2-%E5%89%8D%E7%AB%AF%E4%BB%A3%E7%A0%81"><span class="toc-number">1.6.7.2.</span> <span class="toc-text">4.7.2 前端代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-7-3-%E5%90%8E%E7%AB%AF%E4%BB%A3%E7%A0%81"><span class="toc-number">1.6.7.3.</span> <span class="toc-text">4.7.3 后端代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-8-%E8%BF%90%E8%A1%8C"><span class="toc-number">1.6.8.</span> <span class="toc-text">4.8 运行</span></a></li></ol></li></ol></li></ol>
+    
+      <div class="footer-more">
+          
+            <a href="https://github.com/Nambers" rel="external nofollow noreferrer" target="_blank">Copyright ©2020-2024 Eritque Arcus</a>
+           
       </div>
     
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.facebook.com/sharer.php?u=https://ikuyo.dev/2020/01/26/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://twitter.com/share?url=https://ikuyo.dev/2020/01/26/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B/&text=使用html+css+js制作登录网站教程"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.linkedin.com/shareArticle?url=https://ikuyo.dev/2020/01/26/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B/&title=使用html+css+js制作登录网站教程"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://pinterest.com/pin/create/bookmarklet/?url=https://ikuyo.dev/2020/01/26/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B/&is_video=false&description=使用html+css+js制作登录网站教程"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=使用html+css+js制作登录网站教程&body=Check out this article: https://ikuyo.dev/2020/01/26/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B/" rel="external nofollow noreferrer"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://getpocket.com/save?url=https://ikuyo.dev/2020/01/26/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B/&title=使用html+css+js制作登录网站教程"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://reddit.com/submit?url=https://ikuyo.dev/2020/01/26/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B/&title=使用html+css+js制作登录网站教程"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.stumbleupon.com/submit?url=https://ikuyo.dev/2020/01/26/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B/&title=使用html+css+js制作登录网站教程"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://digg.com/submit?url=https://ikuyo.dev/2020/01/26/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B/&title=使用html+css+js制作登录网站教程"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="http://www.tumblr.com/share/link?url=https://ikuyo.dev/2020/01/26/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B/&name=使用html+css+js制作登录网站教程&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener external nofollow noreferrer" href="https://news.ycombinator.com/submitlink?u=https://ikuyo.dev/2020/01/26/%E4%BD%BF%E7%94%A8html+css+js%E5%88%B6%E4%BD%9C%E7%BD%91%E7%AB%99%E6%95%99%E7%A8%8B/&t=使用html+css+js制作登录网站教程"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
+  
+    
+    
+      <div class="footer-more">
+          
+            <a href="https://github.com/zchengsite/hexo-theme-oranges" rel="external nofollow noreferrer" target="_blank">Theme by Oranges | Powered by Hexo</a>
+           
+      </div>
+    
+  
+    
+    
+      <div class="footer-more">
+          
+            <a href="https://icp.gov.moe/?keyword=20222242" target="_blank">萌ICP备20222242号</a>
+           
+      </div>
+    
+  
+    
+    
+      <script async src="https://4-um4m1.ikuyo.dev/script.js" data-website-id="03f1081f-d820-47e8-84c9-245f9093244c"></script>
+    
+  
+  
 </div>
 
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)" rel="external nofollow noreferrer">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
         
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2020-2024
-    Eritque arcus
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://github.com/Nambers">Projects</a></li><!--
-     --><!--
-       --><li><a href="/files/">Files</a></li><!--
-     --><!--
-       --><li><a href="/ctf-cheatsheet/">CTF-cheatsheet</a></li><!--
-     --><!--
-       --><li><a href="/link/">Links</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.travellings.cn/go.html">Travelling</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-  <a href="https://icp.gov.moe/?keyword=20222242" target="_blank">萌ICP备20222242号</a>
-</footer>
 
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)" rel="external nofollow noreferrer">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+
+      </div>
     </div>
-    <!-- styles -->
-
-
-
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
-
-
-
-
-<!-- clipboard -->
-
-  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
-<script src="/js/main.js"></script>
-
-<!-- search -->
-
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-</body>
+  </body>
 </html>
