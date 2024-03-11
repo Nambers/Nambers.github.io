@@ -91,9 +91,9 @@
       
         <tags>
             
-            <tag> Arch </tag>
-            
             <tag> grub </tag>
+            
+            <tag> Arch </tag>
             
             <tag> EFI </tag>
             
@@ -147,9 +147,9 @@
       
         <tags>
             
-            <tag> yafu2 </tag>
-            
             <tag> Arch </tag>
+            
+            <tag> yafu2 </tag>
             
         </tags>
       
