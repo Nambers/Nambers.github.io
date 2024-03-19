@@ -158,15 +158,12 @@
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
-          2024-02-19 21:08:43
+          2024-03-18 21:42:29
         </span>
         
       </div>
       <div class="markdown-body">
-        <blockquote>
-<p>last modified: Feb 2024<br>my <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/ctf-writeups/">CTF writeups</a></p>
-</blockquote>
-<h2 id="overall-useful-website-tools"><a href="#overall-useful-website-tools" class="headerlink" title="overall useful website&#x2F;tools"></a>overall useful website&#x2F;tools</h2><ul>
+        <h2 id="overall-useful-website-tools"><a href="#overall-useful-website-tools" class="headerlink" title="overall useful website&#x2F;tools"></a>overall useful website&#x2F;tools</h2><ul>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://book.hacktricks.xyz/">hacktricks.xyz</a> reference book</li>
 </ul>
 <p>– web –</p>
@@ -178,6 +175,7 @@
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.postman.com/">postman</a> to send http requests</li>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://portswigger.net/burp/communitydownload">burpsuite</a> to intercept http request packages</li>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.wireshark.org/">wireshark</a> to capture&#x2F;analyse network traffic</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://csp-evaluator.withgoogle.com/">csp evaluator</a> to evaluate CSP</li>
 </ul>
 <p>– rev –</p>
 <ul>
@@ -189,6 +187,8 @@
 <ul>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Z3Prover/z3">z3</a> to find solution under constrains</li>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.dcode.fr/en">dcode</a> to decode anything</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://gchq.github.io/CyberChef/">CyberChef</a> combine multiple tools to do sth</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://pylingual.io/">pylingual</a> decompiling pyc file</li>
 </ul>
 <p>–forensics &#x2F; osint –</p>
 <ul>
@@ -216,6 +216,7 @@
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/slimm609/checksec.sh">checksec.sh</a> to check binary security properties</li>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/hugsy/gef">gef</a> very useful GDB plugin</li>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Gallopsled/pwntools">pwntools</a> utility for pwn in python</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.shellcheck.net/">shellcheck</a> check fault in shell script</li>
 </ul>
 <p>– I don’t know where to put –</p>
 <ul>
@@ -223,7 +224,10 @@
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.revshells.com/">revshells.com</a> to generate reverse shell code</li>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/carlospolop/PEASS-ng">PEASS-ng</a> to enumerate windows&#x2F;linux privilege escalation</li>
 </ul>
-<h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><h3 id="DOM-Clobbering"><a href="#DOM-Clobbering" class="headerlink" title="DOM Clobbering"></a>DOM Clobbering</h3><ul>
+<h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><ul>
+<li>add <code>.</code> dot at the end of domain to bypass simple check <a target="_blank" rel="noopener external nofollow noreferrer" href="https://example.com./">example.com.</a></li>
+</ul>
+<h3 id="DOM-Clobbering"><a href="#DOM-Clobbering" class="headerlink" title="DOM Clobbering"></a>DOM Clobbering</h3><ul>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.arkark.dev/2023/09/21/seccon-quals/#web-blink">blink SECCON CTF 2023</a></li>
 </ul>
 <h3 id="Cascading"><a href="#Cascading" class="headerlink" title="Cascading"></a>Cascading</h3><ul>
@@ -240,21 +244,6 @@
 <h3 id="JSDom-jail"><a href="#JSDom-jail" class="headerlink" title="JSDom jail"></a>JSDom jail</h3><ul>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/ctf-writeups/blob/main/vsCTF-2023/web-Optimized_Admin_Bot/solve.md">Optimized Admin Bot vsCTF 2023</a> <code>spawnSync</code> to do RCE, require <code>process</code> and <code>spawn_sync</code>.</li>
 </ul>
-<h3 id="python-jail-pyjail"><a href="#python-jail-pyjail" class="headerlink" title="python jail &#x2F; pyjail"></a>python jail &#x2F; pyjail</h3><ul>
-<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/ctf-writeups/blob/main/crewCTF-2023/MISC-starship-1/solution.md">starship CrewCTF 2023</a> character limit: <code>@^_&quot;:,.</code> and acsii letters; type: <code>@__build_class__.__self__.exec\r@__build_class__.__self__.input\rclass\x0cx:pass</code>.</li>
-<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/ctf-writeups/blob/main/BxMCTF-23/Pwn-Bonus_The_Revenge_of_Checkpass_1/solve.md">Bonus_The_Revenge_of_Checkpass_1 BxMCTF 2023</a> <code>eval(inp, &#123;&#39;__builtins__&#39;: None&#125;, None)</code>; type: <code>().__class__.__bases__[0].__subclasses__()</code>.</li>
-<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/ctf-writeups/blob/main/BxMCTF-23/Web-Username_Decorator/solve.md">Username_Decorator BxMCTF 2023</a> Flask escape; type: <code>().__class__.__bases__[0].__subclasses__()</code>.</li>
-<li><code>&#39;f&#123;32:c&#125;&#39;</code> can format an int to char (equalivant to <code>chr(32)</code>).</li>
-<li>use other fonts to bypass alphabet filter (e.g. use Italic alphabet from <a target="_blank" rel="noopener external nofollow noreferrer" href="https://lingojam.com/ItalicTextGenerator">ItalicTextGenerator</a> and use long underline like <code>＿𝘤𝘭𝘢𝘴𝘴＿</code>) <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/UofTCTF/uoftctf-2024-chals-public/blob/master/Jail/zero/solve/writeup.md">Zero uoftctf-2024</a>.</li>
-<li>PWN pyjail<ul>
-<li>use <code>ctype</code> to override the definition of function (e.g. <code>os._exit</code>) <code>diligent-auditor DiceCTF-2024-qual</code></li>
-<li>use <a target="_blank" rel="noopener external nofollow noreferrer" href="https://bugs.python.org/issue43838">this behavior</a> to do PWN <code>IRS DiceCTF-2024-qual</code></li>
-<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/python-audit_hook_head_finder">finding audit-hooks head</a></li>
-</ul>
-</li>
-<li>use <code>vars()</code> and <code>|=</code> to add functions into globals(concat two dictionaries): <code>x=vars();x|=vars(list)</code></li>
-<li>use <code>match</code> to get member method or properties <a target="_blank" rel="noopener external nofollow noreferrer" href="https://peps.python.org/pep-0636/#adding-a-ui-matching-objects">pep-0636</a>: <code>cast dict(items=items1): print(items1())</code></li>
-</ul>
 <h3 id="CORS-bypass"><a href="#CORS-bypass" class="headerlink" title="CORS bypass"></a>CORS bypass</h3><ul>
 <li><code>makes-sense ASIS-ctf-qual 2023</code> use <code>shadow dom</code> to let inside <code>iframe</code> access <code>parent</code>‘s <code>document</code> by <code>shadowContainer.attachShadow</code>. Basically is let <code>e.source</code> in <code>window.onmessage = e=&gt;(e.source == top &amp;&amp; e.source.length == 0 ? eval(e.data) : &#39;&#39;)</code> is not undefined.</li>
 </ul>
@@ -267,6 +256,21 @@
 <li>inside of <code>function</code>: use <code>var process=this.constructor.constructor(&quot;return process;&quot;)();</code> to get <code>process</code> object. Then use <code>var require = global.require || global.process.mainModule.constructor._load;</code>, the script <a target="_blank" rel="noopener external nofollow noreferrer" href="https://gist.github.com/CapacitorSet/c41ab55a54437dcbcb4e62713a195822">here <em>spawnSync.js</em></a>, or even <code>this.require</code> to get RCE.</li>
 </ul>
 <h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="find-solution-under-constrains"><a href="#find-solution-under-constrains" class="headerlink" title="find solution under constrains"></a>find solution under constrains</h3><p>Use <code>z3-solver</code>, e.g. <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/ctf-writeups/blob/main/hack-a-sat-qual-2023/based_emoji%20(late)/solve.md">based emoji hackasat qual 2023</a></p>
+<h3 id="python-jail-pyjail"><a href="#python-jail-pyjail" class="headerlink" title="python jail &#x2F; pyjail"></a>python jail &#x2F; pyjail</h3><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/ctf-writeups/blob/main/crewCTF-2023/MISC-starship-1/solution.md">starship CrewCTF 2023</a> character limit: <code>@^_&quot;:,.</code> and acsii letters; type: <code>@__build_class__.__self__.exec\r@__build_class__.__self__.input\rclass\x0cx:pass</code>.</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/ctf-writeups/blob/main/BxMCTF-23/Pwn-Bonus_The_Revenge_of_Checkpass_1/solve.md">Bonus_The_Revenge_of_Checkpass_1 BxMCTF 2023</a> <code>eval(inp, &#123;&#39;__builtins__&#39;: None&#125;, None)</code>; type: <code>().__class__.__bases__[0].__subclasses__()</code>.</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/ctf-writeups/blob/main/BxMCTF-23/Web-Username_Decorator/solve.md">Username_Decorator BxMCTF 2023</a> Flask escape; type: <code>().__class__.__bases__[0].__subclasses__()</code>.</li>
+<li><code>&#39;f&#123;32:c&#125;&#39;</code> can format an int to char (equalivant to <code>chr(32)</code>).</li>
+<li>use other fonts to bypass alphabet filter (e.g. use Italic alphabet from <a target="_blank" rel="noopener external nofollow noreferrer" href="https://lingojam.com/ItalicTextGenerator">ItalicTextGenerator</a> and use long underline like <code>＿𝘤𝘭𝘢𝘴𝘴＿</code>) <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/UofTCTF/uoftctf-2024-chals-public/blob/master/Jail/zero/solve/writeup.md">Zero uoftctf-2024</a>.</li>
+<li>PWN pyjail<ul>
+<li>use <code>ctype</code> to override the definition of function (e.g. <code>os._exit</code>) <code>diligent-auditor DiceCTF-2024-qual</code></li>
+<li>use <a target="_blank" rel="noopener external nofollow noreferrer" href="https://bugs.python.org/issue43838">this behavior</a> to do PWN <code>IRS DiceCTF-2024-qual</code></li>
+<li>use UAF in field like <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/python/cpython/issues/91153">issues#91153</a> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/python-audit_hook_head_finder/">audit hook POC</a></li>
+</ul>
+</li>
+<li>use <code>vars()</code> and <code>|=</code> to add functions into globals(concat two dictionaries): <code>x=vars();x|=vars(list)</code></li>
+<li>use <code>match</code> to get member method or properties <a target="_blank" rel="noopener external nofollow noreferrer" href="https://peps.python.org/pep-0636/#adding-a-ui-matching-objects">pep-0636</a>: <code>cast dict(items=items1): print(items1())</code></li>
+</ul>
 <h2 id="Rev"><a href="#Rev" class="headerlink" title="Rev"></a>Rev</h2><h3 id="Angr-to-find-solution-for-input"><a href="#Angr-to-find-solution-for-input" class="headerlink" title="Angr to find solution for input"></a>Angr to find solution for input</h3><ul>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/ctf-writeups/blob/main/WolvCTF-2023/Reverse-Homework_Help-Easy-Medium/solve.md">Homework Help WolvCTF 2023</a></li>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers/ctf-writeups/blob/main/buckeyeCTF-2022/rev-Angry-easy/solve.md">Angry BuckeyeCTF 2022</a></li>
@@ -281,7 +285,7 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
-              2024-02-19 21:08:43
+              2024-03-18 21:42:29
             </span>
             
           </div>
@@ -299,7 +303,7 @@
     <div class="title">Contents</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#overall-useful-website-tools"><span class="toc-text">overall useful website&#x2F;tools</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM-Clobbering"><span class="toc-text">DOM Clobbering</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cascading"><span class="toc-text">Cascading</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NoSQL-Injection"><span class="toc-text">NoSQL Injection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT"><span class="toc-text">JWT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JSDom-jail"><span class="toc-text">JSDom jail</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#python-jail-pyjail"><span class="toc-text">python jail &#x2F; pyjail</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CORS-bypass"><span class="toc-text">CORS bypass</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSP-bypass"><span class="toc-text">CSP bypass</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JavaScript-Jail"><span class="toc-text">JavaScript Jail</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#find-solution-under-constrains"><span class="toc-text">find solution under constrains</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rev"><span class="toc-text">Rev</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Angr-to-find-solution-for-input"><span class="toc-text">Angr to find solution for input</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#overall-useful-website-tools"><span class="toc-text">overall useful website&#x2F;tools</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM-Clobbering"><span class="toc-text">DOM Clobbering</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cascading"><span class="toc-text">Cascading</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NoSQL-Injection"><span class="toc-text">NoSQL Injection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT"><span class="toc-text">JWT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JSDom-jail"><span class="toc-text">JSDom jail</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CORS-bypass"><span class="toc-text">CORS bypass</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSP-bypass"><span class="toc-text">CSP bypass</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JavaScript-Jail"><span class="toc-text">JavaScript Jail</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#find-solution-under-constrains"><span class="toc-text">find solution under constrains</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#python-jail-pyjail"><span class="toc-text">python jail &#x2F; pyjail</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rev"><span class="toc-text">Rev</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Angr-to-find-solution-for-input"><span class="toc-text">Angr to find solution for input</span></a></li></ol></li></ol>
       
     </div>
   </div>
