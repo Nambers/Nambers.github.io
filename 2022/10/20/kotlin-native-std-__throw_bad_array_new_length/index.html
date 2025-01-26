@@ -1,1 +1,342 @@
-<!DOCTYPE html><html lang="en" color-mode="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="author" content="Eritque arcus"><meta name="description" content="Eritque arcus&#39;s blog"><title>Kotlin/Native lld-link: error: undefined symbol: std::__throw_bad_array_new_length() | Eritque arcus&#39;s blog</title><link rel="apple-touch-icon" href="/images/avatar.png"><link rel="icon" href="/images/avatar.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><script defer type="text/javascript" src="/plugins/jquery.min.js"></script><link href="/plugins/jquery.fancybox.min.css" rel="stylesheet"><script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script><script src="/js/fancybox.js"></script><script>var html=document.documentElement;const colorMode=localStorage.getItem("color-mode");colorMode&&document.documentElement.setAttribute("color-mode",colorMode)</script><meta name="generator" content="Hexo 7.1.1"></head><body><div id="app"><div class="header"><div class="avatar"><a href="/"><img src="/images/avatar.png" alt=""></a><div class="nickname"><a href="/">Eritque arcus</a></div></div><div class="navbar"><ul><li class="nav-item" data-path="/"><a href="/">Home</a></li><li class="nav-item" data-path="/archives/"><a href="/archives/">Archives</a></li><li class="nav-item" data-path="/tags/"><a href="/tags/">Tags</a></li><li class="nav-item" data-path="/link/"><a href="/link/">Friends</a></li><li class="nav-item" data-path="/about/"><a href="/about/">About</a></li><li class="nav-item" data-path="/ctf-cheatsheet/"><a href="/ctf-cheatsheet/">CTF-cheatsheet</a></li><li class="nav-item" data-path="/files/"><a href="/files/">Files</a></li><li class="nav-item" data-path="https://www.travellings.cn/go.html"><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.travellings.cn/go.html">Travelling</a></li></ul></div></div><script src="/js/activeNav.js"></script><div class="flex-container"><script async type="text/javascript" src="/plugins/clipboard.min.js"></script><script src="/js/codeCopy.js"></script><div class="container post-details" id="post-details"><div class="post-content"><div class="post-title">Kotlin/Native lld-link: error: undefined symbol: std::__throw_bad_array_new_length()</div><div class="post-attach"><span class="post-pubtime"><i class="iconfont icon-updatetime mr-10" title="Update time"></i> 2024-02-21 21:02:57 </span><span class="post-tags"><i class="iconfont icon-tags mr-10" title="Tags"></i> <span class="span--tag mr-8"><a href="/tags/Kotlin/" title="Kotlin">#Kotlin</a></span></span></div><div class="markdown-body"><h2 id="0-问题"><a href="#0-问题" class="headerlink" title="0. 问题"></a>0. 问题</h2><p>在 GitHub Workflow 或者 本地运行 Kotlin&#x2F;Native 的 link 任务报错:<br>本地 &amp; GitHub 环境:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">os = Windows</span><br><span class="line">compiler = GCC 11.2.0</span><br></pre></td></tr></table></figure><p>以下为在 GitHub Workflow 上的日志片段</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">e: C:\Users\runneradmin\.konan\dependencies\llvm-11.1.0-windows-x64-essentials/bin/clang++ invocation reported errors</span><br><span class="line"></span><br><span class="line">The C:\Users\runneradmin\.konan\dependencies\llvm-11.1.0-windows-x64-essentials/bin/clang++ command returned non-zero exit code: 1.</span><br><span class="line">output:</span><br><span class="line">lld-link: error: undefined symbol: std::__throw_bad_array_new_length()</span><br><span class="line">&gt;&gt;&gt; referenced by &lt;Linked Lib name&gt;.a(ThreadController.cpp.obj):(LibLoader::sendPluginException(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;))</span><br><span class="line">&gt;&gt;&gt; referenced by &lt;Linked Lib name&gt;.a(ThreadController.cpp.obj):(LibLoader::ThreadController::submitJob(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::function&lt;void ()&gt;))</span><br><span class="line">&gt;&gt;&gt; referenced by &lt;Linked Lib name&gt;.a(ThreadController.cpp.obj):(LibLoader::ThreadController::callThreadEnd(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::function&lt;void ()&gt;))</span><br><span class="line">&gt;&gt;&gt; referenced 16 more times</span><br><span class="line">clang++: error: linker command failed with exit code 1 (use -v to see invocation)</span><br><span class="line"></span><br><span class="line">&gt; Task :&lt;Proj name&gt;:linkDebugExecutableNative FAILED</span><br><span class="line">:&lt;Proj name&gt;:linkDebugExecutableNative (Thread[Execution worker for &#x27;:&#x27;,5,main]) completed. Took 3 mins 10.585 secs.</span><br></pre></td></tr></table></figure><h2 id="1-原因"><a href="#1-原因" class="headerlink" title="1. 原因"></a>1. 原因</h2><p>造成的原因是 Kotlin&#x2F;Native 是用 GCC 9.2.0 的(见 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://youtrack.jetbrains.com/issue/KT-51975/Native-lld-link-error-undefined-symbol-stdthrowbadarraynewlength">KT-51975</a>), 但是我在 Kotlin&#x2F;Native 里的 cintrop 里 link 了一个用 GCC 11.2.0 编译的静态库.</p><h2 id="2-解决方法"><a href="#2-解决方法" class="headerlink" title="2. 解决方法"></a>2. 解决方法</h2><p>用 GCC 10 &#x2F; 9 重新编译要 link 的静态库或者改用动态库</p></div><div class="prev-or-next"><div class="post-foot-next"><a href="/2022/10/14/PWN-wr1teups0/" target="_self"><i class="iconfont icon-chevronleft"></i> <span>Prev</span></a></div><div class="post-attach"><span class="post-pubtime"><i class="iconfont icon-updatetime mr-10" title="Update time"></i> 2024-02-21 21:02:57 </span><span class="post-tags"><i class="iconfont icon-tags mr-10" title="Tags"></i> <span class="span--tag mr-8"><a href="/tags/Kotlin/" title="Kotlin">#Kotlin</a></span></span></div><div class="post-foot-prev"><a href="/2022/12/21/MessageIOException_Could_not_write_127.0.0.1/" target="_self"><span>Next</span> <i class="iconfont icon-chevronright"></i></a></div></div></div><div id="btn-catalog" class="btn-catalog"><i class="iconfont icon-catalog"></i></div><div class="post-catalog hidden" id="catalog"><div class="title">Contents</div><div class="catalog-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-%E9%97%AE%E9%A2%98"><span class="toc-text">0. 问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%8E%9F%E5%9B%A0"><span class="toc-text">1. 原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-text">2. 解决方法</span></a></li></ol></div></div><script src="/js/catalog.js"></script></div><div class="footer"><div class="social"><ul><li><a title="github" target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers"><i class="fa-brands fa-github fa-lg"></i></a></li><li><a title="email" href="mailto:eritque-arcus@ikuyo.dev"><i class="fa-solid fa-envelope fa-lg"></i></a></li></ul></div><div class="footer-more"><a href="https://github.com/Nambers" rel="external nofollow noreferrer" target="_blank">Copyright ©2020-2024 Eritque Arcus</a></div><div class="footer-more"><a href="https://github.com/zchengsite/hexo-theme-oranges" rel="external nofollow noreferrer" target="_blank">Theme by Oranges | Powered by Hexo</a></div><div class="footer-more"><a href="https://icp.gov.moe/?keyword=20222242" target="_blank">萌ICP备20222242号</a></div><script defer src="https://4-um4m1.ikuyo.dev/script.js" data-website-id="34e0a647-a8e8-40a8-ad62-742e9d604413"></script></div></div><div class="tools-bar"><div class="back-to-top tools-bar-item hidden"><a href="javascript: void(0)" rel="external nofollow noreferrer"><i class="iconfont icon-chevronup"></i></a></div><script src="/js/backtotop.js"></script><div class="tools-bar-item theme-icon" id="switch-color-scheme"><a href="javascript: void(0)" rel="external nofollow noreferrer"><i id="theme-icon" class="iconfont icon-moon"></i></a></div><script src="/js/colorscheme.js"></script></div></div></body></html>
+<!DOCTYPE html>
+<html lang="en" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Eritque arcus" />
+  <!-- Open Graph Description 简短摘要-->
+  
+  <!-- 用于搜索引擎的文章摘要 -->
+  
+  <meta name="description" content="Eritque arcus&#39;s blog" />
+  
+  
+  
+  <title>
+    
+      Kotlin/Native lld-link: error: undefined symbol: std::__throw_bad_array_new_length() 
+      
+      
+      |
+    
+     Eritque arcus&#39;s blog
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/avatar.png">
+    <link rel="icon" href="/images/avatar.png">
+  
+
+  <!-- Raleway-Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Eritque arcus</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/link/">
+          <a href="/link/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+        <li class="nav-item" data-path="/ctf-cheatsheet/">
+          <a href="/ctf-cheatsheet/">CTF-cheatsheet</a>
+        </li>
+      
+        <li class="nav-item" data-path="/files/">
+          <a href="/files/">Files</a>
+        </li>
+      
+        <li class="nav-item" data-path="https://www.travellings.cn/go.html">
+          <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.travellings.cn/go.html">Travelling</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">Kotlin/Native lld-link: error: undefined symbol: std::__throw_bad_array_new_length()</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+          2024-02-21 21:02:57
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/Kotlin/" title="Kotlin">
+                    #Kotlin
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <h2 id="0-问题"><a href="#0-问题" class="headerlink" title="0. 问题"></a>0. 问题</h2><p>在 GitHub Workflow 或者 本地运行 Kotlin&#x2F;Native 的 link 任务报错:<br>本地 &amp; GitHub 环境:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">os = Windows</span><br><span class="line">compiler = GCC 11.2.0</span><br></pre></td></tr></table></figure>
+<p>以下为在 GitHub Workflow 上的日志片段</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">e: C:\Users\runneradmin\.konan\dependencies\llvm-11.1.0-windows-x64-essentials/bin/clang++ invocation reported errors</span><br><span class="line"></span><br><span class="line">The C:\Users\runneradmin\.konan\dependencies\llvm-11.1.0-windows-x64-essentials/bin/clang++ command returned non-zero exit code: 1.</span><br><span class="line">output:</span><br><span class="line">lld-link: error: undefined symbol: std::__throw_bad_array_new_length()</span><br><span class="line">&gt;&gt;&gt; referenced by &lt;Linked Lib name&gt;.a(ThreadController.cpp.obj):(LibLoader::sendPluginException(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;))</span><br><span class="line">&gt;&gt;&gt; referenced by &lt;Linked Lib name&gt;.a(ThreadController.cpp.obj):(LibLoader::ThreadController::submitJob(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::function&lt;void ()&gt;))</span><br><span class="line">&gt;&gt;&gt; referenced by &lt;Linked Lib name&gt;.a(ThreadController.cpp.obj):(LibLoader::ThreadController::callThreadEnd(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::function&lt;void ()&gt;))</span><br><span class="line">&gt;&gt;&gt; referenced 16 more times</span><br><span class="line">clang++: error: linker command failed with exit code 1 (use -v to see invocation)</span><br><span class="line"></span><br><span class="line">&gt; Task :&lt;Proj name&gt;:linkDebugExecutableNative FAILED</span><br><span class="line">:&lt;Proj name&gt;:linkDebugExecutableNative (Thread[Execution worker for &#x27;:&#x27;,5,main]) completed. Took 3 mins 10.585 secs.</span><br></pre></td></tr></table></figure>
+<h2 id="1-原因"><a href="#1-原因" class="headerlink" title="1. 原因"></a>1. 原因</h2><p>造成的原因是 Kotlin&#x2F;Native 是用 GCC 9.2.0 的(见 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://youtrack.jetbrains.com/issue/KT-51975/Native-lld-link-error-undefined-symbol-stdthrowbadarraynewlength">KT-51975</a>), 但是我在 Kotlin&#x2F;Native 里的 cintrop 里 link 了一个用 GCC 11.2.0 编译的静态库.</p>
+<h2 id="2-解决方法"><a href="#2-解决方法" class="headerlink" title="2. 解决方法"></a>2. 解决方法</h2><p>用 GCC 10 &#x2F; 9 重新编译要 link 的静态库或者改用动态库</p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2022/10/14/PWN-wr1teups0/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+              2024-02-21 21:02:57
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/Kotlin/" title="Kotlin">
+                        #Kotlin
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2022/12/21/MessageIOException_Could_not_write_127.0.0.1/" target="_self">
+                <span>Next</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-%E9%97%AE%E9%A2%98"><span class="toc-text">0. 问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%8E%9F%E5%9B%A0"><span class="toc-text">1. 原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-text">2. 解决方法</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
+    
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          
+              <a title="github" target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Nambers">
+                <i class="fa-brands fa-github fa-lg"></i>
+              </a>
+              
+        </li>
+        
+        <li>
+          
+            <a title="email" href="mailto:eritque-arcus@ikuyo.dev">
+              <i class="fa-solid fa-envelope fa-lg"></i>
+            </a>
+            
+        </li>
+        
+    </ul>
+  </div>
+  
+    
+    
+      <div class="footer-more">
+          
+            <a href="https://github.com/Nambers" rel="external nofollow noreferrer" target="_blank">Copyright ©2020-2025 Eritque Arcus</a>
+           
+      </div>
+    
+  
+    
+    
+      <div class="footer-more">
+          
+            <a href="https://github.com/zchengsite/hexo-theme-oranges" rel="external nofollow noreferrer" target="_blank">Theme by Oranges | Powered by Hexo</a>
+           
+      </div>
+    
+  
+    
+    
+      <div class="footer-more">
+          
+            <a href="https://icp.gov.moe/?keyword=20222242" target="_blank">萌ICP备20222242号</a>
+           
+      </div>
+    
+  
+    
+    
+      <script defer src="https://4-um4m1.ikuyo.dev/script.js" data-website-id="34e0a647-a8e8-40a8-ad62-742e9d604413"></script>
+    
+  
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)" rel="external nofollow noreferrer">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)" rel="external nofollow noreferrer">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+
+      </div>
+    </div>
+  </body>
+</html>
