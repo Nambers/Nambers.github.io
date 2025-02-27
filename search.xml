@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>从0开始设计 MIPS64 SoC</title>
+      <link href="/2025/02/27/MIPS64-SOC/"/>
+      <url>/2025/02/27/MIPS64-SOC/</url>
+      
+        <content type="html"><![CDATA[<h2 id="0-背景"><a href="#0-背景" class="headerlink" title="0. 背景"></a>0. 背景</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> Note </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> MIPS64 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>CPython internal AST structure deep-copy functions</title>
       <link href="/2024/07/20/cpython-ast-helpers/"/>
       <url>/2024/07/20/cpython-ast-helpers/</url>

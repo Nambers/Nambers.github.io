@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://ikuyo.dev/categories/index-1.html</loc>
+    <loc>https://ikuyo.dev/2025/02/27/MIPS64-SOC/</loc>
     
     <lastmod>2025-02-27</lastmod>
     
@@ -360,6 +360,13 @@
   
   <url>
     <loc>https://ikuyo.dev/tags/Encoding/</loc>
+    <lastmod>2025-02-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+  <url>
+    <loc>https://ikuyo.dev/tags/MIPS64/</loc>
     <lastmod>2025-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
