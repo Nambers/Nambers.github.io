@@ -232,9 +232,9 @@
       
         <tags>
             
-            <tag> grub </tag>
-            
             <tag> Arch </tag>
+            
+            <tag> grub </tag>
             
             <tag> EFI </tag>
             
@@ -288,9 +288,9 @@
       
         <tags>
             
-            <tag> Arch </tag>
-            
             <tag> yafu2 </tag>
+            
+            <tag> Arch </tag>
             
         </tags>
       

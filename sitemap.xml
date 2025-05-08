@@ -326,7 +326,7 @@
 
   
   <url>
-    <loc>https://ikuyo.dev/tags/grub/</loc>
+    <loc>https://ikuyo.dev/tags/yafu2/</loc>
     <lastmod>2025-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
@@ -340,14 +340,14 @@
   </url>
   
   <url>
-    <loc>https://ikuyo.dev/tags/EFI/</loc>
+    <loc>https://ikuyo.dev/tags/grub/</loc>
     <lastmod>2025-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
-    <loc>https://ikuyo.dev/tags/yafu2/</loc>
+    <loc>https://ikuyo.dev/tags/EFI/</loc>
     <lastmod>2025-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
@@ -382,14 +382,14 @@
   </url>
   
   <url>
-    <loc>https://ikuyo.dev/tags/CTF/</loc>
+    <loc>https://ikuyo.dev/tags/Java/</loc>
     <lastmod>2025-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
-    <loc>https://ikuyo.dev/tags/Java/</loc>
+    <loc>https://ikuyo.dev/tags/CTF/</loc>
     <lastmod>2025-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
@@ -410,13 +410,6 @@
   </url>
   
   <url>
-    <loc>https://ikuyo.dev/tags/Apps/</loc>
-    <lastmod>2025-05-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  
-  <url>
     <loc>https://ikuyo.dev/tags/Aho-corasick/</loc>
     <lastmod>2025-05-08</lastmod>
     <changefreq>weekly</changefreq>
@@ -425,6 +418,13 @@
   
   <url>
     <loc>https://ikuyo.dev/tags/Trie-tree/</loc>
+    <lastmod>2025-05-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+  <url>
+    <loc>https://ikuyo.dev/tags/Apps/</loc>
     <lastmod>2025-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
@@ -445,14 +445,14 @@
   </url>
   
   <url>
-    <loc>https://ikuyo.dev/tags/Eclipse/</loc>
+    <loc>https://ikuyo.dev/tags/Emacs/</loc>
     <lastmod>2025-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
-    <loc>https://ikuyo.dev/tags/Emacs/</loc>
+    <loc>https://ikuyo.dev/tags/Eclipse/</loc>
     <lastmod>2025-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
