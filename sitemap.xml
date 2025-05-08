@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://ikuyo.dev/2024/02/09/raspberry-pi5-arch/</loc>
+    <loc>https://ikuyo.dev/2025/05/08/yubikey/</loc>
     
     <lastmod>2025-05-08</lastmod>
     
@@ -11,7 +11,7 @@
   </url>
   
   <url>
-    <loc>https://ikuyo.dev/2025/05/08/yubikey/</loc>
+    <loc>https://ikuyo.dev/2024/02/09/raspberry-pi5-arch/</loc>
     
     <lastmod>2025-05-08</lastmod>
     
@@ -326,7 +326,7 @@
 
   
   <url>
-    <loc>https://ikuyo.dev/tags/yafu2/</loc>
+    <loc>https://ikuyo.dev/tags/grub/</loc>
     <lastmod>2025-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
@@ -340,14 +340,14 @@
   </url>
   
   <url>
-    <loc>https://ikuyo.dev/tags/grub/</loc>
+    <loc>https://ikuyo.dev/tags/EFI/</loc>
     <lastmod>2025-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
-    <loc>https://ikuyo.dev/tags/EFI/</loc>
+    <loc>https://ikuyo.dev/tags/yafu2/</loc>
     <lastmod>2025-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
@@ -445,14 +445,14 @@
   </url>
   
   <url>
-    <loc>https://ikuyo.dev/tags/Emacs/</loc>
+    <loc>https://ikuyo.dev/tags/Eclipse/</loc>
     <lastmod>2025-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
-    <loc>https://ikuyo.dev/tags/Eclipse/</loc>
+    <loc>https://ikuyo.dev/tags/Emacs/</loc>
     <lastmod>2025-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>

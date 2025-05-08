@@ -8,7 +8,7 @@
       <link href="/2025/05/08/yubikey/"/>
       <url>/2025/05/08/yubikey/</url>
       
-        <content type="html"><![CDATA[<blockquote><p>买的 YubiKey Security Key NFC 到了就来水一篇(<br>买的时候 $25</p></blockquote><h2 id="第一次使用"><a href="#第一次使用" class="headerlink" title="第一次使用"></a>第一次使用</h2><p>需要通电来激活 NFC 模式, 然后可以用 <a href="https://www.yubico.com/products/yubico-authenticator/">yubico-authenticator</a> 来配 PIN.</p><h2 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h2><p><code>ssh-keygen -t ed25519-sk -O resident</code> 来在里面创建持久化的(可被取回的) SSH key pair, 如果不加 <code>-O resident</code> 就不能在新机器上取回, 但是你通过直接复制到新机器后也能用.<br>取回就是用 <code>sudo ssh-keygen -K</code> 然后输入 PIN 和触摸, 就可以在你当前目录下生成 <code>id_ed25519_sk_rk_xxxx</code> 的密钥对.<br>我 <code>Arch</code> 上用密钥不知道为什么没有提示触摸而是会直接卡在 <code>ssh</code> 后然后没回显, 这个时候只需要触摸密钥授权即可.</p><h2 id="WSL2"><a href="#WSL2" class="headerlink" title="WSL2"></a>WSL2</h2><blockquote><p>参考 <a href="https://learn.microsoft.com/en-us/windows/wsl/connect-usb#attach-a-usb-deviceg">https://learn.microsoft.com/en-us/windows/wsl/connect-usb#attach-a-usb-deviceg</a></p></blockquote><p>在 <code>WSL2</code> 上用需要</p><ol><li>下载 <code>usbipd</code> 从上面的链接或者 <code>winget install --interactive --exact dorssel.usbipd-win</code> (在提权的控制台)</li><li>通过拔插 key 和 <code>usbipd list</code> 来找到对应的插槽编号, 比如 <code>9-2</code></li><li><code>usbipd bind --busid 9-2</code></li><li><code>usbipd attach --wsl --busid 9-2</code></li><li>然后就可以在 <code>WSL2</code> 里正常用, 但是在外面 Windows 就用不了了</li><li>如果要在外面用需要 <code>usbipd detach --busid 9-2</code></li></ol>]]></content>
+        <content type="html"><![CDATA[<blockquote><p>买的 YubiKey Security Key NFC 到了就来水一篇(<br>买的时候 $25</p></blockquote><h2 id="第一次使用"><a href="#第一次使用" class="headerlink" title="第一次使用"></a>第一次使用</h2><p>需要通电来激活 NFC 模式, 然后可以用 <a href="https://www.yubico.com/products/yubico-authenticator/">yubico-authenticator</a> 来配 PIN.</p><h2 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h2><p><code>ssh-keygen -t ed25519-sk -O resident</code> 来在里面创建持久化的(可被取回的) SSH key pair, 如果不加 <code>-O resident</code> 就不能在新机器上取回, 但是你通过直接复制到新机器后也能用.<br>取回就是用 <code>sudo ssh-keygen -K</code> 然后输入 PIN 和触摸, 就可以在你当前目录下生成 <code>id_ed25519_sk_rk_xxxx</code> 的密钥对.<br>我 <code>Arch</code> 上用密钥不知道为什么没有提示触摸而是会直接卡在 <code>ssh</code> 后然后没回显, 这个时候只需要触摸密钥授权即可.</p><h2 id="WSL2"><a href="#WSL2" class="headerlink" title="WSL2"></a>WSL2</h2><blockquote><p>参考 <a href="https://learn.microsoft.com/en-us/windows/wsl/connect-usb#attach-a-usb-deviceg">https://learn.microsoft.com/en-us/windows/wsl/connect-usb#attach-a-usb-deviceg</a> 和 <a href="https://www.yubico.com/blog/github-now-supports-ssh-security-keys/">https://www.yubico.com/blog/github-now-supports-ssh-security-keys/</a></p></blockquote><p>在 <code>WSL2</code> 上用需要</p><ol><li>下载 <code>usbipd</code> 从上面的链接或者 <code>winget install --interactive --exact dorssel.usbipd-win</code> (在提权的控制台)</li><li>通过拔插 key 和 <code>usbipd list</code> 来找到对应的插槽编号, 比如 <code>9-2</code></li><li><code>usbipd bind --busid 9-2</code></li><li><code>usbipd attach --wsl --busid 9-2</code></li><li>然后就可以在 <code>WSL2</code> 里正常用, 但是在外面 Windows 就用不了了</li><li>如果要在外面用需要 <code>usbipd detach --busid 9-2</code></li></ol>]]></content>
       
       
       <categories>
@@ -232,9 +232,9 @@
       
         <tags>
             
-            <tag> Arch </tag>
-            
             <tag> grub </tag>
+            
+            <tag> Arch </tag>
             
             <tag> EFI </tag>
             
@@ -288,9 +288,9 @@
       
         <tags>
             
-            <tag> yafu2 </tag>
-            
             <tag> Arch </tag>
+            
+            <tag> yafu2 </tag>
             
         </tags>
       
