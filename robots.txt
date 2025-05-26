@@ -1,6 +1,3 @@
-Sitemap: https://nambers.github.io/sitemap.xml
 User-agent: *
-Disallow: /MiraiCP/
-Disallow: /MiraiCP-docs/
-Disallow: /files/
 Allow: /
+Sitemap: https://ikuyo.dev/sitemap-index.xml
