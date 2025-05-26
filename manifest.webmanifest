@@ -1,0 +1,17 @@
+{
+  "name": "Eritque Arcus",
+  "icons": [
+    {
+      "src": "public/favicon.png",
+      "sizes": "400x400",
+      "type": "image/png"
+    }
+  ],
+  "short_name": "eritque_arcus_blog",
+  "description": "Eritque Arcus's blog",
+  "lang": "zh-CN",
+  "start_url": "/",
+  "theme_color": "#2bbc8a",
+  "background_color": "#1d1f21",
+  "display": "standalone"
+}
