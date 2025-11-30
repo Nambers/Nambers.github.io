@@ -74,11 +74,18 @@
 <p>参考 <a href="https://shop.pimoroni.com/products/nvme-base?variant=41219587178579" rel="noreferrer noopener" target="_blank">pimoroni</a>, 基本除了更新 pi 的固件不需要配置, 如果 <code>lsblk</code> 看不到 SSD 可能是要重启</p>
 <h2 id="4-安装-arch"><a class="not-prose" href="#4-安装-arch">4. 安装 Arch</a></h2>
 <ol start="0">
-<li>进 USB boot 的 SSH</li>
-<li>分盘, 我一般用 <code>cfdisk</code> 分(比如 <code>sudo cfdisk /dev/nvme0n1</code>), 最少分两个盘, 一个 <code>>=300Mb</code> 的 boot 和一个主盘’</li>
-<li>用 <code>sudo apt install libarchive-tools</code> 来安装 <code>bsdtar</code></li>
-<li>用 <code>root</code> 运行以下脚本(建议写到一个脚本文件里然后<code>sudo</code>), 脚本来自 <a href="https://kiljan.org/2023/11/24/arch-linux-arm-on-a-raspberry-pi-5-model-b/" rel="noreferrer noopener" target="_blank">kiljan.org/2023/11/24/arch-linux-arm-on-a-raspberry-pi-5-model-b</a><br>
-执行前要去找新的下载链接(见注释)
+<li>
+<p>进 USB boot 的 SSH</p>
+</li>
+<li>
+<p>分盘, 我一般用 <code>cfdisk</code> 分(比如 <code>sudo cfdisk /dev/nvme0n1</code>), 最少分两个盘, 一个 <code>>=300Mb</code> 的 boot 和一个主盘’</p>
+</li>
+<li>
+<p>用 <code>sudo apt install libarchive-tools</code> 来安装 <code>bsdtar</code></p>
+</li>
+<li>
+<p>用 <code>root</code> 运行以下脚本(建议写到一个脚本文件里然后<code>sudo</code>), 脚本来自 <a href="https://kiljan.org/2023/11/24/arch-linux-arm-on-a-raspberry-pi-5-model-b/" rel="noreferrer noopener" target="_blank">kiljan.org/2023/11/24/arch-linux-arm-on-a-raspberry-pi-5-model-b</a><br>
+执行前要去找新的下载链接(见注释)</p>
 <div class="expressive-code"><link rel="stylesheet" href="/_astro/ec.oaceo.css"><script type="module" src="/_astro/ec.p1z7b.js"></script><figure class="frame"><figcaption class="header"></figcaption><pre data-language="bash" class="wrap" style="--ecMaxLine:91ch"><code><div class="ec-line"><div class="code"><span style="--0:#99A0A6;--1:#616972">#!/bin/bash</span></div></div><div class="ec-line"><div class="code"><span style="--0:#99A0A6;--1:#616972"># SSD 的路径</span></div></div><div class="ec-line"><div class="code"><span style="--0:#F97583;--1:#BF3441">export</span><span style="--0:#E1E4E8;--1:#24292E"> SDDEV</span><span style="--0:#F97583;--1:#BF3441">=</span><span style="--0:#E1E4E8;--1:#24292E">/dev/nvme0n1</span></div></div><div class="ec-line"><div class="code"><span style="--0:#F97583;--1:#BF3441">export</span><span style="--0:#E1E4E8;--1:#24292E"> SDPARTBOOT</span><span style="--0:#F97583;--1:#BF3441">=</span><span style="--0:#E1E4E8;--1:#24292E">/dev/nvme0n1p1</span></div></div><div class="ec-line"><div class="code"><span style="--0:#F97583;--1:#BF3441">export</span><span style="--0:#E1E4E8;--1:#24292E"> SDPARTROOT</span><span style="--0:#F97583;--1:#BF3441">=</span><span style="--0:#E1E4E8;--1:#24292E">/dev/nvme0n1p2</span></div></div><div class="ec-line"><div class="code"><span style="--0:#F97583;--1:#BF3441">export</span><span style="--0:#E1E4E8;--1:#24292E"> SDMOUNT</span><span style="--0:#F97583;--1:#BF3441">=</span><span style="--0:#E1E4E8;--1:#24292E">/mnt/sd</span></div></div><div class="ec-line"><div class="code"><span style="--0:#F97583;--1:#BF3441">export</span><span style="--0:#E1E4E8;--1:#24292E"> DOWNLOADDIR</span><span style="--0:#F97583;--1:#BF3441">=</span><span style="--0:#E1E4E8;--1:#24292E">/tmp/pi</span></div></div><div class="ec-line"><div class="code"><span style="--0:#F97583;--1:#BF3441">export</span><span style="--0:#E1E4E8;--1:#24292E"> DISTURL</span><span style="--0:#F97583;--1:#BF3441">=</span><span style="--0:#9ECBFF;--1:#032F62">"http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-aarch64-latest.tar.gz"</span></div></div><div class="ec-line"><div class="code">
 </div></div><div class="ec-line"><div class="code"><span style="--0:#B392F0;--1:#6F42C1">mkdir</span><span style="--0:#E1E4E8;--1:#24292E"> </span><span style="--0:#79B8FF;--1:#005CC5">-p</span><span style="--0:#E1E4E8;--1:#24292E"> $DOWNLOADDIR</span></div></div><div class="ec-line"><div class="code"><span style="--0:#E1E4E8;--1:#24292E">(</span></div></div><div class="ec-line"><div class="code"><span style="--0:#79B8FF;--1:#005CC5">cd</span><span style="--0:#E1E4E8;--1:#24292E"> $DOWNLOADDIR &#x26;&#x26; </span><span style="--0:#79B8FF;--1:#005CC5">\</span></div></div><div class="ec-line"><div class="code"><span style="--0:#B392F0;--1:#6F42C1">curl</span><span style="--0:#E1E4E8;--1:#24292E"> </span><span style="--0:#79B8FF;--1:#005CC5">-JLO</span><span style="--0:#E1E4E8;--1:#24292E"> $DISTURL</span></div></div><div class="ec-line"><div class="code"><span style="--0:#E1E4E8;--1:#24292E">)</span></div></div><div class="ec-line"><div class="code">
 </div></div><div class="ec-line"><div class="code"><span style="--0:#99A0A6;--1:#616972"># 已经分过盘了</span></div></div><div class="ec-line"><div class="code"><span style="--0:#99A0A6;--1:#616972">#sfdisk --quiet --wipe always $SDDEV &#x3C;&#x3C; EOF</span></div></div><div class="ec-line"><div class="code"><span style="--0:#99A0A6;--1:#616972">#,256M,0c,</span></div></div><div class="ec-line"><div class="code"><span style="--0:#99A0A6;--1:#616972">#,,,</span></div></div><div class="ec-line"><div class="code"><span style="--0:#99A0A6;--1:#616972">#EOF</span></div></div><div class="ec-line"><div class="code">
@@ -88,27 +95,45 @@
 </div></div><div class="ec-line"><div class="code"><span style="--0:#B392F0;--1:#6F42C1">rm</span><span style="--0:#E1E4E8;--1:#24292E"> </span><span style="--0:#79B8FF;--1:#005CC5">-rf</span><span style="--0:#E1E4E8;--1:#24292E"> ${SDMOUNT}</span><span style="--0:#9ECBFF;--1:#032F62">/boot/</span><span style="--0:#79B8FF;--1:#005CC5">*</span></div></div><div class="ec-line"><div class="code">
 </div></div><div class="ec-line"><div class="code"><span style="--0:#B392F0;--1:#6F42C1">mkdir</span><span style="--0:#E1E4E8;--1:#24292E"> </span><span style="--0:#79B8FF;--1:#005CC5">-p</span><span style="--0:#E1E4E8;--1:#24292E"> ${DOWNLOADDIR}</span><span style="--0:#9ECBFF;--1:#032F62">/linux-rpi</span></div></div><div class="ec-line"><div class="code"><span style="--0:#E1E4E8;--1:#24292E">pushd ${DOWNLOADDIR}/linux-rpi</span></div></div><div class="ec-line"><div class="code"><span style="--0:#99A0A6;--1:#616972"># 这里需要自己去找链接, 不然可能 404</span></div></div><div class="ec-line"><div class="code"><span style="--0:#99A0A6;--1:#616972"># 去 https://archlinuxarm.org/packages/aarch64/linux-rpi 然后复制下载链接</span></div></div><div class="ec-line"><div class="code"><span style="--0:#B392F0;--1:#6F42C1">curl</span><span style="--0:#E1E4E8;--1:#24292E"> </span><span style="--0:#79B8FF;--1:#005CC5">-JLO</span><span style="--0:#E1E4E8;--1:#24292E"> </span><span style="--0:#9ECBFF;--1:#032F62">http://mirror.archlinuxarm.org/aarch64/core/linux-rpi-6.6.16-1-aarch64.pkg.tar.xz</span></div></div><div class="ec-line"><div class="code"><span style="--0:#B392F0;--1:#6F42C1">tar</span><span style="--0:#E1E4E8;--1:#24292E"> </span><span style="--0:#9ECBFF;--1:#032F62">xf</span><span style="--0:#E1E4E8;--1:#24292E"> </span><span style="--0:#79B8FF;--1:#005CC5">*</span></div></div><div class="ec-line"><div class="code"><span style="--0:#B392F0;--1:#6F42C1">cp</span><span style="--0:#E1E4E8;--1:#24292E"> </span><span style="--0:#79B8FF;--1:#005CC5">-rf</span><span style="--0:#E1E4E8;--1:#24292E"> </span><span style="--0:#9ECBFF;--1:#032F62">boot/</span><span style="--0:#79B8FF;--1:#005CC5">*</span><span style="--0:#E1E4E8;--1:#24292E"> ${SDMOUNT}</span><span style="--0:#9ECBFF;--1:#032F62">/boot/firmware</span></div></div><div class="ec-line"><div class="code"><span style="--0:#E1E4E8;--1:#24292E">popd</span></div></div><div class="ec-line"><div class="code">
 </div></div><div class="ec-line"><div class="code"><span style="--0:#B392F0;--1:#6F42C1">sync</span></div></div><div class="ec-line"><div class="code"><span style="--0:#B392F0;--1:#6F42C1">umount</span><span style="--0:#E1E4E8;--1:#24292E"> </span><span style="--0:#79B8FF;--1:#005CC5">-R</span><span style="--0:#E1E4E8;--1:#24292E"> $SDMOUNT</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="#!/bin/bash# SSD 的路径export SDDEV=/dev/nvme0n1export SDPARTBOOT=/dev/nvme0n1p1export SDPARTROOT=/dev/nvme0n1p2export SDMOUNT=/mnt/sdexport DOWNLOADDIR=/tmp/piexport DISTURL=&#x22;http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-aarch64-latest.tar.gz&#x22;mkdir -p $DOWNLOADDIR(cd $DOWNLOADDIR &#x26;&#x26; \curl -JLO $DISTURL)# 已经分过盘了#sfdisk --quiet --wipe always $SDDEV << EOF#,256M,0c,#,,,#EOFmkfs.vfat -F 32 $SDPARTBOOTmkfs.ext4 -E lazy_itable_init=0,lazy_journal_init=0 -F $SDPARTROOTmkdir -p $SDMOUNTmount $SDPARTROOT $SDMOUNTmkdir -p ${SDMOUNT}/boot/firmwaremount $SDPARTBOOT ${SDMOUNT}/boot/firmwarebsdtar -xpf ${DOWNLOADDIR}/ArchLinuxARM-rpi-aarch64-latest.tar.gz -C $SDMOUNTrm -rf ${SDMOUNT}/boot/*mkdir -p ${DOWNLOADDIR}/linux-rpipushd ${DOWNLOADDIR}/linux-rpi# 这里需要自己去找链接, 不然可能 404# 去 https://archlinuxarm.org/packages/aarch64/linux-rpi 然后复制下载链接curl -JLO http://mirror.archlinuxarm.org/aarch64/core/linux-rpi-6.6.16-1-aarch64.pkg.tar.xztar xf *cp -rf boot/* ${SDMOUNT}/boot/firmwarepopdsyncumount -R $SDMOUNT"><div></div></button></div></figure></div>
-这里是 <code>/boot/firmware</code> 而不是 <code>/boot</code> 参考 <a href="https://www.raspberrypi.com/documentation/computers/configuration.html#the-boot-folder" rel="noreferrer noopener" target="_blank">raspberrypi.com/documentation/computers/configuration.html#the-boot-folder</a>.</li>
-<li>挂载 SSD (可以写成脚本文件)
+<p>这里是 <code>/boot/firmware</code> 而不是 <code>/boot</code> 参考 <a href="https://www.raspberrypi.com/documentation/computers/configuration.html#the-boot-folder" rel="noreferrer noopener" target="_blank">raspberrypi.com/documentation/computers/configuration.html#the-boot-folder</a>.</p>
+</li>
+<li>
+<p>挂载 SSD (可以写成脚本文件)</p>
 <div class="expressive-code"><figure class="frame"><figcaption class="header"></figcaption><pre data-language="bash" class="wrap" style="--ecMaxLine:43ch"><code><div class="ec-line" style="--ecIndent:1ch"><div class="code"><span class="indent"> </span><span style="--0:#99A0A6;--1:#616972">#!/bin/bash</span></div></div><div class="ec-line" style="--ecIndent:1ch"><div class="code"><span class="indent"> </span><span style="--0:#B392F0;--1:#6F42C1">mount</span><span style="--0:#E1E4E8;--1:#24292E"> </span><span style="--0:#9ECBFF;--1:#032F62">/dev/nvme0n1p2</span><span style="--0:#E1E4E8;--1:#24292E"> </span><span style="--0:#9ECBFF;--1:#032F62">/mnt/sd</span></div></div><div class="ec-line" style="--ecIndent:1ch"><div class="code"><span class="indent"> </span><span style="--0:#B392F0;--1:#6F42C1">mount</span><span style="--0:#E1E4E8;--1:#24292E"> </span><span style="--0:#9ECBFF;--1:#032F62">/dev/nvme0n1p1</span><span style="--0:#E1E4E8;--1:#24292E"> </span><span style="--0:#9ECBFF;--1:#032F62">/mnt/sd/boot/firmware</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code=" #!/bin/bash mount /dev/nvme0n1p2 /mnt/sd mount /dev/nvme0n1p1 /mnt/sd/boot/firmware"><div></div></button></div></figure></div>
 </li>
-<li>编辑 <code>sudo vim /mnt/sd/etc/fstab</code>, 改成你的盘
-<div class="expressive-code"><figure class="frame"><figcaption class="header"></figcaption><pre data-language="ini" class="wrap" style="--ecMaxLine:66ch"><code><div class="ec-line" style="--ecIndent:1ch"><div class="gutter"><div class="ln" aria-hidden="true">1</div></div><div class="code"><span class="indent"> </span><span style="--0:#99A0A6;--1:#616972"># Static information about the filesystems.</span></div></div><div class="ec-line" style="--ecIndent:1ch"><div class="gutter"><div class="ln" aria-hidden="true">2</div></div><div class="code"><span class="indent"> </span><span style="--0:#99A0A6;--1:#616972"># See fstab(5) for details.</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">3</div></div><div class="code">
+<li>
+<p>编辑 <code>sudo vim /mnt/sd/etc/fstab</code>, 改成你的盘</p>
+<div class="expressive-code"><figure class="frame has-title"><figcaption class="header"><span class="title">fstab</span></figcaption><pre data-language="ini" class="wrap" style="--ecMaxLine:66ch"><code><div class="ec-line" style="--ecIndent:1ch"><div class="gutter"><div class="ln" aria-hidden="true">1</div></div><div class="code"><span class="indent"> </span><span style="--0:#99A0A6;--1:#616972"># Static information about the filesystems.</span></div></div><div class="ec-line" style="--ecIndent:1ch"><div class="gutter"><div class="ln" aria-hidden="true">2</div></div><div class="code"><span class="indent"> </span><span style="--0:#99A0A6;--1:#616972"># See fstab(5) for details.</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">3</div></div><div class="code">
 </div></div><div class="ec-line" style="--ecIndent:1ch"><div class="gutter"><div class="ln" aria-hidden="true">4</div></div><div class="code"><span class="indent"> </span><span style="--0:#99A0A6;--1:#616972"># &#x3C;file system> &#x3C;dir> &#x3C;type> &#x3C;options> &#x3C;dump> &#x3C;pass></span></div></div><div class="ec-line" style="--ecIndent:1ch"><div class="gutter"><div class="ln" aria-hidden="true">5</div></div><div class="code"><span class="indent"> </span><span style="--0:#99A0A6;--1:#616972"># &#x3C;pass> is the order of loading parition</span></div></div><div class="ec-line" style="--ecIndent:1ch"><div class="gutter"><div class="ln" aria-hidden="true">6</div></div><div class="code"><span class="indent"> </span><span style="--0:#99A0A6;--1:#616972"># main partition</span></div></div><div class="ec-line" style="--ecIndent:1ch"><div class="gutter"><div class="ln" aria-hidden="true">7</div></div><div class="code"><span class="indent"><span style="--0:#E1E4E8;--1:#24292E"> </span></span><span style="--0:#E1E4E8;--1:#24292E">/dev/nvme0n1p2  /               ext4    defaults        0       1</span></div></div><div class="ec-line" style="--ecIndent:1ch"><div class="gutter"><div class="ln" aria-hidden="true">8</div></div><div class="code"><span class="indent"> </span><span style="--0:#99A0A6;--1:#616972"># boot partition</span></div></div><div class="ec-line" style="--ecIndent:1ch"><div class="gutter"><div class="ln" aria-hidden="true">9</div></div><div class="code"><span class="indent"><span style="--0:#E1E4E8;--1:#24292E"> </span></span><span style="--0:#E1E4E8;--1:#24292E">/dev/nvme0n1p1  /boot/firmware  vfat    defaults        0       2</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code=" # Static information about the filesystems. # See fstab(5) for details. # <file system> <dir> <type> <options> <dump> <pass> # <pass> is the order of loading parition # main partition /dev/nvme0n1p2  /               ext4    defaults        0       1 # boot partition /dev/nvme0n1p1  /boot/firmware  vfat    defaults        0       2"><div></div></button></div></figure></div>
 </li>
-<li>编辑 <code>sudo vim /mnt/sd/boot/firmware/cmdline.txt</code>
-<div class="expressive-code"><figure class="frame"><figcaption class="header"></figcaption><pre data-language="ini" class="wrap" style="--ecMaxLine:130ch"><code><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">1</div></div><div class="code"><span style="--0:#99A0A6;--1:#616972"># root=/dev/nvme0n1p2 rootfstype=ext4 rw rootwait console=serial0,115200 console=tty1 fsck.repair=yes</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">2</div></div><div class="code"><span style="--0:#99A0A6;--1:#616972"># root=UUID=0000-0000 rootfstype=ext4 rw rootwait console=serial0,115200 console=tty1 fsck.repair=yes</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">3</div></div><div class="code"><span style="--0:#F97583;--1:#BF3441">root</span><span style="--0:#E1E4E8;--1:#24292E">=</span><span style="--0:#F97583;--1:#BF3441">PARTUUID</span><span style="--0:#E1E4E8;--1:#24292E">=00000000-0000-0000-0000-000000000000 </span><span style="--0:#F97583;--1:#BF3441">rootfstype</span><span style="--0:#E1E4E8;--1:#24292E">=ext4 rw rootwait </span><span style="--0:#F97583;--1:#BF3441">console</span><span style="--0:#E1E4E8;--1:#24292E">=serial0,115200 </span><span style="--0:#F97583;--1:#BF3441">console</span><span style="--0:#E1E4E8;--1:#24292E">=tty1 </span><span style="--0:#F97583;--1:#BF3441">fsck.repair</span><span style="--0:#E1E4E8;--1:#24292E">=yes</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="# root=/dev/nvme0n1p2 rootfstype=ext4 rw rootwait console=serial0,115200 console=tty1 fsck.repair=yes# root=UUID=0000-0000 rootfstype=ext4 rw rootwait console=serial0,115200 console=tty1 fsck.repair=yesroot=PARTUUID=00000000-0000-0000-0000-000000000000 rootfstype=ext4 rw rootwait console=serial0,115200 console=tty1 fsck.repair=yes"><div></div></button></div></figure></div>
-我这里用的是盘的 <code>PARTUUID</code>, 理论上用路径或UUID应该也可以, 通过 <code>ls /dev/disk/by-partuuid -al</code>, <code>ls /dev/disk/by-uuid -al</code> 和 <code>lsblk</code> 可以拿到</li>
-<li>关机， 拔掉 USB, 重启</li>
+<li>
+<p>编辑 <code>sudo vim /mnt/sd/boot/firmware/cmdline.txt</code></p>
+<div class="expressive-code"><figure class="frame has-title"><figcaption class="header"><span class="title">cmdline.txt</span></figcaption><pre data-language="ini" class="wrap" style="--ecMaxLine:130ch"><code><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">1</div></div><div class="code"><span style="--0:#99A0A6;--1:#616972"># root=/dev/nvme0n1p2 rootfstype=ext4 rw rootwait console=serial0,115200 console=tty1 fsck.repair=yes</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">2</div></div><div class="code"><span style="--0:#99A0A6;--1:#616972"># root=UUID=0000-0000 rootfstype=ext4 rw rootwait console=serial0,115200 console=tty1 fsck.repair=yes</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">3</div></div><div class="code"><span style="--0:#F97583;--1:#BF3441">root</span><span style="--0:#E1E4E8;--1:#24292E">=</span><span style="--0:#F97583;--1:#BF3441">PARTUUID</span><span style="--0:#E1E4E8;--1:#24292E">=00000000-0000-0000-0000-000000000000 </span><span style="--0:#F97583;--1:#BF3441">rootfstype</span><span style="--0:#E1E4E8;--1:#24292E">=ext4 rw rootwait </span><span style="--0:#F97583;--1:#BF3441">console</span><span style="--0:#E1E4E8;--1:#24292E">=serial0,115200 </span><span style="--0:#F97583;--1:#BF3441">console</span><span style="--0:#E1E4E8;--1:#24292E">=tty1 </span><span style="--0:#F97583;--1:#BF3441">fsck.repair</span><span style="--0:#E1E4E8;--1:#24292E">=yes</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="# root=/dev/nvme0n1p2 rootfstype=ext4 rw rootwait console=serial0,115200 console=tty1 fsck.repair=yes# root=UUID=0000-0000 rootfstype=ext4 rw rootwait console=serial0,115200 console=tty1 fsck.repair=yesroot=PARTUUID=00000000-0000-0000-0000-000000000000 rootfstype=ext4 rw rootwait console=serial0,115200 console=tty1 fsck.repair=yes"><div></div></button></div></figure></div>
+<p>我这里用的是盘的 <code>PARTUUID</code>, 理论上用路径或UUID应该也可以, 通过 <code>ls /dev/disk/by-partuuid -al</code>, <code>ls /dev/disk/by-uuid -al</code> 和 <code>lsblk</code> 可以拿到</p>
+</li>
+<li>
+<p>关机， 拔掉 USB, 重启</p>
+</li>
 </ol>
 <h2 id="5-配置-arch"><a class="not-prose" href="#5-配置-arch">5. 配置 Arch</a></h2>
 <ul>
-<li>滚下系统</li>
-<li>[可选] 加 SSH <code>~/.ssh/authorized_keys</code></li>
-<li>同步下时间 <code>ntp</code></li>
-<li>设置 <code>locale</code></li>
-<li>[可选] 安装 <code>zsh</code> <code>omz</code></li>
-<li>无线网络
+<li>
+<p>滚下系统</p>
+</li>
+<li>
+<p>[可选] 加 SSH <code>~/.ssh/authorized_keys</code></p>
+</li>
+<li>
+<p>同步下时间 <code>ntp</code></p>
+</li>
+<li>
+<p>设置 <code>locale</code></p>
+</li>
+<li>
+<p>[可选] 安装 <code>zsh</code> <code>omz</code></p>
+</li>
+<li>
+<p>无线网络</p>
 <ul>
 <li>安装 <code>NetworkManager</code>: <code>pacman -S NetworkManager</code>, <code>systemctl enable --now NetworkManager</code>
 <ul>
@@ -117,34 +142,53 @@
 </li>
 <li>或安装 <code>iwd</code> 来连接无线网: <code>pacman -S iwd</code>, <code>systemctl enable --now iwd</code>
 <ul>
-<li>用 <code>iwctl</code> 然后 <code>station wlan0 connect &#x3C;UID></code> 来连接</li>
-<li><code>sudo systemctl enable --now iwd</code> 开机启动系统服务</li>
-<li>编辑 <code>sudo vim /etc/iwd/main.conf</code>, 加入
-<div class="expressive-code"><figure class="frame"><figcaption class="header"></figcaption><pre data-language="ini" class="wrap" style="--ecMaxLine:31ch"><code><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">1</div></div><div class="code"><span style="--0:#B392F0;--1:#6F42C1">[Settings]</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">2</div></div><div class="code"><span style="--0:#F97583;--1:#BF3441">AutoConnect</span><span style="--0:#E1E4E8;--1:#24292E">=true</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">3</div></div><div class="code"><span style="--0:#B392F0;--1:#6F42C1">[General]</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">4</div></div><div class="code"><span style="--0:#F97583;--1:#BF3441">EnableNetworkConfiguration</span><span style="--0:#E1E4E8;--1:#24292E">=true</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">5</div></div><div class="code"><span style="--0:#B392F0;--1:#6F42C1">[Network]</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">6</div></div><div class="code"><span style="--0:#F97583;--1:#BF3441">EnableIPv6</span><span style="--0:#E1E4E8;--1:#24292E">=true</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="[Settings]AutoConnect=true[General]EnableNetworkConfiguration=true[Network]EnableIPv6=true"><div></div></button></div></figure></div>
-来让 wifi 自动连接, 使用内置 <code>dhcph</code> 和 <code>ipv6</code></li>
-</ul>
+<li>
+<p>用 <code>iwctl</code> 然后 <code>station wlan0 connect &#x3C;UID></code> 来连接</p>
+</li>
+<li>
+<p><code>sudo systemctl enable --now iwd</code> 开机启动系统服务</p>
+</li>
+<li>
+<p>编辑 <code>sudo vim /etc/iwd/main.conf</code>, 加入</p>
+<div class="expressive-code"><figure class="frame has-title"><figcaption class="header"><span class="title">main.conf</span></figcaption><pre data-language="ini" class="wrap" style="--ecMaxLine:31ch"><code><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">1</div></div><div class="code"><span style="--0:#B392F0;--1:#6F42C1">[Settings]</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">2</div></div><div class="code"><span style="--0:#F97583;--1:#BF3441">AutoConnect</span><span style="--0:#E1E4E8;--1:#24292E">=true</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">3</div></div><div class="code"><span style="--0:#B392F0;--1:#6F42C1">[General]</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">4</div></div><div class="code"><span style="--0:#F97583;--1:#BF3441">EnableNetworkConfiguration</span><span style="--0:#E1E4E8;--1:#24292E">=true</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">5</div></div><div class="code"><span style="--0:#B392F0;--1:#6F42C1">[Network]</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">6</div></div><div class="code"><span style="--0:#F97583;--1:#BF3441">EnableIPv6</span><span style="--0:#E1E4E8;--1:#24292E">=true</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="[Settings]AutoConnect=true[General]EnableNetworkConfiguration=true[Network]EnableIPv6=true"><div></div></button></div></figure></div>
+<p>来让 wifi 自动连接, 使用内置 <code>dhcph</code> 和 <code>ipv6</code></p>
 </li>
 </ul>
 </li>
-<li>[可选?] 安装 <code>dhcph</code>
+</ul>
+</li>
+<li>
+<p>[可选?] 安装 <code>dhcph</code></p>
 <ul>
 <li><code>sudo systemctl enable --now dhcph</code></li>
 <li>[可选?] 在 <code>/etc/dhcpcd.conf</code> 禁用 ipv6</li>
 </ul>
 </li>
-<li>新建用户, 删除 alarm</li>
-<li>改 <code>hostname</code> (默认是 <code>alarm</code>)</li>
-<li>[可选] 安装 <code>linux-rpi-16k</code>
+<li>
+<p>新建用户, 删除 alarm</p>
+</li>
+<li>
+<p>改 <code>hostname</code> (默认是 <code>alarm</code>)</p>
+</li>
+<li>
+<p>安装 <code>swapfile</code></p>
+</li>
+<li>
+<p>[可选] 安装 <code>linux-rpi-16k</code></p>
 <ul>
 <li>如果安装后一直 <code>boot</code> 进旧的 也就是 <code>linux-rpi</code> 内核, 可以试着用 <code>/boot/kernel8.img</code> 覆盖 <code>/boot/firmware/kernel8.img</code></li>
 </ul>
 </li>
-<li>[可选] Arch 下的 <code>sudo pacman -S rpi5-eeprom</code> 来更新固件</li>
-<li>[可选] 如果要修复 <code>pacman</code> 里生成 image 的
+<li>
+<p>[可选] Arch 下的 <code>sudo pacman -S rpi5-eeprom</code> 来更新固件</p>
+</li>
+<li>
+<p>[可选] 如果要修复 <code>pacman</code> 里生成 image 的</p>
 <div class="expressive-code"><figure class="frame"><figcaption class="header"></figcaption><pre data-language="log" class="wrap" style="--ecMaxLine:85ch"><code><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">1</div></div><div class="code"><span style="--0:#E1E4E8;--1:#24292E">==> </span><span style="--0:#FDAEB7;--1:#B31D28">WARNING</span><span style="--0:#E1E4E8;--1:#24292E">: errors were encountered during the build. The image may not be complete.</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">2</div></div><div class="code"><span style="--0:#9ECBFF;--1:#032F62">error:</span><span style="--0:#E1E4E8;--1:#24292E"> command failed to execute correctly</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="==> WARNING: errors were encountered during the build. The image may not be complete.error: command failed to execute correctly"><div></div></button></div></figure></div>
-可以编辑 <code>/etc/mkinitcpio.conf</code> 的 <code>HOOKS</code> 那一行, 去掉 <code>kms</code>
+<p>可以编辑 <code>/etc/mkinitcpio.conf</code> 的 <code>HOOKS</code> 那一行, 去掉 <code>kms</code></p>
 <div class="expressive-code"><figure class="frame"><figcaption class="header"></figcaption><pre data-language="ini" class="wrap" style="--ecMaxLine:87ch"><code><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">1</div></div><div class="code"><span style="--0:#99A0A6;--1:#616972"># removed kms</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">2</div></div><div class="code"><span style="--0:#F97583;--1:#BF3441">HOOKS</span><span style="--0:#E1E4E8;--1:#24292E">=(base udev autodetect modconf keyboard keymap consolefont block filesystems fsck)</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="# removed kmsHOOKS=(base udev autodetect modconf keyboard keymap consolefont block filesystems fsck)"><div></div></button></div></figure></div>
-参考 <a href="https://archlinuxarm.org/forum/viewtopic.php?f=15&#x26;t=16672&#x26;start=40#p72020" rel="noreferrer noopener" target="_blank">archlinuxarm</a></li>
+<p>参考 <a href="https://archlinuxarm.org/forum/viewtopic.php?f=15&#x26;t=16672&#x26;start=40#p72020" rel="noreferrer noopener" target="_blank">archlinuxarm</a></p>
+</li>
 </ul>
 <h3 id="troubleshooting"><a class="not-prose" href="#troubleshooting">Troubleshooting</a></h3>
 <p>如果遇到什么奇怪的内核问题, 比如安装了 16k page 的新内核但是一直在加载旧内核(表现为 <code>uname -a</code> 里和 <code>lsmod</code> 为空之类), 或者 <code>pacman -Syyu</code> 更新内核后有一些问题, 可能是因为内核的 <code>PKGBUILD</code> 里面装到 <code>/boot/kernel8.img</code> 去了(因为我看不到 Arch Linux ARM 的 <code>PKGBUILD</code> 文件所以不能确认). 可以试一下 <code>sudo cp /boot/kernel8.img /boot/firmware/kernel8.img</code> 来覆盖看看能不能修.</p>
@@ -152,24 +196,45 @@
 <blockquote>
 <p>因为 <code>cloudflare</code> 提供 <code>tunnel</code>, 我们可以用 <code>tunnel</code> 来做 Pi 的公网 SSH (以及其他要公网的服务, 相当于内网穿透)</p>
 </blockquote>
-<ol start="0">
-<li>进 pi 的 arch 的 SSH</li>
-<li>接下来可以用 docker 的 <code>cloudflared</code> 或者手动编译 (因为 <a href="https://github.com/cloudflare/cloudflared/issues/1151#issuecomment-1888738119" rel="noreferrer noopener" target="_blank">issue#1151</a> 提到在 <code>2024.1.0</code> 后要自己编译 <code>go</code> 标准库, 不然开不了通道), 我这里选的是手动编译</li>
-<li>通过
+<ol>
+<li>
+<p>进 pi 的 arch 的 SSH</p>
+</li>
+<li>
+<p>接下来可以用 docker 的 <code>cloudflared</code> 或者手动编译 (因为 <a href="https://github.com/cloudflare/cloudflared/issues/1151#issuecomment-1888738119" rel="noreferrer noopener" target="_blank">issue#1151</a> 提到在 <code>2024.1.0</code> 后要自己编译 <code>go</code> 标准库, 不然开不了通道), 我这里选的是手动编译</p>
+</li>
+<li>
+<p>通过</p>
 <div class="expressive-code"><figure class="frame is-terminal"><figcaption class="header"><span class="title"></span><span class="sr-only">Terminal window</span></figcaption><pre data-language="bash" class="wrap" style="--ecMaxLine:46ch"><code><div class="ec-line"><div class="code"><span style="--0:#B392F0;--1:#6F42C1">git</span><span style="--0:#E1E4E8;--1:#24292E"> </span><span style="--0:#9ECBFF;--1:#032F62">clone</span><span style="--0:#E1E4E8;--1:#24292E"> </span><span style="--0:#9ECBFF;--1:#032F62">https://github.com/cloudflare/go.git</span></div></div><div class="ec-line"><div class="code"><span style="--0:#79B8FF;--1:#005CC5">cd</span><span style="--0:#E1E4E8;--1:#24292E"> </span><span style="--0:#9ECBFF;--1:#032F62">go/src</span></div></div><div class="ec-line"><div class="code"><span style="--0:#B392F0;--1:#6F42C1">./make.bash</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="git clone https://github.com/cloudflare/go.gitcd go/src./make.bash"><div></div></button></div></figure></div>
-编译 <code>cloudflare</code> 的 <code>go</code> 标准库</li>
-<li>把 <code>go/bin/</code> 加到 <code>PATH</code> 里</li>
-<li>通过
+<p>编译 <code>cloudflare</code> 的 <code>go</code> 标准库</p>
+</li>
+<li>
+<p>把 <code>go/bin/</code> 加到 <code>PATH</code> 里</p>
+</li>
+<li>
+<p>通过</p>
 <div class="expressive-code"><figure class="frame is-terminal"><figcaption class="header"><span class="title"></span><span class="sr-only">Terminal window</span></figcaption><pre data-language="bash" class="wrap" style="--ecMaxLine:55ch"><code><div class="ec-line"><div class="code"><span style="--0:#B392F0;--1:#6F42C1">git</span><span style="--0:#E1E4E8;--1:#24292E"> </span><span style="--0:#9ECBFF;--1:#032F62">clone</span><span style="--0:#E1E4E8;--1:#24292E"> </span><span style="--0:#9ECBFF;--1:#032F62">https://github.com/cloudflare/cloudflared.git</span></div></div><div class="ec-line"><div class="code"><span style="--0:#79B8FF;--1:#005CC5">cd</span><span style="--0:#E1E4E8;--1:#24292E"> </span><span style="--0:#9ECBFF;--1:#032F62">cloudflared</span></div></div><div class="ec-line"><div class="code"><span style="--0:#B392F0;--1:#6F42C1">make</span><span style="--0:#E1E4E8;--1:#24292E"> </span><span style="--0:#9ECBFF;--1:#032F62">cloudflared</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="git clone https://github.com/cloudflare/cloudflared.gitcd cloudflaredmake cloudflared"><div></div></button></div></figure></div>
-编译 <code>cloudflared</code></li>
-<li>把 <code>cloudflared/</code> 加到 <code>PATH</code> 里</li>
-<li>在 <code>cloudflare</code> 网页上创建一个 <code>tunnel</code><img src="/images/rpi5-arch4.png" alt="tunnel">然后在里面创建协议为 <code>SSH</code> 的 <code>public hostname</code></li>
-<li>复制 <code>cloudflared</code> 网页上的 <code>tunnel</code> 配置, 比如
+<p>编译 <code>cloudflared</code></p>
+</li>
+<li>
+<p>把 <code>cloudflared/</code> 加到 <code>PATH</code> 里</p>
+</li>
+<li>
+<p>在 <code>cloudflare</code> 网页上创建一个 <code>tunnel</code><img src="/images/rpi5-arch4.png" alt="tunnel">然后在里面创建协议为 <code>SSH</code> 的 <code>public hostname</code></p>
+</li>
+<li>
+<p>复制 <code>cloudflared</code> 网页上的 <code>tunnel</code> 配置, 比如</p>
 <div class="expressive-code"><figure class="frame is-terminal"><figcaption class="header"><span class="title"></span><span class="sr-only">Terminal window</span></figcaption><pre data-language="bash" class="wrap" style="--ecMaxLine:40ch"><code><div class="ec-line"><div class="code"><span style="--0:#B392F0;--1:#6F42C1">sudo</span><span style="--0:#E1E4E8;--1:#24292E"> </span><span style="--0:#9ECBFF;--1:#032F62">cloudflared</span><span style="--0:#E1E4E8;--1:#24292E"> </span><span style="--0:#9ECBFF;--1:#032F62">service</span><span style="--0:#E1E4E8;--1:#24292E"> </span><span style="--0:#9ECBFF;--1:#032F62">install</span><span style="--0:#E1E4E8;--1:#24292E"> </span><span style="--0:#9ECBFF;--1:#032F62">&#x3C;TOKEN></span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="sudo cloudflared service install <TOKEN>"><div></div></button></div></figure></div>
 </li>
-<li><code>sudo systemctl enable --now cloudflared</code></li>
-<li>然后在 pc 上安装 <code>sudo pacman -S cloudflared</code></li>
-<li>在 <code>.ssh/config</code> 里写 <code>cloudflared</code> 的 <code>ProxyCommand</code> 为 <code>cloudflared access ssh --hostname %h</code>, 参考 <a href="https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/use-cases/ssh/#native-terminal" rel="noreferrer noopener" target="_blank">developers.cloudflare.com/cloudflare-one/connections/connect-networks/use-cases/ssh</a></li>
+<li>
+<p><code>sudo systemctl enable --now cloudflared</code></p>
+</li>
+<li>
+<p>然后在 pc 上安装 <code>sudo pacman -S cloudflared</code></p>
+</li>
+<li>
+<p>在 <code>.ssh/config</code> 里写 <code>cloudflared</code> 的 <code>ProxyCommand</code> 为 <code>cloudflared access ssh --hostname %h</code>, 参考 <a href="https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/use-cases/ssh/#native-terminal" rel="noreferrer noopener" target="_blank">developers.cloudflare.com/cloudflare-one/connections/connect-networks/use-cases/ssh</a></p>
+</li>
 </ol>
 <h2 id="7-可选-gui"><a class="not-prose" href="#7-可选-gui">7. [可选] GUI</a></h2>
 <p>直接 Hyprland<br>
